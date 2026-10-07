@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>画像タグ生成ツール（Web版）</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; margin: 20px; background: #f8f9fa; color: #333; line-height: 1.5; }
+    h1 { font-size: 1.6rem; margin-bottom: 1.2rem; color: #2c3e50; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .form-grid { display: grid; grid-template-columns: 140px 1fr 140px 140px; gap: 12px 16px; align-items: center; }
+    .form-grid > label { justify-self: end; font-weight: 500; color: #444; }
+    input, select, textarea { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; width: 100%; box-sizing: border-box; }
+    input[type="number"] { width: 90px; }
+    select { appearance: none; background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 8px center / 16px; background-color: white; }
+    .btn { padding: 8px 16px; border: none; border-radius: 6px; font-size: 0.95rem; cursor: pointer; transition: 0.15s; }
+    .btn-primary { background: #007bff; color: white; } .btn-primary:hover { background: #0056b3; }
+    .btn-secondary { background: #6c757d; color: white; } .btn-secondary:hover { background: #5a6268; }
+    .btn-outline { background: white; border: 1px solid #ccc; color: #333; } .btn-outline:hover { background: #f1f1f1; }
+    .btn-danger { background: #dc3545; color: white; } .btn-danger:hover { background: #c82333; }
+    .buttons, .output-controls { display: flex; gap: 12px; flex-wrap: wrap; margin: 1.5rem 0; }
+    .btn-large { flex: 1; padding: 12px; font-size: 1.1rem; }
+    #output { width: 100%; height: 260px; font-family: 'Consolas', monospace; font-size: 0.95rem; padding: 12px; border: 1px solid #ccc; border-radius: 6px; background: #fff; resize: vertical; white-space: pre; }
+    #status { margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-weight: 500; min-height: 1.4em; }
+    .status-success { background: #d4edda; color: #155724; }
+    .status-error   { background: #f8d7da; color: #721c24; }
+    .status-info    { background: #e2e3e5; color: #383d41; }
+    .unit { font-size: 0.9rem; color: #666; margin-left: 6px; }
+    .count-group { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .count-group .subgroup { display: flex; align-items: center; gap: 12px; }
+    @media (max-width: 768px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid > label { justify-self: start; }
+      .count-group { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>画像タグ生成ツール</h1>
+
+    <div class="form-grid">
+      <label for="imageUrl">画像URL（必須）:</label>
+      <input type="text" id="imageUrl" placeholder="例: https://.../onmotk01.jpg" />
+      <div>
+        <button class="btn btn-outline" onclick="pasteTo('imageUrl')">ペースト</button>
+        <button class="btn btn-outline" onclick="clearInput('imageUrl')">クリア</button>
+      </div>
+      <div></div>
+
+      <label for="numberingMode">連番モード:</label>
+      <select id="numberingMode">
+        <option value="replace">連番開始番号</option>
+        <option value="append">連番追加番号</option>
+      </select>
+      <div></div>
+      <div></div>
+
+      <label for="serialNumber">連番番号:</label>
+      <input type="text" id="serialNumber" placeholder="空でもOK（元URLの末尾数字から開始）" />
+      <div></div>
+      <div></div>
+
+      <label for="serialCount">連番個数:</label>
+      <div class="count-group">
+        <div class="subgroup">
+          <input type="number" id="serialCount" min="1" max="999" value="10" />
+        </div>
+        <div class="subgroup">
+          <label for="brCount">改行個数:</label>
+          <input type="number" id="brCount" min="0" max="20" value="2" />
+        </div>
+      </div>
+      <div></div>
+      <div></div>
+
+      <label for="widthMode">width:</label>
+      <select id="widthMode">
+        <option value="100%">100%</option>
+        <option value="none">指定なし</option>
+        <option value="px">指定px</option>
+        <option value="%">指定%</option>
+      </select>
+      <div>
+        <input type="number" id="widthValue" min="1" placeholder="数値" disabled />
+        <span id="widthUnit" class="unit"></span>
+      </div>
+      <div></div>
+
+      <label for="altText">alt:</label>
+      <input type="text" id="altText" placeholder="代替テキスト（任意）" />
+      <div>
+        <button class="btn btn-outline" onclick="pasteTo('altText')">ペースト</button>
+        <button class="btn btn-outline" onclick="clearInput('altText')">クリア</button>
+      </div>
+      <div></div>
+
+      <label for="border">border:</label>
+      <input type="number" id="border" min="0" placeholder="例: 1" />
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-primary btn-large" onclick="generateHtml()">HTML生成</button>
+      <button class="btn btn-secondary" onclick="copyHtmlToClipboard()">HTMLをコピー</button>
+      <button class="btn btn-secondary" onclick="copyNextUrl()">URLを順番にコピー</button>
+    </div>
+
+    <label style="display:block; margin: 1.8rem 0 0.6rem;">生成されたHTML（直接編集可能・自動反映）:</label>
+    <textarea id="output"></textarea>
+
+    <div class="output-controls">
+      <button class="btn btn-warning" onclick="clearOutputArea()">出力エリア全選択＆クリア (Ctrl+A → Delete相当)</button>
+    </div>
+
+    <div id="status" class="status-info">待機中...</div>
+  </div>
+
+  <script>
+    let imageUrls = [];
+    let currentUrlIndex = 0;
+
+    function getEl(id) { return document.getElementById(id); }
+
+    function showStatus(msg, type = 'info') {
+      const el = getEl('status');
+      el.textContent = msg;
+      el.className = `status-${type}`;
+      setTimeout(() => {
+        if (el.textContent === msg) {
+          el.className = 'status-info';
+          el.textContent = '待機中...';
+        }
+      }, 5000);
+    }
+
+    async function pasteTo(id) {
+      try {
+        const text = await navigator.clipboard.readText();
+        getEl(id).value = text.trim();
+        showStatus(`${id === 'imageUrl' ? '画像URL' : 'alt'}をペーストしました。`, 'success');
+      } catch {
+        showStatus('クリップボード読み取りに失敗しました', 'error');
+      }
+    }
+
+    function clearInput(id) {
+      getEl(id).value = '';
+      showStatus(`${id === 'imageUrl' ? '画像URL' : 'alt'}をクリアしました。`, 'success');
+    }
+
+    function updateWidthInputState() {
+      const mode = getEl('widthMode').value;
+      const input = getEl('widthValue');
+      const unit = getEl('widthUnit');
+      input.disabled = mode === '100%' || mode === 'none';
+      if (input.disabled) input.value = '';
+      unit.textContent = mode === 'px' ? 'px' : mode === '%' ? '%' : '';
+    }
+
+    getEl('widthMode').addEventListener('change', updateWidthInputState);
+    updateWidthInputState();
+
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        try {
+          return document.execCommand('copy');
+        } finally {
+          document.body.removeChild(textarea);
+        }
+      }
+    }
+
+    async function copyHtmlToClipboard() {
+      const text = getEl('output').value.trim();
+      if (!text) return showStatus('コピーする内容がありません', 'error');
+      const success = await copyToClipboard(text);
+      showStatus(success ? 'HTMLをクリップボードにコピーしました' : 'コピーに失敗しました（手動選択してください）', success ? 'success' : 'error');
+    }
+
+    async function copyNextUrl() {
+      if (imageUrls.length === 0) return showStatus('先にHTMLを生成してください', 'error');
+      if (currentUrlIndex >= imageUrls.length) currentUrlIndex = 0;
+      const url = imageUrls[currentUrlIndex];
+      const success = await copyToClipboard(url);
+      showStatus(success ? `URL ${currentUrlIndex + 1}/${imageUrls.length} をコピーしました` : 'コピーに失敗しました（手動選択してください）', success ? 'success' : 'error');
+      if (success) currentUrlIndex++;
+    }
+
+    // 新しいクリア関数：全選択 → 削除 → 内部データもリセット
+    function clearOutputArea() {
+      const textarea = getEl('output');
+      textarea.focus();              // フォーカスを当てる
+      textarea.select();             // 全選択（Ctrl+A相当）
+      textarea.setSelectionRange(0, 999999); // 念のため範囲を強制指定
+      document.execCommand('delete'); // 選択範囲を削除
+      textarea.value = '';           // 確実に空にする（保険）
+      imageUrls = [];
+      currentUrlIndex = 0;
+      showStatus('出力エリアを全クリアしました', 'success');
+    }
+
+    // 自動URL更新機能
+    function updateUrlsFromOutput() {
+      const html = getEl('output').value;
+      const urls = [];
+      const regex = /<img[^>]*src=["'](.*?)["']/gi;
+      let match;
+      while ((match = regex.exec(html)) !== null) {
+        urls.push(match[1]);
+      }
+      if (urls.length > 0 && JSON.stringify(urls) !== JSON.stringify(imageUrls)) {
+        imageUrls = urls;
+        currentUrlIndex = 0;
+        showStatus(`URLリストを自動更新しました（${urls.length}件）`, 'info');
+      }
+    }
+
+    let updateTimer;
+    getEl('output').addEventListener('input', () => {
+      clearTimeout(updateTimer);
+      updateTimer = setTimeout(updateUrlsFromOutput, 800);
+    });
+
+    function generateHtml() {
+      const baseUrl = getEl('imageUrl').value.trim();
+      if (!baseUrl) return showStatus('エラー: 画像URLは必須です。', 'error');
+
+      const count = parseInt(getEl('serialCount').value) || 1;
+      if (count < 1) return showStatus('エラー: 連番個数は1以上の整数を入力してください。', 'error');
+
+      const brCount = parseInt(getEl('brCount').value) || 0;
+
+      let widthAttr = '';
+      const wMode = getEl('widthMode').value;
+      if (wMode === '100%') widthAttr = 'width="100%"';
+      else if (wMode === 'px' || wMode === '%') {
+        const val = getEl('widthValue').value.trim();
+        if (!val || isNaN(val)) return showStatus(`エラー: width(${wMode==='px'?'px':'%'}指定)に数値を入力してください。`, 'error');
+        widthAttr = `width="${val}${wMode==='%'?'%':''}"`;
+      }
+
+      const alt = getEl('altText').value.trim();
+      const altAttr = alt ? `alt="${alt.replace(/"/g, '&quot;')}"` : '';
+
+      const borderVal = getEl('border').value.trim();
+      const borderAttr = borderVal && !isNaN(borderVal) ? `border="${borderVal}"` : '';
+
+      const mode = getEl('numberingMode').value;
+      const serialInput = getEl('serialNumber').value.trim();
+
+      imageUrls = [];
+      let html = '';
+
+      const filenameMatch = baseUrl.match(/([^/]+)$/);
+      const filename = filenameMatch ? filenameMatch[1] : '';
+      const dotIndex = filename.lastIndexOf('.');
+      const nameOnly = dotIndex >= 0 ? filename.substring(0, dotIndex) : filename;
+      const ext = dotIndex >= 0 ? filename.substring(dotIndex) : '';
+      const pathPart = baseUrl.substring(0, baseUrl.length - filename.length);
+
+      try {
+        if (mode === 'replace') {
+          let startNum = 1;
+          let digits = 2;
+          let zeroPad = false;
+          let prefix = '';
+          let suffix = '';
+
+          const originalNumMatch = nameOnly.match(/(\d+)([^\d]*)$/);
+          if (originalNumMatch) {
+            const origNumStr = originalNumMatch[1];
+            startNum = parseInt(origNumStr);
+            digits = origNumStr.length;
+            zeroPad = origNumStr.startsWith('0') && digits > 1;
+          }
+
+          if (serialInput) {
+            const inputNumMatch = serialInput.match(/(\d+)([^\d]*)$/);
+            if (inputNumMatch) {
+              prefix = serialInput.substring(0, inputNumMatch.index);
+              const inputNumStr = inputNumMatch[1];
+              suffix = inputNumMatch[2];
+              startNum = parseInt(inputNumStr);
+              digits = inputNumStr.length;
+              zeroPad = inputNumStr.startsWith('0') && digits > 1;
+            } else {
+              startNum = parseInt(serialInput);
+              digits = serialInput.length;
+              zeroPad = serialInput.startsWith('0') && digits > 1;
+            }
+          }
+
+          for (let i = 0; i < count; i++) {
+            const currentNum = startNum + i;
+            const numStr = zeroPad ? currentNum.toString().padStart(digits, '0') : currentNum.toString();
+            const replacePart = prefix + numStr + suffix;
+
+            let newName = nameOnly;
+            if (originalNumMatch) {
+              newName = nameOnly.replace(/(\d+)([^\d]*)$/, replacePart + '$2');
+            } else {
+              newName += replacePart;
+            }
+
+            const newFilename = newName + ext;
+            const url = pathPart + newFilename;
+            imageUrls.push(url);
+
+            let tag = `<img src="${url}"`;
+            if (altAttr) tag += ` ${altAttr}`;
+            if (widthAttr) tag += ` ${widthAttr}`;
+            if (borderAttr) tag += ` ${borderAttr}`;
+            tag += '>';
+            html += tag + '<br>'.repeat(brCount) + '\n';
+          }
+        } else {
+          const appendMatch = serialInput.match(/(\d+)([^\d]*)$/);
+          if (!appendMatch) throw new Error('連番追加番号が不正です（例: _01, -001）');
+
+          const appendPrefix = serialInput.substring(0, appendMatch.index);
+          const startStr = appendMatch[1];
+          const appendSuffix = appendMatch[2];
+          const digits = startStr.length;
+          const zeroPad = startStr.startsWith('0') && digits > 1;
+          const startNum = parseInt(startStr);
+
+          for (let i = 0; i < count; i++) {
+            const num = startNum + i;
+            const numStr = zeroPad ? num.toString().padStart(digits, '0') : num.toString();
+            const added = appendPrefix + numStr + appendSuffix;
+            const newFilename = nameOnly + added + ext;
+            const url = pathPart + newFilename;
+            imageUrls.push(url);
+
+            let tag = `<img src="${url}"`;
+            if (altAttr) tag += ` ${altAttr}`;
+            if (widthAttr) tag += ` ${widthAttr}`;
+            if (borderAttr) tag += ` ${borderAttr}`;
+            tag += '>';
+            html += tag + '<br>'.repeat(brCount) + '\n';
+          }
+        }
+
+        getEl('output').value = html.trimEnd();
+        currentUrlIndex = 0;
+        updateUrlsFromOutput();
+        showStatus(`HTMLを生成しました（${count}件）`, 'success');
+      } catch (e) {
+        showStatus(`エラー: ${e.message}`, 'error');
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && document.activeElement.tagName !== 'TEXTAREA') {
+        generateHtml();
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>

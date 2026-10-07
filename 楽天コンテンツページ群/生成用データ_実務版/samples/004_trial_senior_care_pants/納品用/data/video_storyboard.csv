@@ -1,0 +1,7 @@
+scene_no,scene_name,duration_sec,background_file,display_copy,motion,text_animation
+1,title,5.8,01_title.jpg,"使う人の気持ちから、\n選びたい。",slow_zoom,typewriter_after_blank
+2,family,3.6,02_family.jpg,"吸水量だけでは、\n決めきれない。",pan_right,rise_fade
+3,points,4.5,03_points.jpg,"このコラムのポイント\n› 気持ちへの配慮\n› 150cc以上の目安\n› 洗い替えとすすめ方",slow_zoom,points_one_by_one
+4,capacity,3.7,04_capacity.jpg,"夜間や長時間に、\n備えるという選択。",pan_left,slide_left
+5,laundry,3.6,05_laundry.jpg,"枚数は、\n家族の余裕にもなる。",pan_right,slide_right
+6,closing,3.8,06_closing.jpg,"毎日を少し、\n穏やかにする準備。",slow_zoom,rise_fade

@@ -1,0 +1,47 @@
+﻿順番	ブロック種別	貼り付け内容	元データ	文字数	警告
+1	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/024_title.jpg	images/delivery/024_title.jpg		タイトル画像
+2	メインタイトル	水着になる前に悩みすぎる私へ｜体型カバー水着という準備	水着になる前に悩みすぎる私へ｜体型カバー水着という準備	27	
+3	動画	video/opening_cm_024_vertical.mp4	video/opening_cm_024_vertical.mp4		タイトル直下の動く目次CM
+4	動画下本文	"
+水着を着る予定が入ると、楽しみより先に少し身構えてしまうことがあります。
+
+お腹、二の腕、背中、太もも。気になる場所は人それぞれですが、悩みが増えるほど水辺へ行く前の支度は重くなります。体型カバー水着は、体を別人に変えるものではありません。けれど、今の自分で水辺に出るための準備にはなります。
+
+このコラムでは、上下セットで完結する体型カバー水着を、気持ちを軽くする道具として考えます。"	page_copy.md#lead	193	本文先頭に余白用改行あり
+5	小タイトル	悩む時間が長くなる	悩む時間が長くなる	9	
+6	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/024_section_1.jpg	images/delivery/024_section_1.jpg		章バナー
+7	本文	"
+水着の予定は、服を選ぶ時より少しだけ緊張します。普段なら気にしない部分まで急に気になり、鏡の前で考える時間が長くなります。
+
+でも、その時間が長すぎると、水辺そのものを楽しむ前に疲れてしまいます。大切なのは、悩みをゼロにすることではなく、悩みすぎなくていい準備をしておくことです。"	page_copy.md#1	140	本文先頭に余白用改行あり
+8	小タイトル	上下セットは迷いを減らす	上下セットは迷いを減らす	12	
+9	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/024_section_2.jpg	images/delivery/024_section_2.jpg		章バナー
+10	本文	"
+トップスとボトムを別々に考えると、組み合わせだけで迷いが増えます。色は合うか、丈は足りるか、泳いだ時にずれないか。小さな確認が積み重なります。
+
+上下セットの水着は、最初から水辺用としてまとまっている安心感があります。支度の段階で迷いを減らせることは、意外と大きなメリットです。"	page_copy.md#2	139	本文先頭に余白用改行あり
+11	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/024_accent_01.jpg	images/delivery/024_accent_01.jpg		文字なし正方形アクセント
+12	小タイトル	隠す場所は人それぞれ	隠す場所は人それぞれ	10	
+13	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/024_section_3.jpg	images/delivery/024_section_3.jpg		章バナー
+14	本文	"
+すっきり見せたい人もいれば、ふんわり覆いたい人もいます。どちらが正解というより、落ち着ける見え方が違うだけです。
+
+体型カバー水着を選ぶ時は、誰かの理想よりも、自分が水辺で何を気にせず過ごしたいかを基準にすると選びやすくなります。"	page_copy.md#3	115	本文先頭に余白用改行あり
+15	小タイトル	水辺で動けることも大切	水辺で動けることも大切	11	
+16	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/024_section_4.jpg	images/delivery/024_section_4.jpg		章バナー
+17	本文	"
+体型カバーを考えると、つい見た目ばかりに意識が向きます。けれど水着は、座る、歩く、しゃがむ、荷物を持つといった動きの中で使うものです。
+
+気になる部分を覆いながら、動きにくくないこと。水辺で過ごす時間を考えると、この現実的な安心感も欠かせません。"	page_copy.md#4	123	本文先頭に余白用改行あり
+18	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/024_accent_02.jpg	images/delivery/024_accent_02.jpg		文字なし正方形アクセント
+19	小タイトル	準備ができると出かけやすい	準備ができると出かけやすい	13	
+20	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/024_section_5.jpg	images/delivery/024_section_5.jpg		章バナー
+21	本文	"
+水着を選ぶことは、完璧になるための儀式ではありません。水辺に行く自分を少し助ける準備です。
+
+上下セットでまとまり、気になる部分に配慮があり、着る前の迷いが少ない。そんな水着があると、予定の日の気持ちは少し軽くなります。"	page_copy.md#5	110	本文先頭に余白用改行あり
+22	関連商品	h-mzg20	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+23	関連商品	c-mizugi_nbf	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+24	関連商品	usbswc	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+25	関連商品	usbswb	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+26	関連商品	b-mizugi-3	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行

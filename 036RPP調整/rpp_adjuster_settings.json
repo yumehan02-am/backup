@@ -1,0 +1,23 @@
+{
+  "report_paths": [
+    "C:\\Users\\i58400am\\Desktop\\newapp\\036RPP調整\\最新CSV\\rpp_item_reports_u-b-yumehan_20260825154705950_1.csv",
+    "C:\\Users\\i58400am\\Desktop\\newapp\\036RPP調整\\最新CSV\\rpp_item_reports_u-b-yumehan_20260825154652027_1.csv",
+    "C:\\Users\\i58400am\\Desktop\\newapp\\036RPP調整\\最新CSV\\rpp_item_reports_u-b-yumehan_20260928164438072_1.csv"
+  ],
+  "prev_report_path": "C:\\Users\\i58400am\\Desktop\\newapp\\036RPP調整\\最新CSV\\rpp_item_reports_u-b-yumehan_20260825154705950_1.csv",
+  "curr_report_path": "C:\\Users\\i58400am\\Desktop\\newapp\\036RPP調整\\最新CSV\\rpp_item_reports_u-b-yumehan_20260825154652027_1.csv",
+  "boost_path": "C:\\Users\\i58400am\\Desktop\\newapp\\036RPP調整\\最新CSV\\rpp_item_boost_u-b-yumehan_20260928164901906.csv",
+  "exclude_path": "C:\\Users\\i58400am\\Desktop\\newapp\\036RPP調整\\最新CSV\\RPP_exclude_items_u-b-yumehan_20260928164851.csv",
+  "item_csv_path": "C:\\Users\\i58400am\\Desktop\\newapp\\036RPP調整\\最新CSV\\normal-item20260928165130.csv",
+  "import_folder_path": "C:/Users/i58400am/Desktop/newapp/036RPP調整/最新CSV",
+  "shop_url": "u-b-yumehan",
+  "operation_setting": "",
+  "work_state": "",
+  "graph_columns": [
+    "クリック数(合計)",
+    "実績額(合計)",
+    "売上金額(合計720時間)",
+    "ROAS(合計720時間)(%)"
+  ],
+  "output_all": true
+}

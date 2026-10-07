@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>tp_sh1のマニュアル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+
+<main>
+
+
+
+<!-- ここからmenu -->
+<section id="menu" class="section">
+<div class="contents">
+
+<h2>MENU</h2>
+
+<div class="menu up">
+<img src="../images/sample1.jpg" alt="">
+<p class="text">メニュー名をここに入れます 1,200yen</p>
+<span class="icon-menu-point">NEW</span>
+</div>
+
+<div class="menu up">
+<img src="../images/sample1.jpg" alt="">
+<p class="text">メニュー名をここに入れます 1,200yen</p>
+</div>
+
+<div class="menu up">
+<img src="../images/sample1.jpg" alt="">
+<p class="text">メニュー名をここに入れます 1,200yen</p>
+</div>
+
+<p class="btn1 blur"><a href="menu.html">全てのメニューをみる</a></p>
+
+<dl class="table reverse">
+
+<dt>メニュー名をここに入れます</dt>
+<dd>1,200yen</dd>
+
+<dt>メニュー名をここに入れます</dt>
+<dd>1,200yen</dd>
+
+<dt>メニュー名をここに入れます</dt>
+<dd>1,200yen</dd>
+
+<dt>メニュー名をここに入れます</dt>
+<dd>1,200yen</dd>
+
+<dt>メニュー名をここに入れます</dt>
+<dd>1,200yen</dd>
+
+<dt>メニュー名をここに入れますメニュー名をここに入れますメニュー名をここに入れます</dt>
+<dd>1,200yen</dd>
+
+<dt>メニュー名をここに入れますメニュー名をここに入れますメニュー名をここに入れます</dt>
+<dd>1,200yen</dd>
+
+</dl>
+
+</div>
+</section>
+
+
+
+</main>
+
+
+
+<div class="manual">
+
+<h2>「menu」ブロックについて（MENU）</h2>
+
+<pre class="look">
+&lt;!-- ここからmenu --&gt;
+&lt;section id=&quot;menu&quot; class=&quot;section&quot;&gt;
+&lt;div class=&quot;contents&quot;&gt;
+
+&lt;h2&gt;MENU&lt;/h2&gt;
+
+&lt;div class=&quot;menu up&quot;&gt;
+&lt;img src=&quot;../images/sample1.jpg&quot; alt=&quot;&quot;&gt;
+&lt;p class=&quot;text&quot;&gt;メニュー名をここに入れます 1,200yen&lt;/p&gt;
+&lt;span class=&quot;icon-menu-point&quot;&gt;NEW&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;menu up&quot;&gt;
+&lt;img src=&quot;../images/sample1.jpg&quot; alt=&quot;&quot;&gt;
+&lt;p class=&quot;text&quot;&gt;メニュー名をここに入れます 1,200yen&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;menu up&quot;&gt;
+&lt;img src=&quot;../images/sample1.jpg&quot; alt=&quot;&quot;&gt;
+&lt;p class=&quot;text&quot;&gt;メニュー名をここに入れます 1,200yen&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p class=&quot;btn1 blur&quot;&gt;&lt;a href=&quot;menu.html&quot;&gt;全てのメニューをみる&lt;/a&gt;&lt;/p&gt;
+
+&lt;dl class=&quot;table reverse&quot;&gt;
+
+&lt;dt&gt;メニュー名をここに入れます&lt;/dt&gt;
+&lt;dd&gt;1,200yen&lt;/dd&gt;
+
+&lt;dt&gt;メニュー名をここに入れます&lt;/dt&gt;
+&lt;dd&gt;1,200yen&lt;/dd&gt;
+
+&lt;dt&gt;メニュー名をここに入れます&lt;/dt&gt;
+&lt;dd&gt;1,200yen&lt;/dd&gt;
+
+&lt;dt&gt;メニュー名をここに入れます&lt;/dt&gt;
+&lt;dd&gt;1,200yen&lt;/dd&gt;
+
+&lt;dt&gt;メニュー名をここに入れます&lt;/dt&gt;
+&lt;dd&gt;1,200yen&lt;/dd&gt;
+
+&lt;dt&gt;メニュー名をここに入れますメニュー名をここに入れますメニュー名をここに入れます&lt;/dt&gt;
+&lt;dd&gt;1,200yen&lt;/dd&gt;
+
+&lt;dt&gt;メニュー名をここに入れますメニュー名をここに入れますメニュー名をここに入れます&lt;/dt&gt;
+&lt;dd&gt;1,200yen&lt;/dd&gt;
+
+&lt;/dl&gt;
+
+&lt;/div&gt;
+&lt;/section&gt;
+</pre>
+
+<h3>主なスタイルは</h3>
+<p>cssフォルダのstyle.cssから「お品書きメニュー（menuブロック）」でテキスト検索してみて下さい。詳しい解説もあります。</p>
+
+<h3>大きな端末で見た場合に見える両サイドの大きな画像について</h3>
+<p>「images/bg_menu.jpg」です。お好みで入れ替えて下さい。サイズは自由で構いませんが端末サイズで配置バランスがかわるのでおかしくないような写真を選んで下さい。</p>
+
+<p>お品書きの左下の「NEW」のアイコン画像について。<br>
+テキスト部分は直接htmlに書いています。文字が多すぎると崩れるので注意して下さい。<br>
+アイコン画像は「images/icon_menu_point.svg」で、cssの背景画像で設定されています。設定は、style.cssの「icon-menu-point」で検索すると出てきます。アイコンを入れ替えたり、サイズや配置を調整したりできます。</p>
+
+<h3>upスタイル</h3>
+<p>「class=&quot;up&quot;」をつけると下からアップしてくるアニメーションになります。</p>
+<p><img src="../images/sample1.jpg" alt="" class="up" style="width: 200px;"></p>
+<p>このupスタイルは他の部分にも使えますが、相性が悪いとおかしな動きになるので、おかしくならない所にだけ使うようにして下さい。</p>
+
+<h3>「全てのメニューをみる」ボタン</h3>
+<p>style.cssから「btn1」で検索して下さい。詳しい説明もあります。</p>
+
+<h3>テキストのみのお品書きブロック</h3>
+<p>style.cssの「.table」でスタイル検索ができます。背景色やボーダーの設定が可能です。<br>
+index.htmlの一番下のブロックにある「店舗情報」内の所在地等にも使っています。</p>
+<p>&lt;dl class=&quot;table reverse&quot;&gt;の「reverse」というのは左右ブロックの幅を逆にするスタイルです。本来は、左側に100px、右側は自動幅の設定になっていますが、メニュー用は逆（右側に金額がくるのでそっちが100px）の方が見やすいのでそのようなスタイルを準備しました。</p>
+
+</div>
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="../js/jquery.inview_set.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="../js/main.js"></script>
+
+</body>
+</html>

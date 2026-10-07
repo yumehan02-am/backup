@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>tp_sh1のマニュアル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+<div class="manual">
+
+<h2>当テンプレートの使い方（総合）</h2>
+
+<h3>titleタグの設定はとても重要です。念入りにワードを選んで適切に入力しましょう。</h3>
+<p>まず、htmlソースが見れる状態にして、<br>
+<span class="look">&lt;title&gt;飲食店（カフェ・居酒屋・レストラン・ピザ専門店・クラフトビール専門店・ケーキ屋さん・コーヒー専門店・ハンバーガーショップ・マカロン専門店・ベーカリーショップ）向け スマホ幅重視のLP（ランディングページ向け）無料ホームページテンプレート tp_sh1&lt;/title&gt;</span><br>
+を編集しましょう。<br>
+あなたのホームページ名が「Sample Site」だとすれば、<br>
+<span class="look">&lt;title&gt;Sample Site&lt;/title&gt;</span><br>
+とすればＯＫです。SEO対策もするなら冒頭に重要なワードを入れておきましょう。</p>
+
+<h3>copyrightを変更しましょう。</h3>
+<p>続いてhtmlの下の方にある、<br>
+<span class="look">Copyright&copy; Sample Site All Rights Reserved.</span><br>
+の部分もあなたのサイト名に変更します。</p>
+
+<h3>metaタグを変更しましょう。</h3>
+<p>htmlソースが見える状態にしてmetaタグを変更しましょう。</p>
+<p>ソースの上の方に、<br>
+<span class="look">content=&quot;ここにサイト説明を入れます&quot;</span><br>
+という部分がありますので、テキストをサイトの説明文に入れ替えます。検索結果の文面に使われる場合もありますので、見た人が来訪したくなるような説明文を簡潔に書きましょう。</p>
+
+<h3>テンプレートの色変更について（CSSカスタムプロパティ）</h3>
+<p>style.css冒頭の、<br>
+<span class="look">:root {</span><br>
+からの数行で全体で複数箇所使う色の一括管理しています。</p>
+<p>例えば、このrootで、<br>
+<span class="look">--primary-color: #ffcc00;</span><br>
+という指定がある場合、この色を実際に読み込むには、<br>
+<span class="look">var(--primary-color)</span><br>
+というコードを書きます。</p>
+<p>具体的には、文字色なら、<br>
+<span class="look">color: var(--primary-color);</span><br>
+背景色なら、<br>
+<span class="look">background-color: var(--primary-color);</span><br>
+などです。<br>
+ここの「primary-color」などの部分は決まっているわけではないので自由に変更できます。（今あるものを変更する場合、下で実際に読み込んでいるコードも合わせて書き換える必要があります）</p>
+</div>
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="../js/jquery.inview_set.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="../js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+    "folder_path": "\\\\yhds220p\\10_発注管理",
+    "active_folder_path": "\\\\yhds220p\\10_発注管理",
+    "registered_folders": [
+        "\\\\yhds220p\\10_発注管理",
+        "\\\\yhds220p\\40_デリバリー\\シールデータ\\JAN",
+        "\\\\yhds220p\\40_デリバリー\\シールデータ\\★ネット用"
+    ],
+    "include_subfolders": true,
+    "max_depth": 0,
+    "filename_only": true,
+    "search_target": "file",
+    "multiple_folder_selection": false,
+    "selected_folder_paths": [
+        "\\\\yhds220p\\10_発注管理"
+    ],
+    "always_on_top": true,
+    "compact_result_direction": "自動",
+    "compact_state": {
+        "x": 26,
+        "y": 7,
+        "width": 336,
+        "height": 127,
+        "expanded": true,
+        "manual_resized": false,
+        "visible_rows": 4,
+        "query": "すっきり"
+    },
+    "folder_keyword_rules": [
+        {
+            "mode": "folder_exclude",
+            "keyword": "在庫ゼロ"
+        },
+        {
+            "mode": "file_exclude",
+            "keyword": "~$"
+        }
+    ],
+    "folder_keyword_rules_by_path": {
+        "\\\\yhds220p\\10_発注管理": [
+            {
+                "mode": "folder_exclude",
+                "keyword": "在庫ゼロ"
+            },
+            {
+                "mode": "file_exclude",
+                "keyword": "~$"
+            }
+        ],
+        "\\\\yhds220p\\40_デリバリー\\シールデータ\\JAN": [],
+        "\\\\yhds220p\\40_デリバリー\\シールデータ\\★ネット用": []
+    }
+}

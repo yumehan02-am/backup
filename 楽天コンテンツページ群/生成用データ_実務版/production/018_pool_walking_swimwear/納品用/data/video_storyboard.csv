@@ -1,0 +1,15 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,018_scene03.jpg,5.2,"泳がなくてもいい
+プール時間",title_type,0,0
+2,018_scene02.jpg,3.6,"水の中を
+歩くところから",rise_fade,0,0
+3,018_scene03.jpg,4.0,"このコラムのポイント
+› 歩くだけでも入口になる
+› 水の抵抗を味方にする
+› 服装は動きやすさから",points,0,0
+4,018_scene04.jpg,3.6,"がんばるより
+続けやすく",slide_left,0,0
+5,018_scene05.jpg,3.6,"動きやすさで
+水着を選ぶ",rise_fade,0.42,0
+6,018_scene06.jpg,3.6,"次の一回を
+軽くする準備",slide_right,0.36,0

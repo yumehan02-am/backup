@@ -1,0 +1,33 @@
+{
+    "1": {
+        "discount": 15.0,
+        "round_type": "\u5207\u308a\u6368\u3066",
+        "round_digit": "10\u306e\u4f4d"
+    },
+    "2": {
+        "discount": 20,
+        "round_type": "\u5207\u308a\u6368\u3066",
+        "round_digit": "10\u306e\u4f4d"
+    },
+    "3": {
+        "discount": 30,
+        "round_type": "\u5207\u308a\u6368\u3066",
+        "round_digit": "10\u306e\u4f4d"
+    },
+    "4": {
+        "discount": 40,
+        "round_type": "\u5207\u308a\u6368\u3066",
+        "round_digit": "10\u306e\u4f4d"
+    },
+    "5": {
+        "discount": 50,
+        "round_type": "\u5207\u308a\u6368\u3066",
+        "round_digit": "10\u306e\u4f4d"
+    },
+    "macro": {
+        "trigger_key": "F1",
+        "repeat_count": 1,
+        "key_sequence": "Ctrl+C,Tab,Ctrl+V,Enter"
+    },
+    "macros": {}
+}

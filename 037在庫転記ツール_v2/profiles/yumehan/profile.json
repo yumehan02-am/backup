@@ -1,0 +1,7 @@
+{
+  "profile_id": "yumehan",
+  "display_name": "夢販流通",
+  "description": "現行の在庫転記ツールで蓄積した楽天/Yahoo/Amazon/メルカリShops受注読込とExcel在庫表転記ルール",
+  "version": "0.1.0",
+  "status": "candidate-rules-external"
+}

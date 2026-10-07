@@ -1,0 +1,16 @@
+order,part_type,file_or_text,note
+0,thumbnail,images/005_thumbnail.jpg,RMSサムネイル候補
+1,image,images/005_title.jpg,タイトルバナー
+2,video,video/opening_cm_005.mp4,タイトル直下の動く目次CM
+3,text,page_copy.md,本文導入
+4,image,images/005_silhouette.jpg,理由説明バナー
+5,text,page_copy.md,本文1-2
+6,image,images/005_focus.jpg,視線説明バナー
+7,text,page_copy.md,本文3-4
+8,image,images/005_drape.jpg,布の落ち方バナー
+9,text,page_copy.md,本文5-6
+10,image,images/005_choice.jpg,選び方バナー
+11,text,page_copy.md,本文7
+12,item_parts,flttk00 fltbr00 fmnbr01,楽天の商品紹介パーツでリンク
+13,image,images/005_closing.jpg,まとめバナー
+14,text,page_copy.md,まとめ

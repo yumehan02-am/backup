@@ -1,0 +1,14 @@
+order,part_type,content,asset_or_product
+1,image,title banner,images/title_banner.jpg
+2,video,opening CM / moving table of contents,video/opening_cm_003.mp4
+3,text,lead paragraph,page_copy.md
+4,image,chapter banner 1,images/person_banner.jpg
+5,text,chapter 1,page_copy.md
+6,image,points banner,images/points_banner.jpg
+7,text,chapter 2,page_copy.md
+8,image,chapter banner 2,images/comfort_banner.jpg
+9,text,chapter 3,page_copy.md
+10,image,chapter banner 3,images/choice_banner.jpg
+11,text,chapter 4,page_copy.md
+12,image,closing banner,images/closing_banner.jpg
+13,item_links,recommended product links,data/product_ids.csv

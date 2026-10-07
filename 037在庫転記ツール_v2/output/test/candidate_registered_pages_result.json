@@ -1,0 +1,222 @@
+[
+  {
+    "product_code": "8tred00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\西川合繊\\自社ネット分_レディース.xlsx",
+    "sheet": "赤8分袖 ",
+    "start_col": "B",
+    "external": "B29",
+    "default": "B29",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "fcpg00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\サメリ\\太ももコンパクトハイウエストガードル.xlsx",
+    "sheet": "",
+    "start_col": "A",
+    "external": "A2294",
+    "default": "A2294",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "faktg00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\芳仲繊維\\フェイクタイツ.xlsx",
+    "sheet": "2色組",
+    "start_col": "B",
+    "external": "B592",
+    "default": "B592",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "trprt10",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\西川合繊\\自社ネット分_メンズ.xlsx",
+    "sheet": "プリント柄_トランクス100cc",
+    "start_col": "B",
+    "external": "B338",
+    "default": "B338",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "rbsll00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\加納商店\\シリコンパッド.xlsx",
+    "sheet": "",
+    "start_col": "A",
+    "external": "A1667",
+    "default": "A1667",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "ftmns00",
+    "page_name": "ボタニカルフラワーブルー",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\クライム\\水着\\フィットネス水着帽子付き.xlsx",
+    "sheet": "水着_花柄",
+    "start_col": "A",
+    "external": "A756",
+    "default": "A756",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "slkfsp00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\ユーセン\\シルク　ふくらはぎサポーター.xlsx",
+    "sheet": "",
+    "start_col": "B",
+    "external": "B415",
+    "default": "B415",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "dm3nb20",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\西川合繊\\ドライマスター3分長パンツ.xlsx",
+    "sheet": "",
+    "start_col": "A",
+    "external": "A280",
+    "default": "A280",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "ogchs00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\スガノ工房\\ウエストウォーマーショート.xlsx",
+    "sheet": "",
+    "start_col": "B",
+    "external": "B297",
+    "default": "B297",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "sasti00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\クライム\\【NEW】サラッと汗取りインナー.xlsx",
+    "sheet": "",
+    "start_col": "A",
+    "external": "A1195",
+    "default": "A1195",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "mntxbt",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\ミノウラ\\TERAXCOOL.xlsx",
+    "sheet": "TERAXCOOLレギンス",
+    "start_col": "A",
+    "external": "A22",
+    "default": "A22",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "c-mizugi",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\上杉　水着\\カバーアップ水着.xlsx",
+    "sheet": "",
+    "start_col": "A",
+    "external": "A2128",
+    "default": "A2128",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "atbrlg20",
+    "page_name": "トップス",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\クライム\\アスレジャー_黒杢ブラ・レギンス.xlsx",
+    "sheet": "黒杢ブラ",
+    "start_col": "A",
+    "external": "A149",
+    "default": "A149",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "slksht00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\ユーセン\\シルク　ゆったりレースショーツ.xlsx",
+    "sheet": "",
+    "start_col": "B",
+    "external": "B71",
+    "default": "B71",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "fbisf00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\クライム\\【NEW】フィットブラ付きスクエアネック　フレンチ.xlsx",
+    "sheet": "",
+    "start_col": "A",
+    "external": "A676",
+    "default": "A676",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "skinc99",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\西川合繊\\自社ネット分_レディース.xlsx",
+    "sheet": "スキンケア",
+    "start_col": "A",
+    "external": "A930",
+    "default": "A930",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "drpet00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\島崎\\ワンピース用楽ちんペチ.xlsx",
+    "sheet": "",
+    "start_col": "B",
+    "external": "B1346",
+    "default": "B1346",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "ktgsh00",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\シン・ツゥ・コーポレーション\\骨盤底筋ショートガードル.xlsx",
+    "sheet": "",
+    "start_col": "A",
+    "external": "A1239",
+    "default": "A1239",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "wtk-m-bx300",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\渡嘉\\紳士300CC.xlsx",
+    "sheet": "",
+    "start_col": "A",
+    "external": "A239",
+    "default": "A239",
+    "matches_default": true,
+    "status": "ok"
+  },
+  {
+    "product_code": "yumebra",
+    "page_name": "ページ1",
+    "path": "\\\\yhds220p\\10_発注管理\\夢販流通\\清光ランジェリー\\綿ジャガード前開きブラ.xlsx",
+    "sheet": "",
+    "start_col": "A",
+    "external": "A1194",
+    "default": "A1194",
+    "matches_default": true,
+    "status": "ok"
+  }
+]

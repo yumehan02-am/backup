@@ -1,0 +1,7 @@
+scene_no,scene_name,duration_sec,background_file,display_copy,motion,text_animation
+1,title,5.8,004_scene01.jpg,"胸を小さく見せたい日、\n服をきれいに着たい日。",zoom_in,typewriter_after_blank
+2,shirt,3.8,004_scene02.jpg,"好きな服なのに、\n胸元だけしっくりこない。",pan_right,rise_fade
+3,points,4.5,004_scene03.jpg,"このコラムのポイント\n› 服の見え方\n› 盛らない選択\n› 苦しくない整え方",gentle_zoom,points_one_by_one
+4,flat,3.8,004_scene04.jpg,"体を変える話ではなく、\nラインを整える話。",diagonal_pan,slide_left
+5,choice,3.8,004_scene05.jpg,"ブラトップの日、\nブラジャーの日。",pan_left,slide_right
+6,closing,4.0,004_scene06.jpg,"好きな服を、\nもう少し気楽に。",zoom_out,rise_fade

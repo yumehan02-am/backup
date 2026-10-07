@@ -1,0 +1,21 @@
+{
+    "folder_path": "",
+    "active_folder_path": "",
+    "registered_folders": [],
+    "include_subfolders": true,
+    "max_depth": 0,
+    "filename_only": true,
+    "always_on_top": false,
+    "compact_state": {
+        "x": 52,
+        "y": 52,
+        "width": 600,
+        "height": 650,
+        "expanded": false,
+        "manual_resized": false,
+        "visible_rows": 1,
+        "query": ""
+    },
+    "folder_keyword_rules": [],
+    "folder_keyword_rules_by_path": {}
+}

@@ -1,0 +1,47 @@
+﻿順番	ブロック種別	貼り付け内容	元データ	文字数	警告
+1	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/027_title.jpg	images/delivery/027_title.jpg		タイトル画像
+2	メインタイトル	「痩せてから水着」はいつ終わる？｜今の体で水辺に行くための話	「痩せてから水着」はいつ終わる？｜今の体で水辺に行くための話	30	
+3	動画	video/opening_cm_027_vertical.mp4	video/opening_cm_027_vertical.mp4		タイトル直下の動く目次CM
+4	動画下本文	"
+水着の予定を前にすると、つい「もう少し痩せてから」と思うことがあります。
+
+けれど、その日は意外と来ません。体重や体型を整える努力は悪いことではありませんが、水辺の予定がすべてその後回しになると、楽しい時間まで遠ざかってしまいます。
+
+このコラムでは、今の体で水辺に行くための水着選びを、少し正直に考えます。"	page_copy.md#lead	154	本文先頭に余白用改行あり
+5	小タイトル	予定は体重を待たない	予定は体重を待たない	10	
+6	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/027_section_1.jpg	images/delivery/027_section_1.jpg		章バナー
+7	本文	"
+旅行、プール、子どもの水遊び。水辺の予定は、こちらの体重計の都合まで待ってくれません。
+
+だから、完璧に整ってから行くという考え方だけでは、予定そのものを楽しみにくくなります。今の自分でどう準備するかを考える方が、現実には役に立ちます。"	page_copy.md#1	118	本文先頭に余白用改行あり
+8	小タイトル	水着で体は消えない	水着で体は消えない	9	
+9	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/027_section_2.jpg	images/delivery/027_section_2.jpg		章バナー
+10	本文	"
+着るだけで体型が別物になる水着はありません。お肉がどこかへ消えるわけでもありません。
+
+でも、気になる部分を覆ったり、視線の流れを整えたり、動きやすさを確保したりすることはできます。体を変えるのではなく、過ごしやすくするための水着選びです。"	page_copy.md#2	120	本文先頭に余白用改行あり
+11	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/027_accent_01.jpg	images/delivery/027_accent_01.jpg		文字なし正方形アクセント
+12	小タイトル	隠すことは逃げではない	隠すことは逃げではない	11	
+13	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/027_section_3.jpg	images/delivery/027_section_3.jpg		章バナー
+14	本文	"
+体型カバーを選ぶことを、負けのように感じる必要はありません。暑さ対策に帽子をかぶるように、水辺で落ち着くために水着を選ぶだけです。
+
+隠したいところを隠し、動きたい時に動ける。そう考えると、体型カバーは前向きな準備になります。"	page_copy.md#3	113	本文先頭に余白用改行あり
+15	小タイトル	比べる相手を減らす	比べる相手を減らす	9	
+16	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/027_section_4.jpg	images/delivery/027_section_4.jpg		章バナー
+17	本文	"
+水辺では、つい周りの人と自分を比べてしまいます。けれど、実際には多くの人が自分の荷物、子ども、日差し、スマホ、次の予定で忙しいものです。
+
+比べる視線を少し減らすためにも、自分が落ち着ける水着を選ぶことは大切です。"	page_copy.md#4	107	本文先頭に余白用改行あり
+18	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/027_accent_02.jpg	images/delivery/027_accent_02.jpg		文字なし正方形アクセント
+19	小タイトル	今の体で楽しむ準備	今の体で楽しむ準備	9	
+20	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/027_section_5.jpg	images/delivery/027_section_5.jpg		章バナー
+21	本文	"
+水着を選ぶことは、今の体をあきらめることではありません。今の体で予定を楽しむための準備です。
+
+痩せてからではなく、行く日に困らないように。体型カバー水着は、その現実的な一歩を助けてくれます。"	page_copy.md#5	96	本文先頭に余白用改行あり
+22	関連商品	h-mzg20	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+23	関連商品	c-mizugi_nbf	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+24	関連商品	usbswc	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+25	関連商品	usbswb	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+26	関連商品	b-mizugi-3	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行

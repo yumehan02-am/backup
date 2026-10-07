@@ -1,0 +1,7 @@
+scene,duration,background,copy,animation,crop_x,crop_y,text_center_x,point_x
+1,5.8,005_scene01.jpg,"「痩せた？」ではなく、\n服がすっきり見える。",typewriter,0,0,,
+2,3.8,005_scene02.jpg,"なぜ上半身が\n重く見えるのか。",rise,0,0,,
+3,4.8,005_scene03.jpg,"このコラムのポイント\n› 布の張り\n› 視線の集まり方\n› 盛らない選択",points,-1,0,270,130
+4,3.8,005_scene04.jpg,"体ではなく、\n服の線を見る。",slide_left,0,0,,
+5,3.8,005_scene05.jpg,"盛る日も、\n盛らない日も。",slide_right,0,0,,
+6,4.2,005_scene06.jpg,"好きな服を、\nもう少し気楽に。",soft_drop,0,0,,

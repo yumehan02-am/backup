@@ -1,0 +1,15 @@
+﻿scene,duration,background,copy,animation,crop_x,crop_y,text_center_x,point_x
+1,5.8,009_scene01.jpg,"背中が丸いかも
+と思った朝に",typewriter,0,0,,
+2,3.8,009_scene02.jpg,"後ろ姿は
+自分では見落としやすい",rise,0,0,,
+3,4.8,009_scene03.jpg,"このコラムのポイント
+› 朝の気づき
+› 背中を責めない
+› 下着で思い出す",points,0,0,,
+4,3.8,009_scene04.jpg,"服を選ぶ時間に
+背中も少しだけ",slide_left,0,0,,
+5,3.8,009_scene05.jpg,"強く正すより
+そっと気づく",slide_right,0,0,,
+6,4.2,009_scene06.jpg,"今日の背すじを
+やさしく思い出す",soft_drop,0,0,,

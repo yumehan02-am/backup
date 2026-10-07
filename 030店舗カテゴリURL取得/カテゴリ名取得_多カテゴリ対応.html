@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="ja">
+ <head>
+  <meta charset="UTF-8">
+  <title>楽天カテゴリ CSV 変換ツール</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body { box-sizing: border-box; }
+  </style>
+  <script>
+    // ====== 設定デフォルト ======
+    const defaultConfig = {
+      main_title: "楽天 店内カテゴリ → CSV 変換ツール",
+      description_text: "楽天店舗ページ全体をコピー＆ペーストしてください。「店舗内カテゴリトップ」または「全てのカテゴリをみる」以降のカテゴリを自動抽出します。",
+      generate_button_text: "CSVを生成",
+      download_button_text: "CSVをダウンロード",
+      background_color: "#0f172a",
+      surface_color: "#1e293b",
+      text_color: "#e5e7eb",
+      primary_action_color: "#f97316",
+      secondary_action_color: "#38bdf8",
+      font_family: "system-ui",
+      font_size: 15
+    };
+
+    let textareaInput, resultTextarea, statusText, downloadBtn, generateBtn, titleEl, descEl;
+    let lastPastedHTML = "";
+    let lastPastedText = "";
+
+    // ====== onConfigChange: 見た目更新 ======
+    async function onConfigChange(config) {
+      const cfg = Object.assign({}, defaultConfig, config || {});
+      const baseFont = cfg.font_family || defaultConfig.font_family;
+      const baseSize = Number(cfg.font_size || defaultConfig.font_size) || 15;
+      const fontStack = `${baseFont}, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
+
+      const root = document.documentElement;
+      root.style.backgroundColor = cfg.background_color;
+      document.body.style.backgroundColor = cfg.background_color;
+      document.body.style.color = cfg.text_color;
+      document.body.style.fontFamily = fontStack;
+      document.body.style.fontSize = baseSize + "px";
+
+      if (titleEl) {
+        titleEl.textContent = cfg.main_title || defaultConfig.main_title;
+        titleEl.style.color = cfg.text_color;
+        titleEl.style.fontFamily = fontStack;
+        titleEl.style.fontSize = (baseSize * 1.7) + "px";
+      }
+      if (descEl) {
+        descEl.textContent = cfg.description_text || defaultConfig.description_text;
+        descEl.style.color = cfg.text_color;
+        descEl.style.fontFamily = fontStack;
+        descEl.style.fontSize = (baseSize * 0.95) + "px";
+      }
+      if (generateBtn) {
+        generateBtn.textContent = cfg.generate_button_text || defaultConfig.generate_button_text;
+        generateBtn.style.backgroundColor = cfg.primary_action_color;
+        generateBtn.style.color = "#000000";
+        generateBtn.style.fontFamily = fontStack;
+        generateBtn.style.fontSize = (baseSize * 0.95) + "px";
+      }
+      if (downloadBtn) {
+        downloadBtn.textContent = cfg.download_button_text || defaultConfig.download_button_text;
+        downloadBtn.style.backgroundColor = cfg.secondary_action_color;
+        downloadBtn.style.color = "#0f172a";
+        downloadBtn.style.fontFamily = fontStack;
+        downloadBtn.style.fontSize = (baseSize * 0.95) + "px";
+      }
+
+      const card = document.getElementById("main-card");
+      if (card) card.style.backgroundColor = cfg.surface_color;
+
+      const labels = document.querySelectorAll(".cc-label");
+      labels.forEach(l => {
+        l.style.color = cfg.text_color;
+        l.style.fontFamily = fontStack;
+        l.style.fontSize = (baseSize * 0.9) + "px";
+      });
+
+      if (textareaInput) textareaInput.style.fontFamily = fontStack;
+      if (resultTextarea) resultTextarea.style.fontFamily = fontStack;
+      if (statusText) {
+        statusText.style.fontFamily = fontStack;
+        statusText.style.color = cfg.secondary_action_color;
+      }
+    }
+
+    // ====== 起点キーワード（優先順位順） ======
+    const START_KEYWORDS = [
+      "店舗内カテゴリトップ",
+      "カテゴリトップ",
+      "全てのカテゴリをみる",
+      "すべてのカテゴリをみる"
+    ];
+
+    // ====== フェーズ1: テキストとHTMLからカテゴリ名とURLを抽出 ======
+    function extractLinksFromHTML(html, plainText) {
+      const lines = plainText.split(/\r?\n/);
+      let startLineIndex = -1;
+      let startKeywordUsed = "";
+
+      // 1. 開始位置を検出（複数のキーワードに対応）
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        for (const keyword of START_KEYWORDS) {
+          if (line === keyword || line.includes(keyword)) {
+            startLineIndex = i;
+            startKeywordUsed = keyword;
+            console.log(`[範囲検出] 開始キーワード発見: "${keyword}" (${i}行目)`);
+            break;
+          }
+        }
+        if (startLineIndex !== -1) break;
+      }
+
+      if (startLineIndex === -1) {
+        console.log("[範囲検出] 開始キーワードが見つかりませんでした。");
+        return [];
+      }
+
+      // 2. 範囲内のカテゴリ名を収集
+      const categoryNamesInRange = new Set();
+      for (let i = startLineIndex + 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        // 「その他のカテゴリ」「全てのカテゴリをみる」などはスキップ
+        if (/^(その他のカテゴリ|全てのカテゴリをみる|すべてのカテゴリをみる)/.test(line)) continue;
+
+        const cleanName = line.replace(/^[■│├└▼\s\t]+/, '').trim();
+        if (cleanName && cleanName.length > 1) {
+          categoryNamesInRange.add(cleanName);
+        }
+      }
+
+      console.log(`[範囲内カテゴリ名] ${categoryNamesInRange.size}件検出 (起点: ${startKeywordUsed})`);
+
+      // 3. HTMLからリンクを抽出して照合
+      const div = document.createElement("div");
+      div.innerHTML = html;
+      const anchors = Array.from(div.querySelectorAll("a"));
+
+      const results = [];
+      anchors.forEach(a => {
+        let linkText = (a.textContent || "").trim();
+        const href = a.getAttribute("href") || "";
+
+        if (!linkText || href === "") return;
+
+        // 起点キーワード自体は除外
+        if (START_KEYWORDS.some(k => linkText === k || linkText.includes(k))) return;
+
+        // 範囲内のカテゴリ名に一致する場合のみ採用
+        if (categoryNamesInRange.has(linkText)) {
+          results.push({ 
+            name: linkText,
+            url: href
+          });
+          categoryNamesInRange.delete(linkText);
+        }
+      });
+
+      console.log(`=== 抽出完了: ${results.length}件 ===`);
+      return results;
+    }
+
+    // ====== フェーズ2: テキストから階層情報を取得 ======
+    function detectHierarchyFromText(plainText, categories) {
+      const lines = plainText.split(/\r?\n/);
+      const results = [];
+
+      categories.forEach(cat => {
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].includes(cat.name)) {
+            const level = detectLevelFromLine(lines[i], cat.name);
+            results.push({
+              name: cat.name,
+              url: cat.url,
+              level: level,
+              rawLine: lines[i]
+            });
+            break;
+          }
+        }
+      });
+
+      // 階層順にソート（安定化）
+      results.sort((a, b) => a.level - b.level || a.name.localeCompare(b.name));
+
+      return results;
+    }
+
+    // ====== 行から階層レベルを判定 ======
+    function detectLevelFromLine(line, categoryName) {
+      const beforeCategory = line.substring(0, line.indexOf(categoryName));
+
+      const blackSquares = (beforeCategory.match(/■/g) || []).length;
+      const verticalLines = (beforeCategory.match(/│/g) || []).length;
+      const branches = (beforeCategory.match(/[├└]/g) || []).length;
+      const triangles = (beforeCategory.match(/▼/g) || []).length;
+      const tabs = (beforeCategory.match(/\t/g) || []).length;
+      const spaces = (beforeCategory.match(/ /g) || []).length;
+
+      let level = blackSquares;
+
+      if (level === 0) {
+        level = Math.max(verticalLines, branches, triangles, tabs, Math.floor(spaces / 3));
+      }
+
+      return Math.max(level, 1);
+    }
+
+    // ====== ダウンロード処理 ======
+    function downloadCSV(csvText) {
+      const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+      const blob = new Blob([bom, csvText], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const ts = new Date().toISOString().replace(/[:.]/g, "-").substring(0, 19);
+      a.download = `rakuten_categories_${ts}.csv`;
+      a.style.display = "none";
+      document.body.appendChild(a);
+      setTimeout(() => {
+        a.click();
+        setTimeout(() => {
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 100);
+      }, 0);
+    }
+
+    // ====== ページ初期化 ======
+    window.addEventListener("DOMContentLoaded", () => {
+      textareaInput = document.getElementById("input-area");
+      resultTextarea = document.getElementById("result-area");
+      statusText = document.getElementById("status-text");
+      downloadBtn = document.getElementById("download-btn");
+      generateBtn = document.getElementById("generate-btn");
+      titleEl = document.getElementById("main-title");
+      descEl = document.getElementById("description");
+
+      // ペーストイベント
+      textareaInput.addEventListener("paste", (e) => {
+        const htmlData = e.clipboardData.getData("text/html") || "";
+        const textData = e.clipboardData.getData("text/plain") || "";
+
+        lastPastedHTML = htmlData;
+        lastPastedText = textData;
+
+        const linkCount = (htmlData.match(/<a\s+[^>]*href=/gi) || []).length;
+        statusText.textContent = `HTML(${linkCount}リンク) / テキスト(${textData.split(/\r?\n/).length}行) - 「CSVを生成」を押してください`;
+      });
+
+      // 生成ボタン
+      generateBtn.addEventListener("click", () => {
+        const htmlData = lastPastedHTML || "";
+        const textData = lastPastedText || textareaInput.value || "";
+
+        console.log("=== CSV生成開始 ===");
+
+        if (!htmlData || !/<a\s+[^>]*href=/i.test(htmlData)) {
+          statusText.textContent = "HTML形式のデータが検出されませんでした。楽天店舗ページを正しくコピーしてください。";
+          return;
+        }
+
+        const categories = extractLinksFromHTML(htmlData, textData);
+
+        if (categories.length === 0) {
+          statusText.textContent = "カテゴリが検出されませんでした。「店舗内カテゴリトップ」または「全てのカテゴリをみる」以降をコピーしてください。";
+          resultTextarea.value = "";
+          return;
+        }
+
+        const rows = detectHierarchyFromText(textData, categories);
+
+        // 親パス生成
+        const parentStack = [];
+        rows.forEach(row => {
+          while (parentStack.length > 0 && parentStack[parentStack.length - 1].level >= row.level) {
+            parentStack.pop();
+          }
+          row.parent_path = parentStack.length > 0 
+            ? parentStack.map(p => p.name).join("＞") 
+            : "ルート";
+          parentStack.push({ level: row.level, name: row.name });
+        });
+
+        // CSV作成
+        const header = ["level", "name", "parent_path", "url"];
+        const escape = (val) => {
+          const s = String(val ?? "");
+          return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+        };
+
+        const csvLines = [header.join(",")];
+        rows.forEach(r => {
+          csvLines.push([
+            escape(r.level),
+            escape(r.name),
+            escape(r.parent_path),
+            escape(r.url || "")
+          ].join(","));
+        });
+
+        const csv = csvLines.join("\n");
+        resultTextarea.value = csv;
+
+        statusText.textContent = `${rows.length}件のカテゴリを抽出しました。`;
+      });
+
+      // ダウンロードボタン
+      downloadBtn.addEventListener("click", () => {
+        const csvText = resultTextarea.value || "";
+        if (!csvText.trim()) {
+          statusText.textContent = "先に「CSVを生成」ボタンを押してください。";
+          return;
+        }
+        downloadCSV(csvText);
+        statusText.textContent = "CSVをダウンロードしました。";
+      });
+
+      // Canva Element SDK 初期化
+      if (window.elementSdk && typeof window.elementSdk.init === "function") {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities: (config) => ({
+            recolorables: [
+              { get: () => config.background_color, set: v => { config.background_color = v; window.elementSdk?.setConfig({background_color: v}); }},
+              { get: () => config.surface_color, set: v => { config.surface_color = v; window.elementSdk?.setConfig({surface_color: v}); }},
+              { get: () => config.text_color, set: v => { config.text_color = v; window.elementSdk?.setConfig({text_color: v}); }},
+              { get: () => config.primary_action_color, set: v => { config.primary_action_color = v; window.elementSdk?.setConfig({primary_action_color: v}); }},
+              { get: () => config.secondary_action_color, set: v => { config.secondary_action_color = v; window.elementSdk?.setConfig({secondary_action_color: v}); }}
+            ],
+            fontEditable: { get: () => config.font_family, set: v => { config.font_family = v; window.elementSdk?.setConfig({font_family: v}); }},
+            fontSizeable: { get: () => Number(config.font_size) || 15, set: v => { config.font_size = v; window.elementSdk?.setConfig({font_size: v}); }}
+          }),
+          mapToEditPanelValues
+        });
+      } else {
+        onConfigChange(defaultConfig);
+      }
+    });
+
+    function mapToEditPanelValues(config) {
+      const cfg = Object.assign({}, defaultConfig, config || {});
+      return new Map([
+        ["main_title", cfg.main_title],
+        ["description_text", cfg.description_text],
+        ["generate_button_text", cfg.generate_button_text],
+        ["download_button_text", cfg.download_button_text]
+      ]);
+    }
+  </script>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="w-full h-full">
+  <div class="w-full h-full flex items-center justify-center px-4 py-6">
+   <main id="main-card" class="app-wrapper w-full max-w-5xl h-full max-h-full rounded-2xl shadow-lg border border-slate-700/60 p-6 flex flex-col gap-4 overflow-hidden">
+    <header class="mb-2">
+     <h1 id="main-title" class="font-semibold tracking-tight mb-1"></h1>
+     <p id="description" class="opacity-90"></p>
+    </header>
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1 min-h-0">
+     <div class="flex flex-col min-h-0">
+      <label for="input-area" class="cc-label font-medium mb-1">1. 楽天店舗ページ全体をここにペースト</label>
+      <p class="cc-label opacity-80 mb-2 text-xs">
+        楽天店舗ページで Ctrl+A → Ctrl+C してから貼り付けてください。<br>
+        「店舗内カテゴリトップ」または「カテゴリトップ＞全てのカテゴリをみる」以降を自動抽出します。
+      </p>
+      <textarea id="input-area" class="w-full h-full min-h-[120px] flex-1 rounded-lg border border-slate-600 bg-slate-900/50 text-slate-50 px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-orange-400/70 focus:border-orange-400/70" placeholder="楽天店舗ページ全体をここにペースト..."></textarea>
+     </div>
+     <div class="flex flex-col min-h-0">
+      <label for="result-area" class="cc-label font-medium mb-1">2. 生成されたCSV</label>
+      <p class="cc-label opacity-80 mb-2 text-xs">level, name, parent_path, url 形式で出力されます。</p>
+      <textarea id="result-area" class="w-full h-full min-h-[120px] flex-1 rounded-lg border border-slate-600 bg-slate-900/30 text-slate-50 px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-sky-400/70 focus:border-sky-400/70" placeholder="生成されたCSVがここに表示されます" readonly></textarea>
+     </div>
+    </section>
+    <footer class="mt-1 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+     <div class="flex gap-2">
+      <button id="generate-btn" type="button" class="inline-flex items-center justify-center rounded-md px-4 py-2 font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900">CSVを生成</button>
+      <button id="download-btn" type="button" class="inline-flex items-center justify-center rounded-md px-4 py-2 font-medium shadow-sm bg-transparent border border-sky-400 text-sky-300 hover:bg-sky-500/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-sky-400">CSVをダウンロード</button>
+     </div>
+     <div id="status-text" class="text-xs md:text-sm text-sky-300"></div>
+    </footer>
+   </main>
+  </div>
+ </body>
+</html>

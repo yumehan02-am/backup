@@ -1,0 +1,842 @@
+<!--
+    [GOLDサーバーへのアップロード用ファイル]
+    ? EUC-JP + カレンダー動的拡大(1.5倍) + 店舗ID203612検索 + 全リンク新タブ + 月・曜日ノーマル + プロダクトURL反映 + カテゴリ1行高さ + 高さ850px
+-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="EUC-JP">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゆめはん</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<style>
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    #marquee-content {
+        animation: marquee 30s linear infinite;
+    }
+   
+    /* 商品バナー */
+    .product-slide-item {
+        height: 180px;
+        overflow: hidden;
+        transition: transform 0.5s ease-in-out;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    .product-slide-item img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease;
+    }
+   
+    .product-slide-item:hover {
+        transform: translateY(-6px);
+    }
+   
+    .product-slide-item:hover img {
+        transform: scale(1.08);
+    }
+   
+    #product-slider-viewport {
+        height: 180px;
+        user-select: none;
+        touch-action: none;
+    }
+   
+    /* 告知 */
+    #info-bar {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        color: #475569;
+        border-bottom: 1px solid #e2e8f0;
+    }
+   
+    /* タイトルバナー：固定高さ80px */
+    #title-banner {
+        background: white;
+        overflow: hidden;
+    }
+   
+    #title-banner img {
+        width: 100%;
+        height: 80px;
+        object-fit: contain;
+        object-position: center;
+        display: block;
+    }
+   
+    /* カレンダー：高さ固定72px → 動的拡大対応（最大1.5倍） */
+    #calendar-bar {
+        width: 100%;
+        background: white;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 8px 0;
+        overflow: visible;
+        height: 72px;
+        display: flex;
+        align-items: center;
+    }
+    #calendar-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    #calendar-viewport {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        height: 56px;
+        padding: 0 4px;
+    }
+    #calendar-view {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        gap: 0;
+        padding: 0;
+    }
+    /* カレンダーボタン：拡大対応 */
+    #prev-day-btn-cal, #next-day-btn-cal {
+        flex-shrink: 0;
+        margin: 0 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border: 2px solid #e2e8f0;
+        border-radius: 9999px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        color: #64748b;
+        backdrop-filter: blur(10px);
+        z-index: 10;
+    }
+    @media (max-width: 480px) {
+        #prev-day-btn-cal, #next-day-btn-cal {
+            width: 36px;
+            height: 36px;
+        }
+    }
+    @media (min-width: 481px) and (max-width: 768px) {
+        #prev-day-btn-cal, #next-day-btn-cal {
+            width: 40px;
+            height: 40px;
+        }
+    }
+    @media (min-width: 769px) {
+        #prev-day-btn-cal, #next-day-btn-cal {
+            width: 44px;
+            height: 44px;
+        }
+    }
+    #prev-day-btn-cal:hover, #next-day-btn-cal:hover {
+        background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+        border-color: #cbd5e1;
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        color: #475569;
+    }
+    /* 日付スロット：動的拡大対応（最大78px = 1.5倍） */
+    .date-slot {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: var(--slot-width, 42px);
+        height: var(--slot-width, 42px);
+        padding: 2px 2px 0 2px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: white;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        position: relative;
+        box-sizing: border-box;
+        margin-right: var(--slot-gap, 3px);
+    }
+    .date-slot:last-child {
+        margin-right: 0;
+    }
+    .holiday-slot {
+        background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        color: #dc2626;
+        border-color: #fca5a5;
+        font-weight: 700;
+    }
+    .weekday-slot {
+        background: white;
+        color: #1f2937;
+        border-color: #d1d5db;
+    }
+    .is-today-cal {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    }
+    .header-row-cal {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        font-size: var(--header-font, 10px);
+        line-height: 1;
+        margin-bottom: -1px;
+        font-weight: 500;
+    }
+    .month-day-cal {
+        font-weight: 400;
+        font-size: 1.1em;
+    }
+    .day-of-week-cal {
+        font-weight: 400;
+        font-size: 1.0em;
+    }
+    .date-row-cal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        flex: 1;
+        font-size: var(--date-font, 20px);
+        font-weight: 700;
+        line-height: 1;
+    }
+    .today-indicator-cal {
+        position: absolute;
+        bottom: 1px;
+        right: 1px;
+        width: 6px;
+        height: 6px;
+        background: #3b82f6;
+        border-radius: 50%;
+        z-index: 10;
+        box-shadow: 0 0 0 1px white;
+    }
+    /* 検索ルーペ：店舗ID203612対応 */
+    .search-magnifier {
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        border: 2px solid #e2e8f0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        margin-left: 8px;
+    }
+   
+    .search-magnifier:hover {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        border-color: #3b82f6;
+        transform: scale(1.02);
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+    }
+   
+    .search-magnifier:hover svg {
+        color: white;
+    }
+   
+    .search-magnifier svg {
+        width: 20px;
+        height: 20px;
+        color: #64748b;
+        transition: color 0.2s ease;
+        z-index: 2;
+    }
+   
+    #search-form {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        width: 100%;
+        max-width: 270px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+   
+    #search-input {
+        flex: 1;
+        padding: 12px 16px;
+        border: 2px solid #e5e7eb;
+        border-right: none;
+        border-radius: 12px 0 0 12px;
+        font-size: 14px;
+        outline: none;
+        transition: all 0.3s ease;
+        background: white;
+    }
+   
+    #search-input:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+   
+    /* カテゴリリンク：1行高さ（48px） */
+    #category-link-btn {
+        background: linear-gradient(135deg, #475569 0%, #334155 100%) !important;
+        color: white !important;
+        border: 1px solid #334155 !important;
+        box-shadow: 0 4px 12px rgba(71, 85, 105, 0.3) !important;
+        font-weight: 600 !important;
+        padding: 12px 20px !important;
+        width: 100%;
+        text-align: center;
+        border-radius: 12px;
+        transition: all 0.3s ease !important;
+        text-decoration: none !important;
+        display: block !important;
+        margin-top: 20px !important;
+        margin-bottom: 12px !important;
+        line-height: 1.2 !important;
+        height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+   
+    #category-link-btn:hover {
+        background: linear-gradient(135deg, #334155 0%, #1e293b 100%) !important;
+        color: white !important;
+        border-color: #1e293b !important;
+        box-shadow: 0 6px 20px rgba(52, 65, 85, 0.4) !important;
+        transform: translateY(-1px) !important;
+    }
+   
+    /* メインイメージ */
+    #main-slider {
+        position: relative;
+        height: 280px;
+        overflow: hidden;
+    }
+    .fade-image {
+        position: absolute !important;
+        inset: 0;
+        opacity: 0;
+        z-index: 0;
+        transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    }
+    .fade-image.active {
+        opacity: 1;
+        z-index: 10;
+    }
+    .fade-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    /* 全体高さ850px */
+    body {
+        margin: 0;
+        padding: 0;
+        height: 850px;
+        overflow: hidden;
+        background: white;
+    }
+    header {
+        height: 100%;
+        overflow: hidden;
+    }
+    #search-and-actions {
+        min-height: 72px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+    #main-slider-container {
+        margin-top: 20px;
+        margin-bottom: 28px;
+    }
+    .w-full.max-w-7xl.mx-auto.px-4.md\:px-0 {
+        margin-top: 24px !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 12px !important;
+    }
+</style>
+
+<!-- ヘッダー -->
+<header class="w-full mx-auto shadow-sm">
+    <!-- 1. タイトルバナー -->
+    <div id="title-banner" class="w-full">
+        <a href="https://www.rakuten.co.jp/u-b-yumehan/" title="ショップTOPへ" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/title-banner.jpg"
+                 onerror="this.src='https://placehold.co/1200x80/F5F5F5/333333?text=YUMEHAN'"
+                 alt="ゆめはん">
+        </a>
+    </div>
+    
+    <!-- 2. 告知 -->
+    <div id="info-bar" class="bg-gradient-to-r from-slate-50 via-slate-100 to-slate-200 text-slate-700 py-2.5 text-sm md:text-base tracking-wider overflow-hidden border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div id="marquee-content" class="flex flex-row whitespace-nowrap">
+                <span class="flex-shrink-0 px-8">★【レビュークーポン】商品お届け後、店舗レビュー／商品レビューを記入いただいた方に2つのクーポンをプレゼント 500円OFF 3000円OFF</span>
+                <span class="flex-shrink-0 px-8">★【LINE】お友達限定 300円OFFクーポンを配布中！ぜひご登録ください。</span>
+            </div>
+        </div>
+    </div>
+   
+    <!-- 3. カレンダー -->
+    <div id="calendar-bar">
+        <div id="calendar-inner">
+            <button id="prev-day-btn-cal" class="flex-shrink-0" title="前の2週間">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+           
+            <div id="calendar-viewport" class="flex-1 flex justify-center min-w-0">
+                <div id="calendar-view" class="flex items-center"></div>
+            </div>
+           
+            <button id="next-day-btn-cal" class="flex-shrink-0" title="次の2週間">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <!-- 4. 検索＆アクションボタン -->
+    <div id="search-and-actions" class="w-full max-w-7xl mx-auto px-4 flex justify-between items-center bg-white border-b border-gray-100">
+        <!-- ★検索フォーム：店舗ID203612対応 -->
+        <form id="search-form" class="flex items-center w-full max-w-md">
+            <input id="search-input" type="search" placeholder="店内の商品を検索" name="q" class="flex-1">
+            <button id="search-button" type="submit" class="search-magnifier" title="検索" aria-label="検索">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+        </form>
+       
+        <!-- アクションボタン -->
+        <div id="action-links" class="flex space-x-2 md:space-x-4">
+            <a href="https://page.line.me/699isomt?openQrModal=true" class="flex flex-col items-center text-xs text-gray-500 hover:text-green-600 transition duration-300 group px-2" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="11.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <g transform="translate(4.5, 5.5) scale(0.6)"><path d="M22 2H2v16h16l4 4V2z"/></g>
+                </svg>
+                <span class="mt-1 hidden md:block">LINE登録</span>
+            </a>
+            <a href="https://inquiry.my.rakuten.co.jp/shop/203612" class="flex flex-col items-center text-xs text-gray-500 hover:text-blue-600 transition duration-300 group px-2" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="11.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <g transform="translate(3.5, 3.5) scale(0.75)">
+                        <path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-7 4.5L5 8V6l7 4.5L19 6v2z"/>
+                    </g>
+                </svg>
+                <span class="mt-1 hidden md:block">お問い合わせ</span>
+            </a>
+            <a href="https://my.bookmark.rakuten.co.jp/?func=reg&svid=201&shop_bid=203612" class="flex flex-col items-center text-xs text-gray-500 hover:text-pink-600 transition duration-300 group px-2" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="11.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <g transform="translate(4,4) scale(0.65)">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.11C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </g>
+                </svg>
+                <span class="mt-1 hidden md:block">お気に入り</span>
+            </a>
+            <a href="https://www.rakuten.co.jp/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-xs text-gray-500 hover:text-red-600 transition duration-300 group px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="11.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <g transform="translate(2,2) scale(0.8)"><path d="M12 5.69l5 4.5V18h-2v-6H9v6H7V10.19l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></g>
+                </svg>
+                <span class="mt-1 hidden md:block">楽天市場</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 5. メインイメージ -->
+    <div id="main-slider-container" class="w-full max-w-7xl mx-auto my-4 relative overflow-hidden rounded-lg shadow-xl">
+        <div id="main-slider" class="relative">
+            <a href="https://www.rakuten.co.jp/u-b-yumehan/" class="fade-image active block" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/shopimg1.jpg" alt="店舗イメージ1" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1200x600/f3f4f6/64748b?text=shopimg1'">
+            </a>
+            <a href="https://www.rakuten.co.jp/u-b-yumehan/" class="fade-image block" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/shopimg2.jpg" alt="店舗イメージ2" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1200x600/ef4444/e2e8f0?text=shopimg2'">
+            </a>
+            <a href="https://www.rakuten.co.jp/u-b-yumehan/" class="fade-image block" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/shopimg3.jpg" alt="店舗イメージ3" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1200x600/f59e0b/f0f9ff?text=shopimg3'">
+            </a>
+        </div>
+    </div>
+
+    <!-- 6. 商品スライダー & 7. カテゴリリンク -->
+    <div class="w-full max-w-7xl mx-auto px-4 md:px-0">
+        <div class="relative">
+            <div id="product-slider-viewport" class="overflow-hidden rounded-lg shadow-lg">
+                <div id="product-slider-wrapper" class="flex flex-row slider-wrapper w-max">
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000545/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品1" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample1.jpg" alt="商品バナー1"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000547/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品2" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample2.jpg" alt="商品バナー2"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000563/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品3" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample3.jpg" alt="商品バナー3"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000506/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品4" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample4.jpg" alt="商品バナー4"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000611/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品5" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample5.jpg" alt="商品バナー5"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000574/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品6" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample6.jpg" alt="商品バナー6"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000265/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品7" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample7.jpg" alt="商品バナー7"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000558/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品8" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample8.jpg" alt="商品バナー8"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000628/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品9" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample9.jpg" alt="商品バナー9"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000607/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品10" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample10.jpg" alt="商品バナー10"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000638/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品11" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample11.jpg" alt="商品バナー11"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000449/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品12" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample12.jpg" alt="商品バナー12"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000448/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品13" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample13.jpg" alt="商品バナー13"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000555/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品14" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample14.jpg" alt="商品バナー14"></a>
+                    <a href="https://item.rakuten.co.jp/u-b-yumehan/c/0000000334/" class="product-slide-item flex-shrink-0 mr-4 shadow-lg" title="商品15" target="_blank" rel="noopener noreferrer"><img src="https://www.rakuten.ne.jp/gold/u-b-yumehan/pcimg/sample15.jpg" alt="商品バナー15"></a>
+                </div>
+            </div>
+            <button id="prev-btn" class="absolute top-1/2 -left-3 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200 transition duration-300 z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button id="next-btn" class="absolute top-1/2 -right-3 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200 transition duration-300 z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+       
+        <!-- カテゴリリンク -->
+        <a id="category-link-btn" href="https://item.rakuten.co.jp/u-b-yumehan/c/" class="w-full text-center rounded-xl flex items-center justify-center space-x-3 shadow-lg border transition-all duration-300 group" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+            </svg>
+            <span class="font-semibold text-lg">店内カテゴリ一覧</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </a>
+    </div>
+</header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var TRANSITION_DURATION = 400;
+    var CALENDAR_TRANSITION = 600;
+    
+    // ★検索フォーム：店舗ID203612対応（正しい楽天検索URL）
+    var searchForm = document.getElementById('search-form');
+    var searchInput = document.getElementById('search-input');
+    var searchButton = document.getElementById('search-button');
+    
+    function performSearch(query) {
+        if (query.trim()) {
+            // ★店舗ID203612の正しい楽天検索URL
+            var encodedQuery = encodeURIComponent(query.trim());
+            var searchUrl = 'https://search.rakuten.co.jp/search/mall/' + encodedQuery + '/?l-id=shoptop_shopmenu_search_bar&sid=203612';
+            window.open(searchUrl, '_blank', 'noopener,noreferrer');
+        } else {
+            // 空欄時は店舗検索トップ
+            window.open('https://search.rakuten.co.jp/search/mall/%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97%E6%A4%9C%E7%B4%A2/?sid=203612', '_blank', 'noopener,noreferrer');
+        }
+    }
+    
+    // Enterキー
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            e.preventDefault();
+            performSearch(searchInput.value);
+        }
+    });
+    
+    // ルーペボタンクリック
+    searchButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        performSearch(searchInput.value);
+    });
+    
+    // フォーム送信
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        performSearch(searchInput.value);
+    });
+    
+    // カレンダー：動的拡大版（最小42px、最大78px=1.5倍）
+    var calViewport = document.getElementById('calendar-viewport');
+    var calView = document.getElementById('calendar-view');
+    var prevDayBtnCal = document.getElementById('prev-day-btn-cal');
+    var nextDayBtnCal = document.getElementById('next-day-btn-cal');
+    var currentDate = new Date();
+    var DAYS_TO_SHOW = 14;
+    
+    // 2025年11月~2026年12月 休日設定
+    var HOLIDAYS = [
+        '2025-11-03','2025-11-23','2025-11-24','2025-12-29','2025-12-30','2025-12-31',
+        '2026-01-01','2026-01-02','2026-01-12','2026-02-11','2026-02-23','2026-03-20',
+        '2026-04-29','2026-05-03','2026-05-04','2026-05-05','2026-05-06','2026-07-20',
+        '2026-08-10','2026-08-11','2026-08-12','2026-08-13','2026-08-14','2026-09-21',
+        '2026-09-22','2026-09-23','2026-10-12','2026-11-03','2026-11-23'
+    ];
+    
+    function formatDate(date) {
+        var y = date.getFullYear();
+        var m = ('0' + (date.getMonth() + 1)).slice(-2);
+        var d = ('0' + date.getDate()).slice(-2);
+        return y + '-' + m + '-' + d;
+    }
+   
+    function isHoliday(date) {
+        var dayOfWeek = date.getDay();
+        var formattedDate = formatDate(date);
+        if (dayOfWeek === 0) return { isClosed: true, dayName: '日' };
+        if (dayOfWeek === 6) return { isClosed: true, dayName: '土' };
+        if (HOLIDAYS.indexOf(formattedDate) !== -1) {
+            var dayNames = ['日','月','火','水','木','金','土'];
+            return { isClosed: true, dayName: dayNames[dayOfWeek] };
+        }
+        var dayNames = ['日','月','火','水','木','金','土'];
+        return { isClosed: false, dayName: dayNames[dayOfWeek] };
+    }
+   
+    function renderCalendar() {
+        var viewport = document.getElementById('calendar-viewport');
+        var buttons = document.querySelectorAll('#prev-day-btn-cal, #next-day-btn-cal');
+       
+        var buttonTotalWidth = 0;
+        buttons.forEach(btn => {
+            buttonTotalWidth += (btn.offsetWidth || 44) + 12;
+        });
+       
+        var viewportWidth = viewport.clientWidth;
+        var availableWidth = viewportWidth - buttonTotalWidth - 16;
+       
+        var idealSlotWidth = Math.floor(availableWidth / DAYS_TO_SHOW);
+        var slotWidth = Math.max(42, Math.min(78, idealSlotWidth));
+        var slotGap = slotWidth <= 50 ? 3 : 4;
+       
+        var headerFont = Math.max(10, Math.floor(slotWidth * 0.24));
+        var dateFont = Math.max(20, Math.floor(slotWidth * 0.55));
+       
+        document.documentElement.style.setProperty('--slot-width', slotWidth + 'px');
+        document.documentElement.style.setProperty('--slot-gap', slotGap + 'px');
+        document.documentElement.style.setProperty('--header-font', headerFont + 'px');
+        document.documentElement.style.setProperty('--date-font', dateFont + 'px');
+       
+        calView.innerHTML = '';
+        var today = new Date();
+       
+        for (var i = 0; i < DAYS_TO_SHOW; i++) {
+            var date = new Date(currentDate);
+            date.setDate(currentDate.getDate() + i);
+            var dayStatus = isHoliday(date);
+            var isToday = date.toDateString() === today.toDateString();
+           
+            var dayClasses = 'date-slot';
+            if (dayStatus.isClosed) dayClasses += ' holiday-slot';
+            else dayClasses += ' weekday-slot';
+            if (isToday) dayClasses += ' is-today-cal';
+           
+            var monthDisplay = date.getMonth() + 1;
+            var dateDisplay = date.getDate();
+            var dayName = dayStatus.dayName;
+           
+            var html = `
+                <div class="${dayClasses}">
+                    <div class="header-row-cal">
+                        <span class="month-day-cal">${monthDisplay}/</span>
+                        <span class="day-of-week-cal">${dayName}</span>
+                    </div>
+                    <div class="date-row-cal">
+                        <span>${dateDisplay}</span>
+                    </div>
+                    ${isToday ? '<div class="today-indicator-cal"></div>' : ''}
+                </div>
+            `;
+            calView.insertAdjacentHTML('beforeend', html);
+        }
+       
+        var totalWidth = DAYS_TO_SHOW * slotWidth + (DAYS_TO_SHOW - 1) * slotGap;
+        calView.style.width = totalWidth + 'px';
+    }
+   
+    function scrollCalendar(direction) {
+        calView.style.transition = 'none';
+        calViewport.style.transform = 'translateX(0)';
+       
+        calView.offsetHeight;
+       
+        if (direction === 'prev') {
+            currentDate.setDate(currentDate.getDate() - DAYS_TO_SHOW);
+            calView.style.transform = 'translateX(-100%)';
+        } else {
+            currentDate.setDate(currentDate.getDate() + DAYS_TO_SHOW);
+            calView.style.transform = 'translateX(100%)';
+        }
+       
+        renderCalendar();
+       
+        setTimeout(function() {
+            calView.style.transition = 'transform ' + (CALENDAR_TRANSITION / 1000) + 's cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            calView.style.transform = 'translateX(0)';
+        }, 50);
+    }
+   
+    prevDayBtnCal.addEventListener('click', function() { scrollCalendar('prev'); });
+    nextDayBtnCal.addEventListener('click', function() { scrollCalendar('next'); });
+   
+    window.addEventListener('resize', function() {
+        renderCalendar();
+    });
+   
+    setTimeout(renderCalendar, 50);
+    setTimeout(renderCalendar, 200);
+    setTimeout(renderCalendar, 500);
+    
+    // メインイメージスライド
+    var mainSlides = document.querySelectorAll('#main-slider .fade-image');
+    var currentMainIndex = 0;
+    var mainSlideInterval = 4500;
+    if (mainSlides.length > 1) {
+        mainSlides.forEach(function(slide, i) { slide.classList.toggle('active', i === 0); });
+        function nextMainSlide() {
+            mainSlides[currentMainIndex].classList.remove('active');
+            currentMainIndex = (currentMainIndex + 1) % mainSlides.length;
+            mainSlides[currentMainIndex].classList.add('active');
+        }
+        setInterval(nextMainSlide, mainSlideInterval);
+    }
+    
+    // 商品スライダー
+    var wrapper = document.getElementById('product-slider-wrapper');
+    var originalItems = Array.from(document.querySelectorAll('#product-slider-wrapper > .product-slide-item'));
+    var viewport = document.getElementById('product-slider-viewport');
+    var prevBtn = document.getElementById('prev-btn');
+    var nextBtn = document.getElementById('next-btn');
+    
+    if (originalItems.length > 0) {
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+        var itemsPerView = 3;
+        var GAP_PX = 16;
+        var originalTotalItems = originalItems.length;
+        var CLONE_COUNT = itemsPerView + 2;
+        var currentSlideIndex = CLONE_COUNT;
+        var itemWidthWithGap = 0;
+        var AUTO_SLIDE_DURATION = 3500;
+        var autoSlideTimer = null;
+        
+        function setupClones() {
+            var existingClones = wrapper.querySelectorAll('.clone');
+            existingClones.forEach(function(clone) { clone.remove(); });
+           
+            for (var i = 0; i < CLONE_COUNT; i++) {
+                var originalIndex = (originalTotalItems - CLONE_COUNT + i + originalTotalItems) % originalTotalItems;
+                var clone = originalItems[originalIndex].cloneNode(true);
+                clone.classList.add('clone', 'prepend-clone');
+                wrapper.insertBefore(clone, originalItems[0]);
+            }
+            for (var i = 0; i < CLONE_COUNT; i++) {
+                var clone = originalItems[i].cloneNode(true);
+                clone.classList.add('clone', 'append-clone');
+                wrapper.appendChild(clone);
+            }
+        }
+       
+        function updateSliderDimensions() {
+            var allItems = Array.from(wrapper.children);
+            var viewportWidth = viewport.clientWidth;
+            var totalGaps = (itemsPerView - 1) * GAP_PX;
+           
+            var itemWidth = (viewportWidth - totalGaps) / itemsPerView;
+            itemWidthWithGap = itemWidth + GAP_PX;
+           
+            allItems.forEach(function(item) {
+                item.style.width = itemWidth + 'px';
+            });
+            var totalWrapperWidth = allItems.length * itemWidthWithGap;
+            wrapper.style.width = totalWrapperWidth + 'px';
+            updateSlidePosition(false);
+        }
+        
+        function updateSlidePosition(animate) {
+            if (animate === undefined) animate = true;
+            var offset = -currentSlideIndex * itemWidthWithGap;
+           
+            wrapper.style.transition = animate
+                ? 'transform ' + TRANSITION_DURATION + 'ms ease-in-out'
+                : 'none';
+           
+            wrapper.style.transform = 'translateX(' + offset + 'px)';
+           
+            if (animate) {
+                if (currentSlideIndex >= originalTotalItems + CLONE_COUNT) {
+                    setTimeout(function() {
+                        currentSlideIndex = CLONE_COUNT;
+                        wrapper.style.transition = 'none';
+                        wrapper.style.transform = 'translateX(' + (-currentSlideIndex * itemWidthWithGap) + 'px)';
+                    }, TRANSITION_DURATION);
+                } else if (currentSlideIndex < CLONE_COUNT) {
+                    setTimeout(function() {
+                        currentSlideIndex = originalTotalItems + CLONE_COUNT - 1;
+                        wrapper.style.transition = 'none';
+                        wrapper.style.transform = 'translateX(' + (-currentSlideIndex * itemWidthWithGap) + 'px)';
+                    }, TRANSITION_DURATION);
+                }
+            }
+        }
+        
+        function nextAutoSlide() {
+            currentSlideIndex++;
+            updateSlidePosition(true);
+        }
+        
+        function startAutoSlide() {
+            if (autoSlideTimer === null) {
+                autoSlideTimer = setInterval(nextAutoSlide, AUTO_SLIDE_DURATION);
+            }
+        }
+        
+        function stopAutoSlide() {
+            if (autoSlideTimer !== null) {
+                clearInterval(autoSlideTimer);
+                autoSlideTimer = null;
+            }
+        }
+        
+        prevBtn.addEventListener('click', function() {
+            stopAutoSlide();
+            currentSlideIndex--;
+            updateSlidePosition(true);
+            startAutoSlide();
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            stopAutoSlide();
+            currentSlideIndex++;
+            updateSlidePosition(true);
+            startAutoSlide();
+        });
+       
+        viewport.addEventListener('mouseover', stopAutoSlide);
+        viewport.addEventListener('mouseout', startAutoSlide);
+       
+        function initStandardCarousel() {
+            setupClones();
+            updateSliderDimensions();
+            startAutoSlide();
+        }
+        
+        window.addEventListener('resize', function() {
+            setupClones();
+            updateSliderDimensions();
+        });
+       
+        initStandardCarousel();
+    } else {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    }
+});
+</script>
+</body>
+</html>

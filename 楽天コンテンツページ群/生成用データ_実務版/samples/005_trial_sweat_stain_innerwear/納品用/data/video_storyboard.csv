@@ -1,0 +1,7 @@
+scene,duration_sec,background_file,display_type,text_main,text_sub,motion,text_rule
+1,5.6,01_title.jpg,typewriter_title,"白シャツの日、\n汗ジミが気になる。",,slow_push,0.4秒は背景のみ。その後、2行同サイズで全文タイプ表示。
+2,3.4,02_person.jpg,fade_rise,"見え方は、\n色で変わります。",,soft_rise,人物の気配は1シーンのみ。商品画像は使わない。
+3,4.0,03_points.jpg,points,"このコラムのポイント","色の見え方\n素材の選び方\n出かける前の仕込み",calm_pan,見出し固定。各行の先頭に › を付けて一行ずつ表示。
+4,3.4,04_color.jpg,slide_in,"白より安心、\nとは限りません。",,left_slide,知識系の引っかかりを短く見せる。
+5,3.4,05_material.jpg,fade_rise,"汗を受ける。\n響かせない。",,right_pan,素材の役割をキャッチ化。
+6,3.6,06_closing.jpg,fade_rise,"汗ばむ日も、\n服をあきらめない。",,slow_pull,明るい締め。販売文句に寄せない。

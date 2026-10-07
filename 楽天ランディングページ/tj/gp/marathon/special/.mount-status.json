@@ -1,0 +1,11 @@
+{
+  "type": "mount",
+  "source": "automatic-jp/cp.tenki-japan.co.jp-automation-exchange",
+  "target": "automatic-jp/cp.tenki-japan.co.jp",
+  "path": "automation/exchange",
+  "commit": "d8b2404dbc8795bddb4b3071445b09160680dae3",
+  "short_commit": "d8b2404dbc87",
+  "subject": "Add 47.5-point exchange banner",
+  "date": "2026-07-17T13:04:49+09:00",
+  "mounted_at": "2026-07-17T04:05:07.787Z"
+}

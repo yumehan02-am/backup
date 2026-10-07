@@ -1,0 +1,14 @@
+part_order,part_type,asset_or_text,note
+1,title_banner,images/title_banner.jpg,ページ最上部のタイトル画像
+2,video,video/opening_cm_004.mp4,タイトル直下の動く目次CM
+3,text,page_copy.md#導入,導入文
+4,banner,images/family_banner.jpg,共感・本人の気持ち
+5,text,page_copy.md#吸水量の前に考えること,本文章
+6,banner,images/capacity_banner.jpg,吸水量目安
+7,text,page_copy.md#150cc以上が必要な場面,本文章
+8,banner,images/laundry_banner.jpg,洗い替え
+9,text,page_copy.md#洗い替えの考え方,本文章
+10,banner,images/words_banner.jpg,すすめ方
+11,text,page_copy.md#本人にすすめる時の言葉,本文章
+12,banner,images/closing_banner.jpg,まとめ
+13,product_link_parts,product_ids.csv,楽天のリンク可能な商品パーツで差し込み

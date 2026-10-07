@@ -1,0 +1,7 @@
+scene_no,scene_name,duration_sec,background_file,display_copy,motion,text_animation
+1,title,5.8,002_scene01.jpg,"下着でできること、\n運動でできること。",zoom_in,typewriter_after_blank
+2,reality,3.8,002_scene02.jpg,"着るだけで、\n体は変わりません。",pan_right,rise_fade
+3,points,4.5,002_scene03.jpg,"このコラムのポイント\n› 下着は支える道具\n› 運動は動かす習慣\n› 続け方で選ぶ",gentle_zoom,points_one_by_one
+4,underwear,3.8,002_scene04.jpg,"下着は、\n意識を助けるもの。",diagonal_pan,slide_left
+5,exercise,3.7,002_scene05.jpg,"運動は、\n筋肉と向き合う時間。",pan_left,slide_right
+6,closing,4.0,002_scene06.jpg,"どちらも、\n無理なく日常へ。",zoom_out,rise_fade

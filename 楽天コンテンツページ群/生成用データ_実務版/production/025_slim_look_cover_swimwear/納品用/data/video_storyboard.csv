@@ -1,0 +1,11 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,025_scene01.jpg,5.2,"ほっそり見せたい
+水辺の日",title_type,0,0
+2,025_scene02.jpg,3.6,細さではなく印象の話,rise_fade,0,0
+3,025_scene03.jpg,4.1,"このコラムのポイント
+› 着やせは印象の整え方
+› 色と縦ラインを味方にする
+› 動きやすさも忘れない",points,0,0
+4,025_scene04.jpg,3.6,濃色は輪郭を落ち着かせる,slide_left,0,0
+5,025_scene05.jpg,3.6,動いた時の安心も確認する,rise_fade,0,0
+6,025_scene06.jpg,3.6,すっきりは自信の入口,slide_right,0,0

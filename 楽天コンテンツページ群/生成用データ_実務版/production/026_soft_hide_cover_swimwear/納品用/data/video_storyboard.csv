@@ -1,0 +1,11 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,026_scene01.jpg,5.2,"ふわっと隠す
+水着選び",title_type,0,0
+2,026_scene02.jpg,3.6,隠したい日はある,rise_fade,0,0
+3,026_scene03.jpg,4.1,"このコラムのポイント
+› 隠したい日があっていい
+› ふんわり感は余白になる
+› 服っぽさが安心を作る",points,0,0
+4,026_scene04.jpg,3.6,ふんわり感は余白になる,slide_left,0,0
+5,026_scene05.jpg,3.6,大きく見せない工夫も必要,rise_fade,0,0
+6,026_scene06.jpg,3.6,落ち着ける水着を選ぶ,slide_right,0,0

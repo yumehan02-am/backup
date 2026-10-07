@@ -1,0 +1,7 @@
+scene,duration,background,copy,animation,crop_x,crop_y,text_center_x,point_x
+1,5.8,006_scene01.jpg,"シャツの前が浮く日\n服だけのせいじゃない",typewriter,0,0,,
+2,3.8,006_scene02.jpg,"ボタンは留まるのに\n前だけ落ち着かない",rise,0,0,,
+3,4.8,006_scene03.jpg,"このコラムのポイント\n› サイズだけで見ない\n› 前中心の厚み\n› 服を主役にする",points,0,0,,
+4,3.8,006_scene04.jpg,"体ではなく\n服の線を見る",slide_left,0,0,,
+5,3.8,006_scene05.jpg,"盛る日も\n整える日もある",slide_right,0,0,,
+6,4.2,006_scene06.jpg,"好きなシャツを\nもう少し気楽に",soft_drop,0,0,,

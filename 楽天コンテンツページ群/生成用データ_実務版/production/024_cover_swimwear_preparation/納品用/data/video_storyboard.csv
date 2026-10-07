@@ -1,0 +1,11 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,024_scene01.jpg,5.2,"体型カバー水着という
+小さな準備",title_type,0,0
+2,024_scene02.jpg,3.6,悩む時間が長くなる,rise_fade,0,0
+3,024_scene03.jpg,4.1,"このコラムのポイント
+› 悩みをゼロにしなくていい
+› 上下セットは迷いを減らす
+› 落ち着ける見え方で選ぶ",points,0,0
+4,024_scene04.jpg,3.6,上下セットは迷いを減らす,slide_left,0,0
+5,024_scene05.jpg,3.6,水辺で動けることも大切,rise_fade,0,0
+6,024_scene06.jpg,3.6,準備ができると出かけやすい,slide_right,0,0

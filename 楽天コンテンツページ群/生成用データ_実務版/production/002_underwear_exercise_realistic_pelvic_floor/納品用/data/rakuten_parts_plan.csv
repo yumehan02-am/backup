@@ -1,0 +1,18 @@
+part_order,part_type,asset_or_text,note
+0,thumbnail,images/002_thumbnail.jpg,楽天コンテンツページ登録用サムネイル 1600x900
+1,title_banner,images/002_title.jpg,ページ最上部のタイトル画像
+2,video,video/opening_cm_002.mp4,タイトル直下の動く目次CM
+3,text,page_copy.md#導入,導入文
+4,banner,images/002_reality.jpg,本音・期待値調整バナー
+5,text,page_copy.md#まず分けたい、下着の役割と運動の役割,本文章
+6,knowledge_illustration,images/002_knowledge.jpg,骨盤底筋ケアの理解補助用イラスト
+7,banner,images/002_underwear.jpg,下着でできること
+8,text,page_copy.md#下着でできること,本文章
+9,banner,images/002_exercise.jpg,運動でできること
+10,text,page_copy.md#運動でできること,本文章
+11,banner,images/002_balance.jpg,役割分担バナー
+12,text,page_copy.md#下着と運動は、対立させなくていい,本文章
+13,banner,images/002_continue.jpg,続けやすさバナー
+14,text,page_copy.md#きつければ効く、とは限らない,本文章
+15,banner,images/002_closing.jpg,まとめバナー
+16,product_link_parts,product_ids.csv,楽天のリンク可能な商品パーツで差し込み

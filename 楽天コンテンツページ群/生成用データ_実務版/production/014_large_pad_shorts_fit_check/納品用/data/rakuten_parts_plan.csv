@@ -1,0 +1,13 @@
+order,part_type,file_or_source,placement,after_section,note
+1,banner,images/014_title.jpg,,,タイトル画像 1600x900
+2,video,video/opening_cm_014_vertical.mp4,,,タイトル直下の動く目次CM
+3,points_image,images/014_points.jpg,,,制作・動画用。このコラムのポイント。標準TSVには出力しない
+4,banner,images/014_knowledge.jpg,before_body,1,比較の導入
+5,banner,images/014_comparison.jpg,before_body,2,普通のショーツとの差
+6,accent_image,images/014_accent_01.jpg,after_body,2,文字なし正方形アクセント
+7,banner,images/014_check.jpg,before_body,3,選び方の知識
+8,banner,images/014_outfit.jpg,before_body,4,服への響き
+9,accent_image,images/014_accent_02.jpg,after_body,4,文字なし正方形アクセント
+10,banner,images/014_outing.jpg,before_body,5,長時間外出
+11,banner,images/014_closing.jpg,before_body,6,まとめ前
+12,product_parts,product_ids.csv,,,関連商品パーツ用ID

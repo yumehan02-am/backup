@@ -1,0 +1,14 @@
+order,part_type,file_or_source,note
+1,thumbnail,images/006_thumbnail.jpg,RMSサムネイル候補
+2,banner,images/006_title.jpg,タイトルバナー
+3,video,video/opening_cm_006_vertical.mp4,タイトル直下の動く目次CM
+4,banner,images/006_points.jpg,動画直下のポイント画像
+5,text,page_copy.md,リード文から1章まで
+6,banner,images/006_placket.jpg,前立てと布の張り
+7,text,page_copy.md,2章から3章まで
+8,banner,images/006_choice.jpg,下着の役割
+9,text,page_copy.md,4章から5章まで
+10,banner,images/006_outfit.jpg,服を着た後の確認
+11,text,page_copy.md,6章からまとめまで
+12,banner,images/006_closing.jpg,まとめ前後の区切り
+13,product_parts,product_ids.csv,関連商品パーツ

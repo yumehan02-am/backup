@@ -1,0 +1,11 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,030_scene01.jpg,5.2,"子どもの水遊びに
+付き合う日の水着",title_type,0,0
+2,030_scene02.jpg,3.6,水辺の付き添いは忙しい,rise_fade,0,0
+3,030_scene03.jpg,4.1,"このコラムのポイント
+› 付き添いの日ほど動く
+› しゃがむ動作に備える
+› 写真の日にも安心を",points,0,0
+4,030_scene04.jpg,3.6,しゃがむ動作に備える,slide_left,0,0
+5,030_scene05.jpg,3.6,写真に残る日でもある,rise_fade,0,0
+6,030_scene06.jpg,3.6,楽しむ余裕を残す,slide_right,0,0

@@ -1,0 +1,45 @@
+﻿順番	ブロック種別	貼り付け内容	元データ	文字数	警告
+1	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/026_title.jpg	images/delivery/026_title.jpg		タイトル画像
+2	メインタイトル	ふわっと隠す水着選び｜がんばって見せない体型カバーの考え方	ふわっと隠す水着選び｜がんばって見せない体型カバーの考え方	29	
+3	動画	video/opening_cm_026_vertical.mp4	video/opening_cm_026_vertical.mp4		タイトル直下の動く目次CM
+4	動画下本文	"
+体型カバーというと、細く見せることばかりに意識が向きがちです。
+
+でも、もう少し力を抜いた選び方もあります。ふんわりしたシルエットや重ね着風のデザインで、気になる部分をやさしく覆う。がんばって見せるより、落ち着いて過ごせることを優先する考え方です。
+
+このコラムでは、ふわっと隠すタイプの水着が向いている場面を考えます。"	page_copy.md#lead	160	本文先頭に余白用改行あり
+5	小タイトル	隠したい日はある	隠したい日はある	8	
+6	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/026_section_1.jpg	images/delivery/026_section_1.jpg		章バナー
+7	本文	"
+誰にでも、今日はあまり体のラインを出したくないという日があります。水辺の予定が楽しみでも、その気持ちがなくなるわけではありません。
+
+そんな時に、隠したい気持ちを無理に否定しなくてもいいと思います。気になる部分をやわらかく覆う水着は、水辺へ行くための現実的な味方になります。"	page_copy.md#1	137	本文先頭に余白用改行あり
+8	小タイトル	ふんわり感は余白になる	ふんわり感は余白になる	11	
+9	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/026_section_2.jpg	images/delivery/026_section_2.jpg		章バナー
+10	本文	"
+体にぴったり沿う水着は動きやすい一方で、ラインが気になることもあります。ふんわりしたデザインは、体と服の間に少し余白を作ります。
+
+その余白があるだけで、座った時や歩いた時の気持ちは変わります。見た目のためだけではなく、過ごしやすさのためのふんわり感です。"	page_copy.md#2	128	本文先頭に余白用改行あり
+11	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/026_accent_01.jpg	images/delivery/026_accent_01.jpg		文字なし正方形アクセント
+12	小タイトル	服っぽさが安心になる	服っぽさが安心になる	10	
+13	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/026_section_3.jpg	images/delivery/026_section_3.jpg		章バナー
+14	本文	"
+重ね着風やブラウジングタイプは、水着でありながら服に近い印象があります。プールサイドや休憩中に、急に水着姿だけになったような心細さが少なくなります。
+
+水辺では泳ぐ時間だけでなく、移動や待ち時間もあります。服っぽい安心感は、その間の居心地を支えてくれます。"	page_copy.md#3	128	本文先頭に余白用改行あり
+15	小タイトル	大きく見せない工夫も必要	大きく見せない工夫も必要	12	
+16	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/026_section_4.jpg	images/delivery/026_section_4.jpg		章バナー
+17	本文	"
+ふんわり隠す水着は、ただ大きければよいわけではありません。布が余りすぎると、かえって重く見えることがあります。
+
+丈、裾の広がり、色柄のバランスを見ながら、覆うところとすっきり見せるところの差を作る。ふんわりタイプほど、その加減が大切です。"	page_copy.md#4	120	本文先頭に余白用改行あり
+18	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/026_accent_02.jpg	images/delivery/026_accent_02.jpg		文字なし正方形アクセント
+19	小タイトル	落ち着ける水着を選ぶ	落ち着ける水着を選ぶ	10	
+20	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/026_section_5.jpg	images/delivery/026_section_5.jpg		章バナー
+21	本文	"
+水着選びは、強く見せるためだけのものではありません。落ち着いて過ごすために選んでもいいのです。
+
+ふんわり体型隠しタイプは、気になる部分をやさしく覆いながら、水辺の時間へ気持ちを向けるための選択肢です。"	page_copy.md#5	101	本文先頭に余白用改行あり
+22	関連商品	usbswc	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+23	関連商品	usbswb	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+24	関連商品	b-mizugi-3	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行

@@ -1,0 +1,11 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,027_scene01.jpg,5.2,"痩せてから水着は
+いつ終わる？",title_type,0,0
+2,027_scene02.jpg,3.6,予定は体重を待たない,rise_fade,0,0
+3,027_scene03.jpg,4.1,"このコラムのポイント
+› 予定は体重を待たない
+› 体を消すより過ごしやすく
+› 今の体で楽しむ準備",points,0,0
+4,027_scene04.jpg,3.6,水着で体は消えない,slide_left,0,0
+5,027_scene05.jpg,3.6,比べる相手を減らす,rise_fade,0,0
+6,027_scene06.jpg,3.6,今の体で楽しむ準備,slide_right,0,0

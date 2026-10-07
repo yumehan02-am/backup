@@ -1,0 +1,12 @@
+order,part_type,file_or_source,placement,after_section,note
+1,banner,images/013_title.jpg,,,タイトル画像 1600x900
+2,video,video/opening_cm_013_vertical.mp4,,,タイトル直下の動く目次CM
+3,points_image,images/013_points.jpg,,,制作・動画用。このコラムのポイント。標準TSVには出力しない
+4,banner,images/013_empathy.jpg,before_body,1,悩みの受け止め
+5,banner,images/013_knowledge.jpg,before_body,2,知識・選び方
+6,accent_image,images/013_accent_01.jpg,after_body,2,文字なし正方形アクセント
+7,banner,images/013_lifestyle.jpg,before_body,3,続けやすさ
+8,banner,images/013_season.jpg,before_body,4,季節・外出
+9,accent_image,images/013_accent_02.jpg,after_body,4,文字なし正方形アクセント
+10,banner,images/013_closing.jpg,before_body,5,まとめ前
+11,product_parts,product_ids.csv,,,関連商品パーツ用ID

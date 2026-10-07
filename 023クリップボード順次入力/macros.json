@@ -1,0 +1,14 @@
+{
+  "hotkey": "pause",
+  "separator": "",
+  "separator_position": "append",
+  "strip_quotes": true,
+  "newline_to_br": false,
+  "last_used": "next,ctrl+v,tab,tab,tab,ctrl+c",
+  "macro_repeat_count": 1,
+  "macro_interval": 0.2,
+  "macros": {
+    "test": "next,ctrl+v,down",
+    "RMS-JAN入力": "next,ctrl+v,tab,tab,tab"
+  }
+}

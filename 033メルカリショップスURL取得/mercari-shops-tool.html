@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メルカリShops CSV → 商品URL取得ツール</title>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/encoding-japanese@2.0.0/encoding.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -5px rgb(0 0 0 / 0.1);
+        }
+        .price-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0 16px 0;
+        }
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc2626;
+        }
+        .url-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+            word-break: break-all;
+            margin-bottom: 16px;
+        }
+        .toast {
+            animation: slideUp 0.3s ease forwards;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen py-10">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="bg-white rounded-3xl shadow-2xl p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-1">メルカリShops CSV 変換ツール</h1>
+            <p class="text-gray-600 mb-6">ダウンロードCSVはShift-JIS固定。</p>
+
+            <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-2xl p-12 text-center mb-8 cursor-pointer hover:border-blue-400 transition-colors">
+                <i class="fas fa-file-csv text-6xl text-gray-400 mb-4"></i>
+                <p class="text-xl font-medium text-gray-700">ここにCSVファイルをドラッグ＆ドロップ</p>
+                <p class="text-gray-500 mt-2">または</p>
+                <label class="mt-4 inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-2xl cursor-pointer">
+                    <i class="fas fa-folder-open mr-2"></i> ファイルを選択
+                    <input type="file" id="fileInput" accept=".csv" class="hidden">
+                </label>
+            </div>
+
+            <div id="searchArea" class="hidden mb-8">
+                <div class="flex flex-col sm:flex-row gap-4 items-end">
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">検索キーワード（スペースでAND検索、価格も検索可）</label>
+                        <input id="searchInput" type="text" 
+                               class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                               placeholder="例: 白 Tシャツ 3000">
+                    </div>
+                    <button onclick="downloadCurrent()" 
+                            class="bg-green-600 hover:bg-green-700 text-white font-medium py-4 px-8 rounded-2xl flex items-center gap-3 text-lg">
+                        <i class="fas fa-download"></i>
+                        表示中の商品をCSVダウンロード（Shift-JIS）
+                    </button>
+                </div>
+                <div id="resultCount" class="mt-3 text-sm text-gray-500"></div>
+            </div>
+
+            <div id="productGrid" class="product-grid hidden"></div>
+
+            <div id="emptyState" class="hidden text-center py-20 text-gray-400">
+                <i class="fas fa-box-open text-7xl mb-6"></i>
+                <p class="text-2xl">該当する商品がありません</p>
+            </div>
+
+            <div id="status" class="mt-8 text-center text-lg font-medium"></div>
+        </div>
+    </div>
+
+    <div id="toast" class="hidden fixed bottom-6 right-6 bg-gray-800 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 toast">
+        <i id="toastIcon" class="fas fa-check-circle text-green-400 text-xl"></i>
+        <span id="toastText" class="font-medium"></span>
+    </div>
+
+    <script>
+        let allProducts = [];
+        let currentFiltered = [];
+
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const searchArea = document.getElementById('searchArea');
+        const searchInput = document.getElementById('searchInput');
+        const productGrid = document.getElementById('productGrid');
+        const emptyState = document.getElementById('emptyState');
+        const statusEl = document.getElementById('status');
+        const resultCount = document.getElementById('resultCount');
+
+        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('border-blue-400', 'bg-blue-50'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('border-blue-400', 'bg-blue-50'));
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropZone.classList.remove('border-blue-400', 'bg-blue-50');
+            const file = e.dataTransfer.files[0];
+            if (file) processFile(file);
+        });
+
+        fileInput.addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (file) processFile(file);
+        });
+
+        searchInput.addEventListener('input', filterProducts);
+
+        function processFile(file) {
+            statusEl.innerHTML = `<i class="fas fa-spinner fa-spin"></i> CSVを読み込み中（Shift-JIS対応）...`;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const arrayBuffer = e.target.result;
+                const uint8Array = new Uint8Array(arrayBuffer);
+
+                const unicodeArray = Encoding.convert(uint8Array, {
+                    from: 'SJIS',
+                    to: 'UNICODE',
+                    type: 'string'
+                });
+
+                Papa.parse(unicodeArray, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: function(results) {
+                        const data = results.data;
+                        if (data.length === 0) {
+                            statusEl.innerHTML = `<span class="text-red-500">CSVにデータがありません</span>`;
+                            return;
+                        }
+
+                        const idKey    = findColumnKey(data[0], ['商品ID', 'product_id', 'id']);
+                        const nameKey  = findColumnKey(data[0], ['商品名', 'name', 'product_name']);
+                        const priceKey = findColumnKey(data[0], ['販売価格', 'price', '販売価格（税込）', 'product_price']);
+
+                        if (!idKey || !nameKey) {
+                            statusEl.innerHTML = `<span class="text-red-500">「商品ID」または「商品名」列が見つかりません。</span>`;
+                            console.log('ヘッダー:', Object.keys(data[0]));
+                            return;
+                        }
+
+                        allProducts = data
+                            .filter(row => row[idKey] && row[idKey].trim() !== '')
+                            .map(row => ({
+                                name: (row[nameKey] || '').trim(),
+                                id: row[idKey].trim(),
+                                url: `https://jp.mercari.com/shops/product/${row[idKey].trim()}`,
+                                price: formatPrice(row[priceKey])
+                            }));
+
+                        statusEl.innerHTML = `<i class="fas fa-check-circle text-green-500"></i> ${allProducts.length}件読み込み完了`;
+
+                        searchArea.classList.remove('hidden');
+                        productGrid.classList.remove('hidden');
+                        filterProducts();
+                    }
+                });
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function formatPrice(raw) {
+            if (!raw) return '-';
+            const num = raw.replace(/[^0-9]/g, '');
+            return num ? `¥${Number(num).toLocaleString()}` : '-';
+        }
+
+        function findColumnKey(sample, candidates) {
+            for (let key in sample) {
+                const k = key.toLowerCase().trim();
+                if (candidates.some(c => k.includes(c.toLowerCase()))) return key;
+            }
+            return null;
+        }
+
+        function filterProducts() {
+            const keyword = searchInput.value.trim();
+            if (!keyword) {
+                currentFiltered = [...allProducts];
+            } else {
+                const words = keyword.toLowerCase().split(/\s+/).filter(w => w.length > 0);
+                currentFiltered = allProducts.filter(p => 
+                    words.every(word => 
+                        p.name.toLowerCase().includes(word) || 
+                        p.price.toLowerCase().includes(word) ||
+                        p.url.toLowerCase().includes(word)
+                    )
+                );
+            }
+
+            resultCount.textContent = `${currentFiltered.length} / ${allProducts.length} 件を表示中`;
+            renderGrid();
+        }
+
+        function renderGrid() {
+            productGrid.innerHTML = '';
+
+            if (currentFiltered.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            emptyState.classList.add('hidden');
+
+            currentFiltered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+
+                card.innerHTML = `
+                    <div class="font-medium text-gray-800 text-lg line-clamp-2 mb-2">${product.name}</div>
+                    
+                    <div class="price-area">
+                        <div class="price">${product.price}</div>
+                        <button onclick="copyName('${escapeJsString(product.name)}'); event.stopPropagation()" 
+                                class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs py-1 px-3 rounded-lg flex items-center gap-1">
+                            <i class="fas fa-copy"></i> 商品名コピー
+                        </button>
+                    </div>
+                    
+                    <div class="url-text">${product.url}</div>
+                    
+                    <div class="flex gap-3 mt-4">
+                        <button onclick="copyUrl('${product.url}'); event.stopPropagation()" 
+                                class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-3 rounded-xl flex items-center justify-center gap-2">
+                            <i class="fas fa-copy"></i> URLコピー
+                        </button>
+                        <a href="${product.url}" target="_blank"
+                           class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm py-3 rounded-xl flex items-center justify-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> 開く
+                        </a>
+                    </div>
+                `;
+
+                productGrid.appendChild(card);
+            });
+        }
+
+        function escapeJsString(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
+        }
+
+        async function copyName(name) {
+            try {
+                await navigator.clipboard.writeText(name);
+                showToast('✅ 商品名をコピーしました', false);
+            } catch (err) {
+                showToast('コピーに失敗', true);
+            }
+        }
+
+        async function copyUrl(url) {
+            try {
+                await navigator.clipboard.writeText(url);
+                showToast('✅ URLをコピーしました', false);
+            } catch (err) {
+                showToast('コピーに失敗', true);
+            }
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastText').textContent = message;
+            document.getElementById('toastIcon').className = isError 
+                ? 'fas fa-exclamation-circle text-red-400 text-xl' 
+                : 'fas fa-check-circle text-green-400 text-xl';
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 2800);
+        }
+
+        function downloadCurrent() {
+            if (currentFiltered.length === 0) return alert('商品がありません');
+
+            const csvData = currentFiltered.map(p => ({
+                商品名: p.name,
+                価格: p.price,
+                商品URL: p.url
+            }));
+
+            // Papa.unparseでCSV文字列を作成（BOM付きUTF-8）
+            let csv = Papa.unparse(csvData, { quotes: true });
+
+            // Shift-JISに変換（BOM付きSJISにするためにEncodingライブラリ使用）
+            const sjisArray = Encoding.convert(csv, {
+                from: 'UNICODE',
+                to: 'SJIS',
+                type: 'arraybuffer'
+            });
+
+            // BOMを付与（Excelで正しく開くため）
+            const bom = new Uint8Array([0xFF, 0xFE]); // UTF-16LE BOM（SJISでは不要だが一部互換のため）
+            // SJISではBOM不要だが、Excelの文字化け対策でUTF-8 BOMを付ける場合もある
+            // ここでは純粋SJIS（BOMなし）で出力
+            const blob = new Blob([sjisArray], { type: 'text/csv;charset=shift-jis' });
+
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `mercari_shops_products_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+        }
+    </script>
+</body>
+</html>

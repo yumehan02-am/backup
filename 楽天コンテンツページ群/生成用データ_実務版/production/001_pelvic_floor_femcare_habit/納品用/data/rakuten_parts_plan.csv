@@ -1,0 +1,17 @@
+part_order,part_type,asset_or_text,note
+0,thumbnail,images/001_thumbnail.jpg,楽天コンテンツページ登録用サムネイル 1600x900
+1,title_banner,images/001_title.jpg,ページ最上部のタイトル画像
+2,video,video/opening_cm_001.mp4,タイトル直下の動く目次CM
+3,text,page_copy.md#導入,導入文
+4,banner,images/001_awareness.jpg,骨盤底筋を知る章
+5,text,page_copy.md#骨盤底筋って、どこのこと？,本文章
+6,knowledge_illustration,images/001_knowledge.jpg,骨盤底筋の理解補助用イラスト
+7,banner,images/001_support.jpg,期待値調整バナー
+8,text,page_copy.md#下着で“鍛える”のではなく、“意識する”,本文章
+9,banner,images/001_choice.jpg,ショーツ・ガードル選び
+10,text,page_copy.md#ショーツで始めるか、ガードルで支えるか,本文章
+11,banner,images/001_comfort.jpg,きつければよいわけではない
+12,text,page_copy.md#きつければいい、ではありません,本文章
+13,banner,images/001_closing.jpg,まとめバナー
+14,text,page_copy.md#少量の不安にも、日常の備えを,本文章
+15,product_link_parts,product_ids.csv,楽天のリンク可能な商品パーツで差し込み

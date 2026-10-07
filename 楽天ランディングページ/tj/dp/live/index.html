@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<style>
+		body {font-family: Arial;}
+
+		.countdown-container {
+				display: flex;
+				align-items: center;
+				gap: 16px; 
+		}
+
+		.countdown {
+				display: flex;
+				ustify-content: flex-end;
+				align-items: center;
+		}
+
+		.countdown-text {
+				font-size: 20px; 
+				color: #333; 
+				margin-bottom: 5px; 		}
+
+		.bloc-time {
+				text-align: center;
+				display: flex;
+				align-items: center;
+				gap: 2px;
+		}
+
+		.count-title {
+				position: relative;
+				float: left;
+				height: 14px;
+				width: 10px;
+				min-width: 10px;
+				font-size: 12px;
+				color: #333;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-left: 2px;
+				margin-top:8px;
+		}
+
+		.figure {
+				position: relative;
+				float: left;
+				height: 35px;
+				width: 20px;
+				margin-left: 1px;
+				background-color:#333232;
+				border-radius: 4px;
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+				overflow: hidden;
+		}
+
+		.figure > span {
+				position: absolute;
+				left: 0;
+				right: 0;
+				margin: auto;
+				font-size: 16px;
+				line-height: 35px;
+				font-weight: 400;
+				color: white;
+				text-align: center;
+		}
+
+		.figure:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 50%;
+				height: 1px;
+				background: rgba(255, 255, 255, 0.12);
+		}
+
+		.countdownTimer {
+					position: absolute;
+					right: 10px; 
+					top: -9px;  
+					margin: 10px;
+					-webkit-user-select: none;
+					-moz-user-select: none;
+					-ms-user-select: none;
+					user-select: none;
+		}
+
+		.bloc-time.days {
+					margin-right: 8px;
+		}
+
+
+
+		.title {
+				top: 0;
+				left: 0;
+				font-size: 24px;
+				font-weight: 600;
+		}
+
+		.beforeButton {
+				top: 25%;
+				position: absolute;
+				left: 0%;
+				z-index: 1;
+				transform: scaleX(-1);
+		}
+
+		.afterButton {
+				top: 25%;
+				position:absolute;
+				right: 0%;
+				z-index: 1;
+		}
+
+		.carousel {
+				height: calc(100vh - 100px);
+				margin: 0 auto;
+				padding: 3px;
+				position: relative;
+				overflow: hidden;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				max-width: 100%;
+
+				-webkit-user-drag: none;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+		}
+
+		.track {
+				width: 100%;
+				position: absolute;
+				display: flex;
+				box-sizing: border-box;
+				height: 100%;
+		}
+
+		.itemBlock {
+				flex: 0 0 calc((100% / var(--max-per-view)) - 1%);
+				height: auto;
+				flex-direction: column;
+				margin: .5%;
+				display: flex;
+				align-items: center;
+				border: 1px solid rgba(156, 151, 151, 0.33);
+				border-radius: 3px;
+				box-sizing: border-box;
+				overflow: hidden;
+				position: relative;
+				/*background: #ffffff;*/
+		}
+
+
+		.img-container {
+				max-height: calc(100vh - 230px);
+				display: flex;
+				padding: 5px;
+				margin: 2px;
+		}
+
+		.img-container img {
+				max-width: 100%;
+				max-height: 100%;
+				min-width: none;
+				min-height: none;
+				width: auto;
+				height: auto;
+				user-select: none;
+				-moz-user-select: none;
+				-webkit-user-drag: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+		}
+
+		.itemTitle {
+				width: auto;
+				height: 30px;
+				min-height: 30px;
+				overflow: hidden;
+				font-size: 12px;
+				margin: 5px;
+				position: relative;
+				line-height: 15px;
+				text-align: left;
+		}
+
+		.itemListPrice {
+				width: auto;
+				height: auto;
+				min-height: 64px;
+				font-size: 18px;
+				font-weight: 600;
+				margin-left: 6px;
+				margin-bottom: 10px;
+				position: relative;
+				align-self: flex-start;
+				color: #393737c8;
+		}
+
+		.itemDiscountedPrice {
+				width: auto;
+				height: 10%;
+				min-height: 10%;
+				font-size: 18px;
+				font-weight: 600;
+				margin-left: 6px;
+				margin-bottom: 30px;
+				bottom: 0;
+				left: 0;
+		}
+
+		.itemDiscountPercent {
+			width: auto;
+				height: 10%;
+				min-height: 10%;
+				font-size: 12px;
+				font-weight: 575;
+				margin-left: 6px;
+				margin-bottom: 30px;
+				color: red;
+				bottom: 0;
+				left: 0;
+		}
+
+		.priceBeforeDiscount {
+				text-decoration: line-through;
+				color: #393737c8;
+				font-weight: 575;
+				font-size: 12px;
+				opacity: .75;
+		}
+
+		.contentWrapper {
+				position: absolute;
+				bottom: 0; /* Positions the wrapper at the bottom of the parent container */
+				left: 0;
+				right: 0; /* Ensures it spans the width of the parent container */
+				display: flex; /* Makes the items inside flex items */
+				flex-direction: column;
+				justify-content: flex-start; /* Aligns the items to the left */
+		}
+
+		.wrapper {
+			  display: flex;
+			  justify-content: flex-start; /* Align content to the left inside wrapper */
+			  align-items: flex-end;	   /* Align content to the bottom inside wrapper */
+			  flex-shrink: 1;			  /* Allow the wrapper to shrink */
+			  min-width: 0;				/* Allow shrinking beyond the intrinsic content width */
+			  min-height: 0;			   /* Allow shrinking vertically */
+			  position: absolute;		  /* Positioned relative to the outer container */
+			  bottom: 0;
+			  left: 0;
+		}
+
+		.emptyStars {
+			background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2217%22%20height%3D%2213.1%22%20viewBox%3D%220%200%2014%2013.1%22%3E%3Ctitle%3Erating-empty%3C%2Ftitle%3E%3Cpath%20d%3D%22M7%2C1%2C8.7%2C4.1l.2.4h.5l3.6.7L10.5%2C7.8l-.3.3v.5l.4%2C3.5L7.4%2C10.6%2C7%2C10.4l-.4.2L3.3%2C12.1l.4-3.5V8.2l-.3-.3L1%2C5.3l3.6-.7H5l.2-.4L7%2C1M7%2C0a1%2C1%2C0%2C0%2C0-.9.5L4.4%2C3.6.8%2C4.3A1%2C1%2C0%2C0%2C0%2C.3%2C5.9L2.7%2C8.5%2C2.3%2C12a1%2C1%2C0%2C0%2C0%2C.4.9l.6.2h.4L7%2C11.5l3.3%2C1.5h.4l.6-.2a1%2C1%2C0%2C0%2C0%2C.4-.9l-.4-3.5%2C2.5-2.6a1%2C1%2C0%2C0%2C0-.5-1.7L9.6%2C3.6%2C7.9.5A1%2C1%2C0%2C0%2C0%2C7%2C0Z%22%20style%3D%22fill%3A%23bebebe%22%2F%3E%3C%2Fsvg%3E');
+			background-repeat: repeat-x;
+			height: auto;
+			min-height: 14px;
+			width: 84px;
+			min-width: 84px;
+			margin: 5px;
+			margin-bottom: 10px;
+
+		}
+
+		.filledStars {
+			display: block;
+			height: 14px;
+			background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2217%22%20height%3D%2213.1%22%20viewBox%3D%220%200%2014%2013.1%22%3E%3Ctitle%3Erating-filled%3C%2Ftitle%3E%3Cpath%20d%3D%22M14%2C5a1%2C1%2C0%2C0%2C0-.8-.7L9.6%2C3.6%2C7.9.5A1%2C1%2C0%2C0%2C0%2C6.1.5L4.4%2C3.6.8%2C4.3A1%2C1%2C0%2C0%2C0%2C.3%2C5.9L2.7%2C8.5%2C2.3%2C12a1%2C1%2C0%2C0%2C0%2C.4.9l.6.2h.4L7%2C11.5l3.3%2C1.5a1%2C1%2C0%2C0%2C0%2C1.4-1l-.4-3.5%2C2.5-2.6A1%2C1%2C0%2C0%2C0%2C14%2C5Z%22%20style%3D%22fill%3A%23FFDF00%22%2F%3E%3C%2Fsvg%3E');
+			background-repeat: repeat-x;
+			max-width: 84px;
+			position: absolute;
+			margin: 5px;
+			margin-bottom: 10px;
+
+		}
+
+		.reviewCount {
+			position: absolute;
+			margin-bottom: 10px;
+			margin-left: 94px;
+			font-size: 12px;
+		}
+
+		.baseBadge {
+			position: absolute;
+			margin-top: 10px;
+			margin-right: 10px;
+			top: 0;
+			right: 0;
+			font-size: 14px;
+			height: 42px;
+			width: 42px;
+			background-repeat: no-repeat;
+			background-size: 42px, 42px;
+		}
+
+		.badgeRank {
+			filter: drop-shadow(0 0 4px silver);
+		}
+
+		.badgeRank1 {
+			filter: drop-shadow(0 0 4px gold);
+		}
+
+		.badgeRank2 {
+			filter: drop-shadow(0 0 4px DarkOrange);
+		}
+
+		.badgeRank3 {
+			filter: drop-shadow(0 0 4px Firebrick);
+		}
+	</style>
+</head>
+
+<body>
+
+	<header>
+		<div id="title" class="title">リアルタイムランキング</div>
+		<div id="countdownTimer" class="countdownTimer"></div>
+	</header>
+	<div id="carousel" class="carousel">
+		<div class="beforeButton">
+			<button id="beforeButton" style="background-color: white; border: none; padding: 8px; cursor: pointer; width: 36px; height: 36px; background-size: contain; background-repeat: no-repeat; border: none;">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+					<path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" fill="black"/></svg>
+			</button>
+		</div>
+		<div class="afterButton">
+			<button id="afterButton" style="background-color: white; border: none; padding: 8px; cursor: pointer; width: 36px; height: 36px; background-size: contain; background-repeat: no-repeat; border: none;">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+					<path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" fill="black"/>
+				</svg>
+			</button>
+		</div>
+		<div id="track" class="track"></div>
+	</div>
+
+<script content>
+const items = [["item_id_url","ftp_title","ftp_image_url_first","score","reviews_count","ftp_list_price_w_tax","ftp_price_w_tax","ftp_price_discount_rate"],["flttk00","大きな 胸を小さく見せるブラタンク フラットメイクブラタンク さらし キャミソール 小さく見える 着痩せ 和装 さらしブラ 大きいサイズ 着やせ ノンワイヤー ぺたんこ 着やせブラ 綿100 ピンクベージュ ブラック ワイヤーなし 小さく見せる ブラキャミ","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item/flttk00.jpg",4.43,342,3828,3828,0],["fltbr00","さらしブラ 胸を小さく見せるブラ フラットメイクブラ 胸が小さく見える 着痩せ 和装ブラ ハーフトップ ノンワイヤー 綿 ナイロン ポリウレタン ピンクベージュ ブラック サイズ展開M-3L 着物用 体型カバー デザインインナー さらし ブラ 着痩せ ノンワイヤー 和装ブラジャー","https://image.rakuten.co.jp/u-b-yumehan/cabinet/sku/fltbr00_sku_pk.jpg",4.23,473,3278,3278,0],["wsrah00","汗取りインナー わきサラ 抗菌防臭 綿混 ハーフタイプ 大型パッドで 大汗さんもおまかせ 脇さらさら 汗ジミ対策 脇汗 のびのびインナー ベージュ ブラック 極薄軽量 スーパーストレッチ ラウンドカット 脇汗防止 脇 汗 大量 インナー 脇 見え 防止 インナー","https://image.rakuten.co.jp/u-b-yumehan/cabinet/sku/wsrah01_sku_be.jpg",4.35,55,1408,1408,0],["fmnbr00","大きな 胸を小さく見せる フラットメイクナチュラルブラ 胸を抑える 胸が小さく見える 着痩せブラ 和装ブラ さらしブラ ハーフトップ 大きいサイズ ブラジャー 着やせ ノンワイヤー ぺたんこ ボリュームダウン インナー パワーネット ニュアンスベージュ 2p10","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item3/fmnbr00.jpg",4.12,149,3278,3278,0],["8tred00","赤インナー 8分袖 長袖 女性用 日本製 綿100％ Ｍ-LL 健康長寿 コットン 婦人 あったか プレゼント 敬老の日 母の日 活力 赤下着","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item2/8tred00s.jpg",null,null,2980,2980,0],["clmhni","ハイネック ノースリーブ インナー メロウネック レディース 首元カバー タンクトップ UVカット 紫外線対策 涼しい 重ね着 上品 きれいめ 大人 40代 50代","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item3/clmhni.jpg",null,null,1408,1408,0],["c-mizugi","アウトレット 13Lのみ 体型カバー水着 重ね着風 かんたん着脱 UVカット ボーダーネイビー 上下セット 9M 11L 13L 15LL 水陸両用 大きいサイズ ママ 体型隠し ラッシュガード 30代 40代 50代 UVカット","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item3/c-mizugi00.jpg",4.91,11,7980,1480,81.45363408521304],["sarmc","冷感アームカバー UPF50+ UVカット 接触冷感 気化熱 日焼け対策 ひんやり クール 涼しい スポーツ テニス ジョギング ブラック グレー ホワイト スーッと爽快アームカバー","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item3/nsarmc_00.jpg",4.27,659,990,990,0],["kttkn20","骨盤底筋 サポート ショーツ [2色組] 吸水帯 5cc対応 クロスで引き上げ M L LL 3L / 骨盤底筋パンツ 大きいサイズ 産後 女性用 フェムケア 失禁 尿漏れ 尿モレ 尿もれ 綿 コットン 骨盤庭訓 骨盤底筋引き締め 骨盤ケア 骨盤底筋予防 ケアショーツ 吸水 骨盤底筋 ショーツ","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item2/kttkn20a.jpg",4.19,123,4378,4378,0],["fitm-cv-do","アウトレット 体型カバー フィットネス水着 上下セット ドット柄 幾何学柄 9M 11L 13L 15LL 17LL セパレート レディース ジム ヨガ プール トレーニング対応 水泳速乾機能 大きいサイズ 30代 40代 50代 水着 レディース フィットネス セパレート","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item2/fitcv00spc.jpg",4.41,49,9790,5980,38.91726251276813],["duallong_2p-ss","2枚組 男性用 日本製 パッドがない 軽度 失禁 エチケットロングニットパンツ 吸水速乾 抗菌消臭 吸水ショーツ 尿漏れ チョイ漏れ トランクス 綿100％ あたたか 汗じみ 父の日 失禁パンツ 安心パンツ 紳士 暖か","https://image.rakuten.co.jp/u-b-yumehan/cabinet/new1/elnp_1_2p.jpg",4.4,10,6160,6160,0],["wtsoc00","はく 防水シート 吸いとって漏らさない オーバーパンツ 60cc対応 内側吸水 外側防水 M L LL 男女兼用 防水シーツ すいとるオムツコート","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item2/wtsoc00_60.jpg",4,22,4378,4380,0],["ktglg00","骨盤底筋 ロング ガードル 吸水帯 5cc対応 クロスで引き上げ M L LL 3L 大きいサイズ 骨盤底筋ケア 骨盤底筋パンツ 吸水 段差レス 女性用 産後 フェムケア 失禁 尿漏れ 尿モレ 尿もれ 妊娠後 ガードル ショーツ 骨盤底筋 ショーツ 骨盤底筋 ガードル 尿漏れ ガードル","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item2/ktglg00.jpg",4.54,57,4378,4378,0],["mspet00","楽ちんペチパンツ ワイドパンツ用 速乾 ドライ メッシュ タイプ トイレで裾が床につくのを防ぐ ムレ防止 汗対策 暑さ対策 張り付き 透け防止 ペチコート リネンパンツ 裏地","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item/mspet00a.jpg",4.53,303,1760,1760,0],["ssovrpt00","防水パンツ 尿もれパンツ 失禁パンツ 300CC 男性用 日本製 重失禁 トランクス 吸水パッド付き 全面防水布 無地 M L LL ネイビー 抗菌消臭 頻尿 尿漏れ 綿100％ コットン 介護 安心パンツ 紳士 オーバーパンツ","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item3/ssovrpt00.jpg",5,1,5900,5900,0],["alctk00","カップ付き レース 汗取りインナー タンクトップ レディース 綿混 大きな汗取りパッドで 大汗さんもおまかせ 脇汗 汗じみ防止 吸水速乾 抗菌防臭 通気性抜群 M L LL ブラック ホワイト 脇汗防止 チラ見え防止 脇汗 インナー カップ付 脇汗 タンク","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item/wsr/alctk00.jpg",4.15,48,1870,1870,0],["kprcs30","3色組 レース付き 吸水パッド 対応ショーツ 綿95％ パッドがキレイにおさまる M L LL / 吸水パッド用 吸水パッド専用 失禁 尿漏れ 尿モレ 尿もれ コットン 綿混","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item3/kprcs30.jpg",4.33,12,4980,4980,0],["nbdbr20","アウトレット 2枚組 ボディブリファー 長袖 薄くて軽い あったかインナー Uネック 防寒 衿ぐり広め 冷え対策 ボディスーツ","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item3/nbdbr20a.jpg",4.38,13,4200,2800,33.33333333333333],["fbisf20","2枚組 カップ付き レースインナー 汗取り布付き フィットブライン インナー スクエアネック フレンチ袖タイプ 脇汗 / 綿混 成形カップ 肌を隠す 見せインナー ブラトップ ノンワイヤー 2s10o","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item3/fbisf20.jpg",4.4,5,4378,4378,0],["c-mizugi_nbf","アウトレット 体型カバー水着 重ね着風 かんたん着脱 UVカット 着やせ ほっそり見せスタイルカバーアップ水着 上下セット 水陸両用 大きいサイズ ママ 体型隠し ラッシュガード 30代 40代 50代","https://image.rakuten.co.jp/u-b-yumehan/cabinet/item2/brw2p00b.jpg",4.83,41,11880,5980,49.66329966329967]];
+const start = '2001-01-01';
+const end = '2001-01-01';
+</script>
+
+<script>
+//config settings
+const config = {
+	timeLimit: 5000,
+	maxPerView: 5,
+	numberOnCarousel: items.length - 1,
+};
+
+void (globalThis.LOG ||= globalThis.console.log.bind(globalThis.console))(config)
+
+// currentItem is the left-most item displayed on screen
+let currentItem = null;
+const track = document.getElementById('track');
+const trackTransitionSpeed = 'transform .4s';
+
+const dragTrack = {
+	startX: null,
+	initialTransformX: null,
+	hasClicked: false,
+
+	handleMouseDown(e) {
+		track.style.transition = 'none';
+		track.dataset.isDragging = 'false';
+		this.startX = e.clientX;
+		const matrix = window.getComputedStyle(track).transform;
+		this.initialTransformX = matrix !== 'none' ? parseFloat(matrix.split(',')[4]) : 0;
+		this.hasClicked = true;
+		carouselTimer.stop();
+	},
+
+	handleMouseMove(e) {
+		if (this.hasClicked) {
+			const currentX = e.clientX;
+			const deltaX = currentX - this.startX;
+
+			if (Math.abs(deltaX) > 10) {
+				track.dataset.isDragging = 'true';
+				this.hasMoved = true;
+			}
+		}
+
+		if (track.dataset.isDragging === 'true') {
+			const currentX = e.clientX;
+			const deltaX = currentX - this.startX;
+			track.style.transform = `translateX(${this.initialTransformX + deltaX}px)`;
+		}
+	},
+
+	handleMouseUp(e) {
+		this.hasClicked = false;
+		if (track.dataset.isDragging === 'true') {
+			const currentX = e.clientX;
+			const deltaX = currentX - this.startX;
+			track.style.transition = trackTransitionSpeed;
+			const distance = getDistance();
+			const transformValue = track.style.transform;
+
+			const computedStyle = window.getComputedStyle(track);
+			const matrix = new DOMMatrix(computedStyle.transform);
+
+			const translateXValue = matrix.m41;
+
+			track.style.transform = `translateX(${translateXValue - (deltaX % distance)}px)`;
+			const changeInCurrentIndex = -(deltaX - (deltaX % distance)) / distance;
+			changeCurrentItem(+currentItem.getAttribute('data-track_index') + changeInCurrentIndex);
+			checkValidSpot();
+
+			carouselTimer.start(config.timeLimit);
+			setTimeout(() => {
+				track.dataset.isDragging = 'false';
+			}, 5);
+
+		}
+	}
+};
+
+// creates and populates items onto the track, while also initializing
+// transform position to align with item 1
+const initializeFrame = () => {
+	track.style.setProperty('--max-per-view', config.maxPerView);
+	for (let i = 1; i <= config.numberOnCarousel; i++) {
+		const newItem = document.createElement('div');
+		newItem.classList.add("itemBlock");
+		newItem.dataset.track_index = i;
+		track.appendChild(newItem);
+		if (currentItem === null) {currentItem = newItem};
+	}
+	const distance = getDistance();
+	const maxViewsOffset = 2;
+	track.style.transform = `translateX(${-distance * maxViewsOffset * config.maxPerView}px)`;
+	setTimeout(() => {
+		track.style.transition = trackTransitionSpeed;
+	}, 10);
+	populateItemDivs();
+	cloneDivs();
+};
+
+//appends and prepends copies of items to both sides of the carousel
+const cloneDivs = () => {
+
+	const cloneDiv = (index, position) => {
+			const clonedDiv = document.querySelector(`div[data-track_index="${index}"]`).cloneNode(true);
+			clonedDiv.dataset.track_index = position;
+			const anchors = clonedDiv.querySelectorAll('a');
+			anchors.forEach(anchor => {
+				addClickListener(anchor, clonedDiv);
+			});
+			return clonedDiv;
+		};
+
+		for (let i = 1; i <= 2 * config.maxPerView; i++) {
+			track.appendChild(cloneDiv(i, i + config.numberOnCarousel));
+			const trackIndex = config.numberOnCarousel - i + 1;
+			track.insertBefore(cloneDiv(trackIndex, -i + 1), track.firstChild);
+		}
+};
+
+const populateItemDivs = () => {
+	for (let i = 1; config.numberOnCarousel >= i; i++) {
+		const item = document.querySelector(`div[data-track_index="${i}"]`);
+		if (item) {
+			const contentWrapper = document.createElement('div');
+			contentWrapper.classList.add('contentWrapper');
+			item.appendChild(contentWrapper);
+
+			const itemDetails = items[i];
+			if (!itemDetails) continue;
+
+			const shopId = extractShopUrl(itemDetails[2]);
+			item.dataset.url = itemDetails[0];
+			appendImage(item, itemDetails[2], shopId);
+			appendBadge(item, i);
+			appendTitle(contentWrapper, itemDetails[1], shopId);
+			appendPrice(contentWrapper, itemDetails[6], itemDetails[5], itemDetails[7]);
+			if (itemDetails[3] > 2.9) appendRating(contentWrapper, itemDetails[3], itemDetails[4]);
+		}
+	}
+	carouselTimer.start(config.timeLimit);
+};
+
+const appendImage = (item, imageUrl, shopId) => {
+	const imgContainer = document.createElement('div');
+	imgContainer.classList.add('img-container');
+	const img = document.createElement('img');
+	img.src = imageUrl;
+	imgContainer.appendChild(img);
+	redirectionEmbed(imgContainer, shopId, item.dataset.url);
+	item.appendChild(imgContainer);
+};
+
+const appendBadge = (item, index) => {
+	const badgeContainer = document.createElement('div');
+	setBackgroundImageWithText(badgeContainer, `${index}`);
+	item.appendChild(badgeContainer);
+};
+
+const appendTitle = (item, title, shopId) => {
+	const titleContainer = document.createElement('div');
+	titleContainer.classList.add('itemTitle');
+	titleContainer.textContent = title.replaceAll('<br>', ' ');
+	redirectionEmbed(titleContainer, shopId, item.parentElement.dataset.url);
+	item.appendChild(titleContainer);
+};
+
+const appendPrice = (item, price, listPrice, discountRate) => {
+	const priceContainer = document.createElement('div');
+	priceContainer.classList.add('itemListPrice');
+
+	if (discountRate > 0) {
+		priceContainer.innerHTML = `
+			<span class="itemDiscountedPrice">${currencyFormat(price)}</span>
+			<span class="priceBeforeDiscount">${currencyFormat(listPrice)}</span>
+		`;
+		const discountContainer = document.createElement('div');
+		discountContainer.classList.add('itemDiscountPercent');
+		discountContainer.textContent = `${Math.round(discountRate)}% OFF`;
+		priceContainer.appendChild(discountContainer);
+	} else {
+		priceContainer.textContent = currencyFormat(price || listPrice);
+	}
+
+	item.appendChild(priceContainer);
+};
+
+const appendRating = (item, score, reviews) => {
+	// Create a wrapper div and assign the 'wrapper' class
+	const ratingWrapper = document.createElement('div');
+	ratingWrapper.classList.add('wrapper'); // Add the 'wrapper' class
+
+	// Create empty star container
+	const emptyStarContainer = document.createElement('div');
+	emptyStarContainer.classList.add('emptyStars');
+	ratingWrapper.appendChild(emptyStarContainer);
+
+	// Create filled star container
+	const starContainer = document.createElement('div');
+	starContainer.classList.add('filledStars');
+	const width = (84 / 5) * score; // Assuming a 5-star rating system
+	starContainer.style.width = `${width}px`;
+	ratingWrapper.appendChild(starContainer);
+
+	// Create review count container
+	const reviewCountContainer = document.createElement('div');
+	reviewCountContainer.classList.add('reviewCount');
+	reviewCountContainer.textContent = `(${reviews})`;
+	ratingWrapper.appendChild(reviewCountContainer);
+
+	// Append the entire wrapper to the item
+	item.appendChild(ratingWrapper);
+};
+
+function extractShopUrl(url) {
+	const parts = url.split('/');
+	let result = parts[3]
+	if (result === "gold"){
+		result = parts[4]
+	}
+	return result;
+}
+
+const currencyFormat = (num) => {
+	num = parseInt(num)
+	num = isNaN(num) ? 0 : num
+	return '¥ ' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+};
+
+const setBackgroundImageWithText = (element, textValue) => {
+	let fillColor = 'silver';  // Default fill color
+
+	if (textValue === '1') {
+		fillColor = 'gold';
+		element.classList.add('badgeRank1');
+	} else if (textValue === '2') {
+		fillColor = 'DarkOrange';
+		element.classList.add('badgeRank2');
+	} else if (textValue === '3') {
+		fillColor = 'Firebrick';
+		element.classList.add('badgeRank3');
+	} else {
+		element.classList.add('badgeRank');
+	}
+
+	const svg = `
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+			<path d="M12 0l2.139 2.629 3.068-1.441.786 3.297 3.389.033-.722 3.312 3.039 1.5-2.088 2.67 2.088 2.67-3.039 1.5.722 3.312-3.389.033-.786 3.297-3.068-1.441-2.139 2.629-2.139-2.629-3.068 1.441-.786-3.297-3.389-.033.722-3.312-3.039-1.5 2.088-2.67-2.088-2.67 3.039-1.5-.722-3.312 3.389-.033.786-3.297 3.068 1.441z" fill="${fillColor}"/>
+			<text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white">${textValue}</text>
+		</svg>
+	`;
+
+	const encodedSvg = encodeURIComponent(svg);
+	const backgroundImageUrl = `url('data:image/svg+xml;utf8,${encodedSvg}')`;
+
+	element.classList.add('baseBadge');
+
+	element.style.backgroundImage = backgroundImageUrl;
+};
+
+
+const redirectionEmbed = (div, shopId, itemId) => {
+	const url = `https://item.rakuten.co.jp/${shopId}/${itemId}`;
+
+	const anchor = document.createElement('a');
+	anchor.href = url;
+	anchor.target = "_blank";
+	anchor.rel = "noopener noreferrer";
+	anchor.draggable = false;
+
+	anchor.style.display = 'block';
+	anchor.style.textDecoration = 'none';
+	anchor.style.color = 'inherit';
+	anchor.style.width = '100%';
+	anchor.style.height = '100%';
+
+	anchor.innerHTML = div.innerHTML;
+
+	div.innerHTML = '';
+	div.appendChild(anchor);
+	addClickListener(anchor, div);
+};
+
+const addClickListener = (anchor, div) => {
+	anchor.addEventListener('click', function(event) {
+		const track = div.closest('.track');
+		if (track && track.dataset.isDragging === 'true') {
+			event.preventDefault();
+			return;
+		}
+	});
+};
+
+
+const carouselTimer = {
+	timerId: null,
+	isActive: false,
+
+	start(timeLimit) {
+		if (this.isActive) clearTimeout(this.timerId);
+			this.timerId = setTimeout(() => {
+				moveCarousel(1);
+				this.start(timeLimit);
+			}, timeLimit);
+
+	this.isActive = true;
+	},
+	stop() {
+		if (this.isActive) {
+			clearTimeout(this.timerId); // Clear the timeout to stop the carousel
+			this.isActive = false; // Reset the isActive flag
+		}
+	}
+};
+
+const getDistance = () => {
+	const item1 = document.querySelector(`div[data-track_index="1"]`);
+	const item2 = document.querySelector(`div[data-track_index="2"]`);
+	const { left: left1 } = item1.getBoundingClientRect();
+	const { left: left2 } = item2.getBoundingClientRect();
+	return Math.abs(left1 - left2);
+};
+
+const moveCarousel = (indexChange) => {
+	if (indexChange === 0){return;}
+	const currentPos = track.getBoundingClientRect();
+	const distance = getDistance();
+	const currentIndex = currentItem.getAttribute('data-track_index');
+
+	if (currentIndex === `${config.numberOnCarousel}` && indexChange === 1){
+		handleTimeoutMovement(0, (-distance * (2 * config.maxPerView - 1)), indexChange, 50, 10);
+		return;
+	}
+
+	if (currentIndex === '1' && indexChange === -1){
+		handleTimeoutMovement((config.numberOnCarousel + 1), (-distance * (config.numberOnCarousel + 2 * config.maxPerView)), indexChange, 150, 10);
+		return;
+	}
+
+
+	changeCurrentItem(+currentIndex + indexChange);
+	track.style.transform = `translateX(${-distance *(config.maxPerView*2+(+currentItem.getAttribute('data-track_index')-1))}px)`;
+};
+
+const handleTimeoutMovement = (index, position, indexChange, transitionDelay, resetDelay) => {
+	track.style.transition = 'none';
+	changeCurrentItem(index);
+	setTimeout(() => {
+		track.style.transform = `translateX(${position}px)`;
+		setTimeout(() => {
+			track.style.transition = trackTransitionSpeed;
+			moveCarousel(indexChange);
+		}, transitionDelay);
+	}, resetDelay);
+};
+
+const changeCurrentItem = (newIndex) => {
+	currentItem = document.querySelector(`div[data-track_index="${newIndex}"]`);
+};
+
+const checkValidSpot = () => {
+	const distance = getDistance();
+	const currentIndex = parseInt(currentItem.getAttribute('data-track_index'), 10);
+	if (currentIndex > config.numberOnCarousel){
+		handleInvalidPosition(
+			(-distance * (config.maxPerView * 2 + currentIndex - 1 - config.numberOnCarousel)),
+			(currentIndex - config.numberOnCarousel),
+			(10),
+			(500)
+		);
+		return;
+	} else if (currentIndex <= 0){
+		handleInvalidPosition(
+			(-distance * (config.maxPerView * 2 + config.numberOnCarousel - 1 + currentIndex)),
+			(currentIndex + config.numberOnCarousel),
+			(10),
+			(500)
+		);
+		return;
+	}
+};
+
+const handleInvalidPosition = (targetDestination, targetIndex, transitionDelay, resetDelay) => {
+	setTimeout(() => {
+		track.style.transition = 'none';
+		track.style.transform = `translateX(${targetDestination}px)`;
+		setTimeout(() => {
+			track.style.transition = trackTransitionSpeed;
+			changeCurrentItem(targetIndex);
+		}, transitionDelay);
+	}, resetDelay);
+};
+
+const handleCarouselButtonMovement = {
+	lockout: false,
+
+	click(direction) {
+		if (this.lockout) return;
+		this.lockout = true;
+		carouselTimer.start(config.timeLimit);
+		moveCarousel(direction);
+		setTimeout(() => { this.lockout = false; }, 500);
+	}
+};
+
+const scaleTrackTranslateToWidth = () => {
+	const distance = getDistance();
+	const currentIndex = +currentItem.getAttribute('data-track_index');
+	track.style.transition = 'none';
+	track.style.transform = `translateX(${-distance * (currentIndex + config.maxPerView * 2 - 1)}px)`;
+	carouselTimer.start(config.timeLimit);
+	setTimeout(() => {track.style.transition = trackTransitionSpeed;}, 50);
+};
+
+const formatDateString = (dateString) => {
+	const formattedString = dateString.replace(' ', 'T');
+	const date = new Date(formattedString);
+
+	if (isNaN(date)) {
+		throw new Error('Invalid date format');
+	}
+
+	return date;
+};
+
+const populateCountdownTimer = () => {
+    const countdownTimer = document.getElementById('countdownTimer');
+
+   
+    const countdownContainer = document.createElement('div');
+    countdownContainer.classList.add('countdown-container');
+    
+    
+    const countdownText = document.createElement('div');
+    countdownText.classList.add('countdown-text');
+    countdownText.textContent = '終了まであと';
+
+
+    const countdownDiv = document.createElement('div');
+    countdownDiv.classList.add('countdown');
+
+    const createBlocTime = (unit, unitLabel, figures) => {
+        const blocTimeDiv = document.createElement('div');
+        blocTimeDiv.classList.add('bloc-time', unit);
+
+        figures.forEach(figure => {
+            const figureDiv = document.createElement('div');
+            figureDiv.classList.add('figure', unit, figure);
+            const spanTop = document.createElement('span');
+            spanTop.classList.add('top');
+            spanTop.textContent = '0';
+            figureDiv.appendChild(spanTop);
+            blocTimeDiv.appendChild(figureDiv);
+        });
+
+        const countTitle = document.createElement('div');
+        countTitle.classList.add('count-title');
+        countTitle.textContent = unitLabel;
+        blocTimeDiv.appendChild(countTitle);
+
+        return blocTimeDiv;
+    };
+
+    const units = [
+        { unit: 'days', label: '日', figures: ['days-1', 'days-2'] },
+        { unit: 'hours', label: '時', figures: ['hours-1', 'hours-2'] },
+        { unit: 'min', label: '分', figures: ['min-1', 'min-2'] },
+        { unit: 'sec', label: '秒', figures: ['sec-1', 'sec-2'] }
+    ];
+
+    units.forEach(({ unit, label, figures }) => {
+        const bloc = createBlocTime(unit, label, figures);
+        countdownDiv.appendChild(bloc);
+    });
+
+    countdownContainer.appendChild(countdownText);
+    countdownContainer.appendChild(countdownDiv);
+
+
+    countdownTimer.appendChild(countdownContainer);
+};
+
+
+
+const Countdown = {
+	total_seconds: 0,
+	init: function() {
+		const enabled = 0
+		const startTime = formatDateString(start);
+		const endTime = formatDateString(end);
+		const currentTime = new Date().getTime();
+		if(startTime !== null && endTime !== null && currentTime >= startTime){
+			const timeDiff = endTime - currentTime;
+
+			const total_seconds = Math.floor(timeDiff / 1000);
+
+			const days = Math.floor(total_seconds / (24 * 60 * 60));
+			const hours = Math.floor((total_seconds % (24 * 60 * 60)) / (60 * 60));
+			const minutes = Math.floor((total_seconds % (60 * 60)) / 60);
+			const seconds = total_seconds % 60;
+
+			this.total_seconds = total_seconds;
+
+			if (timeDiff > 0){
+				enabled && populateCountdownTimer();
+				enabled && this.updateClock();
+				const titleDiv = document.getElementById('title');
+				titleDiv.innerHTML = `スーパーSALE売れ筋商品 毎時間更新`;
+			}
+		}
+	},
+	updateClock: function() {
+			if (this.total_seconds <= 0) {
+				return;
+			}
+
+			this.total_seconds--;
+
+			const days = Math.floor(this.total_seconds / (3600 * 24));
+			const hours = Math.floor(this.total_seconds / 3600);
+			const minutes = Math.floor((this.total_seconds % 3600) / 60);
+			const seconds = this.total_seconds % 60;
+
+			this.updateDisplay(days, hours, minutes, seconds);
+
+			setTimeout(() => this.updateClock(), 1000);
+	},
+	updateDisplay: function(days, hours, minutes, seconds) {
+		document.querySelector('.days.days-1 .top').textContent = Math.floor(days / 10);
+		document.querySelector('.days.days-2 .top').textContent = days % 10;
+
+		hours = hours%24;
+		document.querySelector('.hours.hours-1 .top').textContent = Math.floor(hours / 10);
+		document.querySelector('.hours.hours-2 .top').textContent = hours % 10;
+
+		document.querySelector('.min.min-1 .top').textContent = Math.floor(minutes / 10);
+		document.querySelector('.min.min-2 .top').textContent = minutes % 10;
+
+		document.querySelector('.sec.sec-1 .top').textContent = Math.floor(seconds / 10);
+		document.querySelector('.sec.sec-2 .top').textContent = seconds % 10;
+	}
+};
+
+track.addEventListener('mousedown', (e) => dragTrack.handleMouseDown(e));
+document.addEventListener('mousemove', (e) => dragTrack.handleMouseMove(e));
+document.addEventListener('mouseup', (e) => dragTrack.handleMouseUp(e));
+
+document.getElementById('beforeButton').addEventListener('click', () => handleCarouselButtonMovement.click(-1));
+document.getElementById('afterButton').addEventListener('click', () => handleCarouselButtonMovement.click(1));
+
+initializeFrame();
+Countdown.init();
+window.addEventListener('resize', scaleTrackTranslateToWidth);
+
+</script>
+</body>
+</html>

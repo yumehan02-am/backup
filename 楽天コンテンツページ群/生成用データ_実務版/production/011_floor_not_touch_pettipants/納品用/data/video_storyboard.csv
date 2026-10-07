@@ -1,0 +1,15 @@
+scene,duration,background,copy,animation,crop_x,crop_y,text_center_x,point_x
+1,5.8,011_scene01.jpg,"床につけたくない
+その一瞬のために",typewriter,0,0,,
+2,3.8,011_scene02.jpg,"見えない所作に
+清潔感は出る",rise,0,0,,
+3,4.8,011_scene03.jpg,"このコラムのポイント
+› 裾を気持ちよく扱う
+› 裏方で服を支える
+› 季節で一枚を替える",points,0,0,,
+4,3.8,011_scene04.jpg,"主役は服
+裏方はインナー",slide_left,0,0,,
+5,3.8,011_scene05.jpg,"夏は軽さ
+冬はあたたかさ",slide_right,0,0,,
+6,4.2,011_scene06.jpg,"好きな服を
+最後まで気持ちよく",soft_drop,0,0,,

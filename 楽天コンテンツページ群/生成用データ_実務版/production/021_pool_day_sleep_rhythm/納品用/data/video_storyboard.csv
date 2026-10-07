@@ -1,0 +1,15 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,021_scene03.jpg,5.2,"プールの日の
+心地よい疲れ",title_type,0,0
+2,021_scene02.jpg,3.6,"よく眠れるかは
+人それぞれ",rise_fade,0,0
+3,021_scene03.jpg,4.1,"このコラムのポイント
+› 疲れ方には個人差がある
+› 帰宅後の余白も大切
+› 支度を軽くして続ける",points,0,0
+4,021_scene04.jpg,3.6,"運動のあとは
+予定を詰めすぎない",slide_left,0,0
+5,021_scene05.jpg,3.6,"着替えの面倒を
+少し減らす",rise_fade,0,0
+6,021_scene06.jpg,3.6,"ほどよい疲れで
+帰る",slide_right,0,0

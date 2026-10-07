@@ -1,0 +1,15 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,023_scene01.jpg,5.2,"誰も見ていない説
+ジムプール編",title_type,0,0
+2,023_scene02.jpg,3.6,"脳内だけ
+大観衆",rise_fade,0,0
+3,023_scene03.jpg,4.1,"このコラムのポイント
+› 脳内だけ大観衆かも
+› 気になる部分は先に整える
+› 自分のペースでいい",points,0,0
+4,023_scene04.jpg,3.6,"みんな
+自分のことで忙しい",slide_left,0,0
+5,023_scene05.jpg,3.6,"気になる部分は
+先に整える",rise_fade,0,0
+6,023_scene06.jpg,3.6,"私も私の
+ペースでいい",slide_right,0,0

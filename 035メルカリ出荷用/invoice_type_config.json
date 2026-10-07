@@ -1,0 +1,77 @@
+{
+  "invoice_types": [
+    {
+      "code": "A",
+      "name": "ネコポス",
+      "upload_name": "ヤマト運輸 ネコポス",
+      "input_keywords": "",
+      "default": true
+    },
+    {
+      "code": "0",
+      "name": "発払",
+      "upload_name": "ヤマト運輸 宅急便",
+      "input_keywords": "宅配便",
+      "default": false
+    },
+    {
+      "code": "2",
+      "name": "コレクト",
+      "upload_name": "ヤマト運輸 宅急便(コレクト)",
+      "input_keywords": "",
+      "default": false
+    },
+    {
+      "code": "3",
+      "name": "ＤＭ便",
+      "upload_name": "ヤマト運輸 DM便",
+      "input_keywords": "",
+      "default": false
+    },
+    {
+      "code": "4",
+      "name": "タイム ※B2Ver6、B2Ver7のみ利用可能",
+      "upload_name": "ヤマト運輸 タイム",
+      "input_keywords": "",
+      "default": false
+    },
+    {
+      "code": "5",
+      "name": "着払 ※B2Ver6、B2Ver7のみ利用可能",
+      "upload_name": "ヤマト運輸 着払",
+      "input_keywords": "",
+      "default": false
+    },
+    {
+      "code": "8",
+      "name": "宅急便コンパクト",
+      "upload_name": "ヤマト運輸 宅急便コンパクト",
+      "input_keywords": "",
+      "default": false
+    },
+    {
+      "code": "9",
+      "name": "宅急便コンパクトコレクト",
+      "upload_name": "ヤマト運輸 宅急便コンパクトコレクト",
+      "input_keywords": "",
+      "default": false
+    },
+    {
+      "code": "SG",
+      "name": "佐川急便 宅配便",
+      "upload_name": "佐川急便 飛脚宅配便",
+      "input_keywords": "佐川急便,飛脚宅配便",
+      "item_name": "",
+      "cool_type": "",
+      "handling1": "",
+      "handling2": "",
+      "article": "",
+      "carrier_id": "sagawa",
+      "ehiden_speed_code": "000",
+      "ehiden_cool_code": "001",
+      "ehiden_package_code": "001",
+      "ehiden_mototyaku_type": "",
+      "default": false
+    }
+  ]
+}

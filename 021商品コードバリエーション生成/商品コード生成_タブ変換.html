@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品コードバリエーション生成</title>
+  <style>
+    :root {
+      --bg: #f5f6f8;
+      --panel: #ffffff;
+      --text: #20242a;
+      --muted: #606873;
+      --line: #d7dce2;
+      --accent: #126c72;
+      --accent-strong: #0d565b;
+      --danger: #b42318;
+      --ok-bg: #e8f5ef;
+      --ok-text: #17643c;
+      --warn-bg: #fff4d6;
+      --warn-text: #7a4d00;
+      --err-bg: #fdecec;
+      --err-text: #9b1c13;
+      --shadow: 0 10px 24px rgba(28, 35, 45, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Yu Gothic UI", "Meiryo", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .app {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 24px auto;
+    }
+
+    header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.92fr) minmax(420px, 1.08fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .section-title {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      padding: 9px 10px;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(18, 108, 114, 0.14);
+    }
+
+    textarea {
+      min-height: 74px;
+      resize: vertical;
+      font-family: "Consolas", "Yu Gothic UI", monospace;
+      line-height: 1.45;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .option-row {
+      display: grid;
+      grid-template-columns: 86px 1fr 38px;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .option-row label {
+      padding-top: 10px;
+    }
+
+    .icon-button,
+    button {
+      border: 1px solid transparent;
+      border-radius: 6px;
+      min-height: 38px;
+      padding: 8px 12px;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease, opacity 0.12s ease;
+    }
+
+    button:hover:not(:disabled) {
+      background: var(--accent-strong);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
+    .secondary {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .secondary:hover:not(:disabled) {
+      background: #eef2f4;
+    }
+
+    .danger {
+      background: #fff;
+      border-color: #efb1aa;
+      color: var(--danger);
+    }
+
+    .danger:hover:not(:disabled) {
+      background: #fdecec;
+    }
+
+    .icon-button {
+      width: 38px;
+      min-width: 38px;
+      padding: 0;
+      display: inline-grid;
+      place-items: center;
+      background: #fff;
+      color: var(--danger);
+      border-color: #efb1aa;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .button-row.split {
+      justify-content: space-between;
+    }
+
+    .format-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .result-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    #result {
+      min-height: 342px;
+      white-space: pre;
+    }
+
+    .copy-strip {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      gap: 8px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .progress {
+      color: var(--muted);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .current-code {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 10px;
+      background: #f9fafb;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-family: "Consolas", monospace;
+    }
+
+    .status {
+      margin-top: 14px;
+      min-height: 40px;
+      border-radius: 6px;
+      padding: 9px 12px;
+      background: #eef2f4;
+      color: #48515c;
+      font-weight: 700;
+    }
+
+    .status.ok {
+      background: var(--ok-bg);
+      color: var(--ok-text);
+    }
+
+    .status.warn {
+      background: var(--warn-bg);
+      color: var(--warn-text);
+    }
+
+    .status.err {
+      background: var(--err-bg);
+      color: var(--err-text);
+    }
+
+    @media (max-width: 860px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .toolbar {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .app {
+        width: min(100vw - 20px, 1180px);
+        margin: 12px auto;
+      }
+
+      .panel {
+        padding: 12px;
+      }
+
+      .option-row {
+        grid-template-columns: 1fr 38px;
+      }
+
+      .option-row label {
+        grid-column: 1 / -1;
+        padding-top: 0;
+      }
+
+      .format-row,
+      .copy-strip {
+        grid-template-columns: 1fr;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .icon-button {
+        width: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>商品コードバリエーション生成</h1>
+      <div class="toolbar">
+        <button type="button" class="secondary" id="pasteBase">商品コードを貼り付け</button>
+        <button type="button" class="secondary" id="clearAll">全クリア</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <section class="panel" aria-labelledby="inputTitle">
+        <h2 class="section-title" id="inputTitle">入力</h2>
+
+        <div class="field">
+          <label for="baseCode">商品コード</label>
+          <input type="text" id="baseCode" autocomplete="off" placeholder="例: ABC-">
+        </div>
+
+        <div class="field">
+          <label>選択肢</label>
+          <div class="options-list" id="optionsList"></div>
+          <div class="button-row split">
+            <button type="button" class="secondary" id="addOption">選択肢を追加</button>
+            <button type="button" class="danger" id="deleteOption">最後の選択肢を削除</button>
+          </div>
+        </div>
+
+        <div class="format-row">
+          <label for="outputFormat">出力形式</label>
+          <select id="outputFormat">
+            <option value="comma">カンマ区切り</option>
+            <option value="tab">タブ区切り</option>
+            <option value="newline">改行区切り</option>
+          </select>
+        </div>
+
+        <div class="button-row" style="margin-top: 16px;">
+          <button type="button" id="generate">コード生成</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="resultTitle">
+        <div class="result-head">
+          <h2 class="section-title" id="resultTitle">生成されたコード</h2>
+          <div class="count" id="resultCount">0件</div>
+        </div>
+        <textarea id="result" spellcheck="false"></textarea>
+
+        <div class="copy-strip">
+          <button type="button" id="copyNext" disabled>次をコピー</button>
+          <div class="progress" id="copyStatus">0/0</div>
+          <div class="current-code" id="currentCode" title=""></div>
+        </div>
+
+        <div class="button-row" style="margin-top: 10px;">
+          <button type="button" class="secondary" id="copyAll" disabled>全件コピー</button>
+          <button type="button" class="secondary" id="selectResult">出力を選択</button>
+          <button type="button" class="danger" id="clearResult">出力クリア</button>
+        </div>
+
+        <div class="status" id="status">待機中</div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const els = {
+      baseCode: document.getElementById("baseCode"),
+      optionsList: document.getElementById("optionsList"),
+      addOption: document.getElementById("addOption"),
+      deleteOption: document.getElementById("deleteOption"),
+      outputFormat: document.getElementById("outputFormat"),
+      generate: document.getElementById("generate"),
+      result: document.getElementById("result"),
+      resultCount: document.getElementById("resultCount"),
+      copyNext: document.getElementById("copyNext"),
+      copyAll: document.getElementById("copyAll"),
+      copyStatus: document.getElementById("copyStatus"),
+      currentCode: document.getElementById("currentCode"),
+      status: document.getElementById("status"),
+      pasteBase: document.getElementById("pasteBase"),
+      clearAll: document.getElementById("clearAll"),
+      selectResult: document.getElementById("selectResult"),
+      clearResult: document.getElementById("clearResult")
+    };
+
+    let optionId = 0;
+    let codes = [];
+    let copyIndex = 0;
+    const MAX_COMBINATIONS_WITHOUT_WARNING = 50000;
+
+    function setStatus(message, type = "") {
+      els.status.textContent = message;
+      els.status.className = `status ${type}`.trim();
+    }
+
+    function normalizeOptions(text) {
+      return text
+        .replace(/[、，]/g, ",")
+        .replace(/\t/g, ",")
+        .replace(/\r?\n/g, ",");
+    }
+
+    function addOption(value = "") {
+      optionId += 1;
+      const row = document.createElement("div");
+      row.className = "option-row";
+      row.dataset.optionRow = "true";
+
+      const label = document.createElement("label");
+      label.htmlFor = `option-${optionId}`;
+      label.textContent = `選択肢 ${els.optionsList.children.length + 1}`;
+
+      const textarea = document.createElement("textarea");
+      textarea.id = `option-${optionId}`;
+      textarea.placeholder = "例: S,M,L または貼り付けたタブ/改行区切り";
+      textarea.value = normalizeOptions(value);
+      textarea.addEventListener("input", () => {
+        const normalized = normalizeOptions(textarea.value);
+        if (normalized !== textarea.value) {
+          const pos = textarea.selectionStart;
+          textarea.value = normalized;
+          textarea.setSelectionRange(Math.min(pos, textarea.value.length), Math.min(pos, textarea.value.length));
+        }
+        persistDraft();
+      });
+
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "icon-button";
+      remove.textContent = "×";
+      remove.title = "この選択肢を削除";
+      remove.setAttribute("aria-label", "この選択肢を削除");
+      remove.addEventListener("click", () => {
+        if (els.optionsList.children.length <= 1) return;
+        row.remove();
+        refreshOptionLabels();
+        persistDraft();
+      });
+
+      row.append(label, textarea, remove);
+      els.optionsList.appendChild(row);
+      refreshOptionLabels();
+    }
+
+    function refreshOptionLabels() {
+      const rows = [...els.optionsList.querySelectorAll("[data-option-row]")];
+      rows.forEach((row, index) => {
+        row.querySelector("label").textContent = `選択肢 ${index + 1}`;
+        row.querySelector(".icon-button").disabled = rows.length <= 1;
+      });
+      els.deleteOption.disabled = rows.length <= 1;
+    }
+
+    function getOptionValues() {
+      return [...els.optionsList.querySelectorAll("textarea")]
+        .map((textarea) => normalizeOptions(textarea.value).trim())
+        .filter(Boolean);
+    }
+
+    function splitOptionList(value) {
+      return value
+        .split(",")
+        .map((part) => part.trim())
+        .filter(Boolean);
+    }
+
+    function getSeparator() {
+      const map = {
+        comma: ",",
+        tab: "\t",
+        newline: "\n"
+      };
+      return map[els.outputFormat.value] || ",";
+    }
+
+    function countCombinations(optionLists) {
+      return optionLists.reduce((total, list) => total * list.length, 1);
+    }
+
+    function buildCombinations(optionLists) {
+      let result = [""];
+      for (const list of optionLists) {
+        const next = [];
+        for (const prefix of result) {
+          for (const item of list) {
+            next.push(prefix + item);
+          }
+        }
+        result = next;
+      }
+      return result;
+    }
+
+    function resetCopyState() {
+      copyIndex = 0;
+      els.copyStatus.textContent = `0/${codes.length}`;
+      els.currentCode.textContent = "";
+      els.currentCode.title = "";
+      els.copyNext.disabled = codes.length === 0;
+      els.copyAll.disabled = codes.length === 0;
+      els.resultCount.textContent = `${codes.length.toLocaleString()}件`;
+    }
+
+    function generateCodes(forceLarge = false) {
+      const baseCode = els.baseCode.value.trim();
+      if (!baseCode) {
+        clearOutputOnly();
+        setStatus("商品コードを入力してください。", "err");
+        els.baseCode.focus();
+        return;
+      }
+
+      const optionValues = getOptionValues();
+      if (optionValues.length === 0) {
+        clearOutputOnly();
+        setStatus("少なくとも選択肢を1つ入力してください。", "err");
+        return;
+      }
+
+      const optionLists = optionValues.map(splitOptionList);
+      if (optionLists.some((list) => list.length === 0)) {
+        clearOutputOnly();
+        setStatus("空の選択肢があります。カンマ区切りの値を入力してください。", "err");
+        return;
+      }
+
+      const total = countCombinations(optionLists);
+      if (total > MAX_COMBINATIONS_WITHOUT_WARNING && !forceLarge) {
+        setStatus(`${total.toLocaleString()}件生成されます。重くなる可能性があります。もう一度「コード生成」を押すと実行します。`, "warn");
+        els.generate.dataset.forceLarge = "true";
+        window.setTimeout(() => {
+          delete els.generate.dataset.forceLarge;
+        }, 7000);
+        return;
+      }
+
+      const combos = buildCombinations(optionLists);
+      codes = combos.map((combo) => baseCode + combo);
+      els.result.value = codes.join(getSeparator());
+      resetCopyState();
+      persistDraft();
+      setStatus(`${codes.length.toLocaleString()}件生成しました。`, "ok");
+      delete els.generate.dataset.forceLarge;
+    }
+
+    async function copyText(text) {
+      if (!text) return false;
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch {
+        const temp = document.createElement("textarea");
+        temp.value = text;
+        temp.style.position = "fixed";
+        temp.style.left = "-9999px";
+        temp.style.top = "0";
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        try {
+          return document.execCommand("copy");
+        } finally {
+          temp.remove();
+        }
+      }
+    }
+
+    async function copyNextCode() {
+      if (copyIndex >= codes.length) return;
+      const code = codes[copyIndex];
+      const ok = await copyText(code);
+      if (!ok) {
+        setStatus("コピーに失敗しました。出力欄を選択して手動でコピーしてください。", "err");
+        return;
+      }
+      copyIndex += 1;
+      els.copyStatus.textContent = `${copyIndex}/${codes.length}`;
+      els.currentCode.textContent = code;
+      els.currentCode.title = code;
+      els.copyNext.disabled = copyIndex >= codes.length;
+      setStatus(`コピーしました: ${code}`, "ok");
+    }
+
+    function clearOutputOnly() {
+      codes = [];
+      els.result.value = "";
+      resetCopyState();
+    }
+
+    function persistDraft() {
+      const draft = {
+        baseCode: els.baseCode.value,
+        outputFormat: els.outputFormat.value,
+        options: [...els.optionsList.querySelectorAll("textarea")].map((textarea) => textarea.value)
+      };
+      localStorage.setItem("productCodeGeneratorDraft", JSON.stringify(draft));
+    }
+
+    function restoreDraft() {
+      try {
+        const draft = JSON.parse(localStorage.getItem("productCodeGeneratorDraft") || "null");
+        if (!draft) {
+          addOption();
+          return;
+        }
+        els.baseCode.value = draft.baseCode || "";
+        els.outputFormat.value = ["comma", "tab", "newline"].includes(draft.outputFormat) ? draft.outputFormat : "comma";
+        const options = Array.isArray(draft.options) && draft.options.length ? draft.options : [""];
+        options.forEach(addOption);
+      } catch {
+        addOption();
+      }
+    }
+
+    els.addOption.addEventListener("click", () => {
+      addOption();
+      persistDraft();
+      els.optionsList.querySelector(".option-row:last-child textarea").focus();
+    });
+
+    els.deleteOption.addEventListener("click", () => {
+      if (els.optionsList.children.length <= 1) return;
+      els.optionsList.lastElementChild.remove();
+      refreshOptionLabels();
+      persistDraft();
+    });
+
+    els.generate.addEventListener("click", () => {
+      generateCodes(els.generate.dataset.forceLarge === "true");
+    });
+
+    els.outputFormat.addEventListener("change", () => {
+      persistDraft();
+      if (codes.length) {
+        els.result.value = codes.join(getSeparator());
+        setStatus("出力形式を変更しました。", "ok");
+      }
+    });
+
+    els.baseCode.addEventListener("input", persistDraft);
+
+    els.copyNext.addEventListener("click", copyNextCode);
+
+    els.copyAll.addEventListener("click", async () => {
+      const ok = await copyText(els.result.value);
+      setStatus(ok ? "全件コピーしました。" : "コピーに失敗しました。", ok ? "ok" : "err");
+    });
+
+    els.selectResult.addEventListener("click", () => {
+      els.result.focus();
+      els.result.select();
+      setStatus("出力を選択しました。", "ok");
+    });
+
+    els.clearResult.addEventListener("click", () => {
+      clearOutputOnly();
+      setStatus("出力をクリアしました。", "ok");
+    });
+
+    els.clearAll.addEventListener("click", () => {
+      els.baseCode.value = "";
+      els.optionsList.innerHTML = "";
+      addOption();
+      clearOutputOnly();
+      persistDraft();
+      setStatus("全てクリアしました。", "ok");
+      els.baseCode.focus();
+    });
+
+    els.pasteBase.addEventListener("click", async () => {
+      try {
+        els.baseCode.value = (await navigator.clipboard.readText()).trim();
+        persistDraft();
+        setStatus("商品コードを貼り付けました。", "ok");
+      } catch {
+        setStatus("クリップボードの読み取りに失敗しました。ブラウザの許可設定を確認してください。", "err");
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && event.ctrlKey) {
+        event.preventDefault();
+        generateCodes(els.generate.dataset.forceLarge === "true");
+      }
+    });
+
+    restoreDraft();
+    refreshOptionLabels();
+  </script>
+</body>
+</html>

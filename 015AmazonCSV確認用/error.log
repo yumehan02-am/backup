@@ -1,0 +1,36 @@
+2025-07-31 19:20:58,071 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2025-07-31 19:20:58,071 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2025-07-31 19:20:58,071 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2025-07-31 19:36:40,050 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2025-07-31 19:36:40,050 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2025-07-31 19:36:40,050 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2025-07-31 19:36:49,700 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2025-07-31 19:36:49,700 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2025-07-31 19:36:49,700 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2025-07-31 19:36:59,050 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2025-07-31 19:36:59,067 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2025-07-31 19:36:59,067 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2025-08-01 16:48:08,337 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2025-08-01 16:48:08,337 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2025-08-01 16:48:08,337 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2025-08-05 19:58:15,203 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2025-08-05 19:58:15,207 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2025-08-05 19:58:15,207 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2025-08-21 13:50:07,987 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2025-08-21 13:50:07,987 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2025-08-21 13:50:07,987 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2025-08-27 16:33:06,324 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2025-08-27 16:33:06,324 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2025-08-27 16:33:06,324 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2026-01-22 16:16:09,454 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2026-01-22 16:16:09,456 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2026-01-22 16:16:09,456 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2026-09-29 18:05:19,950 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2026-09-29 18:05:19,954 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2026-09-29 18:05:19,954 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2026-10-07 16:56:39,022 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2026-10-07 16:56:39,024 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2026-10-07 16:56:39,024 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了
+2026-10-07 17:55:47,568 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が開始
+2026-10-07 17:55:47,568 - DEBUG - update_undo_redo_menu: undo_stack is empty=True, redo_stack is empty=True
+2026-10-07 17:55:47,568 - DEBUG - update_undo_redo_menu: update_undo_redo_menu() 関数が終了

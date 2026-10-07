@@ -1,0 +1,7 @@
+scene,duration_sec,background_file,display_copy,text_animation,crop_x,crop_y
+1,5.2,014_scene01.jpg,"大きめパッドの日\nいつもの下着で\n大丈夫？",type_title,0,0
+2,4.3,014_scene02.jpg,"このコラムのポイント\n› ショーツ側の相性\n› はみ出しと浮き\n› 収まり方まで選ぶ",points,0,0
+3,3.8,014_scene03.jpg,"見落としがちなのは\n下着側のこと",rise_fade,0,0
+4,3.8,014_scene04.jpg,"吸水量だけでは\n決まらない安心感",slide_left,0,0
+5,3.8,014_scene05.jpg,"服を変えずに\n内側を整える",rise_fade,0,0
+6,3.8,014_scene06.jpg,"長く出かける日ほど\n組み合わせで準備",slide_right,0,0

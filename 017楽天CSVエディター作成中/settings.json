@@ -1,0 +1,38 @@
+{
+  "num_columns": 4,
+  "selected_columns": [
+    null,
+    null,
+    null,
+    null
+  ],
+  "checked_columns": [
+    false,
+    false,
+    true,
+    false
+  ],
+  "search_text": "",
+  "file_path": "C:/Users/i58400am/Desktop/newapp/楽天商品名変更/normal-item20260930114227_SEO再作成.csv",
+  "item_cat_file_path": "C:\\Users\\i58400am\\Desktop\\newapp\\017楽天CSVエディター作成中\\fix_item-cat20260527144645.csv",
+  "entry_rows_per_column": [
+    2,
+    2,
+    5,
+    2
+  ],
+  "cache_max_size_mb": 100.0,
+  "cache_max_days": 60,
+  "copy_and_edit": false,
+  "append_selection": true,
+  "code_copy_delimiter": " ",
+  "select_shortcut_key": "F1",
+  "shop_url": "u-b-yumehan",
+  "navigate_selected_only": false,
+  "last_selected_columns": [
+    null,
+    null,
+    null,
+    null
+  ]
+}

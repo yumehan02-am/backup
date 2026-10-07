@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>tp_sh1のマニュアル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+<!-- ここからhome -->
+<header id="home" class="section">
+<div class="contents">
+
+<div id="logo-container">
+<h1 class="logo"><img src="../images/logo.png" alt="サイト名"></h1>
+<p>心地よいひとときを、新しい空間で。</p>
+<p class="kazari"><img src="../images/new_open.png" alt="New Open"></p>
+</div>
+
+<div class="scroll-container">
+<p>SCROLL</p>
+<div class="scroll-line"><span></span></div>
+</div>
+
+</div>
+</header>
+
+
+
+<div class="manual">
+
+<h2>「home」ブロックについて</h2>
+
+<pre class="look">
+&lt;!-- ここからhome --&gt;
+&lt;header id=&quot;home&quot; class=&quot;section&quot;&gt;
+&lt;div class=&quot;contents&quot;&gt;
+
+&lt;div id=&quot;logo-container&quot;&gt;
+&lt;h1 class=&quot;logo&quot;&gt;&lt;img src=&quot;images/logo.png&quot; alt=&quot;サイト名&quot;&gt;&lt;/h1&gt;
+&lt;p&gt;心地よいひとときを、新しい空間で。&lt;/p&gt;
+&lt;p class=&quot;kazari&quot;&gt;&lt;img src=&quot;images/new_open.png&quot; alt=&quot;New Open&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;scroll-container&quot;&gt;
+&lt;p&gt;SCROLL&lt;/p&gt;
+&lt;div class=&quot;scroll-line&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/header&gt;
+</pre>
+
+<h3>主なスタイルは</h3>
+<p>cssフォルダのstyle.cssから「header」でテキスト検索してみて下さい。詳しい解説もあります。</p>
+
+<h3>大きな端末で見た場合に見える両サイドの大きな画像について</h3>
+<p>「images/bg_header.jpg」です。お好みで入れ替えて下さい。サイズは自由で構いませんが端末サイズで配置バランスがかわるのでおかしくないような写真を選んで下さい。</p>
+
+<h3>メインコンテンツの背景画像について</h3>
+<p>「images/1.jpg」です。必要時応じて入れ替えて下さい。</p>
+
+<h3>ロゴ画像</h3>
+<p>「images/logo.png」です。psdファイルも梱包していますのでテキストを打ち替えてそのままpngを上書きすれば入れ替わります。<br>
+ロゴ画像のalt=&quot;サイト名&quot;の「サイト名」部分はあなたのサイト名に入れ替えて下さい。</p>
+
+<h3>ロゴ上の装飾テキスト画像</h3>
+<p>「images/new_open.png」です。こちらもpsdファイルがあるのでご活用下さい。<br>
+この画像のサイズや配置場所は、style.cssの「header .kazari」のブロックで編集できます。</p>
+
+<h3>ロゴの下の小さな説明文。謳い文句。</h3>
+<p>直接htmlにテキストとして記載されているので入れ替えて下さい。</p>
+
+<h3>一番下にある「SCROLL」</h3>
+<p>style.cssから「ヘッダー下部のSCROLLアニメーション」でテキスト検索して下さい。詳しい解説もあります。「SCROLL」部分は直接htmlにテキストで書かれています。</p>
+
+</div>
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="../js/jquery.inview_set.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="../js/main.js"></script>
+
+</body>
+</html>

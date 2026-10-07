@@ -1,0 +1,15 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,019_scene03.jpg,5.2,"水の中で
+体が軽く感じる理由",title_type,0,0
+2,019_scene02.jpg,3.6,"歩く場所が変わると
+負担感も変わる",rise_fade,0,0
+3,019_scene03.jpg,4.1,"このコラムのポイント
+› 水が体を支えてくれる
+› ラクでもきちんと動く
+› 支度の軽さも大切",points,0,0
+4,019_scene04.jpg,3.6,"がんばりすぎない
+入口をつくる",slide_left,0,0
+5,019_scene05.jpg,3.6,"水着は
+落ち着いて動けるものを",rise_fade,0,0
+6,019_scene06.jpg,3.6,"次の一回を
+軽くする準備",slide_right,0,0

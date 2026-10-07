@@ -1,0 +1,12 @@
+order,part_type,file_or_source,note,placement,after_section
+1,banner,images/delivery/016_title.jpg,タイトル画像 1600x900,,
+2,video,video/opening_cm_016_vertical.mp4,タイトル直下の動く目次CM,,
+3,points_image,images/work/016_points.jpg,動画用ポイント画像 TSVには出さない,,
+4,banner,images/delivery/016_meeting.jpg,章バナー,before_body,1
+5,banner,images/delivery/016_calm.jpg,章バナー,before_body,2
+6,accent_image,images/delivery/016_accent_01.jpg,文字なし正方形アクセント,after_body,2
+7,banner,images/delivery/016_walk.jpg,章バナー,before_body,3
+8,banner,images/delivery/016_prep.jpg,章バナー,before_body,4
+9,accent_image,images/delivery/016_accent_02.jpg,文字なし正方形アクセント,after_body,4
+10,banner,images/delivery/016_strategy.jpg,章バナー,before_body,5
+11,product_parts,product_ids.csv,関連商品パーツ,,

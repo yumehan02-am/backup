@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanban タスク</title>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 2rem auto;
+      max-width: 1600px;
+      padding: 0 1rem;
+      background: #f9f9f9;
+      color: #111;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-left { flex: 1; min-width: 200px; }
+    .header-right { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+    h1.editable-title {
+      font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+      font-weight: 700;
+      margin: 0;
+      padding: 4px 12px;
+      border-radius: 8px;
+      cursor: text;
+    }
+    h1.editable-title:hover { background: rgba(0,0,0,0.04); }
+    .add-board-btn {
+      background: #1890ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .add-board-btn:hover { background: #40a9ff; }
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: white;
+      white-space: nowrap;
+    }
+    .btn-csv-save   { background: #52c41a; }
+    .btn-csv-load   { background: #722ed1; }
+    .btn-save-file  { background: #13c2c2; }
+    .btn-clear      { background: #d9d9d9; color: #333; }
+    .btn-copy       { background: #1890ff; }
+    .btn-all-clear  { background: #8c8c8c; }
+    .undo-btn, .redo-btn {
+      background: #6c757d;
+      font-weight: bold;
+      min-width: 90px;
+    }
+    .undo-btn:hover:not(:disabled), .redo-btn:hover:not(:disabled) { background: #5a6268; }
+    .undo-btn:disabled, .redo-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: #adb5bd;
+    }
+    .btn:hover { opacity: 0.9; }
+
+    .drop-area {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      border-bottom: 4px solid #1890ff;
+      background: rgba(240, 247, 255, 0.92);
+      backdrop-filter: blur(8px);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .drop-area.visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .drop-area.dragover { background: rgba(24, 144, 255, 0.15); border-bottom-color: #40a9ff; }
+    .drop-area p { margin: 0.4rem 0; font-size: 1.1rem; color: #333; }
+
+    .boards-container { display: flex; flex-wrap: wrap; gap: 1.2rem; padding-bottom: 1rem; }
+    .board-column { 
+      background: #f0f2f5; 
+      border-radius: 12px; 
+      flex: 1 1 280px;
+      max-width: 800px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
+      overflow: hidden; 
+      display: flex; 
+      flex-direction: column; 
+      min-height: 300px; 
+    }
+    .column-header { padding: 12px 16px; background: #e6f0ff; font-weight: 600; font-size: 1.1rem; border-bottom: 1px solid #d1e3ff; cursor: grab; display: flex; align-items: center; justify-content: space-between; }
+    .column-header:active { cursor: grabbing; }
+    .column-title { flex: 1; padding: 4px 8px; border-radius: 6px; }
+    .column-title:hover { background: rgba(0,0,0,0.06); }
+    .column-actions { display: flex; gap: 6px; }
+    .column-btn {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 8px;
+      line-height: 1;
+      transition: all 0.2s;
+    }
+    .column-btn:hover { background: rgba(0,0,0,0.06); border-radius: 8px; }
+    .column-btn.detail-btn { color: #fa8c16; }
+    .column-btn.detail-btn:hover { color: #ffa940; background: rgba(250, 140, 22, 0.15); }
+    .column-btn.delete-btn-icon { color: #ff4d4f; }
+    .column-btn.delete-btn-icon:hover { color: #f5222d; background: rgba(245, 34, 45, 0.2); transform: scale(1.1); }
+
+    .task-list { list-style: none; padding: 8px; margin: 0; flex: 1; min-height: 100px; }
+    .task-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      cursor: grab;
+      touch-action: manipulation;
+      transition: box-shadow 0.1s ease;
+      opacity: 1 !important;
+      position: relative;
+    }
+    .task-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .task-item.dragging {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      opacity: 0.9 !important;
+      transition: none !important;
+      pointer-events: none;
+    }
+    .task-item.dragging * { pointer-events: none; }
+
+    .dark-bg .task-text { color: white !important; }
+    .dark-bg .task-text[contenteditable="true"] { color: #000 !important; }
+
+    .task-checkbox-wrapper { position: relative; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin-right: 8px; cursor: pointer; z-index: 1; }
+    .task-checkbox { width: 20px; height: 20px; cursor: pointer; accent-color: #1890ff; }
+    .task-checkbox-wrapper::before { content: ""; position: absolute; inset: -6px; z-index: 1; }
+    .task-text { 
+      flex: 1; 
+      padding: 4px 8px; 
+      border-radius: 6px; 
+      min-height: 24px; 
+      cursor: text; 
+      outline: none;
+      white-space: pre-wrap;
+    }
+    .task-text:hover { background: rgba(0,0,0,0.03); }
+    .task-text[contenteditable="true"] { 
+      background: #fff !important; 
+      box-shadow: 0 0 0 2px #40a9ff; 
+      color: #000 !important;
+    }
+    .task-actions { display: flex; gap: 6px; margin-left: 8px; }
+    .task-btn {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 8px;
+      line-height: 1;
+      transition: all 0.2s;
+    }
+    .task-btn:hover { background: rgba(0,0,0,0.06); border-radius: 8px; }
+    .task-btn.detail-btn { color: #fa8c16; }
+    .task-btn.detail-btn:hover { color: #ffa940; background: rgba(250, 140, 22, 0.15); }
+    .task-btn.delete-btn-icon { color: #ff4d4f; }
+    .task-btn.delete-btn-icon:hover { color: #f5222d; background: rgba(245, 34, 45, 0.18); transform: scale(1.1); }
+
+    .dark-bg .task-btn.delete-btn-icon,
+    .dark-bg .column-btn.delete-btn-icon {
+      color: #ffffff !important;
+    }
+    .dark-bg .task-btn.delete-btn-icon:hover,
+    .dark-bg .column-btn.delete-btn-icon:hover {
+      color: #ffcccc !important;
+    }
+
+    .edit-input { font: inherit; width: 100%; padding: 4px 8px; border: none; outline: none; background: white; box-shadow: 0 0 0 2.5px #40a9ff; border-radius: 6px; box-sizing: border-box; }
+    .column-input-wrapper { padding: 12px 16px; background: #fafafa; border-top: 1px solid #eee; }
+    .new-task-input { width: 100%; padding: 14px 16px; font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: white; }
+    .new-task-input:focus { outline: none; border-color: #40a9ff; box-shadow: 0 0 0 3px rgba(64,169,255,0.2); }
+    .batch-actions { margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .batch-btn { padding: 10px 24px; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; color: white; }
+    .batch-delete { background: #ff4d4f; }
+    .batch-copy { background: #1890ff; }
+    .batch-all-clear { background: #8c8c8c; }
+    .batch-btn:hover { opacity: 0.9; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 620px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 1.5rem;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+    .modal-header h2 { margin: 0; font-size: 1.4rem; }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #888;
+    }
+    .modal-close:hover { color: #111; }
+
+    .date-label-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 6px;
+      margin-bottom: 1rem;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .date-label-row > span {
+      font-size: 0.9rem;
+      color: #555;
+      white-space: nowrap;
+    }
+    .date-label-row .date-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+    }
+    .date-label-row .clear-date-btn {
+      font-size: 1.1rem;
+      color: #ff4d4f;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 6px;
+      line-height: 1;
+      opacity: 0.7;
+    }
+    .date-label-row .clear-date-btn:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    .color-chip {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 2px solid #ddd;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .color-chip::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      background: inherit;
+      opacity: 0.9;
+    }
+    .color-chip.selected {
+      border: 3px solid #333;
+    }
+    .color-picker {
+      position: absolute;
+      top: 28px;
+      left: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 8px;
+      display: none;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .color-picker span {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      margin: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .color-picker span:hover { border-color: #666; }
+
+    .date-input {
+      width: 50px;
+      padding: 6px 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .date-calendar {
+      padding: 6px 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      width: 105px;
+    }
+
+    #detailEditor {
+      width: 100%;
+      min-height: 180px;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      box-sizing: border-box;
+      outline: none;
+      background: white;
+      line-height: 1.5;
+    }
+    #detailEditor:focus {
+      border-color: #40a9ff;
+      box-shadow: 0 0 0 3px rgba(64,169,255,0.2);
+    }
+
+    #detailEditor input[type="checkbox"] {
+      margin-right: 8px;
+      accent-color: #1890ff;
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+
+    .cb-wrap {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 2px 2px 0;
+      line-height: 1;
+      min-width: 20px;
+      min-height: 1.2em;
+    }
+
+    .modal-footer {
+      margin-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .modal-footer-left { display: flex; gap: 0.6rem; }
+    .modal-footer-right { display: flex; gap: 0.6rem; }
+
+    #insertCheckbox {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      font-size: 1.4rem;
+      background: #f0f2f5;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    #insertCheckbox:hover { background: #e5e7eb; }
+
+    #autoSaveIndicator {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    #autoSaveIndicator.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1 class="editable-title" id="pageTitle">
+      <span class="title-text">Kanban タスク</span>
+    </h1>
+  </div>
+  <div class="header-right">
+    <button class="btn btn-csv-save" id="saveCSV">ダウンロード</button>
+    <button class="btn btn-csv-load" id="loadCSV">CSV読込</button>
+    <button class="btn btn-save-file" id="saveFile">上書き保存</button>
+    <button class="add-board-btn" id="addBoard">+</button>
+  </div>
+</div>
+
+<div class="drop-area" id="dropArea">
+  <p>CSVファイルをここにドロップして読み込み</p>
+  <p>（またはクリックして選択）</p>
+  <input type="file" id="fileInput" accept=".csv" style="display:none;">
+</div>
+
+<div class="boards-container" id="boardsContainer"></div>
+
+<div class="batch-actions">
+  <button class="batch-btn batch-copy" id="batchCopy">選択を複製</button>
+  <button class="batch-btn batch-delete" id="batchDelete">選択を削除</button>
+  <button class="batch-btn batch-all-clear" id="allClear">初期化</button>
+  <button class="batch-btn undo-btn" id="undoBtn" title="戻る (Ctrl+Z)" disabled>← 戻る</button>
+  <button class="batch-btn redo-btn" id="redoBtn" title="進む (Ctrl+Y)" disabled>進む →</button>
+</div>
+
+<div class="modal" id="detailModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modalTitle">詳細</h2>
+      <button class="modal-close" id="closeModal">×</button>
+    </div>
+
+    <div class="date-label-row">
+      <span>開始</span>
+      <div class="date-group">
+        <div class="color-chip" id="startColorChip" data-color=""></div>
+        <input type="number" id="startOffset" class="date-input" min="0" placeholder="0">
+        <input type="date" id="startDate" class="date-calendar">
+        <button class="clear-date-btn" id="clearStartBtn" title="開始設定をクリア">×</button>
+      </div>
+
+      <span style="color:#888; font-size:1.1rem;">～</span>
+
+      <span>終了</span>
+      <div class="date-group">
+        <div class="color-chip" id="endColorChip" data-color=""></div>
+        <input type="number" id="endOffset" class="date-input" min="0" placeholder="0">
+        <input type="date" id="endDate" class="date-calendar">
+        <button class="clear-date-btn" id="clearEndBtn" title="終了設定をクリア">×</button>
+      </div>
+    </div>
+
+    <div id="detailEditor" contenteditable="true"></div>
+
+    <div class="color-picker" id="colorPicker" style="display:none;">
+      <span style="background:#ff4d4f" data-color="#ff4d4f"></span>
+      <span style="background:#fa8c16" data-color="#fa8c16"></span>
+      <span style="background:#fadb14" data-color="#fadb14"></span>
+      <span style="background:#52c41a" data-color="#52c41a"></span>
+      <span style="background:#13c2c2" data-color="#13c2c2"></span>
+      <span style="background:#1890ff" data-color="#1890ff"></span>
+      <span style="background:#722ed1" data-color="#722ed1"></span>
+      <span style="background:#eb2f96" data-color="#eb2f96"></span>
+      <span style="background:#ffffff; border: 2px solid #ccc;" data-color="" title="デフォルトに戻す"></span>
+    </div>
+
+    <div class="modal-footer">
+      <div class="modal-footer-left">
+        <button id="insertCheckbox" title="チェックボックスを挿入">☑</button>
+      </div>
+      <div class="modal-footer-right">
+        <button id="copyDetail" class="btn btn-copy">コピー</button>
+        <button id="clearDetail" class="btn btn-clear">クリア</button>
+        <button id="saveDetail" class="btn" style="background:#1890ff;">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="autoSaveIndicator">自動保存しました</div>
+
+<script>
+// ── 変数 ────────────────────────────────────────────────────────────────────
+let hasUnsavedChanges = false;
+let autoSaveTimer = null;
+const AUTO_SAVE_DELAY = 800;
+const STORAGE_KEY = 'kanban-auto-save-v1';
+
+const UNDO_STACK_MAX = 10;
+let undoStack = [];
+let redoStack = [];
+let currentState = null;
+let isRestoring = false;
+
+// ── Undo/Redo 関数 ────────────────────────────────────────────────────────
+function saveCurrentState() {
+  if (isRestoring) return;
+
+  const newState = exportKanbanToJSON();
+  const newStateStr = JSON.stringify(newState);
+  const currentStateStr = JSON.stringify(currentState || {});
+
+  if (currentStateStr === newStateStr) return;
+
+  undoStack.push(currentStateStr);
+  if (undoStack.length > UNDO_STACK_MAX) undoStack.shift();
+  redoStack = [];
+  currentState = newState;
+  updateUndoRedoButtons();
+}
+
+function undo() {
+  if (undoStack.length === 0) return;
+  isRestoring = true;
+  const prev = undoStack.pop();
+  redoStack.push(JSON.stringify(currentState));
+  currentState = JSON.parse(prev);
+  restoreFromJSON(currentState);
+  isRestoring = false;
+  updateUndoRedoButtons();
+}
+
+function redo() {
+  if (redoStack.length === 0) return;
+  isRestoring = true;
+  const next = redoStack.pop();
+  undoStack.push(JSON.stringify(currentState));
+  currentState = JSON.parse(next);
+  restoreFromJSON(currentState);
+  isRestoring = false;
+  updateUndoRedoButtons();
+}
+
+function restoreFromJSON(data) {
+  document.getElementById('boardsContainer').innerHTML = '';
+  if (data.title) {
+    document.querySelector('#pageTitle .title-text').textContent = data.title;
+  }
+  data.columns.forEach(colData => {
+    const column = createColumn(colData.status);
+    column.dataset.detail = colData.detail || '';
+    const list = column.querySelector('.task-list');
+    colData.tasks.forEach(task => {
+      const li = addTaskToColumn(list, task.text, task.detail);
+      if (task.checked) li.querySelector('.task-checkbox').checked = true;
+      li.dataset.startDate = task.startDate || '';
+      li.dataset.endDate = task.endDate || '';
+      li.dataset.startColor = task.startColor || '';
+      li.dataset.startOffset = task.startOffset || '';
+      li.dataset.endColor = task.endColor || '';
+      li.dataset.endOffset = task.endOffset || '';
+    });
+  });
+  updateTaskColors();
+}
+
+function updateUndoRedoButtons() {
+  document.getElementById('undoBtn').disabled = undoStack.length === 0;
+  document.getElementById('redoBtn').disabled = redoStack.length === 0;
+}
+
+// ── 変更検知 & 自動保存 ───────────────────────────────────────────────────
+function markAsDirty() {
+  if (isRestoring) return;
+  hasUnsavedChanges = true;
+  scheduleAutoSave();
+  saveCurrentState();
+}
+
+function clearDirtyFlag() {
+  hasUnsavedChanges = false;
+}
+
+function scheduleAutoSave() {
+  if (autoSaveTimer) clearTimeout(autoSaveTimer);
+  autoSaveTimer = setTimeout(saveToLocalStorage, AUTO_SAVE_DELAY);
+}
+
+function showAutoSaveIndicator() {
+  const ind = document.getElementById('autoSaveIndicator');
+  ind.classList.add('visible');
+  setTimeout(() => ind.classList.remove('visible'), 1800);
+}
+
+function saveToLocalStorage() {
+  try {
+    const data = exportKanbanToJSON();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    showAutoSaveIndicator();
+    clearDirtyFlag();
+  } catch (e) {}
+}
+
+function exportKanbanToJSON() {
+  const columns = [];
+  document.querySelectorAll('.board-column').forEach(col => {
+    const status = col.querySelector('.column-title').textContent.trim();
+    const detail = col.dataset.detail || '';
+    const tasks = [];
+
+    col.querySelectorAll('.task-item').forEach(task => {
+      tasks.push({
+        text: task.querySelector('.task-text').innerHTML.trim(),
+        detail: task.dataset.detail || '',
+        startDate: task.dataset.startDate || '',
+        endDate: task.dataset.endDate || '',
+        startColor: task.dataset.startColor || '',
+        startOffset: task.dataset.startOffset || '',
+        endColor: task.dataset.endColor || '',
+        endOffset: task.dataset.endOffset || '',
+        checked: task.querySelector('.task-checkbox').checked
+      });
+    });
+
+    columns.push({ status, detail, tasks });
+  });
+
+  return {
+    title: document.querySelector('#pageTitle .title-text').textContent.trim(),
+    columns,
+    lastSaved: new Date().toISOString()
+  };
+}
+
+function loadFromLocalStorage() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return false;
+
+  try {
+    const data = JSON.parse(saved);
+    if (!data.columns || !Array.isArray(data.columns)) return false;
+
+    document.getElementById('boardsContainer').innerHTML = '';
+
+    if (data.title) document.querySelector('#pageTitle .title-text').textContent = data.title;
+
+    data.columns.forEach(colData => {
+      const column = createColumn(colData.status);
+      column.dataset.detail = colData.detail || '';
+      const list = column.querySelector('.task-list');
+      colData.tasks.forEach(task => {
+        const li = addTaskToColumn(list, task.text, task.detail);
+        if (task.checked) li.querySelector('.task-checkbox').checked = true;
+        li.dataset.startDate = task.startDate || '';
+        li.dataset.endDate = task.endDate || '';
+        li.dataset.startColor = task.startColor || '';
+        li.dataset.startOffset = task.startOffset || '';
+        li.dataset.endColor = task.endColor || '';
+        li.dataset.endOffset = task.endOffset || '';
+      });
+    });
+
+    clearDirtyFlag();
+    updateTaskColors();
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// ── 編集関数 ───────────────────────────────────────────────────────────────
+function makeEditable(el, fallback = '無題') {
+  el.addEventListener('dblclick', e => {
+    e.stopPropagation();
+    if (el.isContentEditable) return;
+
+    const original = el.textContent.trim();
+    el.dataset.original = original;
+    el.contentEditable = true;
+    el.focus();
+
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+
+    const finish = (save) => {
+      el.contentEditable = false;
+      if (!save) {
+        el.textContent = original;
+      } else if (el.textContent.trim() === '') {
+        el.textContent = fallback;
+      }
+      delete el.dataset.original;
+      markAsDirty();
+    };
+
+    el.onkeydown = ev => {
+      if (ev.key === 'Enter') {
+        if (ev.altKey) {
+          ev.preventDefault();
+          document.execCommand('insertHTML', false, '<br>');
+        } else {
+          ev.preventDefault();
+          finish(true);
+        }
+      }
+      if (ev.key === 'Escape') {
+        finish(false);
+      }
+    };
+
+    el.onblur = () => finish(true);
+  });
+}
+
+let columnId = 0;
+let currentEditTarget = null;
+
+function createColumn(title = "新しい状況") {
+  columnId++;
+  const colId = `col-${columnId}`;
+  const column = document.createElement('div');
+  column.className = 'board-column';
+  column.id = colId;
+  column.dataset.detail = '';
+  column.innerHTML = `
+    <div class="column-header" data-drag-handle>
+      <span class="column-title">${title}</span>
+      <div class="column-actions">
+        <button class="column-btn detail-btn" title="列の詳細">📝</button>
+        <button class="column-btn delete-btn-icon" title="列を削除">×</button>
+      </div>
+    </div>
+    <ul class="task-list" id="taskList-${columnId}"></ul>
+    <div class="column-input-wrapper">
+      <input type="text" class="new-task-input" placeholder="新しいタスクを入力... (Enterで追加、Alt+Enterで改行)" id="newTask-${columnId}">
+    </div>
+  `;
+
+  makeEditable(column.querySelector('.column-title'), "状況");
+
+  const newInput = column.querySelector(`#newTask-${columnId}`);
+
+  // Alt+Enter で <br> を文字列として挿入
+  newInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      if (e.altKey) {
+        e.preventDefault();
+        const start = newInput.selectionStart;
+        const end = newInput.selectionEnd;
+        const value = newInput.value;
+        newInput.value = value.substring(0, start) + '<br>' + value.substring(end);
+        newInput.selectionStart = newInput.selectionEnd = start + 4; // <br>の後ろにカーソル
+      } else {
+        // 通常のEnter → タスク追加
+        e.preventDefault();
+        const text = newInput.value.trim();
+        if (text) {
+          addTaskToColumn(column.querySelector('.task-list'), text);
+          newInput.value = '';
+          if (!isRestoring) markAsDirty();
+        }
+      }
+    }
+  });
+
+  column.querySelector('.detail-btn').onclick = () => {
+    currentEditTarget = column;
+    document.getElementById('modalTitle').textContent = column.querySelector('.column-title').textContent.trim() || "列の詳細";
+    setEditorContent(column.dataset.detail || '');
+    document.getElementById('startDate').value = column.dataset.startDate || '';
+    document.getElementById('endDate').value = column.dataset.endDate || '';
+    document.getElementById('startOffset').value = column.dataset.startOffset || '';
+    document.getElementById('endOffset').value = column.dataset.endOffset || '';
+    const startChip = document.getElementById('startColorChip');
+    startChip.dataset.color = column.dataset.startColor || '';
+    startChip.style.backgroundColor = column.dataset.startColor || 'transparent';
+    const endChip = document.getElementById('endColorChip');
+    endChip.dataset.color = column.dataset.endColor || '';
+    endChip.style.backgroundColor = column.dataset.endColor || 'transparent';
+    document.getElementById('detailModal').style.display = 'flex';
+  };
+
+  column.querySelector('.delete-btn-icon').onclick = () => {
+    if (confirm("この列と中のタスクをすべて削除しますか？")) {
+      column.remove();
+      if (!isRestoring) markAsDirty();
+    }
+  };
+
+  document.getElementById('boardsContainer').appendChild(column);
+  if (!isRestoring) markAsDirty();
+
+  new Sortable(column.querySelector('.task-list'), {
+    group: 'shared-tasks',
+    animation: 150,
+    forceFallback: true,
+    fallbackTolerance: 3,
+    fallbackClass: 'dragging',
+    fallbackOnBody: true,
+    scroll: true,
+    scrollSensitivity: 80,
+    scrollSpeed: 20,
+    bubbleScroll: true,
+    filter: '.edit-input, .task-btn, .task-checkbox, .task-checkbox-wrapper, .detail-btn, .delete-btn-icon',
+    preventOnFilter: true,
+    onEnd: () => { if (!isRestoring) markAsDirty(); }
+  });
+
+  return column;
+}
+
+function addTaskToColumn(taskListUl, text, detail = '') {
+  const li = document.createElement('li');
+  li.className = 'task-item';
+  li.style.backgroundColor = 'white';
+  li.dataset.detail = detail;
+  li.dataset.startDate = '';
+  li.dataset.endDate = '';
+  li.dataset.startColor = '';
+  li.dataset.startOffset = '';
+  li.dataset.endColor = '';
+  li.dataset.endOffset = '';
+  li.innerHTML = `
+    <div class="task-checkbox-wrapper">
+      <input type="checkbox" class="task-checkbox">
+    </div>
+    <span class="task-text"></span>
+    <div class="task-actions">
+      <button class="task-btn detail-btn" title="詳細">📝</button>
+      <button class="task-btn delete-btn-icon" title="削除">×</button>
+    </div>
+  `;
+
+  // innerHTMLでセットすることで <br> が正しく反映される
+  li.querySelector('.task-text').innerHTML = text;
+
+  const checkboxWrapper = li.querySelector('.task-checkbox-wrapper');
+  const checkbox = li.querySelector('.task-checkbox');
+  const textSpan  = li.querySelector('.task-text');
+  const detailBtn = li.querySelector('.detail-btn');
+  const deleteBtn = li.querySelector('.delete-btn-icon');
+
+  checkboxWrapper.addEventListener('click', (e) => {
+    if (e.target !== checkbox) {
+      checkbox.checked = !checkbox.checked;
+      if (!isRestoring) markAsDirty();
+    }
+    e.stopPropagation();
+  });
+
+  makeEditable(textSpan);
+
+  detailBtn.onclick = (e) => {
+    e.stopPropagation();
+    currentEditTarget = li;
+    document.getElementById('modalTitle').textContent = textSpan.textContent.trim() || "タスク詳細";
+    setEditorContent(li.dataset.detail || '');
+    document.getElementById('startDate').value = li.dataset.startDate || '';
+    document.getElementById('endDate').value = li.dataset.endDate || '';
+    document.getElementById('startOffset').value = li.dataset.startOffset || '';
+    document.getElementById('endOffset').value = li.dataset.endOffset || '';
+    const startChip = document.getElementById('startColorChip');
+    startChip.dataset.color = li.dataset.startColor || '';
+    startChip.style.backgroundColor = li.dataset.startColor || 'transparent';
+    const endChip = document.getElementById('endColorChip');
+    endChip.dataset.color = li.dataset.endColor || '';
+    endChip.style.backgroundColor = li.dataset.endColor || 'transparent';
+    document.getElementById('detailModal').style.display = 'flex';
+  };
+
+  deleteBtn.onclick = (e) => {
+    e.stopPropagation();
+    li.remove();
+    if (!isRestoring) markAsDirty();
+  };
+
+  li.querySelectorAll('.task-btn, .task-checkbox, .task-checkbox-wrapper').forEach(el => {
+    el.onmousedown = e => e.stopPropagation();
+    el.ontouchstart = e => e.stopPropagation();
+  });
+
+  taskListUl.appendChild(li);
+  if (!isRestoring) markAsDirty();
+
+  return li;
+}
+
+// ── 詳細エディタ関連 ────────────────────────────────────────────────────
+function setEditorContent(html) {
+  const editor = document.getElementById('detailEditor');
+  editor.innerHTML = html;
+
+  editor.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    if (!cb.parentElement.classList.contains('cb-wrap')) {
+      const wrap = document.createElement('span');
+      wrap.className = 'cb-wrap';
+      wrap.contentEditable = false;
+      cb.parentNode.insertBefore(wrap, cb);
+      wrap.appendChild(cb);
+    }
+    cb.checked = cb.hasAttribute('checked');
+  });
+}
+
+function getEditorContent() {
+  return document.getElementById('detailEditor').innerHTML;
+}
+
+function insertCheckbox() {
+  const editor = document.getElementById('detailEditor');
+  editor.focus();
+
+  const sel = window.getSelection();
+  if (!sel.rangeCount) return;
+
+  const range = sel.getRangeAt(0);
+  range.deleteContents();
+
+  const wrap = document.createElement('span');
+  wrap.className = 'cb-wrap';
+  wrap.contentEditable = false;
+
+  const cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.contentEditable = false;
+
+  wrap.appendChild(cb);
+
+  const spacer = document.createTextNode('\u200B');
+
+  const fragment = document.createDocumentFragment();
+  fragment.appendChild(wrap);
+  fragment.appendChild(spacer);
+
+  range.insertNode(fragment);
+
+  range.setStart(spacer, 0);
+  range.collapse(true);
+
+  sel.removeAllRanges();
+  sel.addRange(range);
+
+  if (!isRestoring) markAsDirty();
+}
+
+document.getElementById('detailEditor').addEventListener('keydown', function(e) {
+  if (e.key !== 'Backspace' && e.key !== 'Delete') return;
+
+  const sel = window.getSelection();
+  if (!sel.rangeCount) return;
+  const range = sel.getRangeAt(0);
+
+  let node = range.startContainer;
+  if (node.nodeType === 3) node = node.parentNode;
+
+  let wrap = node.closest('.cb-wrap');
+
+  if (!wrap && e.key === 'Backspace' && range.collapsed) {
+    const prev = node.previousSibling || node.previousElementSibling;
+    if (prev && prev.classList && prev.classList.contains('cb-wrap')) {
+      wrap = prev;
+    }
+  }
+
+  if (!wrap && e.key === 'Delete' && range.collapsed) {
+    const next = node.nextSibling || node.nextElementSibling;
+    if (next && next.classList && next.classList.contains('cb-wrap')) {
+      wrap = next;
+    }
+  }
+
+  if (wrap) {
+    e.preventDefault();
+
+    const prevSibling = wrap.previousSibling;
+    wrap.remove();
+
+    if (prevSibling && prevSibling.nodeType === 3 && prevSibling.textContent.trim() === '') {
+      prevSibling.remove();
+    }
+
+    let newRange = document.createRange();
+    if (prevSibling) {
+      if (prevSibling.nodeName === 'BR') {
+        newRange.setStartAfter(prevSibling);
+      } else {
+        const target = prevSibling.lastChild || prevSibling;
+        newRange.setStart(target, target.nodeType === 3 ? target.length : 0);
+      }
+    } else {
+      newRange.setStart(document.getElementById('detailEditor'), 0);
+    }
+    newRange.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(newRange);
+
+    if (!isRestoring) markAsDirty();
+    return;
+  }
+});
+
+document.getElementById('detailEditor').addEventListener('input', () => {
+  if (!isRestoring) markAsDirty();
+});
+
+// ── モーダル制御 ────────────────────────────────────────────────────────
+const modal = document.getElementById('detailModal');
+const closeModalBtn = document.getElementById('closeModal');
+const saveDetailBtn = document.getElementById('saveDetail');
+const clearDetailBtn = document.getElementById('clearDetail');
+const copyDetailBtn = document.getElementById('copyDetail');
+const insertCheckboxBtn = document.getElementById('insertCheckbox');
+const startColorChip = document.getElementById('startColorChip');
+const endColorChip = document.getElementById('endColorChip');
+const colorPicker = document.getElementById('colorPicker');
+
+document.getElementById('clearStartBtn').onclick = () => {
+  document.getElementById('startDate').value = '';
+  document.getElementById('startOffset').value = '';
+  startColorChip.dataset.color = '';
+  startColorChip.style.backgroundColor = 'transparent';
+  if (!isRestoring) markAsDirty();
+};
+
+document.getElementById('clearEndBtn').onclick = () => {
+  document.getElementById('endDate').value = '';
+  document.getElementById('endOffset').value = '';
+  endColorChip.dataset.color = '';
+  endColorChip.style.backgroundColor = 'transparent';
+  if (!isRestoring) markAsDirty();
+};
+
+closeModalBtn.onclick = () => modal.style.display = 'none';
+
+insertCheckboxBtn.onclick = insertCheckbox;
+
+copyDetailBtn.onclick = () => {
+  const editor = document.getElementById('detailEditor');
+  const html = editor.innerHTML;
+
+  const blobHtml = new Blob([html], { type: 'text/html' });
+  const blobText = new Blob([editor.innerText], { type: 'text/plain' });
+  const item = new ClipboardItem({ 'text/html': blobHtml, 'text/plain': blobText });
+
+  navigator.clipboard.write([item]).then(() => {
+    const original = copyDetailBtn.textContent;
+    copyDetailBtn.textContent = 'コピーしました';
+    setTimeout(() => copyDetailBtn.textContent = original, 1500);
+  }).catch(err => console.error('コピー失敗', err));
+};
+
+saveDetailBtn.onclick = () => {
+  if (currentEditTarget) {
+    const editor = document.getElementById('detailEditor');
+
+    editor.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      if (cb.checked) cb.setAttribute('checked', '');
+      else cb.removeAttribute('checked');
+    });
+
+    currentEditTarget.dataset.detail = getEditorContent();
+    currentEditTarget.dataset.startDate = document.getElementById('startDate').value || '';
+    currentEditTarget.dataset.endDate = document.getElementById('endDate').value || '';
+    currentEditTarget.dataset.startColor = startColorChip.dataset.color || '';
+    currentEditTarget.dataset.startOffset = document.getElementById('startOffset').value || '';
+    currentEditTarget.dataset.endColor = endColorChip.dataset.color || '';
+    currentEditTarget.dataset.endOffset = document.getElementById('endOffset').value || '';
+    if (!isRestoring) markAsDirty();
+    updateTaskColors();
+  }
+  modal.style.display = 'none';
+};
+
+clearDetailBtn.onclick = () => {
+  document.getElementById('detailEditor').innerHTML = '';
+  document.getElementById('startDate').value = '';
+  document.getElementById('endDate').value = '';
+  document.getElementById('startOffset').value = '';
+  document.getElementById('endOffset').value = '';
+  startColorChip.dataset.color = '';
+  startColorChip.style.backgroundColor = 'transparent';
+  endColorChip.dataset.color = '';
+  endColorChip.style.backgroundColor = 'transparent';
+  if (!isRestoring) markAsDirty();
+};
+
+[startColorChip, endColorChip].forEach(chip => {
+  chip.onclick = (e) => {
+    e.stopPropagation();
+    colorPicker.style.display = 'block';
+    colorPicker.style.left = chip.offsetLeft + 'px';
+    colorPicker.style.top = (chip.offsetTop + chip.offsetHeight + 4) + 'px';
+    colorPicker.dataset.activeChip = chip.id;
+
+    colorPicker.querySelectorAll('span').forEach(s => {
+      s.style.border = (s.dataset.color === chip.dataset.color) ? '2px solid #333' : '2px solid transparent';
+    });
+  };
+});
+
+colorPicker.querySelectorAll('span').forEach(s => {
+  s.onclick = () => {
+    const activeChipId = colorPicker.dataset.activeChip;
+    const activeChip = document.getElementById(activeChipId);
+    if (activeChip) {
+      activeChip.dataset.color = s.dataset.color;
+      activeChip.style.backgroundColor = s.dataset.color || 'transparent';
+    }
+    colorPicker.style.display = 'none';
+    if (!isRestoring) markAsDirty();
+  };
+});
+
+document.addEventListener('click', e => {
+  if (!colorPicker.contains(e.target) && !startColorChip.contains(e.target) && !endColorChip.contains(e.target)) {
+    colorPicker.style.display = 'none';
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.altKey && e.key.toLowerCase() === 'b') {
+    const editor = document.getElementById('detailEditor');
+    if (document.activeElement === editor || editor.contains(document.activeElement)) {
+      e.preventDefault();
+      insertCheckbox();
+    }
+  }
+});
+
+// ── 背景色反映 ────────────────────────────────────────────────────────────
+function updateTaskColors() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  document.querySelectorAll('.task-item').forEach(task => {
+    let bgColor = 'white';
+
+    const startDateStr = task.dataset.startDate;
+    const startColor = task.dataset.startColor;
+    const startOffset = parseInt(task.dataset.startOffset || '0', 10);
+
+    const endDateStr = task.dataset.endDate;
+    const endColor = task.dataset.endColor;
+    const endOffset = parseInt(task.dataset.endOffset || '0', 10);
+
+    let useEnd = false;
+
+    if (endColor && endDateStr && endOffset >= 0) {
+      const endDate = new Date(endDateStr);
+      if (!isNaN(endDate.getTime())) {
+        endDate.setHours(0, 0, 0, 0);
+        const endAlertStart = new Date(endDate);
+        endAlertStart.setDate(endAlertStart.getDate() - endOffset);
+
+        if (today >= endAlertStart) {
+          bgColor = endColor;
+          useEnd = true;
+        }
+      }
+    }
+
+    if (!useEnd && startColor && startDateStr && startOffset >= 0) {
+      const startDate = new Date(startDateStr);
+      if (!isNaN(startDate.getTime())) {
+        startDate.setHours(0, 0, 0, 0);
+        const startAlertStart = new Date(startDate);
+        startAlertStart.setDate(startAlertStart.getDate() - startOffset);
+
+        if (today >= startAlertStart) {
+          bgColor = startColor;
+        }
+      }
+    }
+
+    task.style.backgroundColor = bgColor;
+
+    const isDark = bgColor && bgColor !== 'white' && bgColor !== 'transparent' &&
+      (parseInt(bgColor.slice(1,3),16)*0.299 +
+       parseInt(bgColor.slice(3,5),16)*0.587 +
+       parseInt(bgColor.slice(5,7),16)*0.114) / 255 < 0.55;
+
+    if (isDark) task.classList.add('dark-bg');
+    else task.classList.remove('dark-bg');
+  });
+}
+
+// ── すべてクリア ──────────────────────────────────────────────────────────
+document.getElementById('allClear').onclick = () => {
+  if (!confirm('すべての列とタスクを削除して初期状態に戻しますか？\n（元に戻せません）')) return;
+
+  isRestoring = true;
+  document.getElementById('boardsContainer').innerHTML = '';
+  localStorage.removeItem(STORAGE_KEY);
+  clearDirtyFlag();
+
+  const initialColumns = [
+    { title: "未着手", tasks: [["要件定義", "詳細例1"], ["デザイン案作成", ""]] },
+    { title: "進行中", tasks: [["実装", "テスト中"], ["テストケース作成", ""]] },
+    { title: "完了",   tasks: [["環境構築", "完了"]] }
+  ];
+
+  initialColumns.forEach(col => {
+    const columnEl = createColumn(col.title);
+    const list = columnEl.querySelector('.task-list');
+    col.tasks.forEach(([task, detail]) => addTaskToColumn(list, task, detail));
+  });
+
+  document.querySelector('#pageTitle .title-text').textContent = "Kanban タスク";
+  makeEditable(document.querySelector('#pageTitle .title-text'), "Kanban タスク");
+
+  updateTaskColors();
+  isRestoring = false;
+  saveCurrentState();
+  updateUndoRedoButtons();
+  alert('すべてクリアしました。初期状態に戻りました。');
+};
+
+// ── CSV保存 ────────────────────────────────────────────────────────────────
+document.getElementById('saveCSV').onclick = () => {
+  const columns = document.querySelectorAll('.board-column');
+  let csvRows = [];
+
+  csvRows.push(['状況', 'タスク', '詳細', '開始日', '終了日', '開始色', '開始日前', '終了色', '終了日前'].map(v => `"${v.replace(/"/g, '""')}"`).join(','));
+
+  columns.forEach(col => {
+    const status = col.querySelector('.column-title').innerHTML.trim();
+    const taskItems = col.querySelectorAll('.task-item');
+
+    if (taskItems.length === 0) {
+      csvRows.push([status, '', '', '', '', '', '', '', ''].map(v => `"${v}"`).join(','));
+    } else {
+      taskItems.forEach(task => {
+        const text = task.querySelector('.task-text').innerHTML.trim();
+        let detail = (task.dataset.detail || '').replace(/\n/g, '\\n').replace(/"/g, '""');
+        const start = task.dataset.startDate || '';
+        const end = task.dataset.endDate || '';
+        const startColor = task.dataset.startColor || '';
+        const startOffset = task.dataset.startOffset || '';
+        const endColor = task.dataset.endColor || '';
+        const endOffset = task.dataset.endOffset || '';
+        csvRows.push([status, text, detail, start, end, startColor, startOffset, endColor, endOffset].map(v => `"${v}"`).join(','));
+      });
+    }
+  });
+
+  const csvContent = csvRows.join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'kanban_tasks.csv';
+  link.click();
+  clearDirtyFlag();
+};
+
+// ── File System保存 ──────────────────────────────────────────────────────
+let fileHandle = null;
+
+document.getElementById('saveFile').onclick = async () => {
+  const columns = document.querySelectorAll('.board-column');
+  let csvRows = [];
+
+  csvRows.push(['状況', 'タスク', '詳細', '開始日', '終了日', '開始色', '開始日前', '終了色', '終了日前'].map(v => `"${v.replace(/"/g, '""')}"`).join(','));
+
+  columns.forEach(col => {
+    const status = col.querySelector('.column-title').innerHTML.trim();
+    const taskItems = col.querySelectorAll('.task-item');
+
+    if (taskItems.length === 0) {
+      csvRows.push([status, '', '', '', '', '', '', '', ''].map(v => `"${v}"`).join(','));
+    } else {
+      taskItems.forEach(task => {
+        const text = task.querySelector('.task-text').innerHTML.trim();
+        let detail = (task.dataset.detail || '').replace(/\n/g, '\\n').replace(/"/g, '""');
+        const start = task.dataset.startDate || '';
+        const end = task.dataset.endDate || '';
+        const startColor = task.dataset.startColor || '';
+        const startOffset = task.dataset.startOffset || '';
+        const endColor = task.dataset.endColor || '';
+        const endOffset = task.dataset.endOffset || '';
+        csvRows.push([status, text, detail, start, end, startColor, startOffset, endColor, endOffset].map(v => `"${v}"`).join(','));
+      });
+    }
+  });
+
+  const csvContent = csvRows.join('\n');
+
+  try {
+    if (!fileHandle) {
+      fileHandle = await window.showSaveFilePicker({
+        suggestedName: 'kanban_tasks.csv',
+        types: [{ description: 'CSV Files', accept: {'text/csv': ['.csv']} }]
+      });
+    }
+    const writable = await fileHandle.createWritable();
+    await writable.write(csvContent);
+    await writable.close();
+    clearDirtyFlag();
+  } catch (err) {
+    if (err.name !== 'AbortError') alert('保存に失敗しました');
+    fileHandle = null;
+  }
+};
+
+// ── CSV読込 ────────────────────────────────────────────────────────────────
+document.getElementById('loadCSV').onclick = () => document.getElementById('fileInput').click();
+
+const dropArea = document.getElementById('dropArea');
+const fileInput = document.getElementById('fileInput');
+let dragCounter = 0;
+
+window.addEventListener('dragenter', e => { e.preventDefault(); dragCounter++; if (dragCounter === 1) dropArea.classList.add('visible'); });
+window.addEventListener('dragleave', e => { e.preventDefault(); dragCounter--; if (dragCounter <= 0) { dragCounter = 0; dropArea.classList.remove('visible', 'dragover'); } });
+window.addEventListener('dragover', e => { e.preventDefault(); dropArea.classList.add('dragover'); });
+window.addEventListener('drop', e => {
+  e.preventDefault();
+  dragCounter = 0;
+  dropArea.classList.remove('visible', 'dragover');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type === 'text/csv') handleCSVFile(file);
+  else alert('CSVファイルのみ対応しています');
+});
+
+dropArea.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (file) handleCSVFile(file);
+});
+
+function handleCSVFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    const text = e.target.result;
+    const rows = text.split(/\r?\n/).map(row => {
+      return row.split(',').map(cell => cell.trim().replace(/^"|"$/g, '').replace(/""/g, '"'));
+    }).filter(row => row.length > 1 && row.some(cell => cell.trim()));
+
+    if (rows.length < 2) return alert('有効なCSVデータがありません');
+
+    isRestoring = true;
+    document.getElementById('boardsContainer').innerHTML = '';
+
+    const statusMap = new Map();
+
+    rows.slice(1).forEach(row => {
+      if (row.length < 2) return;
+      const status = row[0];
+      const taskText = row[1];
+      let detail = row[2] ? row[2].replace(/\\n/g, '\n') : '';
+      const start = row[3] || '';
+      const end = row[4] || '';
+      const startColor = row[5] || '';
+      const startOffset = row[6] || '';
+      const endColor = row[7] || '';
+      const endOffset = row[8] || '';
+
+      detail = detail.replace(/- \[\s*\]/g, '<input type="checkbox"> ');
+      detail = detail.replace(/- \[×\]/g, '<input type="checkbox" checked> ');
+
+      if (!statusMap.has(status)) {
+        const newCol = createColumn(status);
+        statusMap.set(status, newCol.querySelector('.task-list'));
+      }
+
+      if (taskText.trim() !== '') {
+        const li = addTaskToColumn(statusMap.get(status), taskText, detail);
+        if (start) li.dataset.startDate = start;
+        if (end) li.dataset.endDate = end;
+        if (startColor) li.dataset.startColor = startColor;
+        if (startOffset) li.dataset.startOffset = startOffset;
+        if (endColor) li.dataset.endColor = endColor;
+        if (endOffset) li.dataset.endOffset = endOffset;
+      }
+    });
+
+    alert('CSVからボードを復元しました');
+    isRestoring = false;
+    markAsDirty();
+    updateTaskColors();
+    saveCurrentState();
+    updateUndoRedoButtons();
+  };
+  reader.readAsText(file);
+}
+
+document.getElementById('batchCopy').onclick = () => {
+  const checked = document.querySelectorAll('.task-checkbox:checked');
+  if (!checked.length) return alert('タスクを選択してください');
+
+  checked.forEach(cb => {
+    const item = cb.closest('.task-item');
+    const text = item.querySelector('.task-text').innerHTML.trim();
+    const detail = item.dataset.detail || '';
+    const start = item.dataset.startDate || '';
+    const end = item.dataset.endDate || '';
+
+    const taskList = item.closest('.task-list');
+    const newLi = addTaskToColumn(taskList, text, detail);
+    newLi.dataset.startDate = start;
+    newLi.dataset.endDate = end;
+  });
+
+  checked.forEach(cb => cb.checked = false);
+  markAsDirty();
+};
+
+document.getElementById('batchDelete').onclick = () => {
+  if (!confirm('選択したタスクを削除しますか？')) return;
+  document.querySelectorAll('.task-checkbox:checked').forEach(cb => cb.closest('.task-item').remove());
+  markAsDirty();
+};
+
+const initialColumns = [
+  { title: "未着手", tasks: [["要件定義", "詳細例1"], ["デザイン案作成", ""]] },
+  { title: "進行中", tasks: [["実装", "テスト中"], ["テストケース作成", ""]] },
+  { title: "完了",   tasks: [["環境構築", "完了"]] }
+];
+
+window.addEventListener('load', () => {
+  const autoLoaded = loadFromLocalStorage();
+
+  if (!autoLoaded) {
+    initialColumns.forEach(col => {
+      const columnEl = createColumn(col.title);
+      const list = columnEl.querySelector('.task-list');
+      col.tasks.forEach(([task, detail]) => addTaskToColumn(list, task, detail));
+    });
+  }
+
+  makeEditable(document.querySelector('#pageTitle .title-text'), "Kanban タスク");
+
+  document.getElementById('addBoard').onclick = () => { 
+    createColumn(); 
+    markAsDirty(); 
+  };
+
+  document.getElementById('undoBtn').onclick = undo;
+  document.getElementById('redoBtn').onclick = redo;
+
+  new Sortable(document.getElementById('boardsContainer'), {
+    animation: 150,
+    handle: '[data-drag-handle]',
+    forceFallback: true,
+    fallbackTolerance: 3,
+    fallbackClass: 'dragging',
+    fallbackOnBody: true,
+    filter: '.edit-input, .task-btn, .task-checkbox, .task-checkbox-wrapper, .detail-btn, .delete-btn-icon',
+    preventOnFilter: true,
+    onEnd: () => { if (!isRestoring) markAsDirty(); }
+  });
+
+  updateTaskColors();
+
+  currentState = exportKanbanToJSON();
+  undoStack = [];
+  redoStack = [];
+  updateUndoRedoButtons();
+
+  window.addEventListener('beforeunload', (e) => {
+    if (hasUnsavedChanges) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  });
+});
+</script>
+</body>
+</html>

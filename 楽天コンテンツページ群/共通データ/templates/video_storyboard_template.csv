@@ -1,0 +1,8 @@
+scene_no,scene_type,background_rule,text_role,text_example,motion_rule,seconds
+1,title,専用背景画像,コンテンツページタイトル,{content_title},ゆっくりパン+タイプ表示,3.0
+2,empathy,専用背景画像,悩み・共感,{main_problem_short},別方向パン+フェード,2.4
+3,selection_axis,専用背景画像,選び方の軸,{selection_axis_title},ズーム控えめ+フェード,2.4
+4,material,専用背景画像,素材・使用感,{material_title},ゆっくりパン+フェード,2.3
+5,benefit,専用背景画像,ベネフィット,{benefit_title},明るめ背景+中央フェード,2.5
+6,product_pickup,商品画像,ピックアップ商品,{product_pickup_title},中央に1枚ずつ浮かばせる,3.4
+7,cta,専用背景画像,まとめ・CTA,{cta_title},ゆっくりズーム+タイプ表示,2.6

@@ -1,0 +1,7 @@
+scene_no,scene_name,duration_sec,background_file,display_copy,motion,text_animation
+1,title,5.8,003_scene01.jpg,"骨盤底筋トレーニング、\nまずはここから。",zoom_in,typewriter_after_blank
+2,basic,3.8,003_scene02.jpg,"強く締めるより、\n正しくゆるめる。",pan_right,rise_fade
+3,points,4.8,003_scene03.jpg,"このコラムのポイント\n› 場所を知る\n› 息を止めない\n› 毎日に重ねる",gentle_zoom,points_one_by_one
+4,sit,3.8,003_scene04.jpg,"椅子に座って、\n短く始める。",diagonal_pan,slide_left
+5,caution,3.8,003_scene05.jpg,"力みすぎたら、\nいったん休む。",pan_left,slide_right
+6,closing,4.2,003_scene06.jpg,"運動と下着、\n役割を分けて続ける。",zoom_out,rise_fade

@@ -1,0 +1,11 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,031_scene01.jpg,5.2,"着やせ派？
+ふんわり派？",title_type,0,0
+2,031_scene02.jpg,3.6,見せ方の目的が違う,rise_fade,0,0
+3,031_scene03.jpg,4.1,"このコラムのポイント
+› 着やせとふんわりは目的が違う
+› 不安な場面で選ぶ
+› 落ち着ける方が正解",points,0,0
+4,031_scene04.jpg,3.6,着やせ派に向く日,slide_left,0,0
+5,031_scene05.jpg,3.6,迷ったら不安で選ぶ,rise_fade,0,0
+6,031_scene06.jpg,3.6,水辺で落ち着ける方へ,slide_right,0,0

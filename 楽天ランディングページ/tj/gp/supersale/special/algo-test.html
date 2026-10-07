@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<META http-equiv="Expires" content="0">
+<META http-equiv="Pragma" content="no-cache">
+<META http-equiv="Cache-Control" content="No-Cache">
+
+
+<script>
+
+let dataReadyCallabck
+let weightedShopsPromise = new Promise(r => dataReadyCallabck = r)
+
+fetch('https://data.tenki-japan.co.jp/rakuten.ne.jp/traffic-exchange-data.json')
+	.then(r => r.json())
+	.then(data => {
+		dataReadyCallabck(data.shops.filter(s => s.weight && s.coupons && s.coupons.length))
+	})
+
+function selectWinner(weightedArray, insideShop = null) {
+	let total = 0; // Initial total weight
+	const cumulative = [];
+
+	// Step 1: Calculate total weight from the initial shop list
+	weightedArray.forEach(([shop, weight]) => {
+		total += weight; // Sum up all shop weights
+	});
+
+	// Step 2: Add "no-win" weight (25% of total)
+	const noWinWeight = total * 0.25;
+	weightedArray.push(["no-win", noWinWeight]);
+	const adjustedTotal = total + noWinWeight; // Total weight including no-win
+
+	// Step 3: Handle inside-shop adjustment
+	if (insideShop) {
+		const shopIndex = weightedArray.findIndex(([shop]) => shop === insideShop);
+		let insideShopWeight = adjustedTotal; // Set shop weight to total + no-win
+
+		if (shopIndex !== -1) {
+			// If the shop is in the initial list, update its weight
+			total = adjustedTotal - weightedArray[shopIndex][1]; // Recalculate total without original shop weight
+			weightedArray[shopIndex][1] = insideShopWeight; // Update the shop's weight
+		} else {
+			// If the shop is not in the initial list, add it
+			weightedArray.push([insideShop, insideShopWeight]);
+		}
+	}
+
+	// Step 4: Build cumulative probabilities
+	let cumulativeSum = 0;
+	weightedArray.forEach(([shop, weight]) => {
+		cumulativeSum += weight;
+		cumulative.push({ shop, cumulativeSum });
+	});
+	// Step 5: Generate a random value and select the winner
+	const randomValue = Math.random() * cumulativeSum;
+	for (const { shop, cumulativeSum } of cumulative) {
+		if (randomValue <= cumulativeSum) return shop; // Return the winner
+	}
+
+	// Default case
+	return null;
+}
+
+
+const selectOldWay = (shops, insideShopId) => {
+	shops.forEach(s => s._weight = Math.pow(Math.random(), 1/s.weight))
+	return insideShopId && Math.random()<=0.5 ? insideShopId : shops.sort((a, b) => b._weight - a._weight)[0].shop_id
+}
+
+addEventListener('load', async () => {
+	shops = await weightedShopsPromise
+
+	run()
+
+})
+
+const run = () => {
+	newWins = {'no-win':0}
+	oldWins = {'no-win':0}
+
+	const runs = parseInt(document.querySelector('input[name="count"]').value)
+
+	for (let i = 0; runs > i; i++) {
+		play()
+	}
+
+	shops.push({shop_id: 'no-win', weight: 0})
+
+	document.querySelector('#pre1').innerHTML = 'new\n\n'+Object.keys(newWins).map(k => `${k} - ${shops.find(s=>s.shop_id===k).weight*10000} - ${newWins[k]}`).sort((a, b) => b[1]-a[1]).join('\n')
+	document.querySelector('#pre2').innerHTML = 'old\n\n'+Object.keys(oldWins).map(k => `${k} - ${shops.find(s=>s.shop_id===k).weight*10000} - ${oldWins[k]}`).sort((a, b) => b[1]-a[1]).join('\n')
+
+}
+
+let newWins = {'no-win':0}
+let oldWins = {'no-win':0}
+const play = () => {
+	const partakeShops = shops.filter(s => s.weight && s.coupons && s.coupons.length)
+
+	const insideShopId = document.querySelector('input[name="shop_id"]').value || undefined
+
+	const win_shop_id = selectWinner(partakeShops.map(s => [s.shop_id, s.weight]), insideShopId)
+	if (!newWins[win_shop_id]) {
+		newWins[win_shop_id] = 0
+	}
+	newWins[win_shop_id]++
+
+	if (Math.random()<=0.8) {
+		const old_win_shop_id = selectOldWay(partakeShops, insideShopId)
+		if (!oldWins[old_win_shop_id]) {
+			oldWins[old_win_shop_id] = 0
+		}
+		oldWins[old_win_shop_id]++
+	} else {
+		oldWins['no-win']++
+	}
+}
+
+</script>
+<input name="shop_id" placeholder="shop_id">
+<input name="count" value="100000">
+<button onclick="run()">run</button>
+<div style="display:flex">
+	<pre id="pre1" style="padding:20px;"></pre>
+	<pre id="pre2"  style="padding:20px;"></pre>
+</div>

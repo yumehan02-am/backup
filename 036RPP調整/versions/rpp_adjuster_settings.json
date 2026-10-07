@@ -1,0 +1,13 @@
+{
+  "report_paths": [
+    "C:/Users/i58400am/Desktop/newapp/036RPP調整/rpp_item_reports_u-b-yumehan_20260604175429663_1.csv",
+    "C:/Users/i58400am/Desktop/newapp/036RPP調整/rpp_item_reports_u-b-yumehan_20260604175436876_1.csv"
+  ],
+  "prev_report_path": "C:/Users/i58400am/Desktop/newapp/036RPP調整/rpp_item_reports_u-b-yumehan_20260604175429663_1.csv",
+  "curr_report_path": "C:/Users/i58400am/Desktop/newapp/036RPP調整/rpp_item_reports_u-b-yumehan_20260604175436876_1.csv",
+  "boost_path": "C:/Users/i58400am/Desktop/newapp/036RPP調整/rpp_item_boost_u-b-yumehan_20260604175409231.csv",
+  "exclude_path": "C:/Users/i58400am/Desktop/newapp/036RPP調整/RPP_exclude_items_u-b-yumehan_20260604175419.csv",
+  "item_csv_path": "C:/Users/i58400am/Desktop/newapp/036RPP調整/normal-item20260604184942.csv",
+  "shop_url": "u-b-yumehan",
+  "operation_setting": ""
+}

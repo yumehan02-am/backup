@@ -1,0 +1,2188 @@
+2026-06-06 07:18:18 load_all start
+2026-06-06 07:18:18 read prev report start
+2026-06-06 07:18:18 read prev report done rows=166
+2026-06-06 07:18:18 read curr report start
+2026-06-06 07:18:18 read curr report done rows=90
+2026-06-06 07:18:18 read boost csv start
+2026-06-06 07:18:18 read boost csv done rows=168
+2026-06-06 07:18:18 read exclude csv start
+2026-06-06 07:18:18 read exclude csv done rows=91
+2026-06-06 07:18:18 build products start
+2026-06-06 07:18:18 build products done rows=195
+2026-06-06 07:18:18 apply filter start
+2026-06-06 07:18:18 tree render done; queue show product
+2026-06-06 07:18:18 apply filter queued
+2026-06-06 07:18:18 show_product start 0
+2026-06-06 07:18:18 show_product done 0
+2026-06-06 07:18:18 item info load start
+2026-06-06 07:18:18 read item csv map start
+2026-06-06 07:18:18 read item csv map done rows=194
+2026-06-06 07:18:19 tree render done; queue show product
+2026-06-06 07:18:19 show_product start 0
+2026-06-06 07:18:19 show_product done 0
+2026-06-06 07:20:36 tree render done; queue show product
+2026-06-06 07:20:36 show_product start 1
+2026-06-06 07:20:36 show_product done 1
+2026-06-06 07:20:36 show_product start 1
+2026-06-06 07:20:36 show_product done 1
+2026-06-06 07:20:37 tree render done; queue show product
+2026-06-06 07:20:37 show_product start 2
+2026-06-06 07:20:37 show_product done 2
+2026-06-06 07:20:37 show_product start 2
+2026-06-06 07:20:38 show_product done 2
+2026-06-06 07:20:39 tree render done; queue show product
+2026-06-06 07:20:39 show_product start 3
+2026-06-06 07:20:39 show_product done 3
+2026-06-06 07:20:39 show_product start 3
+2026-06-06 07:20:39 show_product done 3
+2026-06-06 07:20:40 tree render done; queue show product
+2026-06-06 07:20:40 show_product start 4
+2026-06-06 07:20:40 show_product done 4
+2026-06-06 07:20:40 show_product start 4
+2026-06-06 07:20:40 show_product done 4
+2026-06-06 07:20:42 tree render done; queue show product
+2026-06-06 07:20:42 show_product start 5
+2026-06-06 07:20:42 show_product done 5
+2026-06-06 07:20:42 show_product start 5
+2026-06-06 07:20:42 show_product done 5
+2026-06-06 07:20:44 tree render done; queue show product
+2026-06-06 07:20:44 show_product start 6
+2026-06-06 07:20:44 show_product done 6
+2026-06-06 07:20:44 show_product start 6
+2026-06-06 07:20:44 show_product done 6
+2026-06-06 07:20:50 tree render done; queue show product
+2026-06-06 07:20:50 show_product start 7
+2026-06-06 07:20:50 show_product done 7
+2026-06-06 07:20:50 show_product start 7
+2026-06-06 07:20:50 show_product done 7
+2026-06-06 07:20:51 tree render done; queue show product
+2026-06-06 07:20:51 show_product start 8
+2026-06-06 07:20:51 show_product done 8
+2026-06-06 07:20:51 show_product start 8
+2026-06-06 07:20:51 show_product done 8
+2026-06-06 07:20:53 tree render done; queue show product
+2026-06-06 07:20:53 show_product start 9
+2026-06-06 07:20:53 show_product done 9
+2026-06-06 07:20:53 show_product start 9
+2026-06-06 07:20:53 show_product done 9
+2026-06-06 07:20:54 tree render done; queue show product
+2026-06-06 07:20:54 show_product start 10
+2026-06-06 07:20:54 show_product done 10
+2026-06-06 07:20:54 show_product start 10
+2026-06-06 07:20:54 show_product done 10
+2026-06-06 07:20:55 tree render done; queue show product
+2026-06-06 07:20:55 show_product start 11
+2026-06-06 07:20:55 show_product done 11
+2026-06-06 07:20:55 show_product start 11
+2026-06-06 07:20:55 show_product done 11
+2026-06-06 07:20:56 tree render done; queue show product
+2026-06-06 07:20:56 show_product start 12
+2026-06-06 07:20:56 show_product done 12
+2026-06-06 07:20:56 show_product start 12
+2026-06-06 07:20:56 show_product done 12
+2026-06-06 07:20:56 tree render done; queue show product
+2026-06-06 07:20:56 show_product start 13
+2026-06-06 07:20:56 show_product done 13
+2026-06-06 07:20:56 show_product start 13
+2026-06-06 07:20:56 show_product done 13
+2026-06-06 07:20:57 tree render done; queue show product
+2026-06-06 07:20:57 show_product start 14
+2026-06-06 07:20:57 show_product done 14
+2026-06-06 07:20:57 show_product start 14
+2026-06-06 07:20:57 show_product done 14
+2026-06-06 07:20:57 tree render done; queue show product
+2026-06-06 07:20:57 show_product start 15
+2026-06-06 07:20:57 show_product done 15
+2026-06-06 07:20:57 show_product start 15
+2026-06-06 07:20:57 show_product done 15
+2026-06-06 07:20:58 tree render done; queue show product
+2026-06-06 07:20:59 show_product start 15
+2026-06-06 07:20:59 show_product done 15
+2026-06-06 07:20:59 tree render done; queue show product
+2026-06-06 07:21:00 show_product start 15
+2026-06-06 07:21:00 show_product done 15
+2026-06-06 07:21:01 tree render done; queue show product
+2026-06-06 07:21:01 show_product start 15
+2026-06-06 07:21:01 show_product done 15
+2026-06-06 07:21:02 tree render done; queue show product
+2026-06-06 07:21:02 show_product start 15
+2026-06-06 07:21:02 show_product done 15
+2026-06-06 07:21:10 tree render done; queue show product
+2026-06-06 07:21:10 show_product start 15
+2026-06-06 07:21:10 show_product done 15
+2026-06-06 07:21:21 tree render done; queue show product
+2026-06-06 07:21:22 show_product start 15
+2026-06-06 07:21:22 show_product done 15
+2026-06-06 07:21:49 show_product start 17
+2026-06-06 07:21:49 show_product done 17
+2026-06-06 07:21:50 show_product start 22
+2026-06-06 07:21:50 show_product done 22
+2026-06-06 07:21:56 show_product start 24
+2026-06-06 07:21:56 show_product done 24
+2026-06-06 07:21:58 show_product start 28
+2026-06-06 07:21:58 show_product done 28
+2026-06-06 07:22:01 show_product start 33
+2026-06-06 07:22:01 show_product done 33
+2026-06-06 07:22:03 show_product start 38
+2026-06-06 07:22:03 show_product done 38
+2026-06-06 07:22:05 show_product start 41
+2026-06-06 07:22:05 show_product done 41
+2026-06-06 07:22:08 show_product start 54
+2026-06-06 07:22:08 show_product done 54
+2026-06-06 07:22:10 show_product start 70
+2026-06-06 07:22:10 show_product done 70
+2026-06-06 07:22:13 show_product start 93
+2026-06-06 07:22:13 show_product done 93
+2026-06-06 07:22:17 show_product start 108
+2026-06-06 07:22:17 show_product done 108
+2026-06-06 07:22:20 show_product start 125
+2026-06-06 07:22:20 show_product done 125
+2026-06-06 07:22:28 show_product start 149
+2026-06-06 07:22:28 show_product done 149
+2026-06-06 07:22:30 show_product start 155
+2026-06-06 07:22:31 show_product done 155
+2026-06-06 07:22:32 show_product start 161
+2026-06-06 07:22:32 show_product done 161
+2026-06-06 07:22:35 show_product start 169
+2026-06-06 07:22:35 show_product done 169
+2026-06-06 07:22:43 show_product start 163
+2026-06-06 07:22:43 show_product done 163
+2026-06-06 07:22:44 tree render done; queue show product
+2026-06-06 07:22:44 show_product start 163
+2026-06-06 07:22:44 show_product done 163
+2026-06-06 07:22:45 tree render done; queue show product
+2026-06-06 07:22:46 show_product start 163
+2026-06-06 07:22:46 show_product done 163
+2026-06-06 07:22:47 tree render done; queue show product
+2026-06-06 07:22:47 show_product start 163
+2026-06-06 07:22:47 show_product done 163
+2026-06-06 07:22:48 tree render done; queue show product
+2026-06-06 07:22:48 show_product start 163
+2026-06-06 07:22:48 show_product done 163
+2026-06-06 08:04:39 tree render done; queue show product
+2026-06-06 08:04:39 show_product start 164
+2026-06-06 08:04:39 show_product done 164
+2026-06-06 08:04:39 show_product start 164
+2026-06-06 08:04:39 show_product done 164
+2026-06-06 08:04:39 tree render done; queue show product
+2026-06-06 08:04:39 show_product start 165
+2026-06-06 08:04:39 show_product done 165
+2026-06-06 08:04:39 show_product start 165
+2026-06-06 08:04:39 show_product done 165
+2026-06-06 08:04:39 tree render done; queue show product
+2026-06-06 08:04:39 show_product start 166
+2026-06-06 08:04:39 show_product done 166
+2026-06-06 08:04:39 show_product start 166
+2026-06-06 08:04:39 show_product done 166
+2026-06-06 08:04:40 tree render done; queue show product
+2026-06-06 08:04:40 show_product start 167
+2026-06-06 08:04:40 show_product done 167
+2026-06-06 08:04:40 show_product start 167
+2026-06-06 08:04:40 show_product done 167
+2026-06-06 08:04:40 tree render done; queue show product
+2026-06-06 08:04:40 show_product start 168
+2026-06-06 08:04:40 show_product done 168
+2026-06-06 08:04:40 show_product start 168
+2026-06-06 08:04:40 show_product done 168
+2026-06-06 08:28:34 load_all start
+2026-06-06 08:28:34 read prev report start
+2026-06-06 08:28:34 read prev report done rows=166
+2026-06-06 08:28:34 read curr report start
+2026-06-06 08:28:34 read curr report done rows=90
+2026-06-06 08:28:34 read boost csv start
+2026-06-06 08:28:34 read boost csv done rows=168
+2026-06-06 08:28:34 read exclude csv start
+2026-06-06 08:28:34 read exclude csv done rows=91
+2026-06-06 08:28:34 build products start
+2026-06-06 08:28:34 build products done rows=195
+2026-06-06 08:28:34 apply filter start
+2026-06-06 08:28:34 tree render done; queue show product
+2026-06-06 08:28:34 apply filter queued
+2026-06-06 08:28:34 show_product start 0
+2026-06-06 08:28:34 show_product done 0
+2026-06-06 08:28:35 item info load start
+2026-06-06 08:28:35 read item csv map start
+2026-06-06 08:28:35 read item csv map done rows=194
+2026-06-06 08:28:35 tree render done; queue show product
+2026-06-06 08:28:35 show_product start 0
+2026-06-06 08:28:35 show_product done 0
+2026-06-06 08:28:54 load_all start
+2026-06-06 08:28:54 read prev report start
+2026-06-06 08:28:54 read prev report done rows=166
+2026-06-06 08:28:54 read curr report start
+2026-06-06 08:28:54 read curr report done rows=90
+2026-06-06 08:28:54 read boost csv start
+2026-06-06 08:28:54 read boost csv done rows=168
+2026-06-06 08:28:54 read exclude csv start
+2026-06-06 08:28:54 read exclude csv done rows=91
+2026-06-06 08:28:54 build products start
+2026-06-06 08:28:54 build products done rows=195
+2026-06-06 08:28:54 apply filter start
+2026-06-06 08:28:54 tree render done; queue show product
+2026-06-06 08:28:54 apply filter queued
+2026-06-06 08:28:54 show_product start 0
+2026-06-06 08:28:54 show_product done 0
+2026-06-06 08:28:54 item info load start
+2026-06-06 08:28:54 read item csv map start
+2026-06-06 08:28:54 read item csv map done rows=194
+2026-06-06 08:28:54 tree render done; queue show product
+2026-06-06 08:28:54 show_product start 0
+2026-06-06 08:28:54 show_product done 0
+2026-06-06 08:39:11 load_all start
+2026-06-06 08:39:11 read prev report start
+2026-06-06 08:39:11 read prev report done rows=166
+2026-06-06 08:39:11 read curr report start
+2026-06-06 08:39:11 read curr report done rows=90
+2026-06-06 08:39:11 read boost csv start
+2026-06-06 08:39:11 read boost csv done rows=168
+2026-06-06 08:39:11 read exclude csv start
+2026-06-06 08:39:11 read exclude csv done rows=91
+2026-06-06 08:39:11 build products start
+2026-06-06 08:39:11 build products done rows=195
+2026-06-06 08:39:11 apply filter start
+2026-06-06 08:39:11 tree render done; queue show product
+2026-06-06 08:39:11 apply filter queued
+2026-06-06 08:39:11 show_product start 0
+2026-06-06 08:39:11 show_product done 0
+2026-06-06 08:39:11 item info load start
+2026-06-06 08:39:11 read item csv map start
+2026-06-06 08:39:11 read item csv map done rows=194
+2026-06-06 08:39:11 tree render done; queue show product
+2026-06-06 08:39:12 show_product start 0
+2026-06-06 08:39:12 show_product done 0
+2026-06-06 08:39:24 load_all start
+2026-06-06 08:39:24 read prev report start
+2026-06-06 08:39:24 read prev report done rows=166
+2026-06-06 08:39:24 read curr report start
+2026-06-06 08:39:24 read curr report done rows=90
+2026-06-06 08:39:24 read boost csv start
+2026-06-06 08:39:24 read boost csv done rows=168
+2026-06-06 08:39:24 read exclude csv start
+2026-06-06 08:39:24 read exclude csv done rows=91
+2026-06-06 08:39:24 build products start
+2026-06-06 08:39:24 build products done rows=195
+2026-06-06 08:39:24 apply filter start
+2026-06-06 08:39:24 tree render done; queue show product
+2026-06-06 08:39:24 apply filter queued
+2026-06-06 08:39:24 show_product start 0
+2026-06-06 08:39:24 show_product done 0
+2026-06-06 08:39:24 item info load start
+2026-06-06 08:39:24 read item csv map start
+2026-06-06 08:39:24 read item csv map done rows=194
+2026-06-06 08:39:25 tree render done; queue show product
+2026-06-06 08:39:25 show_product start 0
+2026-06-06 08:39:25 show_product done 0
+2026-06-06 08:46:02 load_all start
+2026-06-06 08:46:02 read prev report start
+2026-06-06 08:46:02 read prev report done rows=166
+2026-06-06 08:46:02 read curr report start
+2026-06-06 08:46:02 read curr report done rows=90
+2026-06-06 08:46:02 read boost csv start
+2026-06-06 08:46:02 read boost csv done rows=168
+2026-06-06 08:46:02 read exclude csv start
+2026-06-06 08:46:02 read exclude csv done rows=91
+2026-06-06 08:46:02 build products start
+2026-06-06 08:46:02 build products done rows=195
+2026-06-06 08:46:02 apply filter start
+2026-06-06 08:46:02 tree render done; queue show product
+2026-06-06 08:46:02 apply filter queued
+2026-06-06 08:46:02 show_product start 0
+2026-06-06 08:46:02 show_product done 0
+2026-06-06 08:46:02 item info load start
+2026-06-06 08:46:02 read item csv map start
+2026-06-06 08:46:03 read item csv map done rows=194
+2026-06-06 08:46:03 tree render done; queue show product
+2026-06-06 08:46:03 show_product start 0
+2026-06-06 08:46:03 show_product done 0
+2026-06-06 08:56:00 load_all start
+2026-06-06 08:56:01 read prev report start
+2026-06-06 08:56:01 read prev report done rows=166
+2026-06-06 08:56:01 read curr report start
+2026-06-06 08:56:01 read curr report done rows=90
+2026-06-06 08:56:01 read boost csv start
+2026-06-06 08:56:01 read boost csv done rows=168
+2026-06-06 08:56:01 read exclude csv start
+2026-06-06 08:56:01 read exclude csv done rows=91
+2026-06-06 08:56:01 build products start
+2026-06-06 08:56:01 build products done rows=195
+2026-06-06 08:56:01 apply filter start
+2026-06-06 08:56:01 tree render done; queue show product
+2026-06-06 08:56:01 apply filter queued
+2026-06-06 08:56:01 show_product start 0
+2026-06-06 08:56:01 show_product done 0
+2026-06-06 08:56:01 item info load start
+2026-06-06 08:56:01 read item csv map start
+2026-06-06 08:56:01 read item csv map done rows=194
+2026-06-06 08:56:01 tree render done; queue show product
+2026-06-06 08:56:01 show_product start 0
+2026-06-06 08:56:02 show_product done 0
+2026-06-06 09:22:46 load_all start
+2026-06-06 09:22:46 read prev report start
+2026-06-06 09:22:46 read prev report done rows=166
+2026-06-06 09:22:46 read curr report start
+2026-06-06 09:22:46 read curr report done rows=90
+2026-06-06 09:22:46 read boost csv start
+2026-06-06 09:22:46 read boost csv done rows=168
+2026-06-06 09:22:46 read exclude csv start
+2026-06-06 09:22:46 read exclude csv done rows=91
+2026-06-06 09:22:46 build products start
+2026-06-06 09:22:46 build products done rows=195
+2026-06-06 09:22:46 apply filter start
+2026-06-06 09:22:46 tree render done; queue show product
+2026-06-06 09:22:46 apply filter queued
+2026-06-06 09:22:46 show_product start 0
+2026-06-06 09:22:46 show_product done 0
+2026-06-06 09:22:46 item info load start
+2026-06-06 09:22:46 read item csv map start
+2026-06-06 09:22:46 read item csv map done rows=194
+2026-06-06 09:22:46 tree render done; queue show product
+2026-06-06 09:22:47 show_product start 0
+2026-06-06 09:22:47 show_product done 0
+2026-06-06 09:25:37 tree render done; queue show product
+2026-06-06 09:25:37 show_product start 0
+2026-06-06 09:25:37 show_product done 0
+2026-06-06 09:25:37 tree render done; queue show product
+2026-06-06 09:25:38 show_product start 0
+2026-06-06 09:25:38 show_product done 0
+2026-06-06 09:45:17 load_all start
+2026-06-06 09:45:17 read prev report start
+2026-06-06 09:45:17 read prev report done rows=166
+2026-06-06 09:45:17 read curr report start
+2026-06-06 09:45:17 read curr report done rows=90
+2026-06-06 09:45:17 read boost csv start
+2026-06-06 09:45:17 read boost csv done rows=168
+2026-06-06 09:45:17 read exclude csv start
+2026-06-06 09:45:17 read exclude csv done rows=91
+2026-06-06 09:45:17 build products start
+2026-06-06 09:45:17 build products done rows=195
+2026-06-06 09:45:17 apply filter start
+2026-06-06 09:45:17 tree render done; queue show product
+2026-06-06 09:45:17 apply filter queued
+2026-06-06 09:45:17 show_product start 0
+2026-06-06 09:45:17 show_product done 0
+2026-06-06 09:45:17 item info load start
+2026-06-06 09:45:17 read item csv map start
+2026-06-06 09:45:18 read item csv map done rows=194
+2026-06-06 09:45:18 tree render done; queue show product
+2026-06-06 09:45:18 show_product start 0
+2026-06-06 09:45:18 show_product done 0
+2026-06-06 11:04:26 load_all start
+2026-06-06 11:04:26 read prev report start
+2026-06-06 11:04:26 read prev report done rows=166
+2026-06-06 11:04:26 read curr report start
+2026-06-06 11:04:27 read curr report done rows=90
+2026-06-06 11:04:27 read boost csv start
+2026-06-06 11:04:27 read boost csv done rows=168
+2026-06-06 11:04:27 read exclude csv start
+2026-06-06 11:04:27 read exclude csv done rows=91
+2026-06-06 11:04:27 build products start
+2026-06-06 11:04:27 build products done rows=195
+2026-06-06 11:04:27 apply filter start
+2026-06-06 11:04:27 tree render done; queue show product
+2026-06-06 11:04:27 apply filter queued
+2026-06-06 11:04:27 show_product start 0
+2026-06-06 11:04:27 show_product done 0
+2026-06-06 11:04:27 item info load start
+2026-06-06 11:04:27 read item csv map start
+2026-06-06 11:04:27 read item csv map done rows=194
+2026-06-06 11:04:27 tree render done; queue show product
+2026-06-06 11:04:27 show_product start 0
+2026-06-06 11:04:27 show_product done 0
+2026-06-06 11:04:32 show_product start 1
+2026-06-06 11:04:32 show_product done 1
+2026-06-06 11:04:38 show_product start 1
+2026-06-06 11:04:38 show_product done 1
+2026-06-06 11:05:12 show_product start 2
+2026-06-06 11:05:12 show_product done 2
+2026-06-06 11:05:13 show_product start 3
+2026-06-06 11:05:13 show_product done 3
+2026-06-06 11:05:15 show_product start 4
+2026-06-06 11:05:15 show_product done 4
+2026-06-06 11:05:24 show_product start 5
+2026-06-06 11:05:24 show_product done 5
+2026-06-06 11:05:26 show_product start 6
+2026-06-06 11:05:26 show_product done 6
+2026-06-06 11:05:28 show_product start 7
+2026-06-06 11:05:28 show_product done 7
+2026-06-06 11:05:30 show_product start 8
+2026-06-06 11:05:30 show_product done 8
+2026-06-06 11:05:31 show_product start 9
+2026-06-06 11:05:31 show_product done 9
+2026-06-06 11:05:32 show_product start 10
+2026-06-06 11:05:32 show_product done 10
+2026-06-06 11:05:42 show_product start 11
+2026-06-06 11:05:42 show_product done 11
+2026-06-06 11:05:43 show_product start 12
+2026-06-06 11:05:43 show_product done 12
+2026-06-06 11:05:44 show_product start 13
+2026-06-06 11:05:44 show_product done 13
+2026-06-06 11:05:45 show_product start 14
+2026-06-06 11:05:45 show_product done 14
+2026-06-06 11:05:46 show_product start 15
+2026-06-06 11:05:46 show_product done 15
+2026-06-06 11:05:47 show_product start 16
+2026-06-06 11:05:47 show_product done 16
+2026-06-06 11:05:48 show_product start 17
+2026-06-06 11:05:48 show_product done 17
+2026-06-06 11:05:49 show_product start 18
+2026-06-06 11:05:49 show_product done 18
+2026-06-06 11:05:50 show_product start 19
+2026-06-06 11:05:50 show_product done 19
+2026-06-06 11:05:51 show_product start 20
+2026-06-06 11:05:51 show_product done 20
+2026-06-06 11:05:52 show_product start 21
+2026-06-06 11:05:52 show_product done 21
+2026-06-06 11:05:53 show_product start 22
+2026-06-06 11:05:53 show_product done 22
+2026-06-06 11:05:54 show_product start 23
+2026-06-06 11:05:54 show_product done 23
+2026-06-06 11:05:55 show_product start 24
+2026-06-06 11:05:55 show_product done 24
+2026-06-06 11:05:56 show_product start 25
+2026-06-06 11:05:56 show_product done 25
+2026-06-06 11:05:56 show_product start 26
+2026-06-06 11:05:56 show_product done 26
+2026-06-06 11:05:56 show_product start 27
+2026-06-06 11:05:56 show_product done 27
+2026-06-06 11:05:56 show_product start 28
+2026-06-06 11:05:56 show_product done 28
+2026-06-06 11:05:57 show_product start 29
+2026-06-06 11:05:57 show_product done 29
+2026-06-06 11:05:57 show_product start 30
+2026-06-06 11:05:57 show_product done 30
+2026-06-06 11:05:57 show_product start 31
+2026-06-06 11:05:57 show_product done 31
+2026-06-06 11:05:58 show_product start 32
+2026-06-06 11:05:58 show_product done 32
+2026-06-06 11:06:02 show_product start 33
+2026-06-06 11:06:02 show_product done 33
+2026-06-06 11:06:04 show_product start 32
+2026-06-06 11:06:04 show_product done 32
+2026-06-06 11:06:07 show_product start 33
+2026-06-06 11:06:07 show_product done 33
+2026-06-06 11:06:11 show_product start 34
+2026-06-06 11:06:11 show_product done 34
+2026-06-06 11:06:11 show_product start 35
+2026-06-06 11:06:11 show_product done 35
+2026-06-06 11:06:14 show_product start 36
+2026-06-06 11:06:14 show_product done 36
+2026-06-06 11:06:15 show_product start 37
+2026-06-06 11:06:15 show_product done 37
+2026-06-06 11:06:21 show_product start 38
+2026-06-06 11:06:21 show_product done 38
+2026-06-06 11:06:24 show_product start 39
+2026-06-06 11:06:24 show_product done 39
+2026-06-06 11:06:25 show_product start 40
+2026-06-06 11:06:25 show_product done 40
+2026-06-06 11:06:25 show_product start 41
+2026-06-06 11:06:25 show_product done 41
+2026-06-06 11:06:27 show_product start 42
+2026-06-06 11:06:27 show_product done 42
+2026-06-06 11:06:28 show_product start 43
+2026-06-06 11:06:28 show_product done 43
+2026-06-06 11:06:37 show_product start 44
+2026-06-06 11:06:37 show_product done 44
+2026-06-06 11:06:39 show_product start 45
+2026-06-06 11:06:39 show_product done 45
+2026-06-06 11:06:42 show_product start 46
+2026-06-06 11:06:42 show_product done 46
+2026-06-06 11:06:46 show_product start 47
+2026-06-06 11:06:46 show_product done 47
+2026-06-06 11:06:48 show_product start 48
+2026-06-06 11:06:48 show_product done 48
+2026-06-06 11:06:49 show_product start 49
+2026-06-06 11:06:49 show_product done 49
+2026-06-06 11:06:49 show_product start 50
+2026-06-06 11:06:49 show_product done 50
+2026-06-06 11:06:51 show_product start 51
+2026-06-06 11:06:51 show_product done 51
+2026-06-06 11:06:54 show_product start 52
+2026-06-06 11:06:54 show_product done 52
+2026-06-06 11:06:55 show_product start 53
+2026-06-06 11:06:55 show_product done 53
+2026-06-06 11:06:56 show_product start 54
+2026-06-06 11:06:56 show_product done 54
+2026-06-06 11:06:57 show_product start 55
+2026-06-06 11:06:57 show_product done 55
+2026-06-06 11:06:58 show_product start 56
+2026-06-06 11:06:58 show_product done 56
+2026-06-06 11:07:00 show_product start 57
+2026-06-06 11:07:00 show_product done 57
+2026-06-06 11:07:02 show_product start 58
+2026-06-06 11:07:02 show_product done 58
+2026-06-06 11:07:02 show_product start 59
+2026-06-06 11:07:02 show_product done 59
+2026-06-06 11:07:03 show_product start 58
+2026-06-06 11:07:03 show_product done 58
+2026-06-06 11:07:07 show_product start 59
+2026-06-06 11:07:07 show_product done 59
+2026-06-06 11:07:09 show_product start 60
+2026-06-06 11:07:09 show_product done 60
+2026-06-06 11:07:11 show_product start 61
+2026-06-06 11:07:11 show_product done 61
+2026-06-06 11:07:12 show_product start 62
+2026-06-06 11:07:12 show_product done 62
+2026-06-06 11:07:13 show_product start 63
+2026-06-06 11:07:13 show_product done 63
+2026-06-06 11:07:14 show_product start 64
+2026-06-06 11:07:14 show_product done 64
+2026-06-06 11:07:14 show_product start 65
+2026-06-06 11:07:14 show_product done 65
+2026-06-06 11:07:14 show_product start 66
+2026-06-06 11:07:14 show_product done 66
+2026-06-06 11:07:14 show_product start 67
+2026-06-06 11:07:14 show_product done 67
+2026-06-06 11:07:14 show_product start 68
+2026-06-06 11:07:14 show_product done 68
+2026-06-06 11:07:15 show_product start 69
+2026-06-06 11:07:15 show_product done 69
+2026-06-06 11:07:15 show_product start 70
+2026-06-06 11:07:15 show_product done 70
+2026-06-06 11:07:15 show_product start 71
+2026-06-06 11:07:15 show_product done 71
+2026-06-06 11:07:15 show_product start 72
+2026-06-06 11:07:15 show_product done 72
+2026-06-06 11:07:15 show_product start 73
+2026-06-06 11:07:15 show_product done 73
+2026-06-06 11:07:16 show_product start 74
+2026-06-06 11:07:16 show_product done 74
+2026-06-06 11:07:16 show_product start 75
+2026-06-06 11:07:16 show_product done 75
+2026-06-06 11:07:16 show_product start 76
+2026-06-06 11:07:16 show_product done 76
+2026-06-06 11:07:16 show_product start 77
+2026-06-06 11:07:16 show_product done 77
+2026-06-06 11:07:16 show_product start 78
+2026-06-06 11:07:16 show_product done 78
+2026-06-06 11:07:23 show_product start 79
+2026-06-06 11:07:23 show_product done 79
+2026-06-06 11:07:24 show_product start 80
+2026-06-06 11:07:24 show_product done 80
+2026-06-06 11:07:25 show_product start 81
+2026-06-06 11:07:25 show_product done 81
+2026-06-06 11:08:14 show_product start 82
+2026-06-06 11:08:14 show_product done 82
+2026-06-06 11:08:16 show_product start 83
+2026-06-06 11:08:16 show_product done 83
+2026-06-06 11:08:17 show_product start 84
+2026-06-06 11:08:17 show_product done 84
+2026-06-06 11:08:19 show_product start 85
+2026-06-06 11:08:19 show_product done 85
+2026-06-06 11:08:20 show_product start 86
+2026-06-06 11:08:20 show_product done 86
+2026-06-06 11:08:22 show_product start 87
+2026-06-06 11:08:22 show_product done 87
+2026-06-06 11:08:23 show_product start 88
+2026-06-06 11:08:23 show_product done 88
+2026-06-06 11:08:24 show_product start 89
+2026-06-06 11:08:24 show_product done 89
+2026-06-06 11:08:25 show_product start 90
+2026-06-06 11:08:25 show_product done 90
+2026-06-06 11:08:26 show_product start 91
+2026-06-06 11:08:26 show_product done 91
+2026-06-06 11:08:28 show_product start 92
+2026-06-06 11:08:28 show_product done 92
+2026-06-06 11:08:29 show_product start 93
+2026-06-06 11:08:29 show_product done 93
+2026-06-06 11:08:29 show_product start 94
+2026-06-06 11:08:29 show_product done 94
+2026-06-06 11:08:30 show_product start 95
+2026-06-06 11:08:30 show_product done 95
+2026-06-06 11:08:31 show_product start 96
+2026-06-06 11:08:31 show_product done 96
+2026-06-06 11:08:31 show_product start 97
+2026-06-06 11:08:31 show_product done 97
+2026-06-06 11:08:31 show_product start 98
+2026-06-06 11:08:31 show_product done 98
+2026-06-06 11:08:31 show_product start 99
+2026-06-06 11:08:31 show_product done 99
+2026-06-06 11:08:32 show_product start 100
+2026-06-06 11:08:32 show_product done 100
+2026-06-06 11:08:32 show_product start 101
+2026-06-06 11:08:32 show_product done 101
+2026-06-06 11:08:32 show_product start 102
+2026-06-06 11:08:32 show_product done 102
+2026-06-06 11:08:32 show_product start 103
+2026-06-06 11:08:32 show_product done 103
+2026-06-06 11:08:32 show_product start 104
+2026-06-06 11:08:32 show_product done 104
+2026-06-06 11:08:32 show_product start 105
+2026-06-06 11:08:32 show_product done 105
+2026-06-06 11:08:34 show_product start 106
+2026-06-06 11:08:34 show_product done 106
+2026-06-06 11:08:34 show_product start 107
+2026-06-06 11:08:34 show_product done 107
+2026-06-06 11:08:34 show_product start 108
+2026-06-06 11:08:35 show_product done 108
+2026-06-06 11:08:35 show_product start 109
+2026-06-06 11:08:35 show_product done 109
+2026-06-06 11:08:35 show_product start 110
+2026-06-06 11:08:35 show_product done 110
+2026-06-06 11:08:35 show_product start 111
+2026-06-06 11:08:35 show_product done 111
+2026-06-06 11:08:36 show_product start 112
+2026-06-06 11:08:36 show_product done 112
+2026-06-06 11:08:37 show_product start 113
+2026-06-06 11:08:37 show_product done 113
+2026-06-06 11:08:37 show_product start 114
+2026-06-06 11:08:37 show_product done 114
+2026-06-06 11:08:40 show_product start 115
+2026-06-06 11:08:40 show_product done 115
+2026-06-06 11:08:41 show_product start 116
+2026-06-06 11:08:41 show_product done 116
+2026-06-06 11:08:42 show_product start 117
+2026-06-06 11:08:42 show_product done 117
+2026-06-06 11:08:44 show_product start 118
+2026-06-06 11:08:44 show_product done 118
+2026-06-06 11:08:44 show_product start 119
+2026-06-06 11:08:44 show_product done 119
+2026-06-06 11:08:45 show_product start 120
+2026-06-06 11:08:45 show_product done 120
+2026-06-06 11:08:45 show_product start 121
+2026-06-06 11:08:45 show_product done 121
+2026-06-06 11:08:46 show_product start 122
+2026-06-06 11:08:46 show_product done 122
+2026-06-06 11:08:48 show_product start 123
+2026-06-06 11:08:48 show_product done 123
+2026-06-06 11:08:49 show_product start 124
+2026-06-06 11:08:49 show_product done 124
+2026-06-06 11:08:49 show_product start 125
+2026-06-06 11:08:49 show_product done 125
+2026-06-06 11:08:50 show_product start 126
+2026-06-06 11:08:50 show_product done 126
+2026-06-06 11:08:51 show_product start 127
+2026-06-06 11:08:51 show_product done 127
+2026-06-06 11:08:52 show_product start 128
+2026-06-06 11:08:52 show_product done 128
+2026-06-06 11:08:53 show_product start 129
+2026-06-06 11:08:53 show_product done 129
+2026-06-06 11:08:53 show_product start 130
+2026-06-06 11:08:53 show_product done 130
+2026-06-06 11:08:54 show_product start 131
+2026-06-06 11:08:54 show_product done 131
+2026-06-06 11:08:54 show_product start 132
+2026-06-06 11:08:54 show_product done 132
+2026-06-06 11:08:55 show_product start 133
+2026-06-06 11:08:55 show_product done 133
+2026-06-06 11:08:55 show_product start 134
+2026-06-06 11:08:55 show_product done 134
+2026-06-06 11:08:56 show_product start 135
+2026-06-06 11:08:56 show_product done 135
+2026-06-06 11:08:56 show_product start 136
+2026-06-06 11:08:56 show_product done 136
+2026-06-06 11:08:57 show_product start 137
+2026-06-06 11:08:57 show_product done 137
+2026-06-06 11:08:57 show_product start 138
+2026-06-06 11:08:57 show_product done 138
+2026-06-06 11:08:57 show_product start 139
+2026-06-06 11:08:57 show_product done 139
+2026-06-06 11:08:57 show_product start 140
+2026-06-06 11:08:57 show_product done 140
+2026-06-06 11:08:57 show_product start 141
+2026-06-06 11:08:58 show_product done 141
+2026-06-06 11:08:58 show_product start 142
+2026-06-06 11:08:58 show_product done 142
+2026-06-06 11:08:58 show_product start 143
+2026-06-06 11:08:58 show_product done 143
+2026-06-06 11:08:59 show_product start 144
+2026-06-06 11:08:59 show_product done 144
+2026-06-06 11:08:59 show_product start 145
+2026-06-06 11:08:59 show_product done 145
+2026-06-06 11:08:59 show_product start 146
+2026-06-06 11:08:59 show_product done 146
+2026-06-06 11:09:00 show_product start 147
+2026-06-06 11:09:00 show_product done 147
+2026-06-06 11:09:00 show_product start 148
+2026-06-06 11:09:00 show_product done 148
+2026-06-06 11:09:00 show_product start 149
+2026-06-06 11:09:00 show_product done 149
+2026-06-06 11:09:00 show_product start 150
+2026-06-06 11:09:00 show_product done 150
+2026-06-06 11:09:00 show_product start 151
+2026-06-06 11:09:00 show_product done 151
+2026-06-06 11:09:00 show_product start 152
+2026-06-06 11:09:00 show_product done 152
+2026-06-06 11:09:00 show_product start 153
+2026-06-06 11:09:00 show_product done 153
+2026-06-06 11:09:01 show_product start 154
+2026-06-06 11:09:01 show_product done 154
+2026-06-06 11:09:01 show_product start 155
+2026-06-06 11:09:01 show_product done 155
+2026-06-06 11:09:02 show_product start 156
+2026-06-06 11:09:02 show_product done 156
+2026-06-06 11:09:02 show_product start 157
+2026-06-06 11:09:02 show_product done 157
+2026-06-06 11:09:02 show_product start 158
+2026-06-06 11:09:02 show_product done 158
+2026-06-06 11:09:02 show_product start 159
+2026-06-06 11:09:02 show_product done 159
+2026-06-06 11:09:02 show_product start 160
+2026-06-06 11:09:02 show_product done 160
+2026-06-06 11:09:05 show_product start 161
+2026-06-06 11:09:05 show_product done 161
+2026-06-06 11:09:05 show_product start 162
+2026-06-06 11:09:05 show_product done 162
+2026-06-06 11:09:05 show_product start 163
+2026-06-06 11:09:05 show_product done 163
+2026-06-06 11:09:07 show_product start 164
+2026-06-06 11:09:07 show_product done 164
+2026-06-06 11:09:07 show_product start 165
+2026-06-06 11:09:07 show_product done 165
+2026-06-06 11:09:07 show_product start 166
+2026-06-06 11:09:07 show_product done 166
+2026-06-06 11:09:07 show_product start 167
+2026-06-06 11:09:07 show_product done 167
+2026-06-06 11:09:07 show_product start 168
+2026-06-06 11:09:08 show_product done 168
+2026-06-06 11:09:08 show_product start 169
+2026-06-06 11:09:08 show_product done 169
+2026-06-06 11:09:08 show_product start 170
+2026-06-06 11:09:08 show_product done 170
+2026-06-06 11:09:08 show_product start 171
+2026-06-06 11:09:08 show_product done 171
+2026-06-06 11:09:08 show_product start 172
+2026-06-06 11:09:08 show_product done 172
+2026-06-06 11:09:08 show_product start 173
+2026-06-06 11:09:08 show_product done 173
+2026-06-06 11:09:08 show_product start 174
+2026-06-06 11:09:08 show_product done 174
+2026-06-06 11:09:09 show_product start 175
+2026-06-06 11:09:09 show_product done 175
+2026-06-06 11:09:10 show_product start 176
+2026-06-06 11:09:10 show_product done 176
+2026-06-06 11:09:10 show_product start 177
+2026-06-06 11:09:10 show_product done 177
+2026-06-06 11:09:11 show_product start 178
+2026-06-06 11:09:11 show_product done 178
+2026-06-06 11:09:11 show_product start 179
+2026-06-06 11:09:11 show_product done 179
+2026-06-06 11:09:12 show_product start 180
+2026-06-06 11:09:12 show_product done 180
+2026-06-06 11:09:12 show_product start 181
+2026-06-06 11:09:12 show_product done 181
+2026-06-06 11:09:13 show_product start 182
+2026-06-06 11:09:13 show_product done 182
+2026-06-06 11:09:13 show_product start 183
+2026-06-06 11:09:13 show_product done 183
+2026-06-06 11:09:13 show_product start 184
+2026-06-06 11:09:13 show_product done 184
+2026-06-06 11:09:14 show_product start 185
+2026-06-06 11:09:14 show_product done 185
+2026-06-06 11:09:14 show_product start 186
+2026-06-06 11:09:14 show_product done 186
+2026-06-06 11:09:14 show_product start 187
+2026-06-06 11:09:14 show_product done 187
+2026-06-06 11:09:14 show_product start 188
+2026-06-06 11:09:14 show_product done 188
+2026-06-06 11:09:14 show_product start 189
+2026-06-06 11:09:14 show_product done 189
+2026-06-06 11:09:14 show_product start 190
+2026-06-06 11:09:14 show_product done 190
+2026-06-06 11:09:15 show_product start 191
+2026-06-06 11:09:15 show_product done 191
+2026-06-06 11:09:15 show_product start 192
+2026-06-06 11:09:15 show_product done 192
+2026-06-06 11:09:15 show_product start 193
+2026-06-06 11:09:15 show_product done 193
+2026-06-06 11:09:15 show_product start 194
+2026-06-06 11:09:15 show_product done 194
+2026-06-06 11:09:15 show_product start 0
+2026-06-06 11:09:15 show_product done 0
+2026-06-06 11:09:15 show_product start 1
+2026-06-06 11:09:16 show_product done 1
+2026-06-06 11:09:16 show_product start 2
+2026-06-06 11:09:16 show_product done 2
+2026-06-06 11:09:16 show_product start 3
+2026-06-06 11:09:16 show_product done 3
+2026-06-06 11:09:16 show_product start 4
+2026-06-06 11:09:16 show_product done 4
+2026-06-06 11:22:52 show_product start 3
+2026-06-06 11:22:52 show_product done 3
+2026-06-06 11:22:52 show_product start 2
+2026-06-06 11:22:52 show_product done 2
+2026-06-06 11:22:53 show_product start 1
+2026-06-06 11:22:53 show_product done 1
+2026-06-06 11:22:53 show_product start 0
+2026-06-06 11:22:53 show_product done 0
+2026-06-06 11:22:53 show_product start 194
+2026-06-06 11:22:53 show_product done 194
+2026-06-06 11:22:53 show_product start 193
+2026-06-06 11:22:53 show_product done 193
+2026-06-06 12:02:14 load_all start
+2026-06-06 12:02:14 read prev report start
+2026-06-06 12:02:14 read prev report done rows=166
+2026-06-06 12:02:14 read curr report start
+2026-06-06 12:02:14 read curr report done rows=90
+2026-06-06 12:02:14 read boost csv start
+2026-06-06 12:02:14 read boost csv done rows=168
+2026-06-06 12:02:14 read exclude csv start
+2026-06-06 12:02:14 read exclude csv done rows=91
+2026-06-06 12:02:14 build products start
+2026-06-06 12:02:14 build products done rows=195
+2026-06-06 12:02:14 apply filter start
+2026-06-06 12:02:14 tree render done; queue show product
+2026-06-06 12:02:14 apply filter queued
+2026-06-06 12:02:14 show_product start 0
+2026-06-06 12:02:14 show_product done 0
+2026-06-06 12:02:15 item info load start
+2026-06-06 12:02:15 read item csv map start
+2026-06-06 12:02:15 read item csv map done rows=194
+2026-06-06 12:02:15 tree render done; queue show product
+2026-06-06 12:02:15 show_product start 0
+2026-06-06 12:02:15 show_product done 0
+2026-06-06 12:02:17 show_product start 0
+2026-06-06 12:02:17 show_product done 0
+2026-06-06 12:02:49 show_product start 1
+2026-06-06 12:02:49 show_product done 1
+2026-06-06 12:02:50 show_product start 2
+2026-06-06 12:02:50 show_product done 2
+2026-06-06 12:02:51 show_product start 3
+2026-06-06 12:02:51 show_product done 3
+2026-06-06 12:02:51 show_product start 4
+2026-06-06 12:02:51 show_product done 4
+2026-06-06 12:02:52 show_product start 5
+2026-06-06 12:02:52 show_product done 5
+2026-06-06 12:02:53 show_product start 4
+2026-06-06 12:02:53 show_product done 4
+2026-06-06 12:02:53 show_product start 3
+2026-06-06 12:02:53 show_product done 3
+2026-06-06 12:03:01 show_product start 4
+2026-06-06 12:03:01 show_product done 4
+2026-06-06 12:03:01 show_product start 5
+2026-06-06 12:03:01 show_product done 5
+2026-06-06 12:03:01 show_product start 6
+2026-06-06 12:03:01 show_product done 6
+2026-06-06 12:03:02 show_product start 7
+2026-06-06 12:03:02 show_product done 7
+2026-06-06 12:03:02 show_product start 8
+2026-06-06 12:03:02 show_product done 8
+2026-06-06 12:03:02 show_product start 9
+2026-06-06 12:03:02 show_product done 9
+2026-06-06 12:03:02 show_product start 10
+2026-06-06 12:03:02 show_product done 10
+2026-06-06 12:03:02 show_product start 11
+2026-06-06 12:03:02 show_product done 11
+2026-06-06 12:03:12 show_product start 12
+2026-06-06 12:03:13 show_product done 12
+2026-06-06 12:03:13 show_product start 13
+2026-06-06 12:03:13 show_product done 13
+2026-06-06 12:03:13 show_product start 14
+2026-06-06 12:03:13 show_product done 14
+2026-06-06 12:03:14 show_product start 15
+2026-06-06 12:03:14 show_product done 15
+2026-06-06 12:03:18 tree render done; queue show product
+2026-06-06 12:03:18 show_product start 15
+2026-06-06 12:03:18 show_product done 15
+2026-06-06 12:03:19 tree render done; queue show product
+2026-06-06 12:03:20 show_product start 15
+2026-06-06 12:03:20 show_product done 15
+2026-06-06 12:03:21 tree render done; queue show product
+2026-06-06 12:03:21 show_product start 15
+2026-06-06 12:03:22 show_product done 15
+2026-06-06 12:03:22 tree render done; queue show product
+2026-06-06 12:03:22 show_product start 15
+2026-06-06 12:03:22 show_product done 15
+2026-06-06 12:03:23 show_product start 16
+2026-06-06 12:03:23 show_product done 16
+2026-06-06 12:03:23 show_product start 17
+2026-06-06 12:03:23 show_product done 17
+2026-06-06 12:03:23 show_product start 18
+2026-06-06 12:03:23 show_product done 18
+2026-06-06 12:03:24 show_product start 19
+2026-06-06 12:03:24 show_product done 19
+2026-06-06 12:03:24 show_product start 20
+2026-06-06 12:03:24 show_product done 20
+2026-06-06 12:03:24 show_product start 21
+2026-06-06 12:03:24 show_product done 21
+2026-06-06 12:03:24 show_product start 22
+2026-06-06 12:03:24 show_product done 22
+2026-06-06 12:03:24 show_product start 23
+2026-06-06 12:03:24 show_product done 23
+2026-06-06 12:03:24 show_product start 24
+2026-06-06 12:03:24 show_product done 24
+2026-06-06 12:03:24 show_product start 25
+2026-06-06 12:03:24 show_product done 25
+2026-06-06 12:03:25 show_product start 26
+2026-06-06 12:03:25 show_product done 26
+2026-06-06 12:03:25 show_product start 25
+2026-06-06 12:03:25 show_product done 25
+2026-06-06 12:03:25 show_product start 24
+2026-06-06 12:03:25 show_product done 24
+2026-06-06 12:03:25 show_product start 23
+2026-06-06 12:03:25 show_product done 23
+2026-06-06 12:03:26 show_product start 24
+2026-06-06 12:03:26 show_product done 24
+2026-06-06 12:03:26 show_product start 25
+2026-06-06 12:03:26 show_product done 25
+2026-06-06 12:03:26 show_product start 26
+2026-06-06 12:03:26 show_product done 26
+2026-06-06 12:03:27 show_product start 27
+2026-06-06 12:03:27 show_product done 27
+2026-06-06 12:03:27 show_product start 28
+2026-06-06 12:03:27 show_product done 28
+2026-06-06 12:03:28 show_product start 29
+2026-06-06 12:03:28 show_product done 29
+2026-06-06 12:03:28 show_product start 30
+2026-06-06 12:03:28 show_product done 30
+2026-06-06 12:03:29 show_product start 31
+2026-06-06 12:03:29 show_product done 31
+2026-06-06 12:03:29 show_product start 32
+2026-06-06 12:03:29 show_product done 32
+2026-06-06 12:03:29 show_product start 33
+2026-06-06 12:03:29 show_product done 33
+2026-06-06 12:03:30 show_product start 34
+2026-06-06 12:03:30 show_product done 34
+2026-06-06 12:03:30 show_product start 35
+2026-06-06 12:03:30 show_product done 35
+2026-06-06 12:03:30 show_product start 36
+2026-06-06 12:03:30 show_product done 36
+2026-06-06 12:03:30 show_product start 37
+2026-06-06 12:03:30 show_product done 37
+2026-06-06 12:03:31 show_product start 38
+2026-06-06 12:03:31 show_product done 38
+2026-06-06 12:03:31 show_product start 39
+2026-06-06 12:03:31 show_product done 39
+2026-06-06 12:03:31 show_product start 40
+2026-06-06 12:03:31 show_product done 40
+2026-06-06 12:03:31 show_product start 41
+2026-06-06 12:03:31 show_product done 41
+2026-06-06 12:03:32 show_product start 42
+2026-06-06 12:03:32 show_product done 42
+2026-06-06 12:03:32 show_product start 43
+2026-06-06 12:03:32 show_product done 43
+2026-06-06 12:03:32 show_product start 44
+2026-06-06 12:03:32 show_product done 44
+2026-06-06 12:03:32 show_product start 45
+2026-06-06 12:03:32 show_product done 45
+2026-06-06 12:03:32 show_product start 46
+2026-06-06 12:03:32 show_product done 46
+2026-06-06 12:03:32 show_product start 47
+2026-06-06 12:03:32 show_product done 47
+2026-06-06 12:03:33 show_product start 48
+2026-06-06 12:03:33 show_product done 48
+2026-06-06 12:03:33 show_product start 49
+2026-06-06 12:03:33 show_product done 49
+2026-06-06 12:03:33 show_product start 50
+2026-06-06 12:03:33 show_product done 50
+2026-06-06 12:03:33 show_product start 51
+2026-06-06 12:03:33 show_product done 51
+2026-06-06 12:03:33 show_product start 52
+2026-06-06 12:03:34 show_product done 52
+2026-06-06 12:03:34 show_product start 53
+2026-06-06 12:03:34 show_product done 53
+2026-06-06 12:03:34 show_product start 54
+2026-06-06 12:03:34 show_product done 54
+2026-06-06 12:03:34 show_product start 55
+2026-06-06 12:03:34 show_product done 55
+2026-06-06 12:03:34 show_product start 56
+2026-06-06 12:03:34 show_product done 56
+2026-06-06 12:03:34 show_product start 57
+2026-06-06 12:03:34 show_product done 57
+2026-06-06 12:03:34 show_product start 58
+2026-06-06 12:03:34 show_product done 58
+2026-06-06 12:03:35 show_product start 59
+2026-06-06 12:03:35 show_product done 59
+2026-06-06 12:03:36 show_product start 58
+2026-06-06 12:03:36 show_product done 58
+2026-06-06 12:03:36 show_product start 57
+2026-06-06 12:03:36 show_product done 57
+2026-06-06 12:03:38 tree render done; queue show product
+2026-06-06 12:03:38 show_product start 57
+2026-06-06 12:03:38 show_product done 57
+2026-06-06 12:03:39 tree render done; queue show product
+2026-06-06 12:03:39 show_product start 57
+2026-06-06 12:03:39 show_product done 57
+2026-06-06 12:03:39 show_product start 58
+2026-06-06 12:03:39 show_product done 58
+2026-06-06 12:03:40 show_product start 59
+2026-06-06 12:03:40 show_product done 59
+2026-06-06 12:03:40 show_product start 60
+2026-06-06 12:03:40 show_product done 60
+2026-06-06 12:03:41 show_product start 61
+2026-06-06 12:03:41 show_product done 61
+2026-06-06 12:03:41 show_product start 62
+2026-06-06 12:03:41 show_product done 62
+2026-06-06 12:03:42 show_product start 61
+2026-06-06 12:03:42 show_product done 61
+2026-06-06 12:03:42 show_product start 62
+2026-06-06 12:03:42 show_product done 62
+2026-06-06 12:03:42 show_product start 63
+2026-06-06 12:03:42 show_product done 63
+2026-06-06 12:03:42 show_product start 64
+2026-06-06 12:03:42 show_product done 64
+2026-06-06 12:03:42 show_product start 65
+2026-06-06 12:03:42 show_product done 65
+2026-06-06 12:03:42 show_product start 66
+2026-06-06 12:03:42 show_product done 66
+2026-06-06 12:03:43 show_product start 67
+2026-06-06 12:03:43 show_product done 67
+2026-06-06 12:03:43 show_product start 68
+2026-06-06 12:03:43 show_product done 68
+2026-06-06 12:03:43 show_product start 69
+2026-06-06 12:03:43 show_product done 69
+2026-06-06 12:03:43 show_product start 70
+2026-06-06 12:03:43 show_product done 70
+2026-06-06 12:03:43 show_product start 71
+2026-06-06 12:03:43 show_product done 71
+2026-06-06 12:03:43 show_product start 72
+2026-06-06 12:03:43 show_product done 72
+2026-06-06 12:03:43 show_product start 73
+2026-06-06 12:03:43 show_product done 73
+2026-06-06 12:03:44 show_product start 74
+2026-06-06 12:03:44 show_product done 74
+2026-06-06 12:03:44 show_product start 75
+2026-06-06 12:03:44 show_product done 75
+2026-06-06 12:03:44 show_product start 76
+2026-06-06 12:03:44 show_product done 76
+2026-06-06 12:03:44 show_product start 77
+2026-06-06 12:03:44 show_product done 77
+2026-06-06 12:03:44 show_product start 78
+2026-06-06 12:03:44 show_product done 78
+2026-06-06 12:03:44 show_product start 79
+2026-06-06 12:03:44 show_product done 79
+2026-06-06 12:03:44 show_product start 80
+2026-06-06 12:03:44 show_product done 80
+2026-06-06 12:03:44 show_product start 81
+2026-06-06 12:03:44 show_product done 81
+2026-06-06 12:03:44 show_product start 82
+2026-06-06 12:03:44 show_product done 82
+2026-06-06 12:03:44 show_product start 83
+2026-06-06 12:03:44 show_product done 83
+2026-06-06 12:03:44 show_product start 84
+2026-06-06 12:03:44 show_product done 84
+2026-06-06 12:03:44 show_product start 85
+2026-06-06 12:03:44 show_product done 85
+2026-06-06 12:03:44 show_product start 86
+2026-06-06 12:03:44 show_product done 86
+2026-06-06 12:03:44 show_product start 87
+2026-06-06 12:03:44 show_product done 87
+2026-06-06 12:03:45 show_product start 88
+2026-06-06 12:03:45 show_product done 88
+2026-06-06 12:03:45 show_product start 89
+2026-06-06 12:03:45 show_product done 89
+2026-06-06 12:03:45 show_product start 90
+2026-06-06 12:03:45 show_product done 90
+2026-06-06 12:03:45 show_product start 91
+2026-06-06 12:03:45 show_product done 91
+2026-06-06 12:03:45 show_product start 92
+2026-06-06 12:03:45 show_product done 92
+2026-06-06 12:03:45 show_product start 93
+2026-06-06 12:03:45 show_product done 93
+2026-06-06 12:03:45 show_product start 94
+2026-06-06 12:03:45 show_product done 94
+2026-06-06 12:03:45 show_product start 95
+2026-06-06 12:03:45 show_product done 95
+2026-06-06 12:03:45 show_product start 96
+2026-06-06 12:03:45 show_product done 96
+2026-06-06 12:03:45 show_product start 97
+2026-06-06 12:03:45 show_product done 97
+2026-06-06 12:03:45 show_product start 98
+2026-06-06 12:03:45 show_product done 98
+2026-06-06 12:03:46 show_product start 99
+2026-06-06 12:03:46 show_product done 99
+2026-06-06 12:03:46 show_product start 100
+2026-06-06 12:03:46 show_product done 100
+2026-06-06 12:03:46 show_product start 101
+2026-06-06 12:03:46 show_product done 101
+2026-06-06 12:03:46 show_product start 102
+2026-06-06 12:03:46 show_product done 102
+2026-06-06 12:03:46 show_product start 103
+2026-06-06 12:03:46 show_product done 103
+2026-06-06 12:03:46 show_product start 104
+2026-06-06 12:03:46 show_product done 104
+2026-06-06 12:03:46 show_product start 105
+2026-06-06 12:03:46 show_product done 105
+2026-06-06 12:03:50 show_product start 106
+2026-06-06 12:03:50 show_product done 106
+2026-06-06 12:03:50 show_product start 107
+2026-06-06 12:03:50 show_product done 107
+2026-06-06 12:03:50 show_product start 108
+2026-06-06 12:03:50 show_product done 108
+2026-06-06 12:03:50 show_product start 109
+2026-06-06 12:03:50 show_product done 109
+2026-06-06 12:03:50 show_product start 110
+2026-06-06 12:03:51 show_product done 110
+2026-06-06 12:03:51 show_product start 111
+2026-06-06 12:03:51 show_product done 111
+2026-06-06 12:03:51 show_product start 112
+2026-06-06 12:03:51 show_product done 112
+2026-06-06 12:03:51 show_product start 113
+2026-06-06 12:03:51 show_product done 113
+2026-06-06 12:03:51 show_product start 114
+2026-06-06 12:03:51 show_product done 114
+2026-06-06 12:03:51 show_product start 115
+2026-06-06 12:03:51 show_product done 115
+2026-06-06 12:03:51 show_product start 116
+2026-06-06 12:03:51 show_product done 116
+2026-06-06 12:03:51 show_product start 117
+2026-06-06 12:03:51 show_product done 117
+2026-06-06 12:03:51 show_product start 118
+2026-06-06 12:03:51 show_product done 118
+2026-06-06 12:03:51 show_product start 119
+2026-06-06 12:03:51 show_product done 119
+2026-06-06 12:03:51 show_product start 120
+2026-06-06 12:03:51 show_product done 120
+2026-06-06 12:03:51 show_product start 121
+2026-06-06 12:03:51 show_product done 121
+2026-06-06 12:03:51 show_product start 122
+2026-06-06 12:03:51 show_product done 122
+2026-06-06 12:03:51 show_product start 123
+2026-06-06 12:03:51 show_product done 123
+2026-06-06 12:03:51 show_product start 124
+2026-06-06 12:03:52 show_product done 124
+2026-06-06 12:03:52 show_product start 125
+2026-06-06 12:03:52 show_product done 125
+2026-06-06 12:03:52 show_product start 126
+2026-06-06 12:03:52 show_product done 126
+2026-06-06 12:03:52 show_product start 127
+2026-06-06 12:03:52 show_product done 127
+2026-06-06 12:03:52 show_product start 128
+2026-06-06 12:03:52 show_product done 128
+2026-06-06 12:03:52 show_product start 129
+2026-06-06 12:03:52 show_product done 129
+2026-06-06 12:03:52 show_product start 130
+2026-06-06 12:03:52 show_product done 130
+2026-06-06 12:03:52 show_product start 131
+2026-06-06 12:03:52 show_product done 131
+2026-06-06 12:03:53 show_product start 130
+2026-06-06 12:03:53 show_product done 130
+2026-06-06 12:03:53 show_product start 129
+2026-06-06 12:03:53 show_product done 129
+2026-06-06 12:03:53 show_product start 128
+2026-06-06 12:03:53 show_product done 128
+2026-06-06 12:03:54 show_product start 127
+2026-06-06 12:03:54 show_product done 127
+2026-06-06 12:03:54 show_product start 126
+2026-06-06 12:03:54 show_product done 126
+2026-06-06 12:03:54 show_product start 125
+2026-06-06 12:03:54 show_product done 125
+2026-06-06 12:03:55 show_product start 124
+2026-06-06 12:03:55 show_product done 124
+2026-06-06 12:03:55 show_product start 125
+2026-06-06 12:03:55 show_product done 125
+2026-06-06 12:04:00 tree render done; queue show product
+2026-06-06 12:04:00 show_product start 125
+2026-06-06 12:04:00 show_product done 125
+2026-06-06 12:04:00 tree render done; queue show product
+2026-06-06 12:04:00 show_product start 125
+2026-06-06 12:04:00 show_product done 125
+2026-06-06 12:04:01 show_product start 126
+2026-06-06 12:04:01 show_product done 126
+2026-06-06 12:31:35 show_product start 127
+2026-06-06 12:31:35 show_product done 127
+2026-06-06 12:31:37 show_product start 126
+2026-06-06 12:31:37 show_product done 126
+2026-06-06 12:31:38 show_product start 127
+2026-06-06 12:31:38 show_product done 127
+2026-06-06 12:31:40 show_product start 126
+2026-06-06 12:31:40 show_product done 126
+2026-06-06 12:31:40 show_product start 125
+2026-06-06 12:31:40 show_product done 125
+2026-06-06 12:31:40 show_product start 124
+2026-06-06 12:31:40 show_product done 124
+2026-06-06 12:31:41 show_product start 123
+2026-06-06 12:31:41 show_product done 123
+2026-06-06 12:31:41 show_product start 122
+2026-06-06 12:31:41 show_product done 122
+2026-06-06 12:31:41 show_product start 121
+2026-06-06 12:31:41 show_product done 121
+2026-06-06 12:31:45 show_product start 127
+2026-06-06 12:31:45 show_product done 127
+2026-06-06 12:31:48 show_product start 127
+2026-06-06 12:31:48 show_product done 127
+2026-06-06 12:32:08 show_product start 128
+2026-06-06 12:32:08 show_product done 128
+2026-06-06 12:32:08 show_product start 129
+2026-06-06 12:32:08 show_product done 129
+2026-06-06 12:40:07 show_product start 129
+2026-06-06 12:40:07 show_product done 129
+2026-06-06 12:51:43 load_all start
+2026-06-06 12:51:43 read prev report start
+2026-06-06 12:51:43 read prev report done rows=166
+2026-06-06 12:51:43 read curr report start
+2026-06-06 12:51:43 read curr report done rows=90
+2026-06-06 12:51:43 read boost csv start
+2026-06-06 12:51:43 read boost csv done rows=168
+2026-06-06 12:51:43 read exclude csv start
+2026-06-06 12:51:43 read exclude csv done rows=91
+2026-06-06 12:51:43 build products start
+2026-06-06 12:51:43 build products done rows=195
+2026-06-06 12:51:43 apply filter start
+2026-06-06 12:51:43 tree render done; queue show product
+2026-06-06 12:51:43 apply filter queued
+2026-06-06 12:51:43 show_product start 0
+2026-06-06 12:51:43 show_product done 0
+2026-06-06 12:51:44 item info load start
+2026-06-06 12:51:44 read item csv map start
+2026-06-06 12:51:44 read item csv map done rows=194
+2026-06-06 12:51:44 tree render done; queue show product
+2026-06-06 12:51:44 show_product start 0
+2026-06-06 12:51:44 show_product done 0
+2026-06-06 13:24:16 load_all start
+2026-06-06 13:24:16 read prev report start
+2026-06-06 13:24:16 read prev report done rows=166
+2026-06-06 13:24:16 read curr report start
+2026-06-06 13:24:16 read curr report done rows=90
+2026-06-06 13:24:16 read boost csv start
+2026-06-06 13:24:16 read boost csv done rows=168
+2026-06-06 13:24:16 read exclude csv start
+2026-06-06 13:24:16 read exclude csv done rows=91
+2026-06-06 13:24:16 build products start
+2026-06-06 13:24:16 build products done rows=195
+2026-06-06 13:24:16 apply filter start
+2026-06-06 13:24:16 tree render done; queue show product
+2026-06-06 13:24:16 apply filter queued
+2026-06-06 13:24:16 show_product start 0
+2026-06-06 13:24:16 show_product done 0
+2026-06-06 13:24:16 item info load start
+2026-06-06 13:24:16 read item csv map start
+2026-06-06 13:24:17 read item csv map done rows=194
+2026-06-06 13:24:17 tree render done; queue show product
+2026-06-06 13:24:17 show_product start 0
+2026-06-06 13:24:17 show_product done 0
+2026-06-06 13:35:06 load_all start
+2026-06-06 13:35:07 read prev report start
+2026-06-06 13:35:07 read prev report done rows=166
+2026-06-06 13:35:07 read curr report start
+2026-06-06 13:35:07 read curr report done rows=90
+2026-06-06 13:35:07 read boost csv start
+2026-06-06 13:35:07 read boost csv done rows=168
+2026-06-06 13:35:07 read exclude csv start
+2026-06-06 13:35:07 read exclude csv done rows=91
+2026-06-06 13:35:07 build products start
+2026-06-06 13:35:07 build products done rows=195
+2026-06-06 13:35:07 apply filter start
+2026-06-06 13:35:07 tree render done; queue show product
+2026-06-06 13:35:07 apply filter queued
+2026-06-06 13:35:07 show_product start 0
+2026-06-06 13:35:07 show_product done 0
+2026-06-06 13:35:07 item info load start
+2026-06-06 13:35:07 read item csv map start
+2026-06-06 13:35:07 read item csv map done rows=194
+2026-06-06 13:35:07 tree render done; queue show product
+2026-06-06 13:35:07 show_product start 0
+2026-06-06 13:35:07 show_product done 0
+2026-06-06 13:35:14 show_product start 0
+2026-06-06 13:35:14 show_product done 0
+2026-06-06 13:36:10 show_product start 1
+2026-06-06 13:36:10 show_product done 1
+2026-06-06 13:36:11 show_product start 2
+2026-06-06 13:36:11 show_product done 2
+2026-06-06 13:36:12 show_product start 3
+2026-06-06 13:36:12 show_product done 3
+2026-06-06 13:36:13 show_product start 4
+2026-06-06 13:36:13 show_product done 4
+2026-06-06 13:36:14 show_product start 5
+2026-06-06 13:36:14 show_product done 5
+2026-06-06 13:36:46 show_product start 6
+2026-06-06 13:36:46 show_product done 6
+2026-06-06 13:36:46 show_product start 7
+2026-06-06 13:36:46 show_product done 7
+2026-06-06 13:36:46 show_product start 8
+2026-06-06 13:36:46 show_product done 8
+2026-06-06 13:36:46 show_product start 9
+2026-06-06 13:36:46 show_product done 9
+2026-06-06 13:36:46 show_product start 10
+2026-06-06 13:36:46 show_product done 10
+2026-06-06 13:36:46 show_product start 11
+2026-06-06 13:36:47 show_product done 11
+2026-06-06 13:36:47 show_product start 12
+2026-06-06 13:36:47 show_product done 12
+2026-06-06 13:36:47 show_product start 13
+2026-06-06 13:36:47 show_product done 13
+2026-06-06 13:36:47 show_product start 14
+2026-06-06 13:36:47 show_product done 14
+2026-06-06 13:36:47 show_product start 15
+2026-06-06 13:36:47 show_product done 15
+2026-06-06 13:36:47 show_product start 16
+2026-06-06 13:36:47 show_product done 16
+2026-06-06 13:36:47 show_product start 17
+2026-06-06 13:36:47 show_product done 17
+2026-06-06 13:36:47 show_product start 18
+2026-06-06 13:36:47 show_product done 18
+2026-06-06 13:36:47 show_product start 19
+2026-06-06 13:36:47 show_product done 19
+2026-06-06 13:36:47 show_product start 20
+2026-06-06 13:36:47 show_product done 20
+2026-06-06 13:36:47 show_product start 21
+2026-06-06 13:36:47 show_product done 21
+2026-06-06 13:36:47 show_product start 22
+2026-06-06 13:36:47 show_product done 22
+2026-06-06 13:36:48 show_product start 23
+2026-06-06 13:36:48 show_product done 23
+2026-06-06 13:36:48 show_product start 24
+2026-06-06 13:36:48 show_product done 24
+2026-06-06 13:36:48 show_product start 25
+2026-06-06 13:36:48 show_product done 25
+2026-06-06 13:36:48 show_product start 26
+2026-06-06 13:36:48 show_product done 26
+2026-06-06 13:36:48 show_product start 27
+2026-06-06 13:36:48 show_product done 27
+2026-06-06 13:36:48 show_product start 28
+2026-06-06 13:36:48 show_product done 28
+2026-06-06 13:36:48 show_product start 29
+2026-06-06 13:36:48 show_product done 29
+2026-06-06 13:36:48 show_product start 30
+2026-06-06 13:36:48 show_product done 30
+2026-06-06 13:36:49 show_product start 31
+2026-06-06 13:36:49 show_product done 31
+2026-06-06 13:36:49 show_product start 32
+2026-06-06 13:36:49 show_product done 32
+2026-06-06 13:36:49 show_product start 33
+2026-06-06 13:36:49 show_product done 33
+2026-06-06 13:36:49 show_product start 34
+2026-06-06 13:36:49 show_product done 34
+2026-06-06 13:36:49 show_product start 35
+2026-06-06 13:36:49 show_product done 35
+2026-06-06 13:36:49 show_product start 36
+2026-06-06 13:36:49 show_product done 36
+2026-06-06 13:36:49 show_product start 37
+2026-06-06 13:36:49 show_product done 37
+2026-06-06 13:36:49 show_product start 38
+2026-06-06 13:36:49 show_product done 38
+2026-06-06 13:36:49 show_product start 39
+2026-06-06 13:36:49 show_product done 39
+2026-06-06 13:36:49 show_product start 40
+2026-06-06 13:36:49 show_product done 40
+2026-06-06 13:36:49 show_product start 41
+2026-06-06 13:36:49 show_product done 41
+2026-06-06 13:36:49 show_product start 42
+2026-06-06 13:36:50 show_product done 42
+2026-06-06 13:36:50 show_product start 43
+2026-06-06 13:36:50 show_product done 43
+2026-06-06 13:36:50 show_product start 44
+2026-06-06 13:36:50 show_product done 44
+2026-06-06 13:36:50 show_product start 45
+2026-06-06 13:36:50 show_product done 45
+2026-06-06 13:36:50 show_product start 46
+2026-06-06 13:36:50 show_product done 46
+2026-06-06 13:36:50 show_product start 47
+2026-06-06 13:36:50 show_product done 47
+2026-06-06 13:36:50 show_product start 48
+2026-06-06 13:36:50 show_product done 48
+2026-06-06 13:36:50 show_product start 49
+2026-06-06 13:36:50 show_product done 49
+2026-06-06 13:36:50 show_product start 50
+2026-06-06 13:36:50 show_product done 50
+2026-06-06 13:36:50 show_product start 51
+2026-06-06 13:36:51 show_product done 51
+2026-06-06 13:36:51 show_product start 52
+2026-06-06 13:36:51 show_product done 52
+2026-06-06 13:36:51 show_product start 53
+2026-06-06 13:36:51 show_product done 53
+2026-06-06 13:36:51 show_product start 54
+2026-06-06 13:36:51 show_product done 54
+2026-06-06 13:36:51 show_product start 55
+2026-06-06 13:36:51 show_product done 55
+2026-06-06 13:36:51 show_product start 56
+2026-06-06 13:36:51 show_product done 56
+2026-06-06 13:36:51 show_product start 57
+2026-06-06 13:36:51 show_product done 57
+2026-06-06 13:36:51 show_product start 58
+2026-06-06 13:36:51 show_product done 58
+2026-06-06 13:36:51 show_product start 59
+2026-06-06 13:36:51 show_product done 59
+2026-06-06 13:36:51 show_product start 60
+2026-06-06 13:36:51 show_product done 60
+2026-06-06 13:36:51 show_product start 61
+2026-06-06 13:36:51 show_product done 61
+2026-06-06 13:36:51 show_product start 62
+2026-06-06 13:36:51 show_product done 62
+2026-06-06 13:36:52 show_product start 63
+2026-06-06 13:36:52 show_product done 63
+2026-06-06 13:36:52 show_product start 64
+2026-06-06 13:36:52 show_product done 64
+2026-06-06 13:36:52 show_product start 65
+2026-06-06 13:36:52 show_product done 65
+2026-06-06 13:36:52 show_product start 66
+2026-06-06 13:36:52 show_product done 66
+2026-06-06 13:36:52 show_product start 67
+2026-06-06 13:36:52 show_product done 67
+2026-06-06 13:36:52 show_product start 68
+2026-06-06 13:36:52 show_product done 68
+2026-06-06 13:36:52 show_product start 69
+2026-06-06 13:36:52 show_product done 69
+2026-06-06 13:36:52 show_product start 70
+2026-06-06 13:36:52 show_product done 70
+2026-06-06 13:36:52 show_product start 71
+2026-06-06 13:36:52 show_product done 71
+2026-06-06 13:36:52 show_product start 72
+2026-06-06 13:36:52 show_product done 72
+2026-06-06 13:36:52 show_product start 73
+2026-06-06 13:36:52 show_product done 73
+2026-06-06 13:36:52 show_product start 74
+2026-06-06 13:36:52 show_product done 74
+2026-06-06 13:36:53 show_product start 75
+2026-06-06 13:36:53 show_product done 75
+2026-06-06 13:36:53 show_product start 76
+2026-06-06 13:36:53 show_product done 76
+2026-06-06 13:36:53 show_product start 77
+2026-06-06 13:36:53 show_product done 77
+2026-06-06 13:36:53 show_product start 78
+2026-06-06 13:36:53 show_product done 78
+2026-06-06 13:36:53 show_product start 79
+2026-06-06 13:36:53 show_product done 79
+2026-06-06 13:36:53 show_product start 80
+2026-06-06 13:36:53 show_product done 80
+2026-06-06 13:36:53 show_product start 81
+2026-06-06 13:36:53 show_product done 81
+2026-06-06 13:36:53 show_product start 82
+2026-06-06 13:36:53 show_product done 82
+2026-06-06 13:36:53 show_product start 83
+2026-06-06 13:36:53 show_product done 83
+2026-06-06 13:36:53 show_product start 84
+2026-06-06 13:36:53 show_product done 84
+2026-06-06 13:36:53 show_product start 85
+2026-06-06 13:36:53 show_product done 85
+2026-06-06 13:36:53 show_product start 86
+2026-06-06 13:36:53 show_product done 86
+2026-06-06 13:36:53 show_product start 87
+2026-06-06 13:36:53 show_product done 87
+2026-06-06 13:36:53 show_product start 88
+2026-06-06 13:36:53 show_product done 88
+2026-06-06 13:36:54 show_product start 89
+2026-06-06 13:36:54 show_product done 89
+2026-06-06 13:36:54 show_product start 90
+2026-06-06 13:36:54 show_product done 90
+2026-06-06 13:36:54 show_product start 91
+2026-06-06 13:36:54 show_product done 91
+2026-06-06 13:36:54 show_product start 92
+2026-06-06 13:36:54 show_product done 92
+2026-06-06 13:36:54 show_product start 93
+2026-06-06 13:36:54 show_product done 93
+2026-06-06 13:36:54 show_product start 94
+2026-06-06 13:36:54 show_product done 94
+2026-06-06 13:36:54 show_product start 95
+2026-06-06 13:36:54 show_product done 95
+2026-06-06 13:36:54 show_product start 96
+2026-06-06 13:36:54 show_product done 96
+2026-06-06 13:36:54 show_product start 97
+2026-06-06 13:36:54 show_product done 97
+2026-06-06 13:44:22 load_all start
+2026-06-06 13:44:22 read prev report start
+2026-06-06 13:44:22 read prev report done rows=166
+2026-06-06 13:44:22 read curr report start
+2026-06-06 13:44:22 read curr report done rows=90
+2026-06-06 13:44:22 read boost csv start
+2026-06-06 13:44:22 read boost csv done rows=168
+2026-06-06 13:44:22 read exclude csv start
+2026-06-06 13:44:22 read exclude csv done rows=91
+2026-06-06 13:44:22 build products start
+2026-06-06 13:44:22 build products done rows=195
+2026-06-06 13:44:22 apply filter start
+2026-06-06 13:44:22 tree render done; queue show product
+2026-06-06 13:44:22 apply filter queued
+2026-06-06 13:44:22 show_product start 0
+2026-06-06 13:44:22 show_product done 0
+2026-06-06 13:44:22 item info load start
+2026-06-06 13:44:22 read item csv map start
+2026-06-06 13:44:23 read item csv map done rows=194
+2026-06-06 13:44:23 tree render done; queue show product
+2026-06-06 13:44:23 show_product start 0
+2026-06-06 13:44:23 show_product done 0
+2026-06-06 13:44:24 show_product start 0
+2026-06-06 13:44:24 show_product done 0
+2026-06-06 13:44:54 show_product start 1
+2026-06-06 13:44:54 show_product done 1
+2026-06-06 13:44:55 show_product start 2
+2026-06-06 13:44:55 show_product done 2
+2026-06-06 13:45:02 show_product start 3
+2026-06-06 13:45:03 show_product done 3
+2026-06-06 13:45:03 show_product start 4
+2026-06-06 13:45:03 show_product done 4
+2026-06-06 13:45:03 show_product start 5
+2026-06-06 13:45:03 show_product done 5
+2026-06-06 13:45:03 show_product start 6
+2026-06-06 13:45:03 show_product done 6
+2026-06-06 13:45:03 show_product start 7
+2026-06-06 13:45:03 show_product done 7
+2026-06-06 13:45:03 show_product start 8
+2026-06-06 13:45:03 show_product done 8
+2026-06-06 13:45:03 show_product start 9
+2026-06-06 13:45:03 show_product done 9
+2026-06-06 13:45:03 show_product start 10
+2026-06-06 13:45:03 show_product done 10
+2026-06-06 13:45:04 show_product start 11
+2026-06-06 13:45:04 show_product done 11
+2026-06-06 13:45:04 show_product start 12
+2026-06-06 13:45:04 show_product done 12
+2026-06-06 13:45:04 show_product start 13
+2026-06-06 13:45:04 show_product done 13
+2026-06-06 13:45:04 show_product start 14
+2026-06-06 13:45:04 show_product done 14
+2026-06-06 13:45:04 show_product start 15
+2026-06-06 13:45:04 show_product done 15
+2026-06-06 13:45:04 show_product start 16
+2026-06-06 13:45:04 show_product done 16
+2026-06-06 13:45:04 show_product start 17
+2026-06-06 13:45:04 show_product done 17
+2026-06-06 13:45:04 show_product start 18
+2026-06-06 13:45:04 show_product done 18
+2026-06-06 13:45:05 show_product start 19
+2026-06-06 13:45:05 show_product done 19
+2026-06-06 13:45:05 show_product start 20
+2026-06-06 13:45:05 show_product done 20
+2026-06-06 13:45:05 show_product start 21
+2026-06-06 13:45:05 show_product done 21
+2026-06-06 13:45:05 show_product start 22
+2026-06-06 13:45:05 show_product done 22
+2026-06-06 13:45:05 show_product start 23
+2026-06-06 13:45:05 show_product done 23
+2026-06-06 13:45:05 show_product start 24
+2026-06-06 13:45:05 show_product done 24
+2026-06-06 13:45:05 show_product start 25
+2026-06-06 13:45:05 show_product done 25
+2026-06-06 13:45:05 show_product start 26
+2026-06-06 13:45:05 show_product done 26
+2026-06-06 13:45:06 show_product start 27
+2026-06-06 13:45:06 show_product done 27
+2026-06-06 13:45:06 show_product start 28
+2026-06-06 13:45:06 show_product done 28
+2026-06-06 13:45:06 show_product start 29
+2026-06-06 13:45:06 show_product done 29
+2026-06-06 13:45:06 show_product start 30
+2026-06-06 13:45:06 show_product done 30
+2026-06-06 13:45:06 show_product start 31
+2026-06-06 13:45:06 show_product done 31
+2026-06-06 13:45:06 show_product start 32
+2026-06-06 13:45:06 show_product done 32
+2026-06-06 13:45:06 show_product start 33
+2026-06-06 13:45:06 show_product done 33
+2026-06-06 13:45:06 show_product start 34
+2026-06-06 13:45:06 show_product done 34
+2026-06-06 13:45:06 show_product start 35
+2026-06-06 13:45:06 show_product done 35
+2026-06-06 13:45:06 show_product start 36
+2026-06-06 13:45:06 show_product done 36
+2026-06-06 13:45:06 show_product start 37
+2026-06-06 13:45:06 show_product done 37
+2026-06-06 13:45:06 show_product start 38
+2026-06-06 13:45:06 show_product done 38
+2026-06-06 13:45:07 show_product start 39
+2026-06-06 13:45:07 show_product done 39
+2026-06-06 13:45:07 show_product start 40
+2026-06-06 13:45:07 show_product done 40
+2026-06-06 13:45:07 show_product start 41
+2026-06-06 13:45:07 show_product done 41
+2026-06-06 13:45:07 show_product start 42
+2026-06-06 13:45:07 show_product done 42
+2026-06-06 13:45:07 show_product start 43
+2026-06-06 13:45:07 show_product done 43
+2026-06-06 13:45:07 show_product start 44
+2026-06-06 13:45:07 show_product done 44
+2026-06-06 13:45:08 show_product start 45
+2026-06-06 13:45:08 show_product done 45
+2026-06-06 13:45:08 show_product start 46
+2026-06-06 13:45:08 show_product done 46
+2026-06-06 13:45:08 show_product start 47
+2026-06-06 13:45:08 show_product done 47
+2026-06-06 13:45:08 show_product start 48
+2026-06-06 13:45:08 show_product done 48
+2026-06-06 13:45:08 show_product start 49
+2026-06-06 13:45:08 show_product done 49
+2026-06-06 13:45:09 show_product start 50
+2026-06-06 13:45:09 show_product done 50
+2026-06-06 13:45:09 show_product start 51
+2026-06-06 13:45:09 show_product done 51
+2026-06-06 13:45:09 show_product start 52
+2026-06-06 13:45:09 show_product done 52
+2026-06-06 13:45:09 show_product start 53
+2026-06-06 13:45:09 show_product done 53
+2026-06-06 13:45:09 show_product start 54
+2026-06-06 13:45:09 show_product done 54
+2026-06-06 13:45:09 show_product start 55
+2026-06-06 13:45:09 show_product done 55
+2026-06-06 13:45:09 show_product start 56
+2026-06-06 13:45:09 show_product done 56
+2026-06-06 13:45:09 show_product start 57
+2026-06-06 13:45:10 show_product done 57
+2026-06-06 13:45:10 show_product start 58
+2026-06-06 13:45:10 show_product done 58
+2026-06-06 13:45:10 show_product start 59
+2026-06-06 13:45:10 show_product done 59
+2026-06-06 13:45:10 show_product start 60
+2026-06-06 13:45:10 show_product done 60
+2026-06-06 13:45:10 show_product start 61
+2026-06-06 13:45:10 show_product done 61
+2026-06-06 13:45:10 show_product start 62
+2026-06-06 13:45:10 show_product done 62
+2026-06-06 13:45:10 show_product start 63
+2026-06-06 13:45:10 show_product done 63
+2026-06-06 13:45:10 show_product start 64
+2026-06-06 13:45:10 show_product done 64
+2026-06-06 13:45:10 show_product start 65
+2026-06-06 13:45:10 show_product done 65
+2026-06-06 13:45:11 show_product start 66
+2026-06-06 13:45:11 show_product done 66
+2026-06-06 13:45:11 show_product start 67
+2026-06-06 13:45:11 show_product done 67
+2026-06-06 13:45:11 show_product start 68
+2026-06-06 13:45:11 show_product done 68
+2026-06-06 13:45:11 show_product start 69
+2026-06-06 13:45:11 show_product done 69
+2026-06-06 13:45:11 show_product start 70
+2026-06-06 13:45:11 show_product done 70
+2026-06-06 13:45:11 show_product start 71
+2026-06-06 13:45:11 show_product done 71
+2026-06-06 13:45:12 show_product start 72
+2026-06-06 13:45:12 show_product done 72
+2026-06-06 13:45:12 show_product start 73
+2026-06-06 13:45:12 show_product done 73
+2026-06-06 13:45:12 show_product start 74
+2026-06-06 13:45:12 show_product done 74
+2026-06-06 13:45:12 show_product start 75
+2026-06-06 13:45:12 show_product done 75
+2026-06-06 13:45:12 show_product start 76
+2026-06-06 13:45:12 show_product done 76
+2026-06-06 13:45:13 show_product start 77
+2026-06-06 13:45:13 show_product done 77
+2026-06-06 13:45:13 show_product start 78
+2026-06-06 13:45:13 show_product done 78
+2026-06-06 13:45:13 show_product start 79
+2026-06-06 13:45:13 show_product done 79
+2026-06-06 13:45:13 show_product start 80
+2026-06-06 13:45:13 show_product done 80
+2026-06-06 13:45:14 show_product start 81
+2026-06-06 13:45:14 show_product done 81
+2026-06-06 13:45:14 show_product start 82
+2026-06-06 13:45:14 show_product done 82
+2026-06-06 13:45:14 show_product start 83
+2026-06-06 13:45:14 show_product done 83
+2026-06-06 13:45:15 show_product start 84
+2026-06-06 13:45:15 show_product done 84
+2026-06-06 13:45:15 show_product start 85
+2026-06-06 13:45:15 show_product done 85
+2026-06-06 13:45:15 show_product start 86
+2026-06-06 13:45:15 show_product done 86
+2026-06-06 13:45:15 show_product start 87
+2026-06-06 13:45:15 show_product done 87
+2026-06-06 13:45:15 show_product start 88
+2026-06-06 13:45:15 show_product done 88
+2026-06-06 13:45:15 show_product start 89
+2026-06-06 13:45:15 show_product done 89
+2026-06-06 13:45:15 show_product start 90
+2026-06-06 13:45:15 show_product done 90
+2026-06-06 13:45:16 show_product start 91
+2026-06-06 13:45:16 show_product done 91
+2026-06-06 13:45:16 show_product start 92
+2026-06-06 13:45:16 show_product done 92
+2026-06-06 13:45:17 show_product start 93
+2026-06-06 13:45:17 show_product done 93
+2026-06-06 13:45:17 show_product start 94
+2026-06-06 13:45:17 show_product done 94
+2026-06-06 13:45:17 show_product start 95
+2026-06-06 13:45:17 show_product done 95
+2026-06-06 13:45:17 show_product start 96
+2026-06-06 13:45:17 show_product done 96
+2026-06-06 13:45:17 show_product start 97
+2026-06-06 13:45:17 show_product done 97
+2026-06-06 13:45:20 show_product start 98
+2026-06-06 13:45:20 show_product done 98
+2026-06-06 13:45:20 show_product start 99
+2026-06-06 13:45:20 show_product done 99
+2026-06-06 13:45:21 show_product start 100
+2026-06-06 13:45:21 show_product done 100
+2026-06-06 13:45:21 show_product start 101
+2026-06-06 13:45:21 show_product done 101
+2026-06-06 13:45:21 show_product start 102
+2026-06-06 13:45:21 show_product done 102
+2026-06-06 13:45:21 show_product start 103
+2026-06-06 13:45:21 show_product done 103
+2026-06-06 13:57:00 load_all start
+2026-06-06 13:57:00 read prev report start
+2026-06-06 13:57:00 read prev report done rows=166
+2026-06-06 13:57:00 read curr report start
+2026-06-06 13:57:00 read curr report done rows=90
+2026-06-06 13:57:00 read boost csv start
+2026-06-06 13:57:00 read boost csv done rows=168
+2026-06-06 13:57:00 read exclude csv start
+2026-06-06 13:57:00 read exclude csv done rows=91
+2026-06-06 13:57:00 build products start
+2026-06-06 13:57:00 build products done rows=195
+2026-06-06 13:57:00 apply filter start
+2026-06-06 13:57:00 tree render done; queue show product
+2026-06-06 13:57:00 apply filter queued
+2026-06-06 13:57:00 show_product start 0
+2026-06-06 13:57:00 show_product done 0
+2026-06-06 13:57:00 item info load start
+2026-06-06 13:57:00 read item csv map start
+2026-06-06 13:57:01 read item csv map done rows=194
+2026-06-06 13:57:01 tree render done; queue show product
+2026-06-06 13:57:01 show_product start 0
+2026-06-06 13:57:01 show_product done 0
+2026-06-06 13:57:03 show_product start 0
+2026-06-06 13:57:03 show_product done 0
+2026-06-06 13:57:35 show_product start 1
+2026-06-06 13:57:35 show_product done 1
+2026-06-06 13:57:35 show_product start 2
+2026-06-06 13:57:35 show_product done 2
+2026-06-06 13:57:35 show_product start 3
+2026-06-06 13:57:35 show_product done 3
+2026-06-06 13:57:36 show_product start 2
+2026-06-06 13:57:36 show_product done 2
+2026-06-06 13:57:36 show_product start 1
+2026-06-06 13:57:36 show_product done 1
+2026-06-06 13:57:37 show_product start 0
+2026-06-06 13:57:37 show_product done 0
+2026-06-06 13:57:37 show_product start 194
+2026-06-06 13:57:37 show_product done 194
+2026-06-06 13:57:39 show_product start 193
+2026-06-06 13:57:39 show_product done 193
+2026-06-06 13:57:39 show_product start 192
+2026-06-06 13:57:39 show_product done 192
+2026-06-06 13:57:40 show_product start 191
+2026-06-06 13:57:40 show_product done 191
+2026-06-06 13:57:40 show_product start 192
+2026-06-06 13:57:40 show_product done 192
+2026-06-06 13:57:40 show_product start 193
+2026-06-06 13:57:40 show_product done 193
+2026-06-06 13:59:14 show_product start 193
+2026-06-06 13:59:14 show_product done 193
+2026-06-06 13:59:17 show_product start 194
+2026-06-06 13:59:17 show_product done 194
+2026-06-06 13:59:17 show_product start 0
+2026-06-06 13:59:17 show_product done 0
+2026-06-06 13:59:17 show_product start 1
+2026-06-06 13:59:17 show_product done 1
+2026-06-06 13:59:18 show_product start 2
+2026-06-06 13:59:18 show_product done 2
+2026-06-06 13:59:18 show_product start 3
+2026-06-06 13:59:18 show_product done 3
+2026-06-06 13:59:18 show_product start 4
+2026-06-06 13:59:19 show_product done 4
+2026-06-06 13:59:19 show_product start 5
+2026-06-06 13:59:19 show_product done 5
+2026-06-06 13:59:19 show_product start 6
+2026-06-06 13:59:19 show_product done 6
+2026-06-06 13:59:19 show_product start 7
+2026-06-06 13:59:19 show_product done 7
+2026-06-06 13:59:19 show_product start 8
+2026-06-06 13:59:19 show_product done 8
+2026-06-06 13:59:20 show_product start 9
+2026-06-06 13:59:20 show_product done 9
+2026-06-06 13:59:20 show_product start 10
+2026-06-06 13:59:20 show_product done 10
+2026-06-06 13:59:20 show_product start 11
+2026-06-06 13:59:20 show_product done 11
+2026-06-06 13:59:20 show_product start 12
+2026-06-06 13:59:21 show_product done 12
+2026-06-06 13:59:21 show_product start 13
+2026-06-06 13:59:21 show_product done 13
+2026-06-06 13:59:21 show_product start 14
+2026-06-06 13:59:21 show_product done 14
+2026-06-06 13:59:21 show_product start 15
+2026-06-06 13:59:22 show_product done 15
+2026-06-06 13:59:22 show_product start 16
+2026-06-06 13:59:22 show_product done 16
+2026-06-06 13:59:22 show_product start 17
+2026-06-06 13:59:22 show_product done 17
+2026-06-06 13:59:22 show_product start 18
+2026-06-06 13:59:22 show_product done 18
+2026-06-06 13:59:23 show_product start 19
+2026-06-06 13:59:23 show_product done 19
+2026-06-06 13:59:24 show_product start 20
+2026-06-06 13:59:24 show_product done 20
+2026-06-06 13:59:25 show_product start 19
+2026-06-06 13:59:25 show_product done 19
+2026-06-06 13:59:26 show_product start 20
+2026-06-06 13:59:26 show_product done 20
+2026-06-06 13:59:27 show_product start 21
+2026-06-06 13:59:27 show_product done 21
+2026-06-06 13:59:27 show_product start 22
+2026-06-06 13:59:27 show_product done 22
+2026-06-06 14:00:30 load_all start
+2026-06-06 14:00:30 read prev report start
+2026-06-06 14:00:30 read prev report done rows=166
+2026-06-06 14:00:30 read curr report start
+2026-06-06 14:00:30 read curr report done rows=90
+2026-06-06 14:00:30 read boost csv start
+2026-06-06 14:00:30 read boost csv done rows=168
+2026-06-06 14:00:30 read exclude csv start
+2026-06-06 14:00:30 read exclude csv done rows=91
+2026-06-06 14:00:30 build products start
+2026-06-06 14:00:30 build products done rows=195
+2026-06-06 14:00:30 apply filter start
+2026-06-06 14:00:30 tree render done; queue show product
+2026-06-06 14:00:30 apply filter queued
+2026-06-06 14:00:30 show_product start 0
+2026-06-06 14:00:30 show_product done 0
+2026-06-06 14:00:31 item info load start
+2026-06-06 14:00:31 read item csv map start
+2026-06-06 14:00:31 read item csv map done rows=194
+2026-06-06 14:00:31 tree render done; queue show product
+2026-06-06 14:00:31 show_product start 0
+2026-06-06 14:00:31 show_product done 0
+2026-06-06 14:00:34 show_product start 0
+2026-06-06 14:00:34 show_product done 0
+2026-06-06 14:00:37 show_product start 1
+2026-06-06 14:00:37 show_product done 1
+2026-06-06 14:00:38 show_product start 2
+2026-06-06 14:00:38 show_product done 2
+2026-06-06 14:04:46 load_all start
+2026-06-06 14:04:46 read prev report start
+2026-06-06 14:04:46 read prev report done rows=166
+2026-06-06 14:04:46 read curr report start
+2026-06-06 14:04:46 read curr report done rows=90
+2026-06-06 14:04:46 read boost csv start
+2026-06-06 14:04:46 read boost csv done rows=168
+2026-06-06 14:04:46 read exclude csv start
+2026-06-06 14:04:46 read exclude csv done rows=91
+2026-06-06 14:04:46 build products start
+2026-06-06 14:04:46 build products done rows=195
+2026-06-06 14:04:46 apply filter start
+2026-06-06 14:04:46 tree render done; queue show product
+2026-06-06 14:04:46 apply filter queued
+2026-06-06 14:04:46 show_product start 0
+2026-06-06 14:04:46 show_product done 0
+2026-06-06 14:04:46 item info load start
+2026-06-06 14:04:46 read item csv map start
+2026-06-06 14:04:46 read item csv map done rows=194
+2026-06-06 14:04:46 tree render done; queue show product
+2026-06-06 14:04:47 show_product start 0
+2026-06-06 14:04:47 show_product done 0
+2026-06-06 14:04:48 show_product start 0
+2026-06-06 14:04:48 show_product done 0
+2026-06-06 17:57:03 load_all start
+2026-06-06 17:57:03 read prev report start
+2026-06-06 17:57:03 read prev report done rows=166
+2026-06-06 17:57:03 read curr report start
+2026-06-06 17:57:03 read curr report done rows=90
+2026-06-06 17:57:03 read boost csv start
+2026-06-06 17:57:03 read boost csv done rows=168
+2026-06-06 17:57:03 read exclude csv start
+2026-06-06 17:57:04 read exclude csv done rows=91
+2026-06-06 17:57:04 build products start
+2026-06-06 17:57:04 build products done rows=195
+2026-06-06 17:57:04 apply filter start
+2026-06-06 17:57:04 tree render done; queue show product
+2026-06-06 17:57:04 apply filter queued
+2026-06-06 17:57:04 show_product start 0
+2026-06-06 17:57:04 show_product done 0
+2026-06-06 17:57:04 item info load start
+2026-06-06 17:57:04 read item csv map start
+2026-06-06 17:57:04 read item csv map done rows=194
+2026-06-06 17:57:04 tree render done; queue show product
+2026-06-06 17:57:04 show_product start 0
+2026-06-06 17:57:04 show_product done 0
+2026-06-06 20:26:50 load_all start
+2026-06-06 20:26:50 read prev report start
+2026-06-06 20:26:50 read prev report done rows=166
+2026-06-06 20:26:50 read curr report start
+2026-06-06 20:26:50 read curr report done rows=90
+2026-06-06 20:26:50 read boost csv start
+2026-06-06 20:26:51 read boost csv done rows=168
+2026-06-06 20:26:51 read exclude csv start
+2026-06-06 20:26:51 read exclude csv done rows=91
+2026-06-06 20:26:51 build products start
+2026-06-06 20:26:51 build products done rows=195
+2026-06-06 20:26:51 apply filter start
+2026-06-06 20:26:51 tree render done; queue show product
+2026-06-06 20:26:51 apply filter queued
+2026-06-06 20:26:51 show_product start 0
+2026-06-06 20:26:51 show_product done 0
+2026-06-06 20:26:51 item info load start
+2026-06-06 20:26:51 read item csv map start
+2026-06-06 20:26:51 read item csv map done rows=194
+2026-06-06 20:26:51 tree render done; queue show product
+2026-06-06 20:26:51 show_product start 0
+2026-06-06 20:26:51 show_product done 0
+2026-06-06 20:26:53 show_product start 0
+2026-06-06 20:26:53 show_product done 0
+2026-06-06 20:27:04 show_product start 1
+2026-06-06 20:27:04 show_product done 1
+2026-06-06 20:27:12 show_product start 2
+2026-06-06 20:27:12 show_product done 2
+2026-06-06 20:27:56 show_product start 3
+2026-06-06 20:27:56 show_product done 3
+2026-06-06 20:28:27 show_product start 4
+2026-06-06 20:28:27 show_product done 4
+2026-06-06 20:28:27 show_product start 5
+2026-06-06 20:28:27 show_product done 5
+2026-06-06 20:28:28 show_product start 6
+2026-06-06 20:28:28 show_product done 6
+2026-06-06 20:28:31 show_product start 7
+2026-06-06 20:28:31 show_product done 7
+2026-06-06 20:28:31 show_product start 8
+2026-06-06 20:28:31 show_product done 8
+2026-06-06 20:28:32 show_product start 9
+2026-06-06 20:28:32 show_product done 9
+2026-06-06 20:28:32 show_product start 10
+2026-06-06 20:28:32 show_product done 10
+2026-06-06 20:28:33 show_product start 11
+2026-06-06 20:28:33 show_product done 11
+2026-06-06 20:28:36 show_product start 12
+2026-06-06 20:28:36 show_product done 12
+2026-06-06 20:55:43 show_product start 13
+2026-06-06 20:55:43 show_product done 13
+2026-06-06 20:55:43 show_product start 14
+2026-06-06 20:55:43 show_product done 14
+2026-06-06 20:55:44 show_product start 15
+2026-06-06 20:55:44 show_product done 15
+2026-06-06 21:07:34 show_product start 16
+2026-06-06 21:07:34 show_product done 16
+2026-06-06 21:11:10 show_product start 17
+2026-06-06 21:11:10 show_product done 17
+2026-06-06 21:11:11 show_product start 16
+2026-06-06 21:11:11 show_product done 16
+2026-06-06 21:11:11 show_product start 15
+2026-06-06 21:11:11 show_product done 15
+2026-06-06 21:12:47 show_product start 15
+2026-06-06 21:12:47 show_product done 15
+2026-06-06 21:13:15 show_product start 15
+2026-06-06 21:13:15 show_product done 15
+2026-06-06 21:46:24 load_all start
+2026-06-06 21:46:24 read prev report start
+2026-06-06 21:46:24 read prev report done rows=166
+2026-06-06 21:46:24 read curr report start
+2026-06-06 21:46:24 read curr report done rows=90
+2026-06-06 21:46:24 read boost csv start
+2026-06-06 21:46:24 read boost csv done rows=168
+2026-06-06 21:46:24 read exclude csv start
+2026-06-06 21:46:24 read exclude csv done rows=91
+2026-06-06 21:46:24 build products start
+2026-06-06 21:46:24 build products done rows=195
+2026-06-06 21:46:24 apply filter start
+2026-06-06 21:46:24 tree render done; queue show product
+2026-06-06 21:46:24 apply filter queued
+2026-06-06 21:46:24 show_product start 0
+2026-06-06 21:46:24 show_product done 0
+2026-06-06 21:46:24 item info load start
+2026-06-06 21:46:24 read item csv map start
+2026-06-06 21:46:24 read item csv map done rows=194
+2026-06-06 21:46:24 tree render done; queue show product
+2026-06-06 21:46:24 show_product start 0
+2026-06-06 21:46:24 show_product done 0
+2026-06-06 21:46:59 load_all start
+2026-06-06 21:46:59 read prev report start
+2026-06-06 21:46:59 read prev report done rows=166
+2026-06-06 21:46:59 read curr report start
+2026-06-06 21:46:59 read curr report done rows=90
+2026-06-06 21:46:59 read boost csv start
+2026-06-06 21:46:59 read boost csv done rows=168
+2026-06-06 21:46:59 read exclude csv start
+2026-06-06 21:46:59 read exclude csv done rows=91
+2026-06-06 21:46:59 build products start
+2026-06-06 21:46:59 build products done rows=195
+2026-06-06 21:47:00 apply filter start
+2026-06-06 21:47:00 tree render done; queue show product
+2026-06-06 21:47:00 apply filter queued
+2026-06-06 21:47:00 show_product start 0
+2026-06-06 21:47:00 show_product done 0
+2026-06-06 21:47:00 item info load start
+2026-06-06 21:47:00 read item csv map start
+2026-06-06 21:47:00 read item csv map done rows=194
+2026-06-06 21:47:00 tree render done; queue show product
+2026-06-06 21:47:00 show_product start 0
+2026-06-06 21:47:00 show_product done 0
+2026-06-06 22:21:03 load_all start
+2026-06-06 22:21:04 read prev report start
+2026-06-06 22:21:04 read prev report done rows=166
+2026-06-06 22:21:04 read curr report start
+2026-06-06 22:21:04 read curr report done rows=90
+2026-06-06 22:21:04 read boost csv start
+2026-06-06 22:21:04 read boost csv done rows=168
+2026-06-06 22:21:04 read exclude csv start
+2026-06-06 22:21:04 read exclude csv done rows=91
+2026-06-06 22:21:04 build products start
+2026-06-06 22:21:04 build products done rows=195
+2026-06-06 22:21:04 apply filter start
+2026-06-06 22:21:04 tree render done; queue show product
+2026-06-06 22:21:04 apply filter queued
+2026-06-06 22:21:04 show_product start 0
+2026-06-06 22:21:04 show_product done 0
+2026-06-06 22:21:04 item info load start
+2026-06-06 22:21:04 read item csv map start
+2026-06-06 22:21:04 read item csv map done rows=194
+2026-06-06 22:21:04 tree render done; queue show product
+2026-06-06 22:21:04 show_product start 0
+2026-06-06 22:21:04 show_product done 0
+2026-06-06 22:21:46 show_product start 0
+2026-06-06 22:21:46 show_product done 0
+2026-06-06 22:21:49 show_product start 1
+2026-06-06 22:21:49 show_product done 1
+2026-06-06 22:21:49 show_product start 2
+2026-06-06 22:21:49 show_product done 2
+2026-06-06 22:21:50 show_product start 3
+2026-06-06 22:21:50 show_product done 3
+2026-06-06 22:21:51 show_product start 4
+2026-06-06 22:21:51 show_product done 4
+2026-06-06 22:21:51 show_product start 5
+2026-06-06 22:21:51 show_product done 5
+2026-06-06 22:21:51 show_product start 6
+2026-06-06 22:21:52 show_product done 6
+2026-06-06 22:21:52 show_product start 7
+2026-06-06 22:21:52 show_product done 7
+2026-06-06 22:21:52 show_product start 8
+2026-06-06 22:21:52 show_product done 8
+2026-06-06 22:21:53 show_product start 9
+2026-06-06 22:21:53 show_product done 9
+2026-06-06 22:21:53 show_product start 10
+2026-06-06 22:21:53 show_product done 10
+2026-06-06 22:21:53 show_product start 11
+2026-06-06 22:21:53 show_product done 11
+2026-06-06 22:21:54 show_product start 12
+2026-06-06 22:21:54 show_product done 12
+2026-06-06 22:21:54 show_product start 13
+2026-06-06 22:21:54 show_product done 13
+2026-06-06 22:21:54 show_product start 14
+2026-06-06 22:21:54 show_product done 14
+2026-06-06 22:21:54 show_product start 15
+2026-06-06 22:21:54 show_product done 15
+2026-06-06 22:21:55 show_product start 16
+2026-06-06 22:21:55 show_product done 16
+2026-06-06 22:21:55 show_product start 17
+2026-06-06 22:21:55 show_product done 17
+2026-06-06 22:21:55 show_product start 18
+2026-06-06 22:21:55 show_product done 18
+2026-06-06 22:21:55 show_product start 19
+2026-06-06 22:21:55 show_product done 19
+2026-06-06 22:21:56 show_product start 20
+2026-06-06 22:21:56 show_product done 20
+2026-06-06 22:21:56 show_product start 21
+2026-06-06 22:21:56 show_product done 21
+2026-06-06 22:21:56 show_product start 22
+2026-06-06 22:21:56 show_product done 22
+2026-06-06 22:21:56 show_product start 23
+2026-06-06 22:21:56 show_product done 23
+2026-06-06 22:21:57 show_product start 24
+2026-06-06 22:21:57 show_product done 24
+2026-06-06 22:21:57 show_product start 25
+2026-06-06 22:21:57 show_product done 25
+2026-06-06 22:21:57 show_product start 26
+2026-06-06 22:21:57 show_product done 26
+2026-06-06 22:21:57 show_product start 27
+2026-06-06 22:21:57 show_product done 27
+2026-06-06 23:32:57 load_all start
+2026-06-06 23:32:57 read prev report start
+2026-06-06 23:32:57 read prev report done rows=166
+2026-06-06 23:32:57 read curr report start
+2026-06-06 23:32:57 read curr report done rows=90
+2026-06-06 23:32:57 read boost csv start
+2026-06-06 23:32:58 read boost csv done rows=168
+2026-06-06 23:32:58 read exclude csv start
+2026-06-06 23:32:58 read exclude csv done rows=91
+2026-06-06 23:32:58 build products start
+2026-06-06 23:32:58 build products done rows=195
+2026-06-06 23:32:58 apply filter start
+2026-06-06 23:32:58 tree render done; queue show product
+2026-06-06 23:32:58 apply filter queued
+2026-06-06 23:32:58 show_product start 0
+2026-06-06 23:32:58 show_product done 0
+2026-06-06 23:32:58 item info load start
+2026-06-06 23:32:58 read item csv map start
+2026-06-06 23:32:58 read item csv map done rows=194
+2026-06-06 23:32:58 tree render done; queue show product
+2026-06-06 23:32:58 show_product start 0
+2026-06-06 23:32:58 show_product done 0
+2026-06-06 23:33:30 load_all start
+2026-06-06 23:33:30 read prev report start
+2026-06-06 23:33:30 read prev report done rows=166
+2026-06-06 23:33:30 read curr report start
+2026-06-06 23:33:31 read curr report done rows=90
+2026-06-06 23:33:31 read boost csv start
+2026-06-06 23:33:31 read boost csv done rows=168
+2026-06-06 23:33:31 read exclude csv start
+2026-06-06 23:33:31 read exclude csv done rows=91
+2026-06-06 23:33:31 build products start
+2026-06-06 23:33:31 build products done rows=195
+2026-06-06 23:33:31 apply filter start
+2026-06-06 23:33:31 tree render done; queue show product
+2026-06-06 23:33:31 apply filter queued
+2026-06-06 23:33:31 show_product start 0
+2026-06-06 23:33:31 show_product done 0
+2026-06-06 23:33:31 item info load start
+2026-06-06 23:33:31 read item csv map start
+2026-06-06 23:33:31 read item csv map done rows=194
+2026-06-06 23:33:31 tree render done; queue show product
+2026-06-06 23:33:31 show_product start 0
+2026-06-06 23:33:31 show_product done 0
+2026-06-06 23:34:06 show_product start 0
+2026-06-06 23:34:06 show_product done 0
+2026-06-06 23:34:13 show_product start 1
+2026-06-06 23:34:13 show_product done 1
+2026-06-06 23:34:13 show_product start 2
+2026-06-06 23:34:13 show_product done 2
+2026-06-06 23:34:13 show_product start 3
+2026-06-06 23:34:14 show_product done 3
+2026-06-06 23:34:15 show_product start 4
+2026-06-06 23:34:15 show_product done 4
+2026-06-06 23:34:15 show_product start 5
+2026-06-06 23:34:15 show_product done 5
+2026-06-06 23:34:15 show_product start 6
+2026-06-06 23:34:15 show_product done 6
+2026-06-06 23:34:15 show_product start 7
+2026-06-06 23:34:15 show_product done 7
+2026-06-06 23:34:16 show_product start 8
+2026-06-06 23:34:16 show_product done 8
+2026-06-06 23:34:17 show_product start 9
+2026-06-06 23:34:17 show_product done 9
+2026-06-08 14:25:24 load_all start
+2026-06-08 14:25:24 read prev report start
+2026-06-08 14:25:24 read prev report done rows=166
+2026-06-08 14:25:24 read curr report start
+2026-06-08 14:25:24 read curr report done rows=90
+2026-06-08 14:25:24 read boost csv start
+2026-06-08 14:25:24 read boost csv done rows=168
+2026-06-08 14:25:24 read exclude csv start
+2026-06-08 14:25:24 read exclude csv done rows=91
+2026-06-08 14:25:24 build products start
+2026-06-08 14:25:24 build products done rows=195
+2026-06-08 14:25:24 apply filter start
+2026-06-08 14:25:24 tree render done; queue show product
+2026-06-08 14:25:24 apply filter queued
+2026-06-08 14:25:24 show_product start 0
+2026-06-08 14:25:24 show_product done 0
+2026-06-08 14:25:24 item info load start
+2026-06-08 14:25:24 read item csv map start
+2026-06-08 14:25:25 read item csv map done rows=194
+2026-06-08 14:25:25 tree render done; queue show product
+2026-06-08 14:25:25 show_product start 0
+2026-06-08 14:25:25 show_product done 0
+2026-06-08 14:25:26 show_product start 0
+2026-06-08 14:25:26 show_product done 0
+2026-06-09 09:50:16 load_all start
+2026-06-09 09:50:16 read report1 start
+2026-06-09 09:50:16 read report1 done rows=166
+2026-06-09 09:50:16 read report2 start
+2026-06-09 09:50:16 read report2 done rows=90
+2026-06-09 09:50:16 read boost csv start
+2026-06-09 09:50:16 read boost csv done rows=168
+2026-06-09 09:50:16 read exclude csv start
+2026-06-09 09:50:17 read exclude csv done rows=91
+2026-06-09 09:50:17 build products start
+2026-06-09 09:50:17 build products done rows=195
+2026-06-09 09:50:17 apply filter start
+2026-06-09 09:50:17 tree render done; queue show product
+2026-06-09 09:50:17 apply filter queued
+2026-06-09 09:50:17 show_product start 0
+2026-06-09 09:50:17 show_product done 0
+2026-06-09 09:50:17 item info load start
+2026-06-09 09:50:17 read item csv map start
+2026-06-09 09:50:17 read item csv map done rows=194
+2026-06-09 09:50:17 tree render done; queue show product
+2026-06-09 09:50:17 show_product start 0
+2026-06-09 09:50:17 show_product done 0
+2026-06-09 09:51:08 show_product start 0
+2026-06-09 09:51:08 show_product done 0
+2026-06-09 09:51:33 load_all start
+2026-06-09 09:51:33 read report1 start
+2026-06-09 09:51:33 read report1 done rows=166
+2026-06-09 09:51:33 read report2 start
+2026-06-09 09:51:33 read report2 done rows=90
+2026-06-09 09:51:33 read boost csv start
+2026-06-09 09:51:33 read boost csv done rows=168
+2026-06-09 09:51:33 read exclude csv start
+2026-06-09 09:51:33 read exclude csv done rows=91
+2026-06-09 09:51:33 build products start
+2026-06-09 09:51:33 build products done rows=195
+2026-06-09 09:51:33 apply filter start
+2026-06-09 09:51:33 tree render done; queue show product
+2026-06-09 09:51:33 apply filter queued
+2026-06-09 09:51:33 show_product start 0
+2026-06-09 09:51:33 show_product done 0
+2026-06-09 09:51:33 item info load start
+2026-06-09 09:51:33 read item csv map start
+2026-06-09 09:51:33 read item csv map done rows=194
+2026-06-09 09:51:34 tree render done; queue show product
+2026-06-09 09:51:34 show_product start 0
+2026-06-09 09:51:34 show_product done 0

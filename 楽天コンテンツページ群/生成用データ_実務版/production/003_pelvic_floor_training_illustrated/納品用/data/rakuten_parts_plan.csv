@@ -1,0 +1,16 @@
+order,part_type,file_or_source,note
+1,thumbnail,images/003_thumbnail.jpg,RMSサムネイル候補
+2,banner,images/003_title.jpg,タイトルバナー
+3,video,video/opening_cm_003.mp4,タイトル直下の動く目次CM
+4,text,page_copy.md#導入,導入文
+5,banner,images/003_find.jpg,場所をイメージする章
+6,text,page_copy.md#1-まずは場所をイメージする,本文短文
+7,banner,images/003_basic.jpg,基本動作
+8,banner,images/003_sit.jpg,座ってできる基本
+9,banner,images/003_lie.jpg,寝ながら始める
+10,banner,images/003_stand.jpg,立っている時間にも
+11,banner,images/003_caution.jpg,注意点
+12,banner,images/003_habit.jpg,続ける工夫
+13,text,page_copy.md#8-下着は日常のサポートとして,商品紹介前の自然なつなぎ
+14,product_parts,kttkn00 ktglg00 ktgsh00,楽天の商品紹介パーツでリンク設定
+15,banner,images/003_closing.jpg,まとめ

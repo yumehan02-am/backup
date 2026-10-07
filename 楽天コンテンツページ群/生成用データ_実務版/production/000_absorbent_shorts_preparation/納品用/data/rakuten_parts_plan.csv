@@ -1,0 +1,15 @@
+part_order,part_type,asset_or_text,note
+0,thumbnail,images/000_thumbnail.jpg,楽天コンテンツページ登録用サムネイル 1600x900
+1,title_banner,images/000_title.jpg,ページ最上部のタイトル画像
+2,video,video/opening_cm_000.mp4,タイトル直下の動く目次CM
+3,text,page_copy.md#導入,導入文
+4,banner,images/000_morning.jpg,共感バナー
+5,text,page_copy.md#「ふつうの下着感覚」で備える,本文章
+6,banner,images/000_capacity.jpg,吸水量バナー
+7,text,page_copy.md#20cc・30ccはどんな日向きか,本文章
+8,banner,images/000_pad.jpg,パッド比較バナー
+9,text,page_copy.md#パッドと吸水ショーツの使い分け,本文章
+10,banner,images/000_outing.jpg,外出前バナー
+11,text,page_copy.md#外出前の安心を増やす選び方,本文章
+12,banner,images/000_closing.jpg,まとめバナー
+13,product_link_parts,product_ids.csv,楽天のリンク可能な商品パーツで差し込み

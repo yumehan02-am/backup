@@ -1,0 +1,16 @@
+part_no,part_type,content_or_asset,folder,link_product_id,notes
+1,image,title_banner.jpg,images,,タイトルバナー。商品画像なし。
+2,text,H1,,,ページタイトルを楽天テキストパーツで入力。
+3,text,introduction,,,導入文。
+4,video,opening_cm.mp4,video,,タイトル直下に配置する動く目次CM。
+5,image,empathy_banner.jpg,images,,悩み共感バナー。商品画像なし。
+6,text,section_01,,,ふつうの下着感覚で備える。
+7,image,absorbency_guide_banner.jpg,images,,20cc・30ccの目安バナー。商品画像なし。
+8,text,section_02,,,20cc・30ccの説明。
+9,text,section_03,,,パッドと吸水ショーツの使い分け。
+10,image,choice_banner.jpg,images,,選び方バナー。商品画像なし。
+11,text,section_04,,,外出前の安心を増やす選び方。
+12,product_cards,recommended_products,product_images,wtk-f-pw6c30b wtk-f-pw6c30 oassh40b upbtk30 oassh40,楽天の商品紹介パーツでリンク付き配置。
+13,text,summary,,,まとめ。
+14,image,closing_banner.jpg,images,,まとめバナー。商品画像なし。
+

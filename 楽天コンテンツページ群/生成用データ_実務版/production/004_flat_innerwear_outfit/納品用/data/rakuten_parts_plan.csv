@@ -1,0 +1,16 @@
+order,part_type,file_or_source,note
+1,thumbnail,images/004_thumbnail.jpg,RMSサムネイル候補
+2,banner,images/004_title.jpg,タイトルバナー
+3,video,video/opening_cm_004.mp4,タイトル直下の動く目次CM
+4,text,page_copy.md#導入,導入文
+5,banner,images/004_shirt.jpg,シャツの前が浮く悩み
+6,text,page_copy.md#胸を小さく見せたいという言葉の本当のところ,本文
+7,banner,images/004_balance.jpg,言葉の受け止め方
+8,text,page_copy.md#服がすっきり見える理由,本文
+9,banner,images/004_flat.jpg,盛らない選択
+10,banner,images/004_comfort.jpg,苦しさへの注意
+11,banner,images/004_choice.jpg,ブラトップとブラの選び分け
+12,banner,images/004_color.jpg,色と素材
+13,text,page_copy.md#フラットインナーを選びたい日,商品紹介前の自然なつなぎ
+14,product_parts,flttk00 fltbr00 fmnbr01,楽天の商品紹介パーツでリンク設定
+15,banner,images/004_closing.jpg,まとめ

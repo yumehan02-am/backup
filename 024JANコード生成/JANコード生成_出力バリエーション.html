@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JANコード生成ツール</title>
+  <style>
+    :root {
+      --bg: #f5f6f8;
+      --panel: #ffffff;
+      --text: #20242a;
+      --muted: #5f6873;
+      --line: #d7dde3;
+      --accent: #17695f;
+      --accent-strong: #10544c;
+      --danger: #b42318;
+      --ok-bg: #e8f5ef;
+      --ok-text: #17643c;
+      --warn-bg: #fff4d6;
+      --warn-text: #7a4d00;
+      --err-bg: #fdecec;
+      --err-text: #9b1c13;
+      --shadow: 0 10px 24px rgba(28, 35, 45, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Yu Gothic UI", "Meiryo", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .app {
+      width: min(1180px, calc(100vw - 28px));
+      margin: 20px auto;
+    }
+
+    header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .toolbar,
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.95fr) minmax(420px, 1.05fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      padding: 9px 10px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 338px;
+      resize: vertical;
+      font-family: "Consolas", "Yu Gothic UI", monospace;
+      line-height: 1.45;
+      white-space: pre;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(23, 105, 95, 0.14);
+    }
+
+    button {
+      border: 1px solid transparent;
+      border-radius: 6px;
+      min-height: 38px;
+      padding: 8px 12px;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease, opacity 0.12s ease;
+    }
+
+    button:hover:not(:disabled) {
+      background: var(--accent-strong);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .secondary {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .secondary:hover:not(:disabled) {
+      background: #eef2f4;
+    }
+
+    .danger {
+      background: #fff;
+      border-color: #efb1aa;
+      color: var(--danger);
+    }
+
+    .danger:hover:not(:disabled) {
+      background: #fdecec;
+    }
+
+    .icon-button {
+      width: 38px;
+      min-width: 38px;
+      padding: 0;
+      display: inline-grid;
+      place-items: center;
+      background: #fff;
+      color: var(--danger);
+      border-color: #efb1aa;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .rows {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .entry-row {
+      display: grid;
+      grid-template-columns: 86px 1fr 38px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .check-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin: 12px 0;
+    }
+
+    .check-row label {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+    }
+
+    .result-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .count,
+    .progress {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .copy-strip {
+      display: grid;
+      grid-template-columns: auto auto auto 1fr;
+      gap: 8px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .current-code {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 10px;
+      background: #f9fafb;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-family: "Consolas", monospace;
+    }
+
+    .status {
+      margin-top: 12px;
+      min-height: 40px;
+      border-radius: 6px;
+      padding: 9px 12px;
+      background: #eef2f4;
+      color: #48515c;
+      font-weight: 700;
+    }
+
+    .status.ok {
+      background: var(--ok-bg);
+      color: var(--ok-text);
+    }
+
+    .status.warn {
+      background: var(--warn-bg);
+      color: var(--warn-text);
+    }
+
+    .status.err {
+      background: var(--err-bg);
+      color: var(--err-text);
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .app {
+        width: min(100vw - 18px, 1180px);
+        margin: 10px auto;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .toolbar,
+      .button-row,
+      .copy-strip {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .entry-row {
+        grid-template-columns: 1fr 38px;
+      }
+
+      .entry-row label {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>JANコード生成ツール</h1>
+      <div class="toolbar">
+        <button type="button" class="secondary" id="pasteJan">発行済JANを貼り付け</button>
+        <button type="button" class="secondary" id="clearAll">全クリア</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <section class="panel">
+        <h2 class="section-title">入力</h2>
+
+        <div class="field">
+          <label for="baseJan">発行済JAN</label>
+          <input type="text" id="baseJan" inputmode="numeric" autocomplete="off" maxlength="13" placeholder="例: 4901234567894">
+        </div>
+
+        <div class="field">
+          <label>ラベル入力欄</label>
+          <div class="rows" id="labelRows"></div>
+          <div class="button-row">
+            <button type="button" class="secondary" id="addLabel">ラベルを追加</button>
+            <button type="button" class="danger" id="deleteLabel">最後のラベルを削除</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>選択肢カンマ区切り</label>
+          <div class="rows" id="optionRows"></div>
+          <div class="button-row">
+            <button type="button" class="secondary" id="addOption">選択肢を追加</button>
+            <button type="button" class="danger" id="deleteOption">最後の選択肢を削除</button>
+          </div>
+        </div>
+
+        <div class="check-row">
+          <label><input type="checkbox" id="janLast">JANコードを末尾に出力</label>
+        </div>
+
+        <button type="button" id="generate">コード生成</button>
+      </section>
+
+      <section class="panel">
+        <div class="result-head">
+          <h2 class="section-title">生成されたコード</h2>
+          <div class="count" id="resultCount">0件</div>
+        </div>
+        <textarea id="result" spellcheck="false"></textarea>
+
+        <div class="copy-strip">
+          <button type="button" id="copyAll" disabled>すべてコピー</button>
+          <button type="button" id="copyNext" disabled>次へコピー</button>
+          <label class="progress"><input type="checkbox" id="janOnly" checked> JANコードのみ</label>
+          <div class="current-code" id="currentCode" title=""></div>
+        </div>
+
+        <div class="button-row" style="margin-top: 10px;">
+          <div class="progress" id="copyStatus">0/0</div>
+          <button type="button" class="secondary" id="selectResult">出力を選択</button>
+          <button type="button" class="danger" id="clearResult">出力クリア</button>
+        </div>
+
+        <div class="status" id="status">待機中</div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const els = {
+      baseJan: document.getElementById("baseJan"),
+      labelRows: document.getElementById("labelRows"),
+      optionRows: document.getElementById("optionRows"),
+      addLabel: document.getElementById("addLabel"),
+      deleteLabel: document.getElementById("deleteLabel"),
+      addOption: document.getElementById("addOption"),
+      deleteOption: document.getElementById("deleteOption"),
+      janLast: document.getElementById("janLast"),
+      generate: document.getElementById("generate"),
+      result: document.getElementById("result"),
+      resultCount: document.getElementById("resultCount"),
+      copyAll: document.getElementById("copyAll"),
+      copyNext: document.getElementById("copyNext"),
+      janOnly: document.getElementById("janOnly"),
+      copyStatus: document.getElementById("copyStatus"),
+      currentCode: document.getElementById("currentCode"),
+      pasteJan: document.getElementById("pasteJan"),
+      clearAll: document.getElementById("clearAll"),
+      selectResult: document.getElementById("selectResult"),
+      clearResult: document.getElementById("clearResult"),
+      status: document.getElementById("status")
+    };
+
+    let rowId = 0;
+    let codes = [];
+    let copyIndex = 0;
+    const MAX_COMBINATIONS_WITHOUT_WARNING = 50000;
+
+    function showStatus(message, type = "") {
+      els.status.textContent = message;
+      els.status.className = `status ${type}`.trim();
+    }
+
+    function normalizeOptions(text) {
+      return text
+        .replace(/[、，]/g, ",")
+        .replace(/\t/g, ",")
+        .replace(/\r?\n/g, ",");
+    }
+
+    function createRow(container, kind, value = "") {
+      rowId += 1;
+      const row = document.createElement("div");
+      row.className = "entry-row";
+      row.dataset.kind = kind;
+
+      const label = document.createElement("label");
+      const input = document.createElement("input");
+      input.type = "text";
+      input.id = `${kind}-${rowId}`;
+      input.value = kind === "option" ? normalizeOptions(value) : value;
+      label.htmlFor = input.id;
+
+      if (kind === "option") {
+        input.placeholder = "例: S,M,L またはタブ/改行貼り付け";
+        input.addEventListener("input", () => {
+          const normalized = normalizeOptions(input.value);
+          if (normalized !== input.value) {
+            const pos = input.selectionStart;
+            input.value = normalized;
+            input.setSelectionRange(Math.min(pos, input.value.length), Math.min(pos, input.value.length));
+          }
+          saveDraft();
+        });
+      } else {
+        input.placeholder = "例: 商品名";
+        input.addEventListener("input", saveDraft);
+      }
+
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "icon-button";
+      remove.textContent = "×";
+      remove.title = "この行を削除";
+      remove.setAttribute("aria-label", "この行を削除");
+      remove.addEventListener("click", () => {
+        row.remove();
+        refreshRows();
+        saveDraft();
+      });
+
+      row.append(label, input, remove);
+      container.appendChild(row);
+      refreshRows();
+    }
+
+    function refreshRows() {
+      [...els.labelRows.children].forEach((row, index) => {
+        row.querySelector("label").textContent = `ラベル ${index + 1}`;
+      });
+      [...els.optionRows.children].forEach((row, index) => {
+        row.querySelector("label").textContent = `選択肢 ${index + 1}`;
+        row.querySelector(".icon-button").disabled = els.optionRows.children.length <= 1;
+      });
+      els.deleteLabel.disabled = els.labelRows.children.length === 0;
+      els.deleteOption.disabled = els.optionRows.children.length <= 1;
+    }
+
+    function calculateCheckDigit(jan12) {
+      if (!/^\d{12}$/.test(jan12)) throw new Error("Invalid JAN prefix");
+      let sumOdd = 0;
+      let sumEven = 0;
+      for (let i = 0; i < 12; i++) {
+        const digit = Number(jan12[i]);
+        if ((i + 1) % 2 === 0) sumEven += digit;
+        else sumOdd += digit;
+      }
+      const total = sumOdd + sumEven * 3;
+      return (10 - (total % 10)) % 10;
+    }
+
+    function splitOptionList(value) {
+      return normalizeOptions(value)
+        .split(",")
+        .map((part) => part.trim())
+        .filter(Boolean);
+    }
+
+    function buildCombinations(optionLists) {
+      if (optionLists.length === 0) return [[]];
+      let result = [[]];
+      for (const list of optionLists) {
+        const next = [];
+        for (const prefix of result) {
+          for (const item of list) {
+            next.push([...prefix, item]);
+          }
+        }
+        result = next;
+      }
+      return result;
+    }
+
+    function resetCopyState() {
+      copyIndex = 0;
+      els.copyStatus.textContent = `0/${codes.length}`;
+      els.currentCode.textContent = "";
+      els.currentCode.title = "";
+      els.copyAll.disabled = codes.length === 0;
+      els.copyNext.disabled = codes.length === 0;
+      els.resultCount.textContent = `${codes.length.toLocaleString()}件`;
+    }
+
+    function generateCodes(forceLarge = false) {
+      const baseJan = els.baseJan.value.trim();
+      codes = [];
+      els.result.value = "";
+      resetCopyState();
+
+      if (!/^\d{13}$/.test(baseJan)) {
+        showStatus("発行済JANは13桁の数字で入力してください。", "err");
+        els.baseJan.focus();
+        return;
+      }
+
+      const labels = [...els.labelRows.querySelectorAll("input")].map((input) => input.value.trim());
+      const optionValues = [...els.optionRows.querySelectorAll("input")]
+        .map((input) => input.value.trim())
+        .filter(Boolean);
+      const optionLists = optionValues.map(splitOptionList).filter((list) => list.length > 0);
+      const total = optionLists.length ? optionLists.reduce((sum, list) => sum * list.length, 1) : 1;
+
+      if (total > MAX_COMBINATIONS_WITHOUT_WARNING && !forceLarge) {
+        showStatus(`${total.toLocaleString()}件生成されます。重くなる可能性があります。もう一度「コード生成」を押すと実行します。`, "warn");
+        els.generate.dataset.forceLarge = "true";
+        window.setTimeout(() => {
+          delete els.generate.dataset.forceLarge;
+        }, 7000);
+        return;
+      }
+
+      const combinations = buildCombinations(optionLists);
+      let startNum = BigInt(baseJan.slice(0, 12)) + 1n;
+
+      for (let i = 0; i < combinations.length; i++) {
+        const jan12 = (startNum + BigInt(i)).toString().padStart(12, "0");
+        if (jan12.length > 12) {
+          showStatus("生成範囲が12桁を超えました。発行済JANを確認してください。", "err");
+          codes = [];
+          els.result.value = "";
+          resetCopyState();
+          return;
+        }
+        const jan = jan12 + String(calculateCheckDigit(jan12));
+        let parts = [jan, ...labels, ...combinations[i]];
+        if (els.janLast.checked) {
+          parts = [...labels, ...combinations[i], jan];
+        }
+        codes.push(parts.join("\t"));
+      }
+
+      els.result.value = codes.join("\n");
+      resetCopyState();
+      saveDraft();
+      delete els.generate.dataset.forceLarge;
+      showStatus(`${codes.length.toLocaleString()}件生成しました。`, "ok");
+    }
+
+    async function copyText(text) {
+      if (!text) return false;
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch {
+        const temp = document.createElement("textarea");
+        temp.value = text;
+        temp.style.position = "fixed";
+        temp.style.left = "-9999px";
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        try {
+          return document.execCommand("copy");
+        } finally {
+          temp.remove();
+        }
+      }
+    }
+
+    async function copyNextCode() {
+      if (copyIndex >= codes.length) return;
+      let code = codes[copyIndex];
+      if (els.janOnly.checked) {
+        const parts = code.split("\t");
+        code = els.janLast.checked ? parts[parts.length - 1] : parts[0];
+      }
+      const ok = await copyText(code);
+      if (!ok) {
+        showStatus("コピーに失敗しました。", "err");
+        return;
+      }
+      copyIndex += 1;
+      els.copyStatus.textContent = `${copyIndex}/${codes.length}`;
+      els.currentCode.textContent = code;
+      els.currentCode.title = code;
+      els.copyNext.disabled = copyIndex >= codes.length;
+      showStatus(`コピーしました: ${code}`, "ok");
+    }
+
+    function saveDraft() {
+      const draft = {
+        baseJan: els.baseJan.value,
+        labels: [...els.labelRows.querySelectorAll("input")].map((input) => input.value),
+        options: [...els.optionRows.querySelectorAll("input")].map((input) => input.value),
+        janLast: els.janLast.checked,
+        janOnly: els.janOnly.checked
+      };
+      localStorage.setItem("janCodeGeneratorDraft", JSON.stringify(draft));
+    }
+
+    function restoreDraft() {
+      try {
+        const draft = JSON.parse(localStorage.getItem("janCodeGeneratorDraft") || "null");
+        if (!draft) {
+          createRow(els.labelRows, "label");
+          createRow(els.labelRows, "label");
+          createRow(els.optionRows, "option");
+          createRow(els.optionRows, "option");
+          return;
+        }
+        els.baseJan.value = draft.baseJan || "";
+        const labels = Array.isArray(draft.labels) ? draft.labels : ["", ""];
+        const options = Array.isArray(draft.options) && draft.options.length ? draft.options : ["", ""];
+        labels.forEach((value) => createRow(els.labelRows, "label", value));
+        options.forEach((value) => createRow(els.optionRows, "option", value));
+        els.janLast.checked = Boolean(draft.janLast);
+        els.janOnly.checked = draft.janOnly !== false;
+      } catch {
+        localStorage.removeItem("janCodeGeneratorDraft");
+        createRow(els.labelRows, "label");
+        createRow(els.labelRows, "label");
+        createRow(els.optionRows, "option");
+        createRow(els.optionRows, "option");
+      }
+    }
+
+    els.baseJan.addEventListener("input", () => {
+      els.baseJan.value = els.baseJan.value.replace(/\D/g, "").slice(0, 13);
+      saveDraft();
+    });
+    els.addLabel.addEventListener("click", () => {
+      createRow(els.labelRows, "label");
+      saveDraft();
+      els.labelRows.querySelector(".entry-row:last-child input").focus();
+    });
+    els.deleteLabel.addEventListener("click", () => {
+      if (!els.labelRows.lastElementChild) return;
+      els.labelRows.lastElementChild.remove();
+      refreshRows();
+      saveDraft();
+    });
+    els.addOption.addEventListener("click", () => {
+      createRow(els.optionRows, "option");
+      saveDraft();
+      els.optionRows.querySelector(".entry-row:last-child input").focus();
+    });
+    els.deleteOption.addEventListener("click", () => {
+      if (els.optionRows.children.length <= 1) return;
+      els.optionRows.lastElementChild.remove();
+      refreshRows();
+      saveDraft();
+    });
+    els.janLast.addEventListener("change", saveDraft);
+    els.janOnly.addEventListener("change", saveDraft);
+    els.generate.addEventListener("click", () => generateCodes(els.generate.dataset.forceLarge === "true"));
+    els.copyNext.addEventListener("click", copyNextCode);
+    els.copyAll.addEventListener("click", async () => {
+      const ok = await copyText(els.result.value);
+      showStatus(ok ? "すべてコピーしました。" : "コピーに失敗しました。", ok ? "ok" : "err");
+    });
+    els.selectResult.addEventListener("click", () => {
+      els.result.focus();
+      els.result.select();
+      showStatus("出力を選択しました。", "ok");
+    });
+    els.clearResult.addEventListener("click", () => {
+      codes = [];
+      els.result.value = "";
+      resetCopyState();
+      showStatus("出力をクリアしました。", "ok");
+    });
+    els.clearAll.addEventListener("click", () => {
+      els.baseJan.value = "";
+      els.labelRows.innerHTML = "";
+      els.optionRows.innerHTML = "";
+      createRow(els.labelRows, "label");
+      createRow(els.labelRows, "label");
+      createRow(els.optionRows, "option");
+      createRow(els.optionRows, "option");
+      els.janLast.checked = false;
+      els.janOnly.checked = true;
+      codes = [];
+      els.result.value = "";
+      resetCopyState();
+      saveDraft();
+      showStatus("全てクリアしました。", "ok");
+      els.baseJan.focus();
+    });
+    els.pasteJan.addEventListener("click", async () => {
+      try {
+        els.baseJan.value = (await navigator.clipboard.readText()).replace(/\D/g, "").slice(0, 13);
+        saveDraft();
+        showStatus("発行済JANを貼り付けました。", "ok");
+      } catch {
+        showStatus("クリップボードの読み取りに失敗しました。", "err");
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.ctrlKey && event.key === "Enter") {
+        event.preventDefault();
+        generateCodes(els.generate.dataset.forceLarge === "true");
+      }
+    });
+
+    restoreDraft();
+    refreshRows();
+  </script>
+</body>
+</html>

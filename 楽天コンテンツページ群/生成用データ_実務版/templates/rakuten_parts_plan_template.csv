@@ -1,0 +1,13 @@
+part_no,part_type,content_or_asset,folder,link_product_id,notes
+1,title_banner,title_banner.jpg,images,,リンクなしの見出し画像
+2,heading,H1 テキスト,,,楽天パーツでテキスト入力
+3,text,introduction,,,導入文
+4,video,opening_cm.mp4,video,,タイトル直下の動く目次CM
+5,image,section_01_banner.jpg,images,,商品画像は入れない
+6,text,section_01_text,,,本文
+7,image,section_02_banner.jpg,images,,章タイトルまたは知識整理
+8,text,section_02_text,,,本文
+9,product_cards,recommended products,product_images,確定商品ID,リンク可能な商品紹介パーツで配置
+10,text,summary,,,まとめ
+11,image,closing_banner.jpg,images,,CTA風だが売り込みすぎない
+

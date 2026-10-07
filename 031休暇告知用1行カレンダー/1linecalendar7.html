@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>休業日カレンダー画像生成ツール（今日から7日間自動表示）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 省略（前回と同じスタイルを使用） */
+        #preview-container { background: transparent; padding: 20px 10px 10px; display: inline-block; }
+        #preview-bar { height: 84px; display: flex; align-items: center; justify-content: center; background: transparent; }
+        #preview-viewport { height: 76px; overflow: visible; display: flex; justify-content: center; }
+        #preview-view { display: flex; align-items: center; flex-wrap: nowrap; gap: var(--slot-gap, 6px); }
+
+        #download-container { position: absolute; left: -9999px; top: -9999px; background: transparent; padding: 20px 10px 10px; display: inline-block; }
+        #download-bar { height: 84px; display: flex; align-items: center; justify-content: center; background: transparent; }
+        #download-viewport { height: 76px; overflow: visible; display: flex; justify-content: center; }
+        #download-view { display: flex; align-items: center; flex-wrap: nowrap; gap: var(--slot-gap, 6px); }
+
+        /* ダウンロード補正 */
+        #download-view .date-row-cal { transform: translateY(-12px); }
+        #download-view .header-row-cal { transform: translateY(-6px); }
+
+        .date-slot {
+            flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            width: var(--slot-width, 62px); height: var(--slot-width, 62px);
+            padding: 10px 4px 2px 4px; border: 1px solid #e5e7eb; border-radius: 12px; background: white;
+            font-weight: 600; position: relative; box-sizing: border-box; overflow: hidden;
+            cursor: pointer; transition: transform 0.1s ease;
+        }
+        .date-slot:active { transform: scale(0.95); }
+        .holiday-slot { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); color: #dc2626; border-color: #fca5a5; font-weight: 700; }
+        .weekday-slot { background: white; color: #1f2937; border-color: #d1d5db; }
+        .is-today-cal { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); }
+        .header-row-cal { display: flex; justify-content: space-between; width: 100%; font-size: var(--header-font, 12px); font-weight: 500; line-height: 1; margin-bottom: 3px; }
+        .date-row-cal { flex: 1; display: flex; align-items: flex-start; justify-content: center; font-size: var(--date-font, 26px); font-weight: 700; line-height: 1; margin-top: -2px; }
+        .today-indicator-cal { position: absolute; bottom: 3px; right: 3px; width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 0 2px white; }
+    </style>
+</head>
+<body class="bg-gray-200 min-h-screen py-12">
+    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-8">
+        <h1 class="text-2xl font-bold text-center mb-8 text-gray-800">休業日カレンダー画像生成ツール</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">開始日</label>
+                <input type="date" id="start-date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">終了日</label>
+                <input type="date" id="end-date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="flex items-end space-x-4">
+                <button id="generate-btn" class="flex-1 bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition">
+                    カレンダー生成
+                </button>
+                <div class="flex items-center space-x-2 pb-2">
+                    <label class="text-sm font-medium text-gray-700">今日ハイライト</label>
+                    <input type="checkbox" id="today-highlight" class="w-5 h-5 text-blue-600 rounded focus:ring-blue-500" checked>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6 text-center">
+            <button id="download-btn" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition disabled:bg-gray-400" disabled>
+                透過PNGとしてダウンロード
+            </button>
+        </div>
+
+        <div class="text-center mb-8 border-2 border-dashed border-gray-300 rounded-lg py-4 bg-gray-50">
+            <div id="preview-container">
+                <div id="preview-bar">
+                    <div id="preview-viewport">
+                        <div id="preview-view"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="download-container">
+            <div id="download-bar">
+                <div id="download-viewport">
+                    <div id="download-view"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-6 text-center text-sm text-gray-600">
+            ※ ページを開くと自動で「今日から7日間」が表示されます。<br>
+            ※ 各日付クリックで休業日↔営業日をトグル可能。<br>
+            ※ ダウンロード画像にもすべて反映されます。
+        </div>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startInput = document.getElementById('start-date');
+            const endInput = document.getElementById('end-date');
+            const generateBtn = document.getElementById('generate-btn');
+            const downloadBtn = document.getElementById('download-btn');
+            const todayHighlightToggle = document.getElementById('today-highlight');
+
+            const previewView = document.getElementById('preview-view');
+            const downloadView = document.getElementById('download-view');
+            const downloadContainer = document.getElementById('download-container');
+
+            let startDate = null;
+            let endDate = null;
+            const manualHolidays = new Set();
+
+            const HOLIDAYS = [ /* 前回と同じ祝日配列 */ 
+                '2025-01-01','2025-01-13','2025-02-11','2025-02-23','2025-03-20',
+                '2025-04-29','2025-05-03','2025-05-04','2025-05-05','2025-07-21',
+                '2025-08-11','2025-09-15','2025-09-23','2025-10-13','2025-11-03','2025-11-23',
+                '2025-12-23','2025-12-29','2025-12-30','2025-12-31',
+                '2026-01-01','2026-01-02','2026-01-12','2026-02-11','2026-02-23','2026-03-20',
+                '2026-04-29','2026-05-03','2026-05-04','2026-05-05','2026-05-06',
+                '2026-07-20','2026-08-11','2026-09-21','2026-09-23','2026-10-12',
+                '2026-11-03','2026-11-23'
+            ];
+
+            function isBaseHoliday(dateStr) {
+                const date = new Date(dateStr);
+                const day = date.getDay();
+                if (day === 0 || day === 6) return true;
+                return HOLIDAYS.includes(dateStr);
+            }
+
+            function isHoliday(dateStr) {
+                const base = isBaseHoliday(dateStr);
+                if (manualHolidays.has(dateStr)) return !base;
+                return base;
+            }
+
+            function renderCalendar(targetView, isPreview = false) {
+                const totalDays = Math.floor((endDate - startDate) / 86400000) + 1;
+
+                const baseWidth = 68;
+                const minWidth = 50;
+                const slotWidth = Math.max(minWidth, baseWidth - Math.floor(totalDays / 10) * 2);
+                const slotGap = slotWidth <= 58 ? 4 : 6;
+                const headerFont = Math.max(10, Math.floor(slotWidth * 0.22));
+                const dateFont = Math.max(20, Math.floor(slotWidth * 0.48));
+
+                document.documentElement.style.setProperty('--slot-width', slotWidth + 'px');
+                document.documentElement.style.setProperty('--slot-gap', slotGap + 'px');
+                document.documentElement.style.setProperty('--header-font', headerFont + 'px');
+                document.documentElement.style.setProperty('--date-font', dateFont + 'px');
+
+                targetView.innerHTML = '';
+
+                // 今日の日付を動的に取得（実際の今日）
+                const today = new Date();
+                const todayStr = today.toISOString().slice(0,10);
+                const highlightToday = todayHighlightToggle.checked;
+
+                for (let i = 0; i < totalDays; i++) {
+                    const current = new Date(startDate);
+                    current.setDate(startDate.getDate() + i);
+                    const dateStr = current.toISOString().slice(0,10);
+                    const month = current.getMonth() + 1;
+                    const day = current.getDate();
+                    const dayNames = ['日','月','火','水','木','金','土'];
+                    const dayName = dayNames[current.getDay()];
+                    const holiday = isHoliday(dateStr);
+                    const isToday = dateStr === todayStr;
+
+                    let classes = 'date-slot';
+                    if (holiday) classes += ' holiday-slot';
+                    else classes += ' weekday-slot';
+                    if (isToday && highlightToday) classes += ' is-today-cal';
+
+                    const html = `
+                        <div class="${classes}" data-date="${dateStr}">
+                            <div class="header-row-cal">
+                                <span class="month-day-cal">${month}/</span>
+                                <span class="day-of-week-cal">${dayName}</span>
+                            </div>
+                            <div class="date-row-cal">
+                                <span>${day}</span>
+                            </div>
+                            ${isToday && highlightToday ? '<div class="today-indicator-cal"></div>' : ''}
+                        </div>
+                    `;
+                    targetView.insertAdjacentHTML('beforeend', html);
+
+                    if (isPreview) {
+                        const slot = targetView.lastElementChild;
+                        slot.addEventListener('click', () => {
+                            if (manualHolidays.has(dateStr)) {
+                                manualHolidays.delete(dateStr);
+                            } else {
+                                manualHolidays.add(dateStr);
+                            }
+                            renderCalendar(previewView, true);
+                            renderCalendar(downloadView, false);
+                        });
+                    }
+                }
+            }
+
+            function generateCalendar() {
+                const startVal = startInput.value;
+                const endVal = endInput.value;
+
+                if (!startVal || !endVal) {
+                    alert('開始日と終了日を両方指定してください。');
+                    return;
+                }
+
+                startDate = new Date(startVal);
+                endDate = new Date(endVal);
+
+                if (startDate > endDate) {
+                    alert('開始日は終了日より前である必要があります。');
+                    return;
+                }
+
+                manualHolidays.clear();
+
+                renderCalendar(previewView, true);
+                renderCalendar(downloadView, false);
+
+                downloadBtn.disabled = false;
+            }
+
+            generateBtn.addEventListener('click', generateCalendar);
+            todayHighlightToggle.addEventListener('change', () => {
+                if (startDate && endDate) {
+                    renderCalendar(previewView, true);
+                    renderCalendar(downloadView, false);
+                }
+            });
+
+            downloadBtn.addEventListener('click', () => {
+                downloadBtn.disabled = true;
+                downloadBtn.textContent = '生成中...';
+                downloadContainer.offsetHeight;
+
+                html2canvas(downloadContainer, {
+                    scale: 3,
+                    backgroundColor: null,
+                    useCORS: true,
+                    logging: false
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `休業日カレンダー_${startInput.value}_～_${endInput.value}${todayHighlightToggle.checked ? '' : '_no-today'}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    downloadBtn.disabled = false;
+                    downloadBtn.textContent = '透過PNGとしてダウンロード';
+                }).catch(err => {
+                    console.error(err);
+                    alert('画像生成に失敗しました。');
+                    downloadBtn.disabled = false;
+                    downloadBtn.textContent = '透過PNGとしてダウンロード';
+                });
+            });
+
+            // ===== 起動時の自動設定 =====
+            const today = new Date();
+            const todayStr = today.toISOString().slice(0,10);
+
+            // 開始日 = 今日
+            startInput.value = todayStr;
+
+            // 終了日 = 今日 + 6日後（合計7日間表示）
+            const defaultEnd = new Date(today);
+            defaultEnd.setDate(today.getDate() + 6);
+            endInput.value = defaultEnd.toISOString().slice(0,10);
+
+            // 自動で初回生成
+            generateCalendar();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+scene_no,scene_name,duration_sec,background_file,display_copy,motion,text_animation
+1,title,5.8,000_scene01.jpg,"尿もれ対策を、\nふつうの準備に。",zoom_in,typewriter_after_blank
+2,morning,3.8,000_scene02.jpg,"こっそり悩む朝に、\n選択肢を。",pan_right,rise_fade
+3,points,4.5,000_scene03.jpg,"このコラムのポイント\n› 日常向けの吸水量\n› パッドとの使い分け\n› 外出前の安心",gentle_zoom,points_one_by_one
+4,capacity,3.8,000_scene04.jpg,"20cc・30ccは、\n日常の念のために。",diagonal_pan,slide_left
+5,choice,3.7,000_scene05.jpg,"パッドだけが正解、\nではありません。",pan_left,slide_right
+6,closing,4.0,000_scene06.jpg,"いつもの私で、\n出かけられる。",zoom_out,rise_fade

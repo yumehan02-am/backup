@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>tp_sh1のマニュアル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+
+<main>
+
+
+
+<!-- ここからgallery -->
+<section id="gallery" class="section">
+<div class="contents">
+<div class="gallery-box">
+
+<h2><span class="hosoku">Gallery</span><span class="fade-in-text">ギャラリー</span></h2>
+<aside class="blur"><img src="../images/bg_gallery.png" alt=""></aside>
+
+<div class="slide-thumbnail-box">
+
+<div class="slide-thumbnail1">
+<div class="img rtl">
+<div><img src="../images/gallery-1.jpg" alt=""></div>
+<div><img src="../images/gallery-2.jpg" alt=""></div>
+<div><img src="../images/gallery-3.jpg" alt=""></div>
+<div><img src="../images/gallery-4.jpg" alt=""></div>
+<div><img src="../images/gallery-5.jpg" alt=""></div>
+<div><img src="../images/gallery-6.jpg" alt=""></div>
+</div>
+</div>
+
+<div class="slide-thumbnail1">
+<div class="img ltr">
+<div><img src="../images/gallery-1.jpg" alt=""></div>
+<div><img src="../images/gallery-2.jpg" alt=""></div>
+<div><img src="../images/gallery-3.jpg" alt=""></div>
+<div><img src="../images/gallery-4.jpg" alt=""></div>
+<div><img src="../images/gallery-5.jpg" alt=""></div>
+<div><img src="../images/gallery-6.jpg" alt=""></div>
+</div>
+</div>
+
+</div>
+
+</div>
+<!--/gallery-box-->
+
+</div>
+</section>
+
+
+
+</main>
+
+
+
+<div class="manual">
+
+<h2>「Gallery」ブロックについて（ギャラリー）</h2>
+
+<pre class="look">
+&lt;!-- ここからgallery --&gt;
+&lt;section id=&quot;gallery&quot; class=&quot;section&quot;&gt;
+&lt;div class=&quot;contents&quot;&gt;
+&lt;div class=&quot;gallery-box&quot;&gt;
+
+&lt;h2&gt;&lt;span class=&quot;hosoku&quot;&gt;Gallery&lt;/span&gt;&lt;span class=&quot;fade-in-text&quot;&gt;ギャラリー&lt;/span&gt;&lt;/h2&gt;
+&lt;aside class=&quot;blur&quot;&gt;&lt;img src=&quot;images/bg_gallery.png&quot; alt=&quot;&quot;&gt;&lt;/aside&gt;
+
+&lt;div class=&quot;slide-thumbnail-box&quot;&gt;
+
+&lt;div class=&quot;slide-thumbnail1&quot;&gt;
+&lt;div class=&quot;img rtl&quot;&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-1.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-2.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-3.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-4.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-5.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-6.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;slide-thumbnail1&quot;&gt;
+&lt;div class=&quot;img ltr&quot;&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-1.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-2.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-3.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-4.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-5.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;images/gallery-6.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;!--/gallery-box--&gt;
+
+&lt;/div&gt;
+&lt;/section&gt;
+</pre>
+
+<h3>主なスタイルは</h3>
+<p>cssフォルダのstyle.cssから「/*ギャラリー」でテキスト検索してみて下さい。詳しい解説もあります。</p>
+
+<h3>大きな端末で見た場合に見える両サイドの大きな画像について</h3>
+<p>「images/bg_gallery.jpg」です。お好みで入れ替えて下さい。サイズは自由で構いませんが端末サイズで配置バランスがかわるのでおかしくないような写真を選んで下さい。</p>
+
+<h3>上部の4枚写真について</h3>
+<p>4枚ですが１枚のpng画像（images/bg_gallery.png）になっています。psd画像も入ってますので編集できる方は活用して下さい。<br>
+画像は直接html側に配置されています。必ずaside要素で囲むようにして下さい。<br>
+スタイル設定はstyle.cssの「#gallery aside」で、場所の指示をしています。</p>
+
+<h3>ギャラリーの上部と下部にある曲線画像について</h3>
+<p>style.cssの「.gallery-box」が主な設定箇所です。画像の指定もここにありますので変更してもらっても構いません。ただ、アスペクト比（縦と横の比率）を維持したい場合は崩れてしまうので、崩れてもおかしくない画像をご用意下さい。この画像分の高さは「--gallery-space」の数値で調整できます。小さくすれば曲線が少なめになります。</p>
+
+<h3>h2見出しテキストについて</h3>
+<p>&lt;span class=&quot;hosoku&quot;&gt;で囲めば英語表記のような小さな文字になります。<br>
+&lt;span class=&quot;fade-in-text&quot;&gt;で囲めば以下のようなアニメーションテキストになります。</p>
+<p style="font-size: 1.5rem;"><span class="fade-in-text">アニメーションテキスト</span></p>
+<p>この「&lt;span class=&quot;fade-in-text&quot;&gt;」は他の部分にも使えますが、相性が悪いとおかしな動きになるので、おかしくならない所にだけ使うようにして下さい。</p>
+
+<h3>サムネイルのスライドショー</h3>
+<p>style.cssの「/*サムネイルスライドショー」とmain.jsの「サムネイルスライドショー」が主な設定コードです。<br>
+スピード設定はmain.jsで行います。<br>
+画像同士の余白はstyle.cssで行います。</p>
+<p>当テンプレートでは右から左へスライドするタイプと、左から右へスライドするタイプの２セット使っています。どちらか一方だけにしてもらってもOKですし、さらに増やしてもらってもOKです。<br>
+※画像は各ブロックごとに最低2枚以上は配置して下さい。</p>
+
+</div>
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="../js/jquery.inview_set.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="../js/main.js"></script>
+
+</body>
+</html>

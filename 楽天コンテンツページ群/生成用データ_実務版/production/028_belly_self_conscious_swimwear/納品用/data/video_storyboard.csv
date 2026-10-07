@@ -1,0 +1,11 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,028_scene01.jpg,5.2,"お腹だけ見てるのは
+自分だけかも",title_type,0,0
+2,028_scene02.jpg,3.6,鏡の前だけ審査員,rise_fade,0,0
+3,028_scene03.jpg,4.1,"このコラムのポイント
+› 鏡の前だけ審査員になる
+› みんな自分のことで忙しい
+› ふんわり隠して気を散らさない",points,0,0
+4,028_scene04.jpg,3.6,みんな意外と忙しい,slide_left,0,0
+5,028_scene05.jpg,3.6,動ける安心も欲しい,rise_fade,0,0
+6,028_scene06.jpg,3.6,笑って出かけるくらいでいい,slide_right,0,0

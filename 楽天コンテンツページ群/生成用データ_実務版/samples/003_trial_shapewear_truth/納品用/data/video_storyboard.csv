@@ -1,0 +1,7 @@
+scene,duration_sec,background_file,display_type,text_main,text_sub,motion,text_rule
+1,5.6,01_title.jpg,typewriter_title,"着るだけで痩せる？\nそれ、ありえません。",,slow_push,0.4秒は背景のみ。その後、2行同サイズで全文タイプ表示。
+2,3.4,02_person.jpg,fade_rise,"でも、服の見え方は\n整えられる。",,soft_rise,背景は人物/手元のイメージ。商品画像は使わない。
+3,4.0,03_points.jpg,points,"このコラムのポイント","できること\nできないこと\n続けやすい選び方",calm_pan,見出しは最初から表示。3行ポイントを一行ずつ表示。
+4,3.4,04_comfort.jpg,slide_in,"苦しい補正は\n続きません。",,left_slide,本文説明ではなく読みたくなる短いキャッチ。
+5,3.4,05_choice.jpg,fade_rise,"服に合わせて\n選び方を変える。",,right_pan,前後シーンと違う背景・パン方向。
+6,3.6,06_closing.jpg,fade_rise,"期待しすぎず、\n納得して選ぶ。",,slow_pull,明るい締め。商品は出さない。

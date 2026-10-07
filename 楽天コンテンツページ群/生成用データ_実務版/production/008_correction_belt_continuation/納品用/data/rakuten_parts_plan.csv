@@ -1,0 +1,13 @@
+order,part_type,file_or_source,note
+1,thumbnail,images/008_thumbnail.jpg,RMSサムネイル候補
+2,banner,images/008_title.jpg,タイトルバナー
+3,video,video/opening_cm_008_vertical.mp4,タイトル直下の動く目次CM
+4,banner,images/008_points.jpg,動画直下のポイント画像
+5,text,page_copy.md,リード文から1章まで
+6,banner,images/008_daily.jpg,続けやすさの共感
+7,text,page_copy.md,2章から3章まで
+8,banner,images/008_choice.jpg,日常に入る形
+9,text,page_copy.md,4章から6章まで
+10,banner,images/008_closing.jpg,まとめ前後の区切り
+11,text,page_copy.md,まとめ
+12,product_parts,product_ids.csv,関連商品パーツ

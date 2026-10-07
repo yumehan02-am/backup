@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>tp_sh1のマニュアル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+
+<!-- ここからhome -->
+<header id="home" class="section">
+<div class="contents">
+</div>
+</header>
+
+
+
+<!-- 大きな端末で表示される左側メニュー -->
+<nav id="header-menu">
+<ul>
+<li><a href="#home">トップ</a></li>
+<li><a href="#special">オープニング特別メニュー</a></li>
+<li><a href="#kodawari">私たちのこだわり</a></li>
+<li><a href="#menu">メニュー</a></li>
+<li><a href="#gallery">ギャラリー</a></li>
+<li><a href="#shop">ショップ情報</a></li>
+</ul>
+</nav>
+
+
+
+<!--開閉ボタン（ハンバーガーアイコン）-->
+<div id="menubar_hdr">
+<span></span><span></span><span></span>
+</div>
+
+
+
+<!--開閉ブロック-->
+<div id="menubar">
+<nav>
+<ul>
+<li><a href="#home">トップ</a></li>
+<li><a href="#special">オープニング特別メニュー</a></li>
+<li><a href="#kodawari">私たちのこだわり</a></li>
+<li><a href="#menu">メニュー</a></li>
+<li><a href="#gallery">ギャラリー</a></li>
+<li><a href="#shop">ショップ情報</a></li>
+</ul>
+</nav>
+</div>
+<!--/#menubar-->
+
+
+
+<div class="manual margin-left">
+
+<h2>「header-menu」ブロックについて（大きな端末で表示される左側メニュー）</h2>
+
+<pre class="look">
+&lt;nav id=&quot;header-menu&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#home&quot;&gt;トップ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#special&quot;&gt;オープニング特別メニュー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#kodawari&quot;&gt;私たちのこだわり&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#menu&quot;&gt;メニュー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#gallery&quot;&gt;ギャラリー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#shop&quot;&gt;ショップ情報&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/nav&gt;
+</pre>
+
+<h3>主なスタイルは</h3>
+<p>cssフォルダのstyle.cssから「header-menu」でテキスト検索してみて下さい。詳しい解説もあります。<br>
+数をあまり増やしてしまうと最後の方が切れてスクロールしても見れなくなるので注意して下さい。</p>
+<p>ページ内の各セクションとメニュー色の変化が連動します。切り替え処理はmain.jsの「背景切り替え」で行っています。色指定はstyle.cssの方です。</p>
+
+<h3>アンカーリンク（ページ内のリンク）</h3>
+<p>#homeや#specialというidがリンク先になっていますが、これは同一ページ内のそれぞれ同じ名前がつくidへ移動するという意味です。<br>
+「id」はcssでは「#」と書き、「class」はcssでは「.（ドット）」と書きます。<br>
+例えば、<br>
+&lt;a href=&quot;#home&quot;&gt;<br>
+とリンクがある場合は、同一ページの、<br>
+id=&quot;home&quot;<br>
+へ移動する、という意味になります。<br>
+このid（#）でつける名前はページ内に１つしか使えないのでその点だけ注意して下さい。</p>
+
+<br><br>
+
+<h2>「menubar_hdr」ブロックについて（画面右上のハンバーガーアイコン）</h2>
+
+<pre class="look">
+&lt;!--開閉ボタン（ハンバーガーアイコン）--&gt;
+&lt;div id=&quot;menubar_hdr&quot;&gt;
+&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
+&lt;/div&gt;
+</pre>
+
+<h3>主なスタイルは</h3>
+<p>style.cssから「menubar_hdr」でテキスト検索して下さい。詳しい解説もあります。</p>
+<p>mix-blend-mode: exclusion;の指定があるため、背景色がどんな色（例えば同じ色）でもハンバーガーアイコンが見えるようになります。ただ、任意の線色にしても適用されないので、任意の線色を出したい場合はこの１行を削除して下さい。</p>
+
+<br><br>
+
+<h2>「menubar」ブロックについて（ハンバーガーアイコンをクリックすると出るメニュー）</h2>
+
+<pre class="look">
+&lt;!--開閉ブロック--&gt;
+&lt;div id=&quot;menubar&quot;&gt;
+&lt;nav&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#home&quot;&gt;トップ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#special&quot;&gt;オープニング特別メニュー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#kodawari&quot;&gt;私たちのこだわり&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#menu&quot;&gt;メニュー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#gallery&quot;&gt;ギャラリー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#shop&quot;&gt;ショップ情報&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/div&gt;
+&lt;!--/#menubar--&gt;
+</pre>
+
+<h3>主なスタイルは</h3>
+<p>style.cssから「menubar」でテキスト検索して下さい。詳しい解説もあります。<br>
+アンカーリンクについては上で説明しているものと同じです。</p>
+
+
+</div>
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="../js/jquery.inview_set.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="../js/main.js"></script>
+
+</body>
+</html>

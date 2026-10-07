@@ -1,0 +1,15 @@
+scene,duration,background,copy,animation,crop_x,crop_y,text_center_x,point_x
+1,5.8,012_scene01.jpg,"ワイドパンツの日
+個室で会議が始まる",typewriter,0,0,,
+2,3.8,012_scene02.jpg,"今日の敵は
+布の量",rise,0,0,,
+3,4.8,012_scene03.jpg,"このコラムのポイント
+› 布の量と向き合う
+› 床につけたくない
+› 季節で作戦を変える",points,0,0,,
+4,3.8,012_scene04.jpg,"片手作戦は
+意外と忙しい",slide_left,0,0,,
+5,3.8,012_scene05.jpg,"夏と冬で
+作戦を変える",slide_right,0,0,,
+6,4.2,012_scene06.jpg,"見えない準備で
+落ち着く私",soft_drop,0,0,,

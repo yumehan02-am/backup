@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-09-25T17:25:00",
+  "source_folder": "C:\\Users\\i58400am\\Desktop\\newapp\\Yahoo!\\20260818154453_root\\u-b-yumehan",
+  "backup_path": "C:\\Users\\i58400am\\Desktop\\newapp\\034Yahoo!トップページ編集_v2\\backups\\u-b-yumehan_20260925_172500",
+  "excluded_dirs": [
+    "__pycache__",
+    "images"
+  ],
+  "excluded_exts": [
+    ".bak",
+    ".tmp"
+  ],
+  "excluded_names": [
+    "preview_index.html",
+    "preview_main.js",
+    "preview_style.css"
+  ]
+}

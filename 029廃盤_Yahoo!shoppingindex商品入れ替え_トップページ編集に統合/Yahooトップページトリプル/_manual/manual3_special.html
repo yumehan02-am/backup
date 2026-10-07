@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>tp_sh1のマニュアル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+
+<main>
+
+
+
+<!-- ここからspecial -->
+<section id="special" class="section">
+<div class="contents">
+
+<h2><span class="hosoku">Opening Special Menu</span><span class="fade-in-text">オープニング記念特別メニュー</span></h2>
+
+<div class="slide5">
+
+<div class="slide img1">
+<img src="../images/special1.jpg" alt="">
+<p class="text">メニュー名をここに入れます 2,200yen</p>
+<span class="icon-menu-point">NEW</span>
+</div>
+
+<div class="slide">
+<img src="../images/special2.jpg" alt="">
+<p class="text">メニュー名をここに入れます 2,200yen</p>
+<span class="icon-menu-point">数量限定</span>
+</div>
+
+<div class="slide">
+<img src="../images/special3.jpg" alt="">
+<p class="text">メニュー名をここに入れます 2,200yen</p>
+</div>
+
+<!-- インジケーターボタン（現在表示中ボタン） -->
+<div class="slide-indicators"></div>
+
+</div>
+<!-- /.slide5 -->
+
+</div>
+</section>
+
+
+
+</main>
+
+
+
+<div class="manual">
+
+<h2>「special」ブロックについて（オープニング特別メニュー）</h2>
+
+<pre class="look">
+&lt;!-- ここからspecial --&gt;
+&lt;section id=&quot;special&quot; class=&quot;section&quot;&gt;
+&lt;div class=&quot;contents&quot;&gt;
+
+&lt;h2&gt;&lt;span class=&quot;hosoku&quot;&gt;Opening Special Menu&lt;/span&gt;&lt;span class=&quot;fade-in-text&quot;&gt;オープニング記念特別メニュー&lt;/span&gt;&lt;/h2&gt;
+
+&lt;div class=&quot;slide5&quot;&gt;
+
+&lt;div class=&quot;slide img1&quot;&gt;
+&lt;img src=&quot;images/special1.jpg&quot; alt=&quot;&quot;&gt;
+&lt;p class=&quot;text&quot;&gt;メニュー名をここに入れます 2,200yen&lt;/p&gt;
+&lt;span class=&quot;icon-menu-point&quot;&gt;NEW&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;slide&quot;&gt;
+&lt;img src=&quot;images/special2.jpg&quot; alt=&quot;&quot;&gt;
+&lt;p class=&quot;text&quot;&gt;メニュー名をここに入れます 2,200yen&lt;/p&gt;
+&lt;span class=&quot;icon-menu-point&quot;&gt;数量限定&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;slide&quot;&gt;
+&lt;img src=&quot;images/special3.jpg&quot; alt=&quot;&quot;&gt;
+&lt;p class=&quot;text&quot;&gt;メニュー名をここに入れます 2,200yen&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- インジケーターボタン（現在表示中ボタン） --&gt;
+&lt;div class=&quot;slide-indicators&quot;&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;!-- /.slide5 --&gt;
+
+&lt;/div&gt;
+&lt;/section&gt;
+</pre>
+
+<h3>主なスタイルは</h3>
+<p>cssフォルダのstyle.cssから「special」や「slide5」でテキスト検索してみて下さい。詳しい解説もあります。</p>
+
+<h3>大きな端末で見た場合に見える両サイドの大きな画像について</h3>
+<p>「images/bg_special.jpg」です。お好みで入れ替えて下さい。サイズは自由で構いませんが端末サイズで配置バランスがかわるのでおかしくないような写真を選んで下さい。</p>
+
+<h3>見出し上にある装飾イラストについて</h3>
+<p>「images/bg_special.png」です。これはcssの背景画像で指定しています。</p>
+
+<h3>h2見出しテキストについて</h3>
+<p>&lt;span class=&quot;hosoku&quot;&gt;で囲めば英語表記のような小さな文字になります。<br>
+&lt;span class=&quot;fade-in-text&quot;&gt;で囲めば以下のようなアニメーションテキストになります。</p>
+<p style="font-size: 1.5rem;"><span class="fade-in-text">アニメーションテキスト</span></p>
+<p>この「&lt;span class=&quot;fade-in-text&quot;&gt;」は他の部分にも使えますが、相性が悪いとおかしな動きになるので、おかしくならない所にだけ使うようにして下さい。</p>
+
+<h3>スライドショー</h3>
+<p>1枚目の縦横比率（アスペクト比）が残りの画像にも適用されてスライドされます。<br>
+このブロック以外にもそのままコピペして画像を入れ替えれば複数設置可能です。</p>
+<p>style.cssの「slide5」と、main.jsの「横スライドインタイプのスライドショー」が関連コードです。フェードやスピードの速度などはこれらで調整できます。</p>
+<p>枚数を追加したい場合は、htmlの3つ目のブロックをコピペし、追加したい画像ファイル名に書き換えてもらうだけでOKです。</p>
+<p>スライドショー左下に出てくる「NEW」や「数量限定」のアイコン画像について。<br>
+テキスト部分は直接htmlに書いています。文字が多すぎると崩れるので注意して下さい。<br>
+アイコン画像は「images/icon_menu_point.svg」で、cssの背景画像で設定されています。設定は、style.cssの「icon-menu-point」で検索すると出てきます。アイコンを入れ替えたり、サイズや配置を調整したりできます。</p>
+<p>スライドショー下部のインジケーターボタンもstyle.cssで「indicator」で検索すると設定が変更できます。</p>
+
+</div>
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="../js/jquery.inview_set.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="../js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿scene,duration,background,copy,animation,crop_x,crop_y,text_center_x,point_x
+1,5.8,007_scene01.jpg,"猫背を治すより
+姿勢を思い出す",typewriter,0,0,,
+2,3.8,007_scene02.jpg,"一日中
+背すじを頑張れない",rise,0,0,,
+3,4.8,007_scene03.jpg,"このコラムのポイント
+› 矯正ではなく意識
+› 背中を思い出す
+› 毎日続ける",points,0,0,,
+4,3.8,007_scene04.jpg,"強く固定するより
+気づくきっかけ",slide_left,0,0,,
+5,3.8,007_scene05.jpg,"下着は
+習慣にしやすい",slide_right,0,0,,
+6,4.2,007_scene06.jpg,"今日の背中を
+少しだけ意識",soft_drop,0,0,,

@@ -1,0 +1,17 @@
+beautifulsoup4
+chardet
+fonttools
+keyboard
+openpyxl
+pandas
+Pillow
+reportlab
+PyAutoGUI
+PyGetWindow
+pynput
+pyperclip
+pytesseract
+PyQt5
+requests
+tkinterdnd2
+pywin32

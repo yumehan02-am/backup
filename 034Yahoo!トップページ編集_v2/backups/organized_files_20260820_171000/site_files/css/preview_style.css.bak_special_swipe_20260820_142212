@@ -1,0 +1,1231 @@
+@charset "utf-8";
+
+
+/*Google Fontsの読み込み
+---------------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
+
+/*Font Awesomeの読み込み
+---------------------------------------------------------------------------*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
+
+
+/*テンプレート専用cssファイルの読み込み
+---------------------------------------------------------------------------*/
+@import url("inview.css");
+
+
+/*opa1のキーフレーム設定
+---------------------------------------------------------------------------*/
+@keyframes opa1 {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+
+/*CSSカスタムプロパティ（サイト全体を一括管理する為の設定）
+---------------------------------------------------------------------------*/
+:root {
+	--primary-color: #F8F6F3;			/*テンプレートの土台カラー*/
+	--primary-inverse-color: #725A4C;	/*上のprimary-colorの対となる色*/
+	
+	--secondary-color: #544538;			/*テンプレートのサブまたはアクセントカラー*/
+	--secondary-inverse-color: #fff;	/*上のsecondary-colorの対となる色*/
+	
+	--accent-color: #e146a1;			/*アクセントカラー*/
+	--accent-inverse-color: #fff;		/*アクセントカラーの対となる色*/
+	
+	--global-space: 20px;				/*主に余白の一括管理用*/
+}
+
+
+/*テキストのフェードイン設定
+---------------------------------------------------------------------------*/
+/*アニメーション設定*/
+@keyframes fadeIn {
+	0% {opacity: 0;transform: scale(0.1) rotate(-30deg);}
+	100% {opacity: 1;transform: scale(1) rotate(0deg);}
+}
+
+/* 初期状態でテキストを非表示にする */
+.fade-in-text {
+    visibility: hidden;
+}
+
+/* アニメーションを適用するクラス。
+animationの行の「0.2s」が文字の出現のなめらかさで、大きいほどなめらかに出てきます。小さいとタイピングのようにカクカク出ます。
+１文字ずつの出現する際の時差は、js/main.jsの「テキストのフェードイン効果」の中にある「0.1」で調整できます。*/
+.char {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeIn 0.2s linear both;
+}
+
+
+/*全体の設定
+---------------------------------------------------------------------------*/
+body * {box-sizing: border-box;}
+
+html,body {
+	height: 100%;
+	font-size: 13px;	/*基準となるフォントサイズ。*/
+}
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+	html, body {
+		font-size: 14px;	/*基準となるフォントサイズ。*/
+	}
+
+	}/*追加指定ここまで*/
+
+
+body {
+	margin: 0;padding: 0;
+	font-family: "Zen Maru Gothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
+	-webkit-text-size-adjust: none;
+	line-height: 2.5;		/*行間*/
+	background: #463f39;	/*背景色*/
+	color: var(--primary-inverse-color);	/*文字色。冒頭のprimary-inverse-colorを読み込みます。*/
+	overflow-x: hidden;
+}
+
+/*リセット他*/
+figure {margin: 0;}
+dd {margin: 0;}
+nav ul {list-style: none;}
+nav,ul,li,ol {margin: 0;padding: 0;}
+section li {margin-left: 1rem;}
+
+/*table全般の設定*/
+table {border-collapse:collapse;}
+
+/*画像全般の設定*/
+img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
+
+/*videoタグ*/
+video {max-width: 100%;}
+
+/*iframeタグ*/
+iframe {width: 100%;}
+
+/*他*/
+input {font-size: 1rem;}
+
+
+/*リンクテキスト全般の設定
+---------------------------------------------------------------------------*/
+a {
+	color: inherit;
+	transition: 0.3s;	/*hoverまでにかける時間。0.3秒。*/
+}
+
+/*マウスオン時*/
+a:hover {
+	text-decoration: none;
+}
+
+
+/*header（ロゴが入った最上段のブロック）
+---------------------------------------------------------------------------*/
+/*大きな画面で見た場合に両サイドに見える画像*/
+header::before {
+	background: url("../images/bg_header.jpg") no-repeat center center / cover;	/*背景画像の読み込み*/
+}
+
+/*このブロック内のcontents*/
+header .contents {
+	color: #fff;	/*文字色*/
+	padding: 0;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	background: url("../images/1.jpg") no-repeat center center / cover;	/*背景画像の読み込み*/
+}
+
+header .contents a {color: inherit;}
+
+/*ロゴ、謳い文句、ロゴ上の装飾画像を囲むボックス*/
+header #logo-container {
+	flex: 1;
+	background: rgba(66,42,22,0.8);	/*背景色。66,42,22はRGB値での色指定で0.8は色が80%出た状態。写真そのまま出したいならこの１行を削除。*/
+	padding: 30px 10px 25px;		/*上、左右、下への余白*/
+	position: relative;
+	text-align: center;
+}
+
+/*ロゴ画像*/
+header .logo img {
+	display: block;
+	margin: 0 auto;
+	width: 250px;		/*ロゴ画像の幅。お好みで。*/
+}
+
+/*謳い文句*/
+header p {
+	display: block;
+	font-size: 0.8rem;	/*文字サイズ80%*/
+}
+
+/*トップの休業日のお知らせ*/
+.top-holiday-notice {
+	margin: 20px auto 0;
+	padding: 14px 20px 16px;
+	max-width: 520px;
+	background: rgba(255,255,255,0.88);
+	border-top: 1px solid rgba(255,255,255,0.7);
+	border-bottom: 1px solid rgba(114,90,76,0.24);
+	box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+	color: var(--primary-inverse-color);
+	line-height: 1.75;
+	text-align: center;
+	backdrop-filter: blur(5px);
+}
+
+.top-holiday-notice .notice-label {
+	display: inline-block;
+	margin-bottom: 8px;
+	padding: 2px 12px;
+	border: 1px solid rgba(225,70,161,0.32);
+	color: var(--accent-color);
+	font-size: 0.78rem;
+	font-weight: bold;
+	letter-spacing: 0.08em;
+}
+
+.top-holiday-notice .notice-date {
+	display: block;
+	color: #9b3f69;
+	font-size: 1.15rem;
+	font-weight: bold;
+}
+
+.top-holiday-notice .notice-text {
+	display: block;
+	margin-top: 5px;
+	font-size: 0.85rem;
+}
+
+/*ロゴ上の装飾画像（New Open）*/
+header .kazari {
+	position: absolute;
+	left: 20%;		/*ロゴが入ったボックスに対して左からの配置指定*/
+	top: -50px;		/*ロゴが入ったボックスに対して上からの配置指定。マイナスがつくので、ボックスから飛び出る形になります。*/
+	width: 140px;	/*画像の幅*/
+}
+
+
+/*ヘッダー下部のSCROLLアニメーション
+---------------------------------------------------------------------------*/
+/*アニメーション設定*/
+@keyframes scroll-line {
+  0% {transform: scaleY(1);}
+  50% {transform: scaleY(0);}
+  100% {transform: scaleY(0);}
+}
+
+/*ラインアニメーションを囲むブロック*/
+.scroll-container {
+	position: absolute;
+	width: 100px;
+	left: calc(50% - 50px);
+	bottom: 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 0.85rem;	/*SCROLLのテキストのサイズ。85%*/
+}
+
+/*「SCROLL」のテキスト部分*/
+.scroll-container p {
+	margin: 0;padding: 0;
+	text-align: center;
+	width: 60px;		/*幅*/
+	line-height: 60px;	/*高さ*/
+	border: 1px solid rgba(255,255,255,0.5);	/*テキストの色。255,255,255は白のことで0.5は色が50%出た状態。*/
+	border-radius: 50%;	/*枠を円形にする*/
+}
+
+/*ラインアニメーションの土台部分*/
+.scroll-line {
+	margin: 0 auto;
+	position: relative;
+	width: 1px;		/*ラインアニメーションの幅。お好みで。*/
+	height: 50px;	/*ラインアニメーションの高さ。お好みで。*/
+	background: rgba(255,255,255,0.5);	/*ラインアニメーションの土台部分の色。255,255,255は白のことで0.5は色が50%出た状態。*/
+}
+
+/*ラインアニメーション本体*/
+.scroll-line span {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background: #fff;	/*ラインアニメーションの色*/
+	animation: scroll-line 2s infinite;	/*2sがアニメーションにかける時間。2秒。*/
+	transform-origin: bottom;
+}
+
+
+/*ヘッダーメニュー（大きな画面で見た場合に左側に固定表示されるメニュー）
+---------------------------------------------------------------------------*/
+/*1000px未満は非表示*/
+#header-menu {
+	display: none;
+	--header-menu-font-size: 1.2rem;
+	--header-menu-gap: 30px;
+	--header-menu-padding: 10px 30px 10px 20px;
+	--header-menu-line-height: 2.5;
+}
+
+	/*画面幅1000px以上の追加指定*/
+	@media screen and (min-width:1000px) {
+
+	#header-menu {
+		display: block;	/*表示させる*/
+		position: fixed;z-index: 1;
+		left: 0px;
+		top: 100px;	/*上からの配置場所*/
+		max-height: calc(100vh - 120px);
+		overflow-y: auto;
+		overflow-x: visible;
+		scrollbar-width: thin;
+	}
+	
+	/*メニュー１個あたり*/
+	#header-menu li a {
+		text-decoration: none;display: block;
+		background: var(--secondary-color);		/*背景色。冒頭のsecondary-colorを読み込む。*/
+		color: var(--secondary-inverse-color);	/*文字色。冒頭のsecondary-inverse-colorを読み込む。*/
+		margin-bottom: var(--header-menu-gap, 30px);					/*下に空けるスペース。メニュー同士の上下間の隙間。*/
+		border-radius: 0px 100px 100px 0px;		/*角丸の指定。左上、右上、右下、左下への順。100pxの所はとりあえず大きな数字にしておけばOK。*/
+		padding: var(--header-menu-padding, 10px 30px 10px 20px);	/*ボタン内の余白。上、右、下、左への順番。*/
+		font-size: var(--header-menu-font-size, 1.2rem);	/*文字サイズを120%に。*/
+		line-height: var(--header-menu-line-height, 2.5);
+	}
+	
+	/*現在表示中のメニューの背景色と、マウスオン時共通*/
+	#header-menu li.active a,
+	#header-menu li a:hover {
+		background: var(--accent-color);	/*css冒頭のaccent-colorを読み込む*/
+	}
+
+	}/*追加指定ここまで*/
+
+
+/*背景画像共通（大きな画面で見た場合に両サイドに見える画像）
+---------------------------------------------------------------------------*/
+.section::before {
+	opacity: 0;
+	transition: opacity 1s; /* 1秒かけてフェードイン/フェードアウト */
+	content: '';
+	position: fixed;z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.section.active::before {
+	opacity: 1;
+}
+.section.inactive::before {
+	opacity: 0;
+}
+
+
+/*contents（各セクションブロック直下にあるボックス）
+---------------------------------------------------------------------------*/
+.contents {
+	background: var(--primary-color);		/*背景色。冒頭のprimary-colorを読み込む。*/
+	color: var(--primary-inverse-color);	/*文字色。冒頭のprimary-inverse-colorを読み込む。*/
+	padding: var(--global-space);			/*ボックス内の余白。冒頭のglobal-spaceを読み込む。*/
+	position: relative;
+	overflow-x: hidden;
+}
+
+	/*画面幅600px以上の追加指定*/
+	@media screen and (min-width:600px) {
+
+	.contents,
+	#gallery .gallery-box {
+		max-width: 560px;	/*大きな画面になった場合のコンテンツ幅*/
+		margin: 0 auto;		/*画面の左右中央に配置*/
+		overflow-x: visible;
+	}
+
+	}/*追加指定ここまで*/
+
+
+/*h2見出し共通*/
+.contents h2 {
+	margin: 0;
+	line-height: 1.8;	/*行間をデフォルトより狭くする。２行になった場合に間があきすぎるので。*/
+	padding: 20px 0;	/*上下、左右への余白*/
+	font-size: 1.8rem;	/*文字サイズ180%*/
+	text-align: center;	/*テキストをセンタリング*/
+}
+
+/*h2内の小文字*/
+.contents h2 span.hosoku {
+	display: block;
+	font-size: 0.7rem;		/*文字サイズを70%に*/
+	letter-spacing: 0.1em;	/*文字間隔を少しだけ広く*/
+	padding-bottom: 0.5rem;	/*下の見出しとの間の余白。0.5文字分。*/
+}
+
+
+/*オープニング特別メニュー（specialブロック）
+---------------------------------------------------------------------------*/
+/*大きな画面で見た場合に両サイドに見える画像*/
+#special::before {
+	                                background: url("../images/bg_special.jpg") no-repeat center center / cover;	/*背景画像の読み込み*/
+}
+
+/*このブロック内のcontents*/
+#special .contents {
+	background: var(--accent-color) /*背景色。冒頭のaccent-colorを読み込む。*/
+	url("../images/bg_special.png") no-repeat center top / 100%;	/*背景画像の読み込み。見出しの上にある装飾画像です。*/
+	color: var(--accent-inverse-color);	/*文字色。冒頭のaccent-inverse-colorを読み込む。*/
+}
+
+
+/*横スライドインタイプのスライドショー（１枚目の画像のアスペクト比が反映されるタイプ）
+---------------------------------------------------------------------------*/
+/*3枚の画像を囲むブロック*/
+.slide5 {
+	position: relative;
+	overflow: hidden;
+}
+
+/*３枚の画像の共通設定*/
+.slide5 .slide {
+	position: absolute;right: 0px;top: 0px;
+	width: 100%;
+	height: 100%;
+	transform: translateX(100%);
+	transition: transform 0.7s ease;	/*0.7sはスライドにかける時間（0.7秒）。0.7を変更する場合、main.jsのスライドショー用のコードの最後の「700」も変更する。*/
+}
+
+/*アクティブ時*/
+.slide5 .slide.active {
+	transform: translateX(0);
+}
+
+/*左に移動*/
+.slide5 .slide.left {
+	transform: translateX(-100%);
+}
+
+/*非表示*/
+.slide5 .slide.hidden {
+	opacity: 0;
+}
+
+/*初期表示用*/
+.slide5 .slide.initial {
+	transform: translateX(0);
+	transition: none;
+}
+
+/*１枚目画像（変更不要）*/
+.slide5 .img1 {
+	position: relative;width: 100%;height: auto;
+}
+
+/*画像のクリップ*/
+.slide5 .slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+/*現在表示されているスライドのみをクリック可能にする設定（変更不要）*/
+.slide5 .slide {
+	pointer-events: none;
+}
+.slide5 .slide.active {
+	pointer-events: auto;
+}
+
+/*現在表示中のボタンブロック*/
+.slide5 .slide-indicators {
+    text-align: center;
+	position: absolute;
+	width: 100%;
+	bottom: 80px;	/*ボタンの配置場所。スライドショーの画面下からの距離。*/
+	left: 0px;
+}
+
+/*ボタン１個あたり*/
+.slide5 .indicator {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #ccc;	/*未アクティブ時のボタン色*/
+	border: 4px solid #fff;	/*枠線の幅、線種、色。*/
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/*アクティブ時のボタン色*/
+.slide5 .indicator.active {
+    background: var(--accent-color);	/*冒頭のaccent-colorを読み込む*/
+}
+
+
+/*私たちのこだわり（kodawariブロック）
+---------------------------------------------------------------------------*/
+/*大きな画面で見た場合に両サイドに見える画像*/
+#kodawari::before {
+	                                background: url("../images/bg_kodawari.jpg") no-repeat center center / cover;	/*背景画像の読み込み*/
+}
+
+/*このブロック内のh2見出し*/
+#kodawari h2 {
+	position: relative;
+	padding-left: 40px;		/*左に空けるスペース。文字と画像が重ならないように適当な余白を確保。*/
+	padding-right: 40px;	/*右に空けるスペース。同上。*/
+}
+
+/*見出し左右の画像の共通設定*/
+#kodawari h2::before,
+#kodawari h2::after {
+	content: "";
+	position: absolute;
+	width: 80px;	/*画像の幅*/
+	height: 140px;	/*画像の高さ*/
+	top: -30px;		/*上からの距離*/
+	background: url("../images/kazari1.png") no-repeat center center / contain;	/*画像の読み込み*/
+}
+
+/*左側の画像の追加設定*/
+#kodawari h2::before {
+	left: -40px;	/*左からの配置場所*/
+}
+
+/*右側の画像の追加設定*/
+#kodawari h2::after {
+	right: -40px;	/*右からの配置場所*/
+	transform: scale(-1, 1);	/*画像を左右反転させる*/
+}
+
+/*こだわりテキストが入った背景色（bg1）*/
+#kodawari .bg1 {
+	background: #F0ECE5;	/*背景色*/
+	padding: 20px 60px;		/*上下、左右への余白*/
+	margin: 0 calc(-1 * var(--global-space));	/*両サイドの余白を相殺して幅一杯に使う*/
+}
+
+/*このボックス内のイメージ写真*/
+#kodawari aside {
+	margin: 0 calc(-1 * var(--global-space));	/*両サイドの余白を相殺して幅一杯に使う*/
+	border-radius: 100px 100px 0px 0px;	/*角を丸くする指定。左上、右上、右下、左下への順番。普通に表示させたいならこの１行を削除。*/
+	overflow: hidden;
+}
+
+/*このボックス内の余白。段落１文字目にインデント（１文字さがる）をとる。*/
+#kodawari .bg1 p {
+	text-indent: 1em;
+}
+
+
+/*お品書きメニュー（menuブロック）
+---------------------------------------------------------------------------*/
+/*大きな画面で見た場合に両サイドに見える画像*/
+#menu::before {
+	                                background: url("../images/bg_menu.jpg") no-repeat center center / cover;	/*背景画像の読み込み*/
+}
+
+/*このブロック内のh2見出し*/
+#menu h2 {
+	background: var(--secondary-color);		/*背景色。冒頭のsecondary-colorを読み込む。*/
+	color: var(--secondary-inverse-color);	/*文字色。secondary-inverse-colorを読み込む。*/
+	padding: 20px 0;	/*上下、左右への余白*/
+	margin-bottom: var(--global-space);		/*見出しの下に空ける隙間。冒頭のglobal-spaceを読み込む。*/
+	border-radius: 30px 30px 0px 0px;		/*角を丸くする指定。左上、右上、右下、左下への順番*/
+}
+
+/*メニューブロック１個あたり*/
+.menu img {display: block;}
+.menu {
+	position: relative;
+	margin-bottom: var(--global-space);	/*下に空けるスペース。冒頭のglobal-spaceを読み込む。*/
+}
+
+/*メニューの下にあるテキストブロック（※スライドショーと共通）*/
+.slide5 .slide .text,
+.menu .text {
+	margin: 0;
+	padding: 10px;	/*ボックス内の余白*/
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	text-align: center;
+	background: rgba(0,0,0,0.6);	/*背景色。0,0,0は黒の事で0.6は色が60%出た状態。*/
+	color: #fff;	/*文字色*/
+}
+
+/*メニューの下にある吹き出し系のアイコン（※スライドショーと共通）*/
+.slide5 .slide .icon-menu-point,
+.menu .icon-menu-point {
+	text-align: center;
+	width: 79px;	/*幅*/
+	height: 75px;	/*高さ*/
+	line-height: 1.2;
+	color: #fff;	/*文字色*/
+	font-size: 0.8rem;	/*文字サイズ80%*/
+	padding-top: 24px;	/*上に空ける余白。上下のバランスをとって下さい。*/
+	position: absolute;z-index: 1;
+	left: 20px;		/*左からの配備場所*/
+	bottom: 40px;	/*下からの配備場所*/
+	background: url("../images/icon_menu_point.svg") no-repeat center center;	/*アイコン画像の読み込み*/
+	transform: rotate(-20deg);	/*左に20度回転*/
+}
+
+
+/*ギャラリー
+---------------------------------------------------------------------------*/
+:root {
+	--gallery-space: 120px;	/*上と下の波打った画像の高さ。お好みで調整してもらってもOKですし、下で数箇所使っている所を直接数字入力に変更されてもOKです。*/
+}
+
+/*大きな画面で見た場合に両サイドに見える画像*/
+
+/* gallery0（インナーのイチオシ）用の背景画像 */
+#gallery0::before {
+                                    background: url("../images/bg_kodawari03.jpg") no-repeat center center / cover; /*背景画像の読み込み（1つ目の画像）*/
+}
+
+/* gallery1（水着のイチオシ）用の背景画像 */
+#gallery1::before {
+                                    background: url("../images/bg_gallery1.jpg") no-repeat center center / cover; /*背景画像の読み込み（2つ目の画像）*/
+}#gallery0 aside, #gallery2 aside, #gallery1 aside {
+	position: absolute;
+	left: 0px;
+	top: calc(-1 * var(--gallery-space));	/*本来の場所ではなく上にずらす*/
+}#gallery0 .contents, #gallery2 .contents, #gallery1 .contents {
+	background: var(--primary-color);		/*背景色。冒頭のprimary-colorを読み込む。*/
+}#gallery0 .gallery-box, #gallery2 .gallery-box, #gallery1 .gallery-box {
+	position: relative;
+	overflow: visible;
+	background: var(--accent-color);		/*背景色。冒頭のaccent-colorを読み込む。*/
+	color: var(--accent-inverse-color);		/*文字色。冒頭のaccent-inverse-colorを読み込む。*/
+	margin: var(--gallery-space) calc(-1 * var(--global-space));
+}#gallery0 .gallery-box::before,
+#gallery2 .gallery-box::before,
+#gallery1 .gallery-box::before,
+#gallery0 .gallery-box::after,
+#gallery2 .gallery-box::after,
+#gallery1 .gallery-box::after { /* ここを追加 */
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--gallery-space);	/*画像の高さ。上のgallery-spaceを読み込む。*/
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}#gallery0 .gallery-box::before,
+#gallery2 .gallery-box::before,
+#gallery1 .gallery-box::before { /* ここを追加 */
+    top: calc(-1 * var(--gallery-space));
+    background-image: url("../images/bg_gallery_top.png");	/*上の画像*/
+}#gallery0 .gallery-box::after,
+#gallery2 .gallery-box::after,
+#gallery1 .gallery-box::after { /* ここを追加 */
+    top: 100%;
+    background-image: url("../images/bg_gallery_bottom.png");	/*下の画像*/
+}
+
+
+/*サムネイルスライドショー
+---------------------------------------------------------------------------*/
+/*スライドショーブロック全てを囲むブロック*/
+.slide-thumbnail-box {
+	overflow-x: hidden;
+}
+
+/*画像たちを囲むブロック*/
+.slide-thumbnail1 .img {
+	display: flex;
+}
+
+/*画像*/
+.slide-thumbnail1 .img img {
+	padding: 5px;	/*画像の余白*/
+}
+
+
+/*tableっぽいdl（「お知らせ」「店舗情報」「メニュー（menu.html）」）
+---------------------------------------------------------------------------*/
+dl.table {
+	display: grid;
+	grid-template-columns: 100px auto;	/*dtとddを横並びにし、dtの幅を100pxに、残りは自動。*/
+	margin-bottom: 50px;
+	line-height: 2;
+}
+dl.table dt,
+dl.table dd {
+	padding: 1rem;
+}
+
+/*menu.htmlのテキストのみのお品書きに使用*/
+dl.table.reverse {
+	grid-template-columns: auto 100px;	/*dtとddを横並びにし、dtの幅を自動に、残りは10px。*/
+}
+dl.table.reverse dd {
+	text-align: right;
+}
+
+/*menuブロックのみ、奇数番目のメニューの行に薄く背景色をつける*/
+#menu dl.table dt:nth-of-type(odd),
+#menu dl.table dd:nth-of-type(odd) {
+	background: rgba(0,0,0,0.04);
+}
+
+
+/*店舗情報
+---------------------------------------------------------------------------*/
+/*大きな画面で見た場合に両サイドに見える画像*/
+#shop::before {
+	                                background: url("../images/bg_shop.jpg") no-repeat center center / cover;	/*背景画像の読み込み*/
+}
+
+/*「店舗情報」「マップ」「SNSアイコン」を囲むブロック*/
+#shop .shop-data {
+	border-radius: 500px 500px 0px 0px;	/*角を丸くする指定。左上、右上、右下、左下への順番。500pxの数字は適当に大きければOK。*/
+	background: url('../images/bg_shop_data.jpg') no-repeat center center / cover;	/*背景画像の読み込み*/
+	color: #fff;	/*文字色*/
+	padding: 100px 50px 50px;	/*上、左右、下へのボックス内余白*/
+}
+
+/*「所在地」などが記載されているtableっぽいブロック（基本設定はこの上の「tableっぽいdl（「お知らせ」「店舗情報」共通）」で行っています。）*/
+#shop .shop-data dl.table {
+	border-top: 1px solid rgba(255,255,255,0.3);	/*枠線の幅、線種、255,255,255は白のことで0.3は色が30%出た状態。下と揃えておく。*/
+}
+#shop .shop-data dl.table dt,
+#shop .shop-data dl.table dd {
+	border-bottom: 1px solid rgba(255,255,255,0.3);	/*枠線の幅、線種、255,255,255は白のことで0.3は色が30%出た状態。上と揃えておく。*/
+}
+
+/*Follow Usの画像*/
+#shop h3 img {
+	display: block;
+	width: 150px;	/*画像の幅*/
+	margin: 0 auto;
+}
+
+/*Google Map*/
+#shop iframe {
+	width: 100%;
+	height: 500px;	/*高さ*/
+}
+
+/*ソーシャルメディアのアイコン*/
+.icons {
+	list-style: none;
+	margin: 0;padding: 0;
+	display: flex;
+	align-self: center;
+	justify-content: center;
+	gap: 10px;	/*アイコン同士のマージン的な要素*/
+}
+.icons i {
+	font-size: 30px;	/*アイコンサイズ*/
+}
+
+
+/*フッター設定（コピーライト部分）
+---------------------------------------------------------------------------*/
+footer small {font-size: 100%;}
+footer {
+	font-size: 0.8rem;		/*文字サイズ80%*/
+	text-align: center;		/*内容をセンタリング*/
+}
+
+/*リンクテキスト*/
+footer a {color: inherit;text-decoration: none;}
+
+
+/*著作部分（※意図的に見えなくしたりしないで下さい。規約違反になります。）*/
+.pr a {
+	text-decoration: none;
+	display: block;
+	background: rgba(0,0,0,0.7);
+	text-align: right;
+	padding: 0.5rem 1rem;
+	color: #ccc;
+}
+.pr a::before {
+	font-family: "Font Awesome 6 Free";
+	content: "\e2ca";
+	font-weight: bold;
+	margin-right: 0.5em;
+}
+
+
+/*btn1（お品書きメニューブロックの一番下で使っているシンプルボタン）
+---------------------------------------------------------------------------*/
+.btn1 a {
+	display: block;text-decoration: none;
+	text-align: center;
+	border: 1px solid #333;	/*枠線の幅、線種、色*/
+	padding: 20px;			/*ボタン内の余白*/
+	font-size: 1.2rem;		/*文字サイズ120%*/
+	border-radius: 3px;		/*角を少しだけ丸く*/
+}
+
+/*右側の矢印アイコン設定*/
+.btn1 a::after {
+	transition: 0.3s;
+	font-family: "Font Awesome 6 Free";
+	content: "\f054";		/*使いたいアイコン名（Font Awesome）をここで指定*/
+	font-weight: bold;		/*この手の設定がないとアイコンが出ない場合があります*/
+	margin-left: 10px;		/*アイコンとテキストとの間に空けるスペース*/
+}	
+
+/*マウスオン時に矢印の左側のスペースを広くする*/
+.btn1 a:hover::after {
+	margin-left: 15px;
+}
+
+
+/*メニューブロック初期設定
+---------------------------------------------------------------------------*/
+/*メニューをデフォルトで非表示*/
+#menubar {display: none;}
+#menubar ul {list-style: none;margin: 0;padding: 0;}
+#menubar a {display: block;text-decoration: none;}
+
+/*上で非表示にしたメニューを表示させる為の設定*/
+.large-screen #menubar {display: block;}
+.small-screen #menubar.display-block {display: block;}
+
+/*3本バーをデフォルトで非表示*/
+#menubar_hdr.display-none {display: none;}
+
+
+/*開閉メニュー
+---------------------------------------------------------------------------*/
+/*メニューブロック設定*/
+.small-screen #menubar.display-block {
+	position: fixed;overflow: auto;z-index: 100;
+	right: 0px;top: 0px;
+	width: 100%;
+	height: 100%;
+	padding: 90px 10vw 50px;				/*ブロック内の余白。上、左右、下への順番。*/
+	background: var(--secondary-color);		/*背景色。css冒頭のsecondary-colorを読み込みます。*/
+	color: var(--secondary-inverse-color);	/*文字色。css冒頭のsecondary-inverse-colorを読み込みます。*/
+	animation: opa1 1s both;				/*opa1を実行する。1sは1秒の事。*/
+}
+
+/*メニュー１個あたりの設定*/
+.small-screen #menubar nav ul li {
+	border: 1px solid var(--secondary-inverse-color);	/*枠線の幅、線種、varは色の事でcss冒頭のsecondary-inverse-colorを読み込みます。*/
+	margin: 1rem 0;			/*メニューの外側に空けるスペース。上下、左右への順番。*/
+	border-radius: 5px;		/*角を丸くする指定*/
+}
+.small-screen #menubar a {
+	color: inherit;
+	padding: 1rem 2rem;	/*メニュー内の余白。上下、左右へ。*/
+}
+
+/*マウスオン時*/
+.small-screen #menubar a:hover {
+	color: var(--secondary-color);				/*文字色。css冒頭のsecondary-colorを読み込みます。*/
+	background: var(--secondary-inverse-color);	/*背景色。css冒頭のsecondary-inverse-colorを読み込みます。*/
+}
+
+
+/*３本バー（ハンバーガー）アイコン設定
+---------------------------------------------------------------------------*/
+/*３本バーを囲むブロック*/
+#menubar_hdr {
+	animation: opa1 0s 0.2s both;
+	position: fixed;z-index: 101;
+	cursor: pointer;
+	right: 0px;				/*右からの配置場所指定*/
+	top: 0px;				/*上からの配置場所指定*/
+	padding: 16px 14px;		/*上下、左右への余白*/
+	width: 46px;			/*幅（３本バーが出ている場合の幅になります）*/
+	height: 46px;			/*高さ*/
+	display: flex;					/*flexボックスを使う指定*/
+	flex-direction: column;			/*子要素（３本バー）部分。flexはデフォルトで横並びになるので、それを縦並びに変更。*/
+	justify-content: space-between;	/*並びかたの種類の指定*/
+	transform: scale(2);	/*デフォルトで準備したサイズの２倍。お好みで。*/
+	transform-origin: right top;
+	mix-blend-mode: exclusion;
+}
+
+/*バー１本あたりの設定*/
+#menubar_hdr span {
+	display: block;
+	transition: 0.3s;	/*アニメーションにかける時間。0.3秒。*/
+	border-top: 1px solid #fff;	/*線の幅、線種、色*/
+}
+
+/*×印が出ている状態の3本バーの背景色*/
+#menubar_hdr.ham {
+	background: #ff0000;
+}
+
+/*×印が出ている状態の設定。※１本目および２本目のバーの共通設定。*/
+#menubar_hdr.ham span:nth-of-type(1),
+#menubar_hdr.ham span:nth-of-type(3) {
+	transform-origin: center center;	/*変形の起点。センターに。*/
+	width: 20px;						/*バーの幅*/
+}
+
+/*×印が出ている状態の設定。※１本目のバー。*/
+#menubar_hdr.ham span:nth-of-type(1){
+	transform: rotate(45deg) translate(3.8px, 5px);	/*回転45°と、X軸Y軸への移動距離の指定*/
+}
+
+/*×印が出ている状態の設定。※３本目のバー。*/
+#menubar_hdr.ham span:nth-of-type(3){
+	transform: rotate(-45deg) translate(3.8px, -5px);	/*回転-45°と、X軸Y軸への移動距離の指定*/
+}
+
+/*×印が出ている状態の設定。※２本目のバー。*/
+#menubar_hdr.ham span:nth-of-type(2){
+	display: none;	/*２本目は使わないので非表示にする*/
+}
+
+
+/*マニュアルページ用
+---------------------------------------------------------------------------*/
+.manual {
+	background: #fff;
+	color: #333;
+	padding: 5vw;
+}
+.manual pre.look {display: block;}
+.manual .look {background: #eee;}
+.manual h3 {
+	line-height: 2;
+	display: inline-block;
+	background: linear-gradient(transparent 60%, yellow);
+}
+.manual h3 + p {margin-top: -0.5rem;}
+.manual.margin-left {padding-left: 300px;}
+
+	/*画面幅999px以下の追加指定*/
+	@media screen and (max-width:999px) {
+
+	.manual.margin-left {padding-left: 4vw;}
+
+	}/*画面幅900px以上の追加指定ここまで*/
+
+/*その他
+---------------------------------------------------------------------------*/
+.clearfix::after {content: "";display: block;clear: both;}
+.l {text-align: left !important;}
+.c {text-align: center !important;}
+.r {text-align: right !important;}
+.ws {width: 95%;display: block;}
+.wl {width: 95%;display: block;}
+.mb0 {margin-bottom: 0px !important;}
+.mb30 {margin-bottom: 30px !important;}
+.look {display: inline-block;padding: 0px 10px;background: #000;border: 1px solid #fff;border-radius: 3px;margin: 5px 0; word-break: break-all;}
+.small {font-size: 0.75em;}
+.large {font-size: 2em; letter-spacing: 0.1em;}
+.color-check, .color-check a {color: var(--accent-color);}
+.pc {display: none;}
+.dn {display: none !important;}
+.block {display: block !important;}
+pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+		.ws {width: 48%;display: inline;}
+		.sh {display: none;}
+		.pc {display: block;}
+
+	}/*画面幅900px以上の追加指定ここまで*/
+
+/* ──────────────────────────────────────────────────
+   ゆめはん専用：サムネイルスライド シームレス＆インタラクティブ化
+   ────────────────────────────────────────────────── */
+.slide-thumbnail1 .img {
+    animation: none !important;
+    will-change: transform;
+    display: flex;
+}
+.slide-thumbnail1 .img.ltr {
+    transform: translateX(-50%);
+}
+/* 画像の間に隙間ができないようにする（超重要） */
+.slide-thumbnail1 .img > div {
+    flex-shrink: 0;
+}
+.slide-thumbnail1 .img img {
+    display: block;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+
+/* ──────────────────────────────────────────────────
+   ゆめはん専用：スマホギャラリースワイプ補正
+   ────────────────────────────────────────────────── */
+.slide-thumbnail1 {
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.slide-thumbnail1 .img,
+.slide-thumbnail1 .img a,
+.slide-thumbnail1 .img img {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* ─────── ゆめはん専用 営業日カレンダー ─────── */
+.yumekan-calendar-wrapper {
+    margin: 40px auto;
+    text-align: center;
+}
+.calendar-main-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #d63384;
+    margin-bottom: 14px;
+    font-family: 'Sawarabi Mincho', 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.yumekan-calendar-mini {
+    max-width: 300px;
+    width: 88vw;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: none !important;        /* ← 影を完全削除 */
+    font-family: 'Sawarabi Mincho', 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    user-select: none;
+    display: inline-block;
+    border: 1px solid #ffe0e9;           /* 淡い枠線は残して優しさキープ */
+}
+
+.calendar-header {
+    background: #d63384;
+    color: #fff;
+    padding: 5px 8px !important;     /* 縦幅半分 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.nav-btn {
+    background: rgba(255,255,255,0.25);
+    border: none;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.4); }
+
+.today-status {
+    text-align: center;
+    padding: 5px 6px !important;     /* 縦幅半分 */
+    font-size: 13.5px;
+    font-weight: bold;
+    background: #fff0f6;
+    color: #d63384;
+    border-bottom: 1px solid #ffe0e9;
+    line-height: 1.3;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: #fff0f6;
+    font-weight: bold;
+    color: #d63384;
+    font-size: 11.5px;
+}
+.weekdays span { text-align: center; padding: 7px 0; }
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #ddd;
+}
+.days-grid div {
+    background: #fff;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12.5px;
+}
+.days-grid .day:hover { background: #fff8fa !important; }
+
+/* 休日（土日祝） */
+.holiday, .sunday, .saturday { 
+    background: #ffebee !important; 
+    color: #e91e63 !important; 
+    font-weight: bold;
+}
+.other-month { color: #ddd; background: #fafafa !important; }
+
+/* 今日を可愛く目立たせる「左上にピンクドット」影なし版 */
+.days-grid .today {
+    position: relative;
+    font-weight: bold !important;
+    z-index: 1;
+}
+
+/* 左上にシンプルな丸いピンクドット（影なし） */
+.days-grid .today::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    background: #333ed6;
+    border-radius: 50%;
+    border: 2.5px solid #fff;      /* 白フチでくっきり */
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* 数字がドットに重ならないよう微調整 */
+.days-grid .today {
+    padding-left: 4px;
+    padding-top: 4px;
+}
+
+/* ドットの位置を微調整（数字が隠れないように） */
+.days-grid .today {
+    padding-left: 2px;
+    padding-top: 2px;
+}
+
+/* ─────── ゆめはん専用 フローティング検索 v2（グレー＆超透明・列揃え）─────── */
+.yumekan-floating-search-v2 {
+    --search-pulse-color-rgb: 255, 118, 178;
+    --search-pulse-count: 1;
+    position: fixed;
+    right: 36px;              /* ← ハンバーガーメニューと完全に列を合わせる値（必要に応じて±2pxで微調整） */
+    bottom: 24px;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    font-family: 'Sawarabi Mincho', 'Noto Sans JP', sans-serif;
+}
+
+.yumekan-floating-search-v2 .search-toggle {
+    position: relative;
+    overflow: visible;
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.75);   /* 超透明 */
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666;              /* グレー系 */
+    border: 1.8px solid rgba(180, 180, 180, 0.4);
+    box-shadow: none;         /* 影完全削除 */
+    transition: all 0.35s ease;
+}
+
+.yumekan-floating-search-v2 .search-toggle:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: scale(1.07);
+}
+
+.yumekan-floating-search-v2 .search-toggle.search-pulse {
+    animation: searchButtonSoftPulse 1.8s ease-out var(--search-pulse-count);
+}
+
+.yumekan-floating-search-v2 .search-toggle.search-pulse::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid rgba(var(--search-pulse-color-rgb), 0.55);
+    pointer-events: none;
+    animation: searchButtonPulseRing 1.8s ease-out var(--search-pulse-count);
+}
+
+@keyframes searchButtonSoftPulse {
+    0%, 100% {
+        background: rgba(255, 255, 255, 0.75);
+        box-shadow: none;
+        transform: scale(1);
+    }
+    32% {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 0 20px rgba(var(--search-pulse-color-rgb), 0.34);
+        transform: scale(1.06);
+    }
+}
+
+@keyframes searchButtonPulseRing {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    18% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.55);
+    }
+}
+
+.yumekan-floating-search-v2 .search-input {
+    height: 56px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    font-size: 15px;
+    color: #444;
+    outline: none;
+    box-shadow: none;         /* 影なし */
+    margin-right: -68px;
+    width: 0;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1.8px solid rgba(180, 180, 180, 0.3);
+}
+
+.yumekan-floating-search-v2.active .search-input {
+    width: 280px;
+    opacity: 1;
+    padding: 0 24px;
+}
+
+/* スマホ調整 */
+@media (max-width: 480px) {
+    .yumekan-floating-search-v2 { right: 24px; bottom: 18px; }
+    .yumekan-floating-search-v2.active .search-input { width: 210px; }
+    .yumekan-floating-search-v2 .search-toggle { width: 50px; height: 50px; }
+}
+
+/* gallery2 用の背景画像 */
+#gallery2::before {
+                        background: url("../images/haikei04.jpg") no-repeat center center / cover;
+}

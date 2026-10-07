@@ -1,0 +1,7 @@
+scene,duration_sec,background_file,display_copy,text_animation,crop_x,crop_y
+1,5.2,013_scene01.jpg,"パッド派のための\nショーツ選び",type_title,0,0
+2,4.3,013_scene02.jpg,"このコラムのポイント\n› 小さな違和感\n› 下着側の準備\n› 普通っぽさ",points,0,0
+3,3.8,013_scene03.jpg,"ずれないか\n気になる日がある",rise_fade,0,0
+4,3.8,013_scene04.jpg,"安心感は\n吸水量だけじゃない",slide_left,0,0
+5,3.8,013_scene05.jpg,"いつもの服に\n自然になじむ備え",rise_fade,0,0
+6,3.8,013_scene06.jpg,"念のためを\n軽やかな準備に",slide_right,0,0

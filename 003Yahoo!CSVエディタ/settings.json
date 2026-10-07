@@ -1,0 +1,55 @@
+{
+  "num_columns": 9,
+  "selected_columns": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "checked_columns": [
+    false,
+    false,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "search_text": "colh-hk00",
+  "file_path": "C:\\DATA\\Yahoo!商品\\fix_data202609251744.csv",
+  "entry_rows_per_column": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "cache_max_size_mb": 100.0,
+  "copy_and_edit": true,
+  "append_selection": true,
+  "navigate_selected_only": false,
+  "code_copy_delimiter": "\n",
+  "select_shortcut_key": "F1",
+  "last_selected_columns": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ]
+}

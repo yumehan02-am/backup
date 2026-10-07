@@ -1,0 +1,16 @@
+scene_no,duration_sec,background_file,display_copy,text_animation,crop_x,crop_y,text_center_x,point_x
+1,5.8,016_scene01.jpg,"水着売り場で
+固まった私へ",typewriter,0,0,,
+2,4.6,016_scene02.jpg,"頭の中で
+小さな会議が始まる",rise_fade,0,0,,
+3,5.2,016_scene03.jpg,"このコラムのポイント
+› 売り場で始まる会議
+› 似合うより落ち着く
+› 泳がなくてもいい",points,0,0,360,110
+4,4.4,016_scene04.jpg,"泳ぎます宣言
+じゃなくていい",slide_left,0,0,,
+5,4.4,016_scene05.jpg,"更衣室の段取りも
+大事な作戦",rise_fade,0,0,,
+6,4.4,016_scene06.jpg,"完璧より
+やめにくいスタート",slide_right,0,0,,
+

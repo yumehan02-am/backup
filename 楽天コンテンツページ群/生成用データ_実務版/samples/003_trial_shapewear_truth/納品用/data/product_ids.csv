@@ -1,0 +1,6 @@
+product_id,role,note
+select-fw1-tops,main_candidate,補正トップス系の候補。正式作成時はユーザー指定IDに差し替え。
+select-fw00-tops,main_candidate,補正トップス系の候補。商品リンクパーツ用。
+select-fw01,main_candidate,補正下着カテゴリ候補。商品リンクパーツ用。
+ssjtk00,related_candidate,日常使い・着心地訴求の関連候補。
+nbdbr20,related_candidate,ブラ・インナー系の関連候補。

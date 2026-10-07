@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>tp_sh1のマニュアル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+
+<main>
+
+
+
+<!-- ここからkodawari -->
+<section id="kodawari" class="section">
+<div class="contents">
+
+<h2><span class="hosoku">Our Commitment</span><span class="fade-in-text">私たちのこだわり</span></h2>
+
+<aside class="up"><img src="../images/kodawari_img.jpg" alt=""></aside>
+
+<div class="bg1">
+<p class="up">私たちのお店では、「食」を通じてお客様に特別なひとときを提供することを何よりも大切にしています。</p>
+<p class="up">食材は、地域の信頼できる生産者から直接仕入れています。自然の恵みをそのまま活かし、調理の際には素材本来の味を引き出すよう心がけています。</p>
+<p class="up">季節ごとの旬の食材を使用したメニューは、お客様の目と舌を楽しませるよう工夫されています。</p>
+<p class="up">店内は、心地よい空間と穏やかな音楽でお客様にリラックスした時間をお過ごしいただけるようデザインされています。</p>
+<p class="up">お客様一人ひとりとの出会いに感謝し、その瞬間を大切にしたい。私たちはそんな思いを胸に、日々最高のサービスとお料理をお届けしています。ぜひ足を運んで、特別な時間を体感してください。</p>
+</div>
+
+</div>
+</section>
+
+
+
+</main>
+
+
+
+<div class="manual">
+
+<h2>「kodawari」ブロックについて（私たちのこだわり）</h2>
+
+<pre class="look">
+&lt;!-- ここからkodawari --&gt;
+&lt;section id=&quot;kodawari&quot; class=&quot;section&quot;&gt;
+&lt;div class=&quot;contents&quot;&gt;
+
+&lt;h2&gt;&lt;span class=&quot;hosoku&quot;&gt;Our Commitment&lt;/span&gt;&lt;span class=&quot;fade-in-text&quot;&gt;私たちのこだわり&lt;/span&gt;&lt;/h2&gt;
+
+&lt;aside class=&quot;up&quot;&gt;&lt;img src=&quot;images/kodawari_img.jpg&quot; alt=&quot;&quot;&gt;&lt;/aside&gt;
+
+&lt;div class=&quot;bg1&quot;&gt;
+&lt;p class=&quot;up&quot;&gt;私たちのお店では、「食」を通じてお客様に特別なひとときを提供することを何よりも大切にしています。&lt;/p&gt;
+&lt;p class=&quot;up&quot;&gt;食材は、地域の信頼できる生産者から直接仕入れています。自然の恵みをそのまま活かし、調理の際には素材本来の味を引き出すよう心がけています。&lt;/p&gt;
+&lt;p class=&quot;up&quot;&gt;季節ごとの旬の食材を使用したメニューは、お客様の目と舌を楽しませるよう工夫されています。&lt;/p&gt;
+&lt;p class=&quot;up&quot;&gt;店内は、心地よい空間と穏やかな音楽でお客様にリラックスした時間をお過ごしいただけるようデザインされています。&lt;/p&gt;
+&lt;p class=&quot;up&quot;&gt;お客様一人ひとりとの出会いに感謝し、その瞬間を大切にしたい。私たちはそんな思いを胸に、日々最高のサービスとお料理をお届けしています。ぜひ足を運んで、特別な時間を体感してください。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/section&gt;
+</pre>
+
+<h3>主なスタイルは</h3>
+<p>cssフォルダのstyle.cssから「kodawari」でテキスト検索してみて下さい。詳しい解説もあります。</p>
+
+<h3>大きな端末で見た場合に見える両サイドの大きな画像について</h3>
+<p>「images/bg_kodawari.jpg」です。お好みで入れ替えて下さい。サイズは自由で構いませんが端末サイズで配置バランスがかわるのでおかしくないような写真を選んで下さい。</p>
+
+<h3>見出し上にある装飾イラストについて</h3>
+<p>「images/kazari1.png」です。これはcssの背景画像で指定しており、style.cssの「#kodawari h2」や「#kodawari h2::before」や「#kodawari h2::after」が設定箇所です。</p>
+
+<h3>h2見出しテキストについて</h3>
+<p>&lt;span class=&quot;hosoku&quot;&gt;で囲めば英語表記のような小さな文字になります。<br>
+&lt;span class=&quot;fade-in-text&quot;&gt;で囲めば以下のようなアニメーションテキストになります。</p>
+<p style="font-size: 1.5rem;"><span class="fade-in-text">アニメーションテキスト</span></p>
+<p>この「&lt;span class=&quot;fade-in-text&quot;&gt;」は他の部分にも使えますが、相性が悪いとおかしな動きになるので、おかしくならない所にだけ使うようにして下さい。</p>
+
+<h3>見出し下のイメージ画像</h3>
+<p>「kodawari_img.jpg」で、htmlに直接画像で配置しています。角を丸くする指定などはstyle.cssの「#kodawari aside」のブロックで調整可能です。</p>
+
+<h3>テキストブロックの背景色</h3>
+<p>style.cssの「#kodawari .bg1」で変更が可能です。余白などの設定もここにあります。</p>
+
+<h3>upスタイル</h3>
+<p>「class=&quot;up&quot;」をつけるとここのテキストのように下からアップしてくるアニメーションになります。</p>
+<p class="up" style="font-size: 1.5rem;">アップしてくるアニメーション</p>
+<p>このupスタイルは他の部分にも使えますが、相性が悪いとおかしな動きになるので、おかしくならない所にだけ使うようにして下さい。</p>
+
+
+</div>
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="../js/jquery.inview_set.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="../js/main.js"></script>
+
+</body>
+</html>

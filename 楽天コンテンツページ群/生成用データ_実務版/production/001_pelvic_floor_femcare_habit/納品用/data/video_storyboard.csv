@@ -1,0 +1,7 @@
+scene_no,scene_name,duration_sec,background_file,display_copy,motion,text_animation
+1,title,5.8,001_scene01.jpg,"骨盤底筋、\n意識していますか？",zoom_in,typewriter_after_blank
+2,awareness,3.8,001_scene02.jpg,"見えない場所を、\n毎日の習慣に。",pan_right,rise_fade
+3,points,4.5,001_scene03.jpg,"このコラムのポイント\n› 骨盤底筋のこと\n› 下着で支える考え方\n› 無理なく続く選び方",gentle_zoom,points_one_by_one
+4,support,3.8,001_scene04.jpg,"鍛えるだけが、\nケアではありません。",diagonal_pan,slide_left
+5,choice,3.7,001_scene05.jpg,"ショーツもガードルも、\n生活で選ぶ。",pan_left,slide_right
+6,closing,4.0,001_scene06.jpg,"毎日の下着から、\nそっと始める。",zoom_out,rise_fade

@@ -1,0 +1,11 @@
+{
+  "type": "mount",
+  "source": "automatic-jp/cp.tenki-japan.co.jp-automation-exchange",
+  "target": "automatic-jp/cp.tenki-japan.co.jp",
+  "path": "automation/exchange",
+  "commit": "3b56b5b8f934c788397d4fe5172658eb639f3b31",
+  "short_commit": "3b56b5b8f934",
+  "subject": "Add 47.5-point Super Sale exchange header",
+  "date": "2026-09-02T16:38:47+09:00",
+  "mounted_at": "2026-09-02T07:39:01.365Z"
+}

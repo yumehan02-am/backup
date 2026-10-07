@@ -1,0 +1,1012 @@
+//===============================================================
+// debounce関数
+//===============================================================
+function debounce(func, wait) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            func.apply(context, args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+
+//===============================================================
+// メニュー関連
+//===============================================================
+
+// 変数でセレクタを管理
+var $menubar = $('#menubar');
+var $menubarHdr = $('#menubar_hdr');
+var $headerNav = $('header nav');
+
+// menu
+$(window).on("load resize", debounce(function() {
+    if(window.innerWidth < 9999) {	// ここがブレイクポイント指定箇所です
+        // 小さな端末用の処理
+        $('body').addClass('small-screen').removeClass('large-screen');
+        $menubar.addClass('display-none').removeClass('display-block');
+        $menubarHdr.removeClass('display-none ham').addClass('display-block');
+    } else {
+        // 大きな端末用の処理
+        $('body').addClass('large-screen').removeClass('small-screen');
+        $menubar.addClass('display-block').removeClass('display-none');
+        $menubarHdr.removeClass('display-block').addClass('display-none');
+
+        // ドロップダウンメニューが開いていれば、それを閉じる
+        $('.ddmenu_parent > ul').hide();
+    }
+}, 10));
+
+$(function() {
+
+    // ハンバーガーメニューをクリックした際の処理
+    $menubarHdr.click(function() {
+        $(this).toggleClass('ham');
+        if ($(this).hasClass('ham')) {
+            $menubar.addClass('display-block');
+        } else {
+            $menubar.removeClass('display-block');
+        }
+    });
+
+    // アンカーリンクの場合にメニューを閉じる処理
+    $menubar.find('a[href*="#"]').click(function() {
+        $menubar.removeClass('display-block');
+        $menubarHdr.removeClass('ham');
+    });
+
+    // ドロップダウンの親liタグ（空のリンクを持つaタグのデフォルト動作を防止）
+	$menubar.find('a[href=""]').click(function() {
+		return false;
+	});
+	$headerNav.find('a[href=""]').click(function() {
+		return false;
+	});
+
+	// ドロップダウンメニューの処理
+    $menubar.find('li:has(ul)').addClass('ddmenu_parent');
+    $('.ddmenu_parent > a').addClass('ddmenu');
+    $headerNav.find('li:has(ul)').addClass('ddmenu_parent');
+    $('.ddmenu_parent > a').addClass('ddmenu');
+
+// タッチ開始位置を格納する変数
+var touchStartY = 0;
+
+// タッチデバイス用
+$('.ddmenu').on('touchstart', function(e) {
+    // タッチ開始位置を記録
+    touchStartY = e.originalEvent.touches[0].clientY;
+}).on('touchend', function(e) {
+    // タッチ終了時の位置を取得
+    var touchEndY = e.originalEvent.changedTouches[0].clientY;
+    
+    // タッチ開始位置とタッチ終了位置の差分を計算
+    var touchDifference = touchStartY - touchEndY;
+    
+    // スクロール動作でない（差分が小さい）場合にのみドロップダウンを制御
+    if (Math.abs(touchDifference) < 10) { // 10px以下の移動ならタップとみなす
+        var $nextUl = $(this).next('ul');
+        if ($nextUl.is(':visible')) {
+            $nextUl.stop().hide();
+        } else {
+            $nextUl.stop().show();
+        }
+        $('.ddmenu').not(this).next('ul').hide();
+        return false; // ドロップダウンのリンクがフォローされるのを防ぐ
+    }
+});
+
+    //PC用
+    $('.ddmenu_parent').hover(function() {
+        $(this).children('ul').stop().show();
+    }, function() {
+        $(this).children('ul').stop().hide();
+    });
+
+    // ドロップダウンをページ内リンクで使った場合に、ドロップダウンを閉じる
+    $('.ddmenu_parent ul a').click(function() {
+        $('.ddmenu_parent > ul').hide();
+    });
+
+});
+
+
+//===============================================================
+// 小さなメニューが開いている際のみ、body要素のスクロールを禁止。
+//===============================================================
+$(document).ready(function() {
+  function toggleBodyScroll() {
+    // 条件をチェック
+    if ($('#menubar_hdr').hasClass('ham') && !$('#menubar_hdr').hasClass('display-none')) {
+      // #menubar_hdr が 'ham' クラスを持ち、かつ 'display-none' クラスを持たない場合、スクロールを禁止
+      $('body').css({
+        overflow: 'hidden',
+        height: '100%'
+      });
+    } else {
+      // その他の場合、スクロールを再び可能に
+      $('body').css({
+        overflow: '',
+        height: ''
+      });
+    }
+  }
+
+  // 初期ロード時にチェックを実行
+  toggleBodyScroll();
+
+  // クラスが動的に変更されることを想定して、MutationObserverを使用
+  const observer = new MutationObserver(toggleBodyScroll);
+  observer.observe(document.getElementById('menubar_hdr'), { attributes: true, attributeFilter: ['class'] });
+});
+
+
+//===============================================================
+// スムーススクロール（※バージョン2024-1）※通常タイプ
+//===============================================================
+$(function() {
+    // ページ上部へ戻るボタンのセレクター
+    var topButton = $('.pagetop');
+    // ページトップボタン表示用のクラス名
+    var scrollShow = 'pagetop-show';
+
+    // スムーススクロールを実行する関数
+    // targetにはスクロール先の要素のセレクターまたは'#'（ページトップ）を指定
+    function smoothScroll(target) {
+        // スクロール先の位置を計算（ページトップの場合は0、それ以外は要素の位置）
+        var scrollTo = target === '#' ? 0 : $(target).offset().top;
+        // アニメーションでスムーススクロールを実行
+        $('html, body').animate({scrollTop: scrollTo}, 500);
+    }
+
+    // ページ内リンクとページトップへ戻るボタンにクリックイベントを設定
+    $('a[href^="#"], .pagetop').click(function(e) {
+        e.preventDefault(); // デフォルトのアンカー動作をキャンセル
+        var id = $(this).attr('href') || '#'; // クリックされた要素のhref属性を取得、なければ'#'
+        smoothScroll(id); // スムーススクロールを実行
+    });
+
+    // スクロールに応じてページトップボタンの表示/非表示を切り替え
+    $(topButton).hide(); // 初期状態ではボタンを隠す
+    $(window).scroll(function() {
+        if($(this).scrollTop() >= 300) { // スクロール位置が300pxを超えたら
+            $(topButton).fadeIn().addClass(scrollShow); // ボタンを表示
+        } else {
+            $(topButton).fadeOut().removeClass(scrollShow); // それ以外では非表示
+        }
+    });
+
+    // ページロード時にURLのハッシュが存在する場合の処理
+    if(window.location.hash) {
+        // ページの最上部に即時スクロールする
+        $('html, body').scrollTop(0);
+        // 少し遅延させてからスムーススクロールを実行
+        setTimeout(function() {
+            smoothScroll(window.location.hash);
+        }, 10);
+    }
+});
+
+
+//===============================================================
+// 汎用開閉処理
+//===============================================================
+$(function() {
+	$('.openclose').next().hide();
+	$('.openclose').click(function() {
+		$(this).next().slideToggle();
+		$('.openclose').not(this).next().slideUp();
+	});
+});
+
+
+//===============================================================
+// テキストのフェードイン効果
+//===============================================================
+$(function() {
+    $('.fade-in-text').on('inview', function(event, isInView) {
+        // この要素が既にアニメーションされたかどうかを確認
+        if (isInView && !$(this).data('animated')) {
+            // アニメーションがまだ実行されていない場合
+            let innerHTML = '';
+            const text = $(this).text();
+            $(this).text('');
+
+            for (let i = 0; i < text.length; i++) {
+                innerHTML += `<span class="char" style="animation-delay: ${i * 0.1}s;">${text[i]}</span>`;
+            }
+
+            $(this).html(innerHTML).css('visibility', 'visible');
+            // アニメーションが実行されたことをマーク
+            $(this).data('animated', true);
+        }
+    });
+});
+
+
+//===============================================================
+// 背景切り替え
+//===============================================================
+$(document).ready(function () {
+  function checkVisibility() {
+    const viewportHeight = $(window).height();
+    const scrollTop = $(window).scrollTop();
+
+    $(".section").each(function () {
+      const sectionTop = $(this).offset().top;
+      const sectionHeight = $(this).outerHeight();
+
+      if (
+        sectionTop < scrollTop + viewportHeight * 0.6 &&
+        sectionTop + sectionHeight > scrollTop + viewportHeight * 0.4
+      ) {
+        $(this).addClass("active").removeClass("inactive");
+
+        // セクションのIDを取得
+        var sectionId = $(this).attr("id");
+
+        // すべてのメニュー項目からactiveクラスを削除
+        $("#header-menu li").removeClass("active");
+
+        // 対応するメニュー項目にactiveクラスを追加
+        $('#header-menu li a[href="#' + sectionId + '"]')
+          .parent()
+          .addClass("active");
+      } else {
+        $(this).addClass("inactive").removeClass("active");
+      }
+    });
+  }
+
+  $(window).on("scroll", checkVisibility);
+  checkVisibility();
+});
+
+
+//===============================================================
+// 横スライドインタイプのスライドショー
+//===============================================================
+$(function() {
+    $('.slide5').each(function() {
+        var $this = $(this);
+        var slides = $this.find('.slide');
+        var slideCount = slides.length;
+        var currentIndex = 0;
+        var isAnimating = false;
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var touchMoved = false;
+
+        // インジケータを表示する要素を取得
+        var indicators = $this.find('.slide-indicators');
+
+        // スライドの数に応じたインジケータを生成
+        for (var i = 0; i < slideCount; i++) {
+            indicators.append('<span class="indicator" data-index="' + i + '"></span>');
+        }
+
+        // インジケータの初期状態を設定
+        var indicatorElements = indicators.find('.indicator');
+        indicatorElements.eq(currentIndex).addClass('active');
+
+        // 初期状態で全てのスライドに .hidden クラスを追加
+        slides.addClass('hidden');
+
+        // 最初のスライドに .active と .initial クラスを追加し、.hidden クラスを削除
+        slides.eq(currentIndex).addClass('active initial').removeClass('hidden');
+
+        // 遅延後に .initial クラスを削除
+        setTimeout(function() {
+            slides.eq(currentIndex).removeClass('initial');
+        }, 50);
+
+        if (slideCount < 2) {
+            indicators.hide();
+            return;
+        }
+
+        // インジケータをクリックしたときの動作を設定
+        indicatorElements.on('click', function() {
+            var clickedIndex = $(this).data('index');
+
+            // アニメーション中は操作を受け付けない
+            if (isAnimating) return;
+
+            // 現在のスライドと同じ場合は何もしない
+            if (clickedIndex === currentIndex) return;
+
+            // スライドの切り替え
+            changeSlide(clickedIndex);
+        });
+
+        // スマホ用の左右スワイプ。縦スクロールを優先し、横移動だけ前後切り替えに使う。
+        $this.on('touchstart', function(e) {
+            if (slideCount < 2) return;
+            var touch = e.originalEvent.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+            touchMoved = false;
+        });
+
+        $this.on('touchmove', function(e) {
+            if (slideCount < 2) return;
+            var touch = e.originalEvent.touches[0];
+            var moveX = touch.clientX - touchStartX;
+            var moveY = touch.clientY - touchStartY;
+            if (Math.abs(moveX) > 12 && Math.abs(moveX) > Math.abs(moveY) * 1.2) {
+                touchMoved = true;
+                e.preventDefault();
+            }
+        });
+
+        $this.on('touchend touchcancel', function(e) {
+            if (slideCount < 2) return;
+            var touch = e.originalEvent.changedTouches[0];
+            var moveX = touch.clientX - touchStartX;
+            var moveY = touch.clientY - touchStartY;
+            if (moveX >= 0 || Math.abs(moveX) < 40 || Math.abs(moveX) <= Math.abs(moveY) * 1.2) return;
+            touchMoved = true;
+            if (isAnimating) return;
+            var nextIndex = (currentIndex + 1) % slideCount;
+            changeSlide(nextIndex);
+        });
+
+        $this.on('click', 'a', function(e) {
+            if (!touchMoved) return;
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            touchMoved = false;
+            return false;
+        });
+
+        // 自動スライドのタイマー
+        setInterval(function() {
+            var nextIndex = (currentIndex + 1) % slideCount;
+            changeSlide(nextIndex);
+        }, 4000); // 4秒ごとにスライドを切り替える
+
+        function changeSlide(nextIndex) {
+            if (nextIndex === currentIndex) return;
+            isAnimating = true;
+
+            // 現在のスライドを左に移動
+            slides.eq(currentIndex).removeClass('active').addClass('left');
+
+            // 次のスライドを表示
+            slides.eq(nextIndex).addClass('active').removeClass('hidden');
+
+            // インジケータの更新
+            indicatorElements.eq(currentIndex).removeClass('active');
+            indicatorElements.eq(nextIndex).addClass('active');
+
+            // アニメーション終了後の処理
+            setTimeout(function() {
+                // 左に移動したスライドに .hidden クラスを追加
+                slides.eq(currentIndex).removeClass('left').addClass('hidden');
+
+                currentIndex = nextIndex;
+                isAnimating = false;
+            }, 700); // cssの「.slide5 .slide」の行の時間と合わせる
+        }
+    });
+});
+
+
+//===============================================================
+// サムネイルスライドショー
+//===============================================================
+$(document).ready(function() {
+    $('.slide-thumbnail1 .img').each(function() {
+        var $imgParts = $(this);
+        $imgParts.children('.upper-loop-spacer, .lower-loop-spacer, .viewport-loop-spacer').remove();
+        var $divs = $imgParts.children('div');
+        var divCount = $divs.length;
+        var isRTLTrack = $imgParts.hasClass('rtl');
+        var upperLoopSpacerItems = isRTLTrack ? 1 : 0;
+        var lowerLoopSpacerItems = isRTLTrack ? 0 : 1;
+        var viewportLoopSpacerItems = 1;
+        var effectiveDivCount = divCount + upperLoopSpacerItems + lowerLoopSpacerItems + viewportLoopSpacerItems;
+
+        // 各 div の幅を計算
+        var divWidth = 100 / (effectiveDivCount * 2);
+
+        // 基準値と速度係数を定義
+        var baseAnimationTime = 10; // 「10がアニメーションの速度。小さいと早く、大きいとゆっくりになります。
+        var baseSlideWidth = 200;
+        var speedFactor = effectiveDivCount / 2;	// 画面内に表示させる枚数。２枚。
+
+        // アニメーション時間とスライド幅を計算
+        var animationTime = (baseAnimationTime * speedFactor) + 's';
+        var slideWidth = (baseSlideWidth * speedFactor) + '%';
+
+        // 各 div に幅を設定
+        $divs.css({
+            'flex': '0 0 ' + divWidth + '%',
+            'width': divWidth + '%'
+        });
+        if (isRTLTrack) {
+            var $upperSpacer = $('<div class="upper-loop-spacer" aria-hidden="true"></div>').css({
+                'flex': '0 0 ' + divWidth + '%',
+                'width': divWidth + '%'
+            });
+            $imgParts.prepend($upperSpacer);
+        } else {
+            var $lowerSpacer = $('<div class="lower-loop-spacer" aria-hidden="true"></div>').css({
+                'flex': '0 0 ' + divWidth + '%',
+                'width': divWidth + '%'
+            });
+            $imgParts.prepend($lowerSpacer);
+        }
+        var $viewportSpacer = $('<div class="viewport-loop-spacer" aria-hidden="true"></div>').css({
+            'flex': '0 0 ' + divWidth + '%',
+            'width': divWidth + '%'
+        });
+        $imgParts.prepend($viewportSpacer);
+
+        // .img に animation と width を設定
+        $imgParts.css({
+            'animation-duration': animationTime,
+            'width': slideWidth
+        });
+
+        // 子要素を複製して追加
+        $imgParts.children('div').clone().appendTo($imgParts);
+
+        // アニメーションの一時停止と再開
+        $imgParts.on('mouseenter', function() {
+            $(this).css('animation-play-state', 'paused');
+        });
+        $imgParts.on('mouseleave', function() {
+            $(this).css('animation-play-state', 'running');
+        });
+    });
+});
+
+//===============================================================
+// ゆめはん専用：最終完成形（スワイプ中は縦ブレほぼ無限許容）
+//===============================================================
+$(function () {
+    $('.slide-thumbnail1').each(function () {
+        const $container = $(this);
+        const $track = $container.find('.img');
+        const isRTL = $track.hasClass('rtl');
+
+        const PIXELS_PER_SECOND = 2;
+        const AUTO_SCROLL_TRACK_SCALE = 16;
+        const SWIPE_MULTIPLIER   = 0.001;
+        const INERTIA_MULTIPLIER = 0.008 * (1/10);
+        const TOUCH_INERTIA_MULTIPLIER = INERTIA_MULTIPLIER * 2.25;
+        const FRICTION           = 0.95;
+        const TOUCH_FRICTION     = 0.985;
+        const TOUCH_DIRECTION_THRESHOLD = 8;
+        const TOUCH_VELOCITY_WINDOW_MS = 120;
+        const MIN_TOUCH_RELEASE_VELOCITY = 0.14;
+
+        let isDragging = false;
+        let startX = 0, startY = 0, startTime = 0;
+        let prevX = 0, prevTime = 0;
+        let translateX = isRTL ? 0 : -50;
+        let velocity = 0;
+        let raf = null;
+        let slowRaf = null;
+        let lastTime = performance.now();
+        let totalHorizontalMove = 0;      // ← 横にどれだけ動いたかを記録
+        let resumeTimer = null;
+        let touchDirectionLocked = false;
+        let touchHorizontalConfirmed = false;
+        let activeFriction = FRICTION;
+        let touchSamples = [];
+
+        const containerWidth = $container.width();
+        const percentPerPixel = 100 / containerWidth;
+
+        const seamlessLoop = () => {
+            if (isRTL) {
+                while (translateX >= 0) translateX -= 100;
+                while (translateX < -100) translateX += 100;
+            } else {
+                while (translateX <= -100) translateX += 100;
+                while (translateX > -50) translateX -= 50;
+            }
+        };
+
+        const recordTouchSample = (x, time = Date.now()) => {
+            touchSamples.push({ x, time });
+            const cutoff = time - TOUCH_VELOCITY_WINDOW_MS;
+            while (touchSamples.length > 2 && touchSamples[0].time < cutoff) {
+                touchSamples.shift();
+            }
+        };
+
+        const getTouchReleaseVelocity = () => {
+            if (touchSamples.length < 2) return velocity;
+            const first = touchSamples[0];
+            const last = touchSamples[touchSamples.length - 1];
+            const deltaTime = Math.max(last.time - first.time, 1);
+            const pixelSpeed = (last.x - first.x) / (deltaTime / 1000);
+            return pixelSpeed * percentPerPixel * TOUCH_INERTIA_MULTIPLIER;
+        };
+
+        const resumeAutoScroll = () => {
+            if (isDragging) return;
+            clearTimeout(resumeTimer);
+            resumeTimer = null;
+            lastTime = performance.now();
+            if (!slowRaf) slowRaf = requestAnimationFrame(slowScroll);
+        };
+
+        const slowScroll = (now) => {
+            if (isDragging) return;
+            if (!lastTime) lastTime = now;
+            const delta = (now - lastTime) / 1000;
+            lastTime = now;
+            const trackWidth = Math.max($track.width(), containerWidth);
+            const percentMove = PIXELS_PER_SECOND * AUTO_SCROLL_TRACK_SCALE * delta * (100 / trackWidth);
+            translateX += (isRTL ? 1 : -1) * percentMove;
+            seamlessLoop();
+            $track.css('transform', `translateX(${translateX}%)`);
+            slowRaf = requestAnimationFrame(slowScroll);
+        };
+
+        const inertia = () => {
+            translateX += velocity;
+            velocity *= activeFriction;
+            seamlessLoop();
+            $track.css('transform', `translateX(${translateX}%)`);
+            if (Math.abs(velocity) > 0.08) {
+                raf = requestAnimationFrame(inertia);
+            } else {
+                velocity = 0;
+                resumeAutoScroll();
+            }
+        };
+
+        // 共通開始
+        const startDrag = (x, y) => {
+            if (isDragging) return;
+            isDragging = true;
+            cancelAnimationFrame(slowRaf);
+            cancelAnimationFrame(raf);
+            clearTimeout(resumeTimer);
+            slowRaf = raf = null;
+
+            startX = prevX = x;
+            startY = y;
+            startTime = prevTime = Date.now();
+            velocity = 0;
+            totalHorizontalMove = 0;
+            touchDirectionLocked = false;
+            touchHorizontalConfirmed = false;
+            activeFriction = FRICTION;
+            touchSamples = [];
+        };
+
+        // マウス（document全体追従）
+        $container.on('mousedown', function (e) {
+            if (e.button !== 0) return;
+            startDrag(e.clientX, e.clientY);
+            e.preventDefault();
+
+            $(document).on('mousemove.sliderdrag', function (e) {
+                if (!isDragging) return;
+
+                const deltaX = e.clientX - prevX;
+                totalHorizontalMove += Math.abs(deltaX);  // 横移動量を累積
+
+                const deltaY = e.clientY - startY;
+
+                // 横に30px以上動いていたら縦ブレはほぼ無視（100pxまで許容）
+                const verticalTolerance = totalHorizontalMove > 30 ? 100 : 20;
+
+                if (Math.abs(deltaY) > verticalTolerance) {
+                    isDragging = false;
+                    $(document).off('mousemove.sliderdrag mouseup.sliderdrag');
+                    resumeTimer = setTimeout(resumeAutoScroll, 300);
+                    return;
+                }
+
+                const deltaPercent = deltaX * percentPerPixel;
+                translateX += deltaPercent * SWIPE_MULTIPLIER * 100;
+                const deltaTime = Math.max(Date.now() - prevTime, 1);
+                const pixelSpeed = deltaX / (deltaTime / 1000);
+                velocity = pixelSpeed * percentPerPixel * INERTIA_MULTIPLIER;
+
+                prevX = e.clientX;
+                prevTime = Date.now();
+                seamlessLoop();
+                $track.css('transform', `translateX(${translateX}%)`);
+            });
+
+            $(document).on('mouseup.sliderdrag', function () {
+                $(document).off('mousemove.sliderdrag mouseup.sliderdrag');
+                if (!isDragging) return;
+                isDragging = false;
+                if (Math.abs(velocity) > 0.08) raf = requestAnimationFrame(inertia);
+                else resumeAutoScroll();
+            });
+        });
+
+        // タッチ（スマホ）← ここが超重要！
+        $container.on('touchstart', function (e) {
+            const t = e.originalEvent.touches[0];
+            startDrag(t.clientX, t.clientY);
+            activeFriction = TOUCH_FRICTION;
+            touchDirectionLocked = false;
+            touchHorizontalConfirmed = false;
+            recordTouchSample(t.clientX);
+        });
+
+        $container.on('touchmove', function (e) {
+            if (!isDragging) return;
+            const t = e.originalEvent.touches[0];
+            const now = Date.now();
+            recordTouchSample(t.clientX, now);
+
+            const moveXFromStart = t.clientX - startX;
+            const moveYFromStart = t.clientY - startY;
+
+            if (!touchDirectionLocked) {
+                const absX = Math.abs(moveXFromStart);
+                const absY = Math.abs(moveYFromStart);
+                if (absX < TOUCH_DIRECTION_THRESHOLD && absY < TOUCH_DIRECTION_THRESHOLD) return;
+                touchDirectionLocked = true;
+                touchHorizontalConfirmed = absX > absY * 1.15;
+                if (!touchHorizontalConfirmed) {
+                    isDragging = false;
+                    resumeTimer = setTimeout(resumeAutoScroll, 300);
+                    return;
+                }
+            }
+
+            if (!touchHorizontalConfirmed) return;
+            e.preventDefault();
+
+            const deltaX = t.clientX - prevX;
+            totalHorizontalMove += Math.abs(deltaX);
+            const deltaPercent = deltaX * percentPerPixel;
+            translateX += deltaPercent * SWIPE_MULTIPLIER * 100;
+            const deltaTime = Math.max(now - prevTime, 1);
+            const pixelSpeed = deltaX / (deltaTime / 1000);
+            velocity = pixelSpeed * percentPerPixel * TOUCH_INERTIA_MULTIPLIER;
+
+            prevX = t.clientX;
+            prevTime = now;
+            seamlessLoop();
+            $track.css('transform', `translateX(${translateX}%)`);
+        });
+
+        $container.on('touchend touchcancel', function () {
+            if (!isDragging) return;
+            isDragging = false;
+            const releaseVelocity = getTouchReleaseVelocity();
+            if (Math.abs(releaseVelocity) > Math.abs(velocity)) {
+                velocity = releaseVelocity;
+            }
+            const swipeDuration = Date.now() - startTime;
+            if (swipeDuration < 260 && totalHorizontalMove > 30 && Math.abs(velocity) < MIN_TOUCH_RELEASE_VELOCITY) {
+                velocity = (prevX >= startX ? 1 : -1) * MIN_TOUCH_RELEASE_VELOCITY;
+            }
+            if (Math.abs(velocity) > 0.08) raf = requestAnimationFrame(inertia);
+            else resumeAutoScroll();
+        });
+
+        // クリック判定（誤爆ゼロ）
+        $container.on('click', function (e) {
+            if (isDragging || totalHorizontalMove > 8 || (Date.now() - startTime) > 400) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return false;
+            }
+            const link = e.target.closest('a');
+            if (link) {
+                e.preventDefault();
+                location.href = link.href;
+            }
+        });
+
+        // 開始
+        lastTime = performance.now();
+        slowRaf = requestAnimationFrame(slowScroll);
+    });
+});
+
+//===============================================================
+// ゆめはん専用 営業日カレンダー（最終完全版：同期完璧・クリック・矢印のみ）
+//===============================================================
+$(function () {
+    const $cal   = $('.yumekan-calendar-mini');
+    const $title = $cal.find('.month-title');
+    const $grid  = $cal.find('#daysGrid');
+    const $status= $('#todayStatus');
+
+    let currentYear  = new Date().getFullYear();
+    let currentMonth = new Date().getMonth(); // 0〜11
+
+    // ─────── 追加休業日（ここに自由に追加）───────
+    const extraHolidays = [
+        '2025-12-29','2025-12-30','2026-01-12','2026-02-11','2026-02-23',
+        '2026-03-20','2026-04-29','2026-05-04','2026-05-05','2026-05-06',
+        '2026-07-20','2026-08-10','2026-08-11','2026-08-12','2026-08-13',
+        '2026-08-14','2026-09-21','2026-09-22','2026-09-23','2026-10-12',
+        '2026-11-03','2026-11-23','2026-12-28','2026-12-29','2026-12-30',
+        '2027-01-11','2027-02-11','2027-02-23','2027-03-22','2027-04-29',
+        '2027-05-03','2027-05-04','2027-05-05','2027-07-19','2027-08-11',
+        '2027-09-20','2027-09-23','2027-10-11','2027-11-03','2027-11-23'
+    ];
+
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    // 国民の祝日や店舗休日は extraHolidays で年別に管理します。
+    const holidays = {};
+
+    function isFixedClosedDate(year, monthIndex, day) {
+        const date = new Date(year, monthIndex, day);
+        return date.getDay() === 0 || date.getDay() === 6 ||
+            (monthIndex === 11 && day === 31) ||
+            (monthIndex === 0 && day >= 1 && day <= 3);
+    }
+
+    function render() {
+        $grid.empty();
+
+        const today      = new Date();
+        const todayYear  = today.getFullYear();
+        const todayMonth = today.getMonth();
+        const todayDate  = today.getDate();
+        const todayStr   = `${todayYear}-${String(todayMonth+1).padStart(2,'0')}-${String(todayDate).padStart(2,'0')}`;
+
+        // ヘッダー
+        $title.text(`${currentYear}年 ${currentMonth + 1}月`);
+
+        // 本日の営業状況（リアルタイムで常に正しい日付）
+        const isHoliday = isFixedClosedDate(todayYear, todayMonth, todayDate) ||
+            holidays[`${String(todayMonth+1).padStart(2,'0')}-${String(todayDate).padStart(2,'0')}`] ||
+            extraHolidays.includes(todayStr);
+
+        $status.text(isHoliday 
+            ? `本日はお休みです (${todayMonth+1}/${todayDate})`
+            : `本日は営業日です (${todayMonth+1}/${todayDate})`)
+               .css('color', isHoliday ? '#e91e63' : '#2e7d32');
+
+        // カレンダー描画
+        const firstDate   = new Date(currentYear, currentMonth, 1);
+        const firstDay    = firstDate.getDay();                   // 0=日曜
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+        // 前月
+        const prevMonthDays = new Date(currentYear, currentMonth, 0).getDate();
+        for (let i = firstDay - 1; i >= 0; i--) {
+            $('<div>').addClass('day other-month').text(prevMonthDays - i).appendTo($grid);
+        }
+
+        // 当月
+        for (let d = 1; d <= daysInMonth; d++) {
+            const dateStr = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+            const thisDate = new Date(currentYear, currentMonth, d);
+            const isSun = thisDate.getDay() === 0;
+            const isSat = thisDate.getDay() === 6;
+            const key = `${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+            const isHolidayDay = holidays[key] || extraHolidays.includes(dateStr);
+            const isToday = dateStr === todayStr;
+
+            const $day = $('<div>').addClass('day').text(d);
+            if (isToday) $day.addClass('today');
+            if (isFixedClosedDate(currentYear, currentMonth, d) || isHolidayDay) $day.addClass('holiday');
+            $grid.append($day);
+        }
+
+        // 次月（埋め草）
+        const totalCells = Math.ceil((firstDay + daysInMonth) / 7) * 7;
+        const remaining = totalCells - firstDay - daysInMonth;
+        for (let i = 1; i <= remaining; i++) {
+            $('<div>').addClass('day other-month').text(i).appendTo($grid);
+        }
+    }
+
+    // ─────── 矢印ボタンのみ（スワイプ・日付クリック完全排除）───────
+    $cal.find('.prev').on('click', function () {
+        if (currentMonth === 0) { currentMonth = 11; currentYear--; }
+        else currentMonth--;
+        render();
+    });
+
+    $cal.find('.next').on('click', function () {
+        if (currentMonth === 11) { currentMonth = 0; currentYear++; }
+        else currentMonth++;
+        render();
+    });
+
+    // 初回描画（ページ読み込み時に今日が正しく表示されます）
+    render();
+});
+
+//===============================================================
+// ゆめはん専用 フローティング検索 v2（グレー＆透明）
+//===============================================================
+$(function () {
+    const $float = $('.yumekan-floating-search-v2');
+    const SEARCH_PULSE_SCROLL_DELAY = 700;
+    const SEARCH_PULSE_COOLDOWN = 3000;
+    let searchPulseScrollTimer = null;
+    let lastSearchPulseAt = 0;
+    const pulseSearchButton = (force = false) => {
+        if (!$float.length || $float.hasClass('active')) return;
+        const now = Date.now();
+        if (!force && now - lastSearchPulseAt < SEARCH_PULSE_COOLDOWN) return;
+        lastSearchPulseAt = now;
+        const $toggle = $float.find('.search-toggle');
+        if (!$toggle.length) return;
+        $toggle.removeClass('search-pulse');
+        void $toggle[0].offsetWidth;
+        $toggle.addClass('search-pulse');
+    };
+
+    setTimeout(() => pulseSearchButton(true), 900);
+    $(document).on('click', 'a[href^="#"]', function () {
+        setTimeout(() => pulseSearchButton(true), 650);
+    });
+    $(window).on('scroll', function () {
+        clearTimeout(searchPulseScrollTimer);
+        searchPulseScrollTimer = setTimeout(function () {
+            pulseSearchButton(false);
+        }, SEARCH_PULSE_SCROLL_DELAY);
+    });
+    $float.on('animationend', '.search-toggle', function () {
+        $(this).removeClass('search-pulse');
+    });
+
+    $float.on('click', '.search-toggle', function (e) {
+        e.stopPropagation();
+        $float.toggleClass('active');
+        if ($float.hasClass('active')) {
+            setTimeout(() => $float.find('.search-input').focus(), 320);
+        }
+    });
+
+    // 外クリックで閉じる
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.yumekan-floating-search-v2').length) {
+            $float.removeClass('active');
+        }
+    });
+
+    // Enterで検索実行 ← ★ここだけご自社に合わせて変更してください★
+    $float.find('.search-input').on('keypress', function (e) {
+        if (e.which === 13 && $(this).val().trim() !== '') {
+            const keyword = encodeURIComponent($(this).val().trim());
+
+            // 【ここを自社の検索URLに変更してください！】
+            location.href = `https://store.shopping.yahoo.co.jp/u-b-yumehan/search.html?p=${keyword}#CentSrchFilter1`;                 // 例1
+            // location.href = `/s/?wd=${keyword}`;                 // 例2
+            // location.href = `https://yourshop.com/search/${keyword}`; // 例3
+        }
+    });
+});
+
+//===============================================================
+// ゆめはん ページ演出エフェクト
+//===============================================================
+$(function () {
+    const seasonalEffectConfig =
+    {
+        "enabled": true,
+        "start": "2026-08-20",
+        "end": "2027-01-15",
+        "preset": "star",
+        "chars": "✦✧★☆",
+        "colors": [
+            "#f4d35e",
+            "#fff3a3",
+            "#ffffff"
+        ],
+        "count": 70,
+        "lifetime": 24
+    };
+
+    if (!seasonalEffectConfig.enabled) return;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const startDate = new Date(seasonalEffectConfig.start + 'T00:00:00');
+    const endDate = new Date(seasonalEffectConfig.end + 'T23:59:59');
+    if (today < startDate || today > endDate) return;
+
+    const chars = Array.from(seasonalEffectConfig.chars || '❄︎❅❆✻');
+    const colors = seasonalEffectConfig.colors && seasonalEffectConfig.colors.length
+        ? seasonalEffectConfig.colors
+        : ['#ffffff'];
+    const count = seasonalEffectConfig.count || 85;
+    const lifetime = seasonalEffectConfig.lifetime || 30;
+
+    $('head').append(`
+        <style id="dynamic-snow-css">
+        .snow-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .snow {
+            position: absolute;
+            font-size: 1.3em;
+            text-shadow: 0 0 8px rgba(255,255,255,0.9);
+            top: -80px !important;
+            opacity: 0;
+            user-select: none;
+            animation: snowFall linear forwards;
+        }
+        @keyframes snowFall {
+            0% {
+                opacity: 0;
+                transform: translateX(0px) translateY(-80px) rotate(0deg);
+            }
+            8% { opacity: 1; }
+            100% {
+                opacity: 0;
+                transform: translateX(var(--swing)) translateY(calc(100vh + 100px)) rotate(1080deg);
+            }
+        }
+        @keyframes windSwing {
+            0%,100% { transform: translateX(0); }
+            25% { transform: translateX(80px); }
+            50% { transform: translateX(-60px); }
+            75% { transform: translateX(40px); }
+        }
+        .snow.swing { animation: windSwing var(--duration) ease-in-out infinite; }
+        </style>
+    `);
+
+    const $container = $('<div class="snow-container">').appendTo('body');
+
+    for (let i = 0; i < count; i++) {
+        const size = (Math.random() * 1.4 + 0.8) + 'em';
+        const left = (Math.random() * 110 - 5) + 'vw';
+        const duration = (Math.random() * 14 + 12) + 's';
+        const delay = Math.random() * 20 + 's';
+        const swingDistance = (Math.random() * 300 - 150) + 'px';
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+        const $snow = $('<div class="snow">')
+            .text(chars[Math.floor(Math.random() * chars.length)])
+            .css({
+                left: left,
+                color: color,
+                fontSize: size,
+                animationDuration: duration,
+                animationDelay: delay,
+                '--swing': swingDistance,
+                '--duration': duration
+            });
+
+        if (i % 2 === 0) {
+            $snow.addClass('swing');
+        }
+
+        $container.append($snow);
+    }
+
+    setTimeout(() => {
+        $container.fadeOut(4000, function() {
+            $(this).remove();
+            $('#dynamic-snow-css').remove();
+        });
+    }, lifetime * 1000);
+});

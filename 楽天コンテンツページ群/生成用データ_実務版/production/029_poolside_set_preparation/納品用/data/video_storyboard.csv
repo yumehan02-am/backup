@@ -1,0 +1,11 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,029_scene01.jpg,5.2,"上下セット水着が
+楽な理由",title_type,0,0
+2,029_scene02.jpg,3.6,支度の小物は多い,rise_fade,0,0
+3,029_scene03.jpg,4.1,"このコラムのポイント
+› 支度の迷いを減らす
+› 更衣室で慌てにくい
+› 休憩中の見え方も大切",points,0,0
+4,029_scene04.jpg,3.6,組み合わせ迷子を防ぐ,slide_left,0,0
+5,029_scene05.jpg,3.6,休憩中の見え方も大切,rise_fade,0,0
+6,029_scene06.jpg,3.6,準備が整うと楽しめる,slide_right,0,0

@@ -1,0 +1,47 @@
+﻿順番	ブロック種別	貼り付け内容	元データ	文字数	警告
+1	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/031_title.jpg	images/delivery/031_title.jpg		タイトル画像
+2	メインタイトル	着やせ派？ふんわり派？｜体型カバー水着の選び分け	着やせ派？ふんわり派？｜体型カバー水着の選び分け	24	
+3	動画	video/opening_cm_031_vertical.mp4	video/opening_cm_031_vertical.mp4		タイトル直下の動く目次CM
+4	動画下本文	"
+体型カバー水着には、大きく分けると二つの考え方があります。
+
+ひとつは、色やラインですっきり見せる着やせタイプ。もうひとつは、ふんわりしたデザインで気になる部分をやさしく覆うタイプです。どちらが上という話ではなく、向いている不安が違います。
+
+このコラムでは、着やせ派とふんわり派の選び分けを整理します。"	page_copy.md#lead	152	本文先頭に余白用改行あり
+5	小タイトル	見せ方の目的が違う	見せ方の目的が違う	9	
+6	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/031_section_1.jpg	images/delivery/031_section_1.jpg		章バナー
+7	本文	"
+着やせタイプは、全体の印象をすっきり整えることが目的です。色の配置や縦の流れで、視線をコントロールします。
+
+ふんわりタイプは、体のラインを出しすぎないことが目的です。服に近い安心感や、余白のあるシルエットで落ち着きを作ります。"	page_copy.md#1	114	本文先頭に余白用改行あり
+8	小タイトル	着やせ派に向く日	着やせ派に向く日	8	
+9	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/031_section_2.jpg	images/delivery/031_section_2.jpg		章バナー
+10	本文	"
+写真に残る予定や、少しきちんと見せたい水辺の日には、着やせタイプが選びやすくなります。遠目の印象を整えたい時にも向いています。
+
+ただし、すっきり見えだけを優先せず、動いた時に不安がないかも確認しておきたいところです。"	page_copy.md#2	109	本文先頭に余白用改行あり
+11	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/031_accent_01.jpg	images/delivery/031_accent_01.jpg		文字なし正方形アクセント
+12	小タイトル	ふんわり派に向く日	ふんわり派に向く日	9	
+13	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/031_section_3.jpg	images/delivery/031_section_3.jpg		章バナー
+14	本文	"
+家族の水遊びやリゾート、休憩時間が長い日は、ふんわりタイプが安心です。水着姿で過ごす時間に、服っぽさがあると落ち着きます。
+
+体のラインを気にしすぎず、水辺の時間に集中したい人にも向いています。"	page_copy.md#3	97	本文先頭に余白用改行あり
+15	小タイトル	迷ったら不安で選ぶ	迷ったら不安で選ぶ	9	
+16	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/031_section_4.jpg	images/delivery/031_section_4.jpg		章バナー
+17	本文	"
+どちらにするか迷ったら、自分が一番気になる場面を思い浮かべます。写真なのか、座った時なのか、歩く時なのか、休憩中なのか。
+
+その不安を減らせる方を選ぶと、見た目の好みだけで選ぶより失敗しにくくなります。"	page_copy.md#4	101	本文先頭に余白用改行あり
+18	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/031_accent_02.jpg	images/delivery/031_accent_02.jpg		文字なし正方形アクセント
+19	小タイトル	水辺で落ち着ける方へ	水辺で落ち着ける方へ	10	
+20	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/031_section_5.jpg	images/delivery/031_section_5.jpg		章バナー
+21	本文	"
+体型カバー水着の役割は、完璧に見せることではありません。水辺で落ち着いて過ごすための準備です。
+
+着やせ派でも、ふんわり派でも、自分が水辺で何を忘れて過ごしたいかを基準にすると選びやすくなります。"	page_copy.md#5	98	本文先頭に余白用改行あり
+22	関連商品	h-mzg20	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+23	関連商品	c-mizugi_nbf	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+24	関連商品	usbswc	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+25	関連商品	usbswb	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+26	関連商品	b-mizugi-3	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行

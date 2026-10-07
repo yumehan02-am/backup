@@ -1,0 +1,15 @@
+﻿scene,background_file,duration_sec,display_copy,text_animation,crop_x,crop_y
+1,020_scene03.jpg,5.2,"泳がない
+プール時間",title_type,0,0
+2,020_scene02.jpg,3.6,"水の中を歩くと
+体は静かに働く",rise_fade,0,0
+3,020_scene03.jpg,4.1,"このコラムのポイント
+› 歩くだけでも運動になる
+› 数字は目安で考える
+› 支度が続けやすさを作る",points,0,0
+4,020_scene04.jpg,3.6,"カロリーは
+比べすぎない",slide_left,0,0
+5,020_scene05.jpg,3.6,"気になる服装を
+先に整える",rise_fade,0,0
+6,020_scene06.jpg,3.6,"続ける人は
+準備が軽い",slide_right,0,0

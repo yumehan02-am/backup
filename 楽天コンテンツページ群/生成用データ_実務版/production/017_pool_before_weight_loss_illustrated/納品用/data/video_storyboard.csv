@@ -1,0 +1,16 @@
+scene_no,duration_sec,background_file,display_copy,text_animation,crop_x,crop_y,text_center_x,point_x
+1,5.8,017_scene01.jpg,"痩せてから
+プールへ
+行くつもり",typewriter,0,0,,
+2,4.6,017_scene02.jpg,"その前に
+水着が買えない",rise_fade,0,0,,
+3,5.2,017_scene03.jpg,"このコラムのポイント
+› 先に痩せたい問題
+› 水着の思い込み
+› 今の自分で行く作戦",points,0,0,360,118
+4,4.4,017_scene04.jpg,"プールは
+発表会じゃない",slide_left,0,0,,
+5,4.4,017_scene05.jpg,"カバーは
+始めるための工夫",rise_fade,0,0,,
+6,4.4,017_scene06.jpg,"まずは一回
+行けたら勝ち",slide_right,0,0,,

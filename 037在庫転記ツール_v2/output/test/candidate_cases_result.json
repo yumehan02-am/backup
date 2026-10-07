@@ -1,0 +1,122 @@
+[
+  {
+    "name": "80スムースカップ付ラン型",
+    "path": "C:\\Users\\i58400am\\Desktop\\newapp\\037在庫転記ツール\\在庫\\夢販流通\\西川合繊\\80スムースカップ付ラン型.xlsx",
+    "exists": true,
+    "expected": "A241",
+    "note": "",
+    "external": "A241",
+    "default": "A241",
+    "matches_default": true,
+    "matches_expected": true,
+    "status": "ok"
+  },
+  {
+    "name": "ほっそり見えカバーアップ水着",
+    "path": "C:\\Users\\i58400am\\Desktop\\newapp\\037在庫転記ツール\\在庫\\夢販流通\\クライム\\水着\\ほっそり見えカバーアップ水着.xlsx",
+    "exists": true,
+    "expected": "A216",
+    "note": "",
+    "external": "A222",
+    "default": "A222",
+    "matches_default": true,
+    "matches_expected": false,
+    "status": "ok"
+  },
+  {
+    "name": "【NEW】フィットブラ付きスクエアネック フレンチ",
+    "path": "C:\\Users\\i58400am\\Desktop\\newapp\\037在庫転記ツール\\在庫\\夢販流通\\クライム\\【NEW】フィットブラ付きスクエアネック　フレンチ.xlsx",
+    "exists": true,
+    "expected": "A630",
+    "note": "",
+    "external": "A633",
+    "default": "A633",
+    "matches_default": true,
+    "matches_expected": false,
+    "status": "ok"
+  },
+  {
+    "name": "冷感ストール",
+    "path": "C:\\Users\\i58400am\\Desktop\\newapp\\037在庫転記ツール\\在庫\\夢販流通\\成願\\冷感ストール.xlsx",
+    "exists": true,
+    "expected": "B450",
+    "note": "",
+    "external": "B450",
+    "default": "B450",
+    "matches_default": true,
+    "matches_expected": true,
+    "status": "ok"
+  },
+  {
+    "name": "150CC綿変わり織りショーツ",
+    "path": "C:\\Users\\i58400am\\Desktop\\newapp\\037在庫転記ツール\\在庫\\夢販流通\\西川合繊\\150CC綿変わり織りショーツ.xlsx",
+    "exists": true,
+    "expected": "A749",
+    "note": "",
+    "external": "A749",
+    "default": "A749",
+    "matches_default": true,
+    "matches_expected": true,
+    "status": "ok"
+  },
+  {
+    "name": "キルトノーマル、キルト 一分丈",
+    "path": "C:\\Users\\i58400am\\Desktop\\newapp\\037在庫転記ツール\\在庫\\夢販流通\\西川合繊\\キルトノーマル、キルト 一分丈.xlsx",
+    "exists": true,
+    "expected": "A1026",
+    "note": "",
+    "external": "A1026",
+    "default": "A1026",
+    "matches_default": true,
+    "matches_expected": true,
+    "status": "ok"
+  },
+  {
+    "name": "【NEW】吸水パッドレースショーツ",
+    "path": "C:\\Users\\i58400am\\Desktop\\newapp\\037在庫転記ツール\\在庫\\夢販流通\\川本産業㈱（ニシキ）\\【NEW】吸水パッドレースショーツ.xlsx",
+    "exists": true,
+    "expected": "A1959",
+    "note": "",
+    "external": "A1959",
+    "default": "A1959",
+    "matches_default": true,
+    "matches_expected": true,
+    "status": "ok"
+  },
+  {
+    "name": "渡嘉 吸水パッド",
+    "path": "C:\\Users\\i58400am\\Desktop\\newapp\\037在庫転記ツール\\在庫\\夢販流通\\渡嘉\\吸水パッド.xlsx",
+    "exists": true,
+    "expected": "B355",
+    "note": "過去に在庫表側の修正対象と判断した事例",
+    "external": "B356",
+    "default": "B356",
+    "matches_default": true,
+    "matches_expected": false,
+    "status": "ok"
+  },
+  {
+    "name": "シアーリブハイネック長袖インナー",
+    "path": "C:\\Users\\i58400am\\Desktop\\newapp\\037在庫転記ツール\\在庫\\夢販流通\\クライム\\シアーリブハイネック長袖インナー.xlsx",
+    "exists": true,
+    "expected": "",
+    "note": "",
+    "external": "A319",
+    "default": "A319",
+    "matches_default": true,
+    "matches_expected": true,
+    "status": "ok"
+  },
+  {
+    "name": "New細っそり見えスタイルカバーアップ水着23001",
+    "path": "C:\\Users\\i58400am\\Desktop\\newapp\\037在庫転記ツール\\在庫\\夢販流通\\上杉　水着\\New細っそり見えスタイルカバーアップ水着23001.xlsx",
+    "exists": true,
+    "expected": "",
+    "note": "",
+    "external": "A650",
+    "default": "A650",
+    "matches_default": true,
+    "matches_expected": true,
+    "status": "ok"
+  }
+]

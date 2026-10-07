@@ -1,0 +1,215 @@
+2025-08-01 15:47:43,223 - DEBUG: process_csv 開始
+2025-08-01 15:47:44,594 - DEBUG: process_csv 完了
+2025-08-04 16:50:17,958 - DEBUG: process_csv 開始
+2025-08-04 16:50:17,992 - DEBUG: handle_combined_shipping: 対象件数 3
+2025-08-04 16:50:44,417 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-08-04 16:51:13,109 - DEBUG: handle_combined_shipping: 対象件数 5
+2025-08-04 16:51:46,537 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-08-04 16:52:03,549 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-08-04 16:52:39,592 - DEBUG: process_csv 完了
+2025-08-05 17:53:58,727 - DEBUG: process_csv 開始
+2025-08-05 17:53:58,883 - DEBUG: handle_duplicate: 注文ID order_CaVrHiPrrkXWkA4y2zDiHS, 件数 2
+2025-08-05 17:54:06,680 - DEBUG: process_csv 完了
+2025-08-06 16:00:30,523 - DEBUG: process_csv 開始
+2025-08-06 16:00:30,601 - DEBUG: handle_duplicate: 注文ID order_CaVrHiPrrkXWkA4y2zDiHS, 件数 2
+2025-08-06 16:00:48,775 - DEBUG: process_csv 完了
+2025-08-06 16:01:58,607 - DEBUG: process_csv 開始
+2025-08-06 16:02:00,369 - DEBUG: process_csv 完了
+2025-08-07 16:40:21,884 - DEBUG: process_csv 開始
+2025-08-07 16:40:21,962 - DEBUG: handle_duplicate: 注文ID order_CaVrHiPrrkXWkA4y2zDiHS, 件数 2
+2025-08-07 16:40:28,867 - DEBUG: process_csv 完了
+2025-08-07 17:11:26,731 - DEBUG: process_csv 開始
+2025-08-07 17:11:28,341 - DEBUG: process_csv 完了
+2025-08-08 15:49:47,670 - DEBUG: process_csv 開始
+2025-08-08 15:49:49,152 - DEBUG: process_csv 完了
+2025-08-08 17:49:14,598 - DEBUG: process_csv 開始
+2025-08-08 17:49:16,745 - DEBUG: process_csv 完了
+2025-08-08 17:49:26,587 - DEBUG: process_csv 開始
+2025-08-08 17:49:28,396 - DEBUG: process_csv 完了
+2025-08-09 13:21:23,132 - DEBUG: process_csv 開始
+2025-08-09 13:21:24,671 - DEBUG: process_csv 完了
+2025-08-18 20:31:19,132 - DEBUG: process_csv 開始
+2025-08-18 20:31:19,194 - DEBUG: handle_duplicate: 注文ID order_cX6o5sCx8iPfRMytFE47CN, 件数 2
+2025-08-18 20:32:16,012 - DEBUG: handle_duplicate: 注文ID order_KUY2R6PCbZJcbLi6ajZfBc, 件数 2
+2025-08-18 20:32:20,399 - DEBUG: process_csv 完了
+2025-08-19 15:02:13,170 - DEBUG: process_csv 開始
+2025-08-19 15:02:14,844 - DEBUG: process_csv 完了
+2025-08-25 18:58:56,312 - DEBUG: process_csv 開始
+2025-08-25 18:58:58,424 - DEBUG: process_csv 完了
+2025-08-25 19:00:33,061 - DEBUG: process_csv 開始
+2025-08-25 19:00:34,499 - DEBUG: process_csv 完了
+2025-08-27 16:05:44,902 - DEBUG: process_csv 開始
+2025-08-27 16:05:45,053 - DEBUG: handle_duplicate: 注文ID order_sWtVvQ9awihSHckCWCGioQ, 件数 2
+2025-08-27 16:05:58,029 - DEBUG: handle_duplicate: 注文ID order_gTmaWUzLYsLo6EGGnADsRQ, 件数 2
+2025-08-27 16:06:05,787 - DEBUG: process_csv 完了
+2025-08-30 14:12:01,481 - DEBUG: process_csv 開始
+2025-08-30 14:12:03,634 - DEBUG: process_csv 完了
+2025-09-06 15:54:33,543 - DEBUG: process_csv 開始
+2025-09-06 15:54:35,862 - DEBUG: process_csv 完了
+2025-10-02 14:32:56,681 - DEBUG: process_csv 開始
+2025-10-02 14:32:56,691 - DEBUG: handle_combined_shipping: 対象件数 4
+2025-10-02 14:33:07,203 - DEBUG: process_csv 完了
+2025-10-06 16:13:04,407 - DEBUG: process_csv 開始
+2025-10-06 16:13:04,505 - DEBUG: handle_combined_shipping: 対象件数 4
+2025-10-06 16:14:26,904 - DEBUG: process_csv 完了
+2025-10-06 17:06:51,536 - DEBUG: process_csv 開始
+2025-10-06 17:06:51,541 - DEBUG: handle_combined_shipping: 対象件数 4
+2025-10-06 17:06:58,732 - DEBUG: process_csv 完了
+2025-10-18 13:48:26,234 - DEBUG: process_csv 開始
+2025-10-18 13:48:26,245 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-10-18 13:48:38,129 - DEBUG: handle_duplicate: 注文ID order_5As4viXs6UbWF2znWbo5SP, 件数 2
+2025-10-18 13:48:44,084 - DEBUG: process_csv 完了
+2025-10-27 18:47:11,856 - DEBUG: process_csv 開始
+2025-10-27 18:47:13,676 - DEBUG: process_csv 完了
+2025-11-07 11:52:58,297 - DEBUG: process_csv 開始
+2025-11-07 11:52:58,325 - DEBUG: handle_duplicate: 注文ID order_2JGcu5CfPJcStbkkxaDPeZ, 件数 2
+2025-11-07 11:53:02,783 - DEBUG: process_csv 完了
+2025-11-10 16:23:56,491 - DEBUG: process_csv 開始
+2025-11-10 16:23:56,597 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-11-10 16:24:59,813 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-11-10 16:25:09,760 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-11-10 16:25:33,134 - DEBUG: handle_combined_shipping: 対象件数 3
+2025-11-10 16:25:49,145 - DEBUG: process_csv 完了
+2025-11-10 16:25:53,916 - DEBUG: process_csv 開始
+2025-11-10 16:25:53,921 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-11-25 17:25:57,305 - DEBUG: process_csv 開始
+2025-11-25 17:25:57,319 - DEBUG: handle_combined_shipping: 対象件数 3
+2025-11-25 17:26:09,960 - DEBUG: handle_combined_shipping: 対象件数 3
+2025-11-25 17:26:25,483 - DEBUG: process_csv 完了
+2025-11-29 15:19:34,524 - DEBUG: process_csv 開始
+2025-11-29 15:19:34,546 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-11-29 15:22:32,647 - DEBUG: process_csv 完了
+2025-12-01 16:05:44,812 - DEBUG: process_csv 開始
+2025-12-01 16:05:44,828 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-12-01 16:06:02,885 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-12-01 16:06:13,799 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-12-01 16:06:32,752 - DEBUG: handle_combined_shipping: 対象件数 3
+2025-12-01 16:06:59,249 - DEBUG: process_csv 完了
+2025-12-06 14:54:11,569 - DEBUG: process_csv 開始
+2025-12-06 14:54:11,579 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-12-06 14:54:15,742 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-12-06 14:54:19,214 - DEBUG: process_csv 完了
+2025-12-08 14:56:58,074 - DEBUG: process_csv 開始
+2025-12-08 14:56:58,086 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-12-08 15:01:18,638 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-12-08 15:01:22,625 - DEBUG: process_csv 完了
+2025-12-15 15:57:12,047 - DEBUG: process_csv 開始
+2025-12-15 15:57:12,139 - DEBUG: handle_combined_shipping: 対象件数 3
+2025-12-15 15:57:31,755 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-12-15 15:57:43,113 - DEBUG: process_csv 完了
+2025-12-19 18:56:12,432 - DEBUG: process_csv 開始
+2025-12-19 18:56:12,506 - DEBUG: handle_duplicate: 注文ID order_cX6o5sCx8iPfRMytFE47CN, 件数 2
+2025-12-19 18:56:42,363 - DEBUG: handle_duplicate: 注文ID order_KUY2R6PCbZJcbLi6ajZfBc, 件数 2
+2025-12-19 18:56:52,792 - DEBUG: process_csv 完了
+2025-12-20 14:05:43,680 - DEBUG: process_csv 開始
+2025-12-20 14:05:45,091 - DEBUG: process_csv 完了
+2025-12-22 15:59:05,479 - DEBUG: process_csv 開始
+2025-12-22 15:59:05,491 - DEBUG: handle_combined_shipping: 対象件数 2
+2025-12-22 15:59:29,383 - DEBUG: process_csv 完了
+2026-01-05 17:19:34,133 - DEBUG: process_csv 開始
+2026-01-05 17:19:34,157 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-01-05 17:19:50,139 - DEBUG: process_csv 完了
+2026-01-13 16:44:06,793 - DEBUG: process_csv 開始
+2026-01-13 16:44:08,521 - DEBUG: process_csv 完了
+2026-01-26 16:47:57,130 - DEBUG: process_csv 開始
+2026-01-26 16:47:58,532 - DEBUG: process_csv 完了
+2026-01-31 14:12:01,479 - DEBUG: process_csv 開始
+2026-01-31 14:12:03,024 - DEBUG: process_csv 完了
+2026-02-02 15:54:48,768 - DEBUG: process_csv 開始
+2026-02-02 15:54:55,111 - DEBUG: process_csv 完了
+2026-02-09 16:19:21,093 - DEBUG: process_csv 開始
+2026-02-09 16:19:21,105 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-09 16:20:39,194 - DEBUG: process_csv 完了
+2026-02-16 15:29:25,190 - DEBUG: process_csv 開始
+2026-02-16 15:29:25,214 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-16 15:29:36,557 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-16 15:30:01,652 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-16 15:31:27,726 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-16 15:32:00,420 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-16 15:32:13,852 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-16 15:32:30,845 - DEBUG: process_csv 完了
+2026-02-24 18:22:54,809 - DEBUG: process_csv 開始
+2026-02-24 18:22:54,840 - DEBUG: handle_combined_shipping: 対象件数 3
+2026-02-24 18:23:25,404 - DEBUG: process_csv 完了
+2026-02-27 16:30:54,205 - DEBUG: process_csv 開始
+2026-02-27 16:30:56,058 - DEBUG: process_csv 完了
+2026-02-27 16:35:45,004 - DEBUG: process_csv 開始
+2026-02-27 16:35:45,053 - DEBUG: handle_duplicate: 注文ID order_cX6o5sCx8iPfRMytFE47CN, 件数 2
+2026-02-27 16:36:05,394 - DEBUG: handle_duplicate: 注文ID order_KUY2R6PCbZJcbLi6ajZfBc, 件数 2
+2026-02-27 16:36:38,103 - DEBUG: process_csv 完了
+2026-02-27 16:36:48,993 - DEBUG: process_csv 開始
+2026-02-27 16:36:49,022 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-27 16:37:51,771 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-27 16:37:57,918 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-27 16:38:07,015 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-02-27 16:38:15,648 - DEBUG: process_csv 完了
+2026-03-02 18:24:45,084 - DEBUG: process_csv 開始
+2026-03-02 18:24:45,096 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-03-02 18:24:56,010 - DEBUG: process_csv 完了
+2026-03-06 15:32:15,942 - DEBUG: process_csv 開始
+2026-03-06 15:32:15,952 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-03-06 15:32:30,608 - DEBUG: process_csv 完了
+2026-03-13 11:05:11,136 - DEBUG: process_csv 開始
+2026-03-13 11:05:13,171 - DEBUG: process_csv 完了
+2026-03-23 20:38:41,649 - DEBUG: process_csv 開始
+2026-03-23 20:38:41,659 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-03-23 20:39:22,051 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-03-23 20:40:24,140 - DEBUG: handle_combined_shipping: 対象件数 3
+2026-03-23 20:40:42,594 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-03-23 20:41:08,980 - DEBUG: process_csv 完了
+2026-03-24 15:40:29,577 - DEBUG: process_csv 開始
+2026-03-24 15:40:29,586 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-03-24 15:40:41,511 - DEBUG: process_csv 完了
+2026-03-30 16:24:25,001 - DEBUG: process_csv 開始
+2026-03-30 16:24:25,055 - DEBUG: handle_duplicate: 注文ID order_2JP5DnD9D33wmmCfNxT6RC, 件数 2
+2026-03-30 16:26:23,451 - DEBUG: process_csv 完了
+2026-03-30 16:36:35,022 - DEBUG: process_csv 開始
+2026-03-30 16:36:35,048 - DEBUG: handle_duplicate: 注文ID order_2JP5DnD9D33wmmCfNxT6RC, 件数 2
+2026-03-30 16:37:05,430 - DEBUG: process_csv 完了
+2026-03-31 15:51:36,571 - DEBUG: process_csv 開始
+2026-03-31 15:51:36,611 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-03-31 15:51:46,695 - DEBUG: process_csv 完了
+2026-04-01 16:26:16,345 - DEBUG: process_csv 開始
+2026-04-01 16:26:17,933 - DEBUG: process_csv 完了
+2026-04-06 17:05:10,821 - DEBUG: process_csv 開始
+2026-04-06 17:05:10,834 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-04-06 17:05:27,302 - DEBUG: process_csv 完了
+2026-04-07 16:30:42,470 - DEBUG: process_csv 開始
+2026-04-07 16:30:44,169 - DEBUG: process_csv 完了
+2026-04-22 14:52:35,269 - DEBUG: process_csv 開始
+2026-04-22 14:52:35,354 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-04-22 14:52:55,931 - DEBUG: process_csv 完了
+2026-04-27 17:54:10,555 - DEBUG: process_csv 開始
+2026-04-27 17:54:10,612 - DEBUG: handle_duplicate: 注文ID order_2JQNJ38pGVm33aFyZWkNvE, 件数 2
+2026-04-27 17:54:36,549 - DEBUG: process_csv 完了
+2026-04-28 17:14:25,571 - DEBUG: process_csv 開始
+2026-04-28 17:14:27,789 - DEBUG: process_csv 完了
+2026-04-30 15:41:17,369 - DEBUG: process_csv 開始
+2026-04-30 15:41:17,384 - DEBUG: handle_duplicate: 注文ID order_2JQTi52kapnodfJzkuCjPY, 件数 2
+2026-04-30 15:41:36,318 - DEBUG: process_csv 完了
+2026-05-07 16:01:31,555 - DEBUG: process_csv 開始
+2026-05-07 16:01:33,372 - DEBUG: process_csv 完了
+2026-05-11 16:46:52,923 - DEBUG: process_csv 開始
+2026-05-11 16:46:52,939 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-05-11 16:47:12,490 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-05-11 16:47:49,636 - DEBUG: process_csv 完了
+2026-05-11 16:55:24,065 - DEBUG: process_csv 開始
+2026-05-11 16:55:24,072 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-05-11 16:55:27,483 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-05-11 16:55:31,802 - DEBUG: process_csv 完了
+2026-05-18 17:25:14,963 - DEBUG: process_csv 開始
+2026-05-18 17:25:16,736 - DEBUG: process_csv 完了
+2026-05-25 16:43:25,206 - DEBUG: process_csv 開始
+2026-05-25 16:43:25,215 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-05-25 16:43:49,773 - DEBUG: process_csv 完了
+2026-05-25 16:47:34,632 - DEBUG: process_csv 開始
+2026-05-25 16:47:34,637 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-05-25 16:47:41,394 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-05-25 16:48:00,812 - DEBUG: process_csv 完了
+2026-05-28 16:09:49,886 - DEBUG: process_csv 開始
+2026-05-28 16:09:49,899 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-05-28 16:09:56,505 - DEBUG: process_csv 完了
+2026-06-01 13:21:24,642 - DEBUG: process_csv 開始
+2026-06-01 13:21:24,649 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-06-01 13:21:37,131 - DEBUG: handle_combined_shipping: 対象件数 2
+2026-06-01 13:21:40,864 - DEBUG: process_csv 完了

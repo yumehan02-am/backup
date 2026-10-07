@@ -1,0 +1,15 @@
+scene_no,duration_sec,background_file,display_copy,text_animation,crop_x,crop_y,text_center_x,point_x
+1,5.8,015_scene01.jpg,"プールへ行く気持ちを
+止めない",typewriter,0,0,,
+2,4.6,015_scene02.jpg,"水着の不安を
+少し軽くする",rise_fade,0,0,,
+3,5.2,015_scene03.jpg,"このコラムのポイント
+› 始める前のハードル
+› 泳がなくてもいい
+› 続けやすい準備",points,0,0,360,132
+4,4.4,015_scene04.jpg,"歩くプールでも
+始めていい",slide_left,0,0,,
+5,4.4,015_scene05.jpg,"カバーは
+前向きな工夫",rise_fade,0,0,,
+6,4.4,015_scene06.jpg,"準備が少ないと
+続けやすい",slide_right,0,0,,

@@ -1,0 +1,15 @@
+scene,duration,background,copy,animation,crop_x,crop_y,text_center_x,point_x
+1,5.8,010_scene01.jpg,"ワイドパンツの日
+個室で急に忙しい",typewriter,0,0,,
+2,3.8,010_scene02.jpg,"この布の量を
+どうするか",rise,0,0,,
+3,4.8,010_scene03.jpg,"このコラムのポイント
+› 個室で慌てない
+› 裾を床につけない
+› 季節で生地を選ぶ",points,0,0,,
+4,3.8,010_scene04.jpg,"春夏は軽く
+秋冬はあたたかく",slide_left,0,0,,
+5,3.8,010_scene05.jpg,"見えない準備が
+服を自由にする",slide_right,0,0,,
+6,4.2,010_scene06.jpg,"好きなパンツを
+もう少し気楽に",soft_drop,0,0,,

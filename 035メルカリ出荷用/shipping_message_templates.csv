@@ -1,0 +1,9 @@
+﻿invoice_code,carrier,method,message1,tracking_label,message2,no_tracking_message,enabled
+A,ヤマト運輸,ネコポス,,{carrier} {method}：{tracking},ポスト投函でのお届けとなります。,未登録,1
+0,ヤマト運輸,宅急便,,{carrier} {method}：{tracking},,未登録,1
+2,ヤマト運輸,宅急便(コレクト),,{carrier} {method}：{tracking},代金引換でのお届けとなります。,未登録,1
+3,ヤマト運輸,DM便,,{carrier} {method}：{tracking},ポスト投函でのお届けとなります。,未登録,1
+4,ヤマト運輸,タイム,,{carrier} {method}：{tracking},,未登録,1
+5,ヤマト運輸,着払,,{carrier} {method}：{tracking},着払いでのお届けとなります。,未登録,1
+8,ヤマト運輸,宅急便コンパクト,,{carrier} {method}：{tracking},宅急便コンパクトでのお届けとなります。,未登録,1
+9,ヤマト運輸,宅急便コンパクトコレクト,,{carrier} {method}：{tracking},宅急便コンパクトコレクトでのお届けとなります。,未登録,1

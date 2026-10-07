@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>テキストタグ修正ツール</title>
+  <style>
+    :root {
+      --bg: #f4f6f7;
+      --panel: #ffffff;
+      --text: #20242a;
+      --muted: #5f6873;
+      --line: #d6dce1;
+      --accent: #155e75;
+      --accent-strong: #0e4b5f;
+      --danger: #b42318;
+      --ok-bg: #e8f5ef;
+      --ok-text: #16643c;
+      --err-bg: #fdecec;
+      --err-text: #9b1c13;
+      --info-bg: #eef3f7;
+      --shadow: 0 10px 24px rgba(25, 33, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Yu Gothic UI", "Meiryo", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .app {
+      width: min(1240px, calc(100vw - 28px));
+      margin: 20px auto;
+    }
+
+    header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .top-actions,
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(310px, 1.1fr) minmax(320px, 0.9fr);
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(320px, 1fr) 92px minmax(320px, 1fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .radio-row,
+    .check-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .radio-row label,
+    .check-row label {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      padding: 9px 10px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 380px;
+      resize: vertical;
+      font-family: "Consolas", "Yu Gothic UI", monospace;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(21, 94, 117, 0.14);
+    }
+
+    button {
+      border: 1px solid transparent;
+      border-radius: 6px;
+      min-height: 38px;
+      padding: 8px 12px;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease, opacity 0.12s ease;
+    }
+
+    button:hover:not(:disabled) {
+      background: var(--accent-strong);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .secondary {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .secondary:hover:not(:disabled) {
+      background: #eef2f4;
+    }
+
+    .danger {
+      background: #fff;
+      border-color: #efb1aa;
+      color: var(--danger);
+    }
+
+    .danger:hover:not(:disabled) {
+      background: #fdecec;
+    }
+
+    .center-actions {
+      display: grid;
+      align-content: center;
+      gap: 8px;
+    }
+
+    .text-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .replace-grid {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .replace-grid button {
+      grid-column: 1 / -1;
+      justify-self: start;
+    }
+
+    .status {
+      margin-top: 12px;
+      min-height: 40px;
+      border-radius: 6px;
+      padding: 9px 12px;
+      background: var(--info-bg);
+      color: #42505c;
+      font-weight: 700;
+    }
+
+    .status.ok {
+      background: var(--ok-bg);
+      color: var(--ok-text);
+    }
+
+    .status.err {
+      background: var(--err-bg);
+      color: var(--err-text);
+    }
+
+    @media (max-width: 940px) {
+      .controls,
+      .workbench {
+        grid-template-columns: 1fr;
+      }
+
+      .center-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      textarea {
+        min-height: 260px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .app {
+        width: min(100vw - 18px, 1240px);
+        margin: 10px auto;
+      }
+
+      header {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .top-actions,
+      .button-row,
+      .center-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .replace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>テキストタグ修正ツール</h1>
+      <div class="top-actions">
+        <button type="button" class="secondary" id="pasteInput">ペースト</button>
+        <button type="button" class="secondary" id="copyOutput">コピー</button>
+        <button type="button" class="danger" id="clearInput">入力クリア</button>
+      </div>
+    </header>
+
+    <section class="controls">
+      <div class="panel">
+        <h2 class="section-title">モード選択</h2>
+        <div class="radio-row">
+          <label><input type="radio" name="mode" value="remove_tags" checked>タグ消去モード</label>
+          <label><input type="radio" name="mode" value="insert_br">改行タグ挿入モード</label>
+        </div>
+        <div class="field">
+          <label for="brOption">&lt;br&gt;処理</label>
+          <select id="brOption">
+            <option value="br_only_newline">&lt;br&gt;のみ改行する</option>
+            <option value="br_to_newline">&lt;br&gt;を改行に変換</option>
+            <option value="br_remove"> &lt;br&gt;で改行を挿入しない</option>
+          </select>
+        </div>
+        <div class="check-row">
+          <label><input type="checkbox" id="collapseNewlines">重複改行をまとめる</label>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 class="section-title">整形済みテキストの置換</h2>
+        <div class="replace-grid">
+          <label for="replacePattern">置換前</label>
+          <input type="text" id="replacePattern" placeholder="正規表現パターン">
+          <label for="replaceText">置換後</label>
+          <input type="text" id="replaceText">
+          <button type="button" id="replaceButton">置換実行</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="workbench">
+      <div class="panel">
+        <div class="text-head">
+          <h2 class="section-title">整形前テキスト</h2>
+          <div class="count" id="inputCount">全角0.0文字（0バイト）</div>
+        </div>
+        <textarea id="inputText" spellcheck="false"></textarea>
+        <div class="button-row" style="margin-top: 10px;">
+          <button type="button" class="secondary" id="selectInput">入力を選択</button>
+        </div>
+      </div>
+
+      <div class="center-actions">
+        <button type="button" id="formatButton">整形</button>
+        <button type="button" class="secondary" id="appendButton">整形追記</button>
+      </div>
+
+      <div class="panel">
+        <div class="text-head">
+          <h2 class="section-title">整形済みテキスト</h2>
+          <div class="count" id="outputCount">全角0.0文字（0バイト）</div>
+        </div>
+        <textarea id="outputText" spellcheck="false"></textarea>
+        <div class="button-row" style="margin-top: 10px;">
+          <button type="button" class="secondary" id="selectOutput">出力を選択</button>
+          <button type="button" class="danger" id="clearOutput">出力クリア</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="status" id="status">タグ消去モード：&lt;br&gt;を改行に変換、通常の改行は削除</div>
+  </main>
+
+  <script>
+    const els = {
+      inputText: document.getElementById("inputText"),
+      outputText: document.getElementById("outputText"),
+      inputCount: document.getElementById("inputCount"),
+      outputCount: document.getElementById("outputCount"),
+      brOption: document.getElementById("brOption"),
+      collapseNewlines: document.getElementById("collapseNewlines"),
+      pasteInput: document.getElementById("pasteInput"),
+      clearInput: document.getElementById("clearInput"),
+      copyOutput: document.getElementById("copyOutput"),
+      selectInput: document.getElementById("selectInput"),
+      selectOutput: document.getElementById("selectOutput"),
+      clearOutput: document.getElementById("clearOutput"),
+      formatButton: document.getElementById("formatButton"),
+      appendButton: document.getElementById("appendButton"),
+      replacePattern: document.getElementById("replacePattern"),
+      replaceText: document.getElementById("replaceText"),
+      replaceButton: document.getElementById("replaceButton"),
+      status: document.getElementById("status")
+    };
+
+    function currentMode() {
+      return document.querySelector('input[name="mode"]:checked').value;
+    }
+
+    function showStatus(message, type = "") {
+      els.status.textContent = message;
+      els.status.className = `status ${type}`.trim();
+    }
+
+    function getCharWidth(char) {
+      const code = char.codePointAt(0);
+      if (
+        code >= 0x1100 && (
+          code <= 0x115f ||
+          code === 0x2329 ||
+          code === 0x232a ||
+          (code >= 0x2e80 && code <= 0xa4cf && code !== 0x303f) ||
+          (code >= 0xac00 && code <= 0xd7a3) ||
+          (code >= 0xf900 && code <= 0xfaff) ||
+          (code >= 0xfe10 && code <= 0xfe19) ||
+          (code >= 0xfe30 && code <= 0xfe6f) ||
+          (code >= 0xff00 && code <= 0xff60) ||
+          (code >= 0xffe0 && code <= 0xffe6)
+        )
+      ) {
+        return 2;
+      }
+      return 1;
+    }
+
+    function countCharsAndBytes(text) {
+      let bytes = 0;
+      for (const char of text) bytes += getCharWidth(char);
+      return {
+        equivalent: bytes / 2,
+        bytes
+      };
+    }
+
+    function updateCounts() {
+      const input = countCharsAndBytes(els.inputText.value.trim());
+      const output = countCharsAndBytes(els.outputText.value.trim());
+      els.inputCount.textContent = `全角${input.equivalent.toFixed(1)}文字（${input.bytes}バイト）`;
+      els.outputCount.textContent = `全角${output.equivalent.toFixed(1)}文字（${output.bytes}バイト）`;
+    }
+
+    function updateModeState() {
+      const mode = currentMode();
+      els.brOption.disabled = mode !== "remove_tags";
+      if (mode === "remove_tags") {
+        updateBrDescription();
+      } else {
+        showStatus("改行タグ挿入モード：各行末に<br>を挿入");
+      }
+      saveDraft();
+    }
+
+    function updateBrDescription() {
+      if (currentMode() !== "remove_tags") return;
+      if (els.brOption.value === "br_only_newline") {
+        showStatus("タグ消去モード：<br>を改行に変換、通常の改行は削除");
+      } else if (els.brOption.value === "br_to_newline") {
+        showStatus("タグ消去モード：<br>と通常の改行を保持");
+      } else {
+        showStatus("タグ消去モード：<br>を削除、通常の改行を保持");
+      }
+    }
+
+    function removeTags(text) {
+      return text.replace(/<[^>]+>/g, "");
+    }
+
+    function cleanText(append = false) {
+      const inputText = els.inputText.value.replace(/\r\n/g, "\n").replace(/\r/g, "\n").replace(/\s+$/g, "");
+      const collapse = els.collapseNewlines.checked;
+      const mode = currentMode();
+      let cleanedText = "";
+
+      if (mode === "remove_tags") {
+        if (els.brOption.value === "br_only_newline") {
+          cleanedText = inputText.replace(/\n+/g, "\u0000");
+          cleanedText = cleanedText.replace(/<br\s*\/?>/gi, "\n");
+          cleanedText = removeTags(cleanedText);
+          cleanedText = cleanedText.replace(/\u0000/g, "");
+          if (collapse) cleanedText = cleanedText.trim().replace(/\n\s*\n+/g, "\n");
+        } else if (els.brOption.value === "br_to_newline") {
+          cleanedText = inputText.replace(/<br\s*\/?>/gi, "\n");
+          cleanedText = removeTags(cleanedText);
+          if (collapse) cleanedText = cleanedText.trim().replace(/\n\s*\n+/g, "\n\n");
+        } else {
+          cleanedText = inputText.replace(/<br\s*\/?>/gi, "");
+          cleanedText = removeTags(cleanedText);
+          if (collapse) cleanedText = cleanedText.trim().replace(/\n\s*\n+/g, "\n\n");
+        }
+      } else {
+        cleanedText = inputText
+          .split("\n")
+          .map((line) => `${line.replace(/\s+$/g, "")}<br>`)
+          .join("\n");
+        if (collapse) cleanedText = cleanedText.replace(/(<br>\n\s*)+/g, "<br>\n").replace(/\n$/g, "");
+      }
+
+      if (append && els.outputText.value.trim()) {
+        const prefix = mode === "insert_br" ? "<br>\n" : "\n\n";
+        els.outputText.value += prefix + cleanedText;
+      } else {
+        els.outputText.value = cleanedText;
+      }
+
+      updateCounts();
+      saveDraft();
+      showStatus("テキストを整形しました", "ok");
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch {
+        const temp = document.createElement("textarea");
+        temp.value = text;
+        temp.style.position = "fixed";
+        temp.style.left = "-9999px";
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        try {
+          return document.execCommand("copy");
+        } finally {
+          temp.remove();
+        }
+      }
+    }
+
+    function saveDraft() {
+      const draft = {
+        mode: currentMode(),
+        brOption: els.brOption.value,
+        collapse: els.collapseNewlines.checked,
+        input: els.inputText.value,
+        output: els.outputText.value,
+        pattern: els.replacePattern.value,
+        replacement: els.replaceText.value
+      };
+      localStorage.setItem("textTagFixerDraft", JSON.stringify(draft));
+    }
+
+    function restoreDraft() {
+      try {
+        const draft = JSON.parse(localStorage.getItem("textTagFixerDraft") || "null");
+        if (!draft) return;
+        const mode = draft.mode === "insert_br" ? "insert_br" : "remove_tags";
+        document.querySelector(`input[name="mode"][value="${mode}"]`).checked = true;
+        if (["br_only_newline", "br_to_newline", "br_remove"].includes(draft.brOption)) {
+          els.brOption.value = draft.brOption;
+        }
+        els.collapseNewlines.checked = Boolean(draft.collapse);
+        els.inputText.value = draft.input || "";
+        els.outputText.value = draft.output || "";
+        els.replacePattern.value = draft.pattern || "";
+        els.replaceText.value = draft.replacement || "";
+      } catch {
+        localStorage.removeItem("textTagFixerDraft");
+      }
+    }
+
+    els.inputText.addEventListener("input", () => {
+      updateCounts();
+      saveDraft();
+    });
+    els.outputText.addEventListener("input", () => {
+      updateCounts();
+      saveDraft();
+    });
+    els.brOption.addEventListener("change", () => {
+      updateBrDescription();
+      saveDraft();
+    });
+    els.collapseNewlines.addEventListener("change", saveDraft);
+    document.querySelectorAll('input[name="mode"]').forEach((radio) => {
+      radio.addEventListener("change", updateModeState);
+    });
+
+    els.formatButton.addEventListener("click", () => cleanText(false));
+    els.appendButton.addEventListener("click", () => cleanText(true));
+
+    els.pasteInput.addEventListener("click", async () => {
+      try {
+        els.inputText.value = await navigator.clipboard.readText();
+        updateCounts();
+        saveDraft();
+        showStatus("テキストをペーストしました", "ok");
+      } catch (error) {
+        showStatus(`ペーストに失敗しました: ${error.message}`, "err");
+      }
+    });
+
+    els.clearInput.addEventListener("click", () => {
+      els.inputText.value = "";
+      updateCounts();
+      saveDraft();
+      showStatus("入力テキストをクリアしました", "ok");
+    });
+
+    els.copyOutput.addEventListener("click", async () => {
+      const ok = await copyText(els.outputText.value.trim());
+      showStatus(ok ? "テキストをクリップボードにコピーしました" : "コピーに失敗しました", ok ? "ok" : "err");
+    });
+
+    els.selectInput.addEventListener("click", () => {
+      els.inputText.focus();
+      els.inputText.select();
+      showStatus("入力テキストを選択しました", "ok");
+    });
+
+    els.selectOutput.addEventListener("click", () => {
+      els.outputText.focus();
+      els.outputText.select();
+      showStatus("整形済みテキストを選択しました", "ok");
+    });
+
+    els.clearOutput.addEventListener("click", () => {
+      els.outputText.value = "";
+      updateCounts();
+      saveDraft();
+      showStatus("整形済みテキストをクリアしました", "ok");
+    });
+
+    els.replaceButton.addEventListener("click", () => {
+      try {
+        const regex = new RegExp(els.replacePattern.value, "g");
+        els.outputText.value = els.outputText.value.trim().replace(regex, els.replaceText.value);
+        updateCounts();
+        saveDraft();
+        showStatus("置換を実行しました", "ok");
+      } catch {
+        showStatus("無効な正規表現パターンです", "err");
+      }
+    });
+
+    els.replacePattern.addEventListener("input", saveDraft);
+    els.replaceText.addEventListener("input", saveDraft);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.ctrlKey && event.shiftKey && event.key === "Enter") {
+        event.preventDefault();
+        cleanText(true);
+      } else if (event.ctrlKey && event.key === "Enter") {
+        event.preventDefault();
+        cleanText(false);
+      }
+    });
+
+    restoreDraft();
+    updateModeState();
+    updateCounts();
+  </script>
+</body>
+</html>

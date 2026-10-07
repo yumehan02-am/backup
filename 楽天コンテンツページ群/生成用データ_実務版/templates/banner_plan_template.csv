@@ -1,0 +1,7 @@
+banner_no,banner_type,purpose,image_prompt,overlay_title,overlay_body,folder,reference_mode,reference_source,notes
+1,title,ページの第一印象を作る,テーマに合う写真風生活イメージ。文字スペースあり。商品画像なし。,ページタイトル,短いサブコピー,images,none,,実写風は指定がない限り参照画像を使わない
+2,empathy,読者の悩みを受け止める,手元や日常シーンで悩みを連想させる。顔出しなし。,悩みに寄り添う見出し,1から2行の短文,images,none,,怖がらせない
+3,points,本文の要点を整理する,雑誌・布・小物・暮らしの俯瞰。余白あり。,このコラムのポイント,短い3項目,images,none,,今日の目次は使わない
+4,knowledge,知識や比較を見やすくする,素材・形・季節感が伝わる背景。商品画像なし。,知っておきたいこと,比較や選び方の短文,images,none,,断定しすぎない
+5,closing,商品紹介へ自然につなげる,明るい生活シーン。買い物準備や整った収納。,まとめ見出し,自然な接続文,images,none,,商品画像は商品パーツ側
+6,accent,文章の息継ぎを作る,文字入れしない正方形の生活イメージ。商品画像なし。,,,"images",none,,part_type=accent_image / placement=after_body で管理

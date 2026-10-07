@@ -1,0 +1,45 @@
+﻿順番	ブロック種別	貼り付け内容	元データ	文字数	警告
+1	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/028_title.jpg	images/delivery/028_title.jpg		タイトル画像
+2	メインタイトル	お腹だけを見ているのは自分だけかも｜水辺の自意識をゆるめるコラム	お腹だけを見ているのは自分だけかも｜水辺の自意識をゆるめるコラム	32	
+3	動画	video/opening_cm_028_vertical.mp4	video/opening_cm_028_vertical.mp4		タイトル直下の動く目次CM
+4	動画下本文	"
+水辺に行く前、鏡の前でなぜかお腹だけを見てしまうことがあります。
+
+顔でも髪でもなく、お腹。しかもかなり厳しい目で見ています。けれど実際の水辺で、他人のお腹をそこまで観察している人はどれくらいいるのでしょう。
+
+このコラムでは、少し笑いながら水辺の自意識をゆるめ、ふんわり隠せる水着の安心感を考えます。"	page_copy.md#lead	151	本文先頭に余白用改行あり
+5	小タイトル	鏡の前だけ審査員	鏡の前だけ審査員	8	
+6	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/028_section_1.jpg	images/delivery/028_section_1.jpg		章バナー
+7	本文	"
+家の鏡の前では、なぜか自分だけ審査員になります。角度を変え、息を吸い、もう一度見る。判定はだいたい厳しめです。
+
+でも、その審査は水辺に持ち込まなくてもいいのかもしれません。水辺には、水しぶき、荷物、日差し、子どもの声、休憩場所探し。見るものが多すぎます。"	page_copy.md#1	128	本文先頭に余白用改行あり
+8	小タイトル	みんな意外と忙しい	みんな意外と忙しい	9	
+9	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/028_section_2.jpg	images/delivery/028_section_2.jpg		章バナー
+10	本文	"
+プールや海で、他人は思ったほどこちらを見ていません。タオルはどこか、飲み物は冷えているか、子どもはどこか、自分の日焼けは大丈夫か。
+
+それぞれが自分のことで忙しい場所では、自分が思うほど目立たないことも多いものです。"	page_copy.md#2	108	本文先頭に余白用改行あり
+11	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/028_accent_01.jpg	images/delivery/028_accent_01.jpg		文字なし正方形アクセント
+12	小タイトル	ふんわり隠すと気が散らない	ふんわり隠すと気が散らない	13	
+13	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/028_section_3.jpg	images/delivery/028_section_3.jpg		章バナー
+14	本文	"
+それでも気になるものは気になります。だからこそ、精神論だけで片づけず、水着で先に安心を作っておくのは現実的です。
+
+ふんわりしたトップスや重ね着風のデザインは、気になる部分へ意識が向き続けるのをやわらげてくれます。"	page_copy.md#3	107	本文先頭に余白用改行あり
+15	小タイトル	動ける安心も欲しい	動ける安心も欲しい	9	
+16	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/028_section_4.jpg	images/delivery/028_section_4.jpg		章バナー
+17	本文	"
+お腹を隠せても、座るたびに裾を直すようでは落ち着きません。水辺ではしゃがむ、歩く、荷物を持つ、子どもを追うなど動作が多いものです。
+
+体型カバーは、見た目だけでなく動きやすさも合わせて考えると失敗しにくくなります。"	page_copy.md#4	107	本文先頭に余白用改行あり
+18	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/028_accent_02.jpg	images/delivery/028_accent_02.jpg		文字なし正方形アクセント
+19	小タイトル	笑って出かけるくらいでいい	笑って出かけるくらいでいい	13	
+20	画像	https://image.rakuten.co.jp/u-b-yumehan/cabinet/contents/028_section_5.jpg	images/delivery/028_section_5.jpg		章バナー
+21	本文	"
+水着の日に少し緊張するのは自然です。でも、その緊張を笑いに変えられるくらいの余白があると、出かけやすくなります。
+
+お腹だけを見ていた自分に少しツッコミを入れて、ふんわり水着を味方にする。水辺の一日は、そのくらい軽く始めてもいいはずです。"	page_copy.md#5	119	本文先頭に余白用改行あり
+22	関連商品	usbswc	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+23	関連商品	usbswb	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行
+24	関連商品	b-mizugi-3	product_ids.csv		商品IDが必要なパーツ。1商品ID=1行

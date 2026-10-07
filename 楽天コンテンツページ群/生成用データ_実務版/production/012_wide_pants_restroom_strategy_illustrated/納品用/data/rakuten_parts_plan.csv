@@ -1,0 +1,17 @@
+order,part_type,file_or_source,note,placement,after_section
+1,thumbnail,images/012_thumbnail.jpg,RMSサムネイル候補,,
+2,banner,images/012_title.jpg,タイトルバナー,,
+3,video,video/opening_cm_012_vertical.mp4,タイトル直下の動く目次CM,,
+4,banner,images/012_points.jpg,動画直下のポイント画像,,
+5,text,page_copy.md,リード文から1章まで,,
+6,banner,images/012_strategy.jpg,コミカル導入バナー,before_body,1
+7,text,page_copy.md,2章まで,,
+8,banner,images/012_busy.jpg,外出先の忙しさ,before_body,2
+9,text,page_copy.md,3章まで,,
+10,banner,images/012_season.jpg,季節差バナー,before_body,4
+11,text,page_copy.md,4章から5章まで,,
+12,banner,images/012_closing.jpg,準備しておく章,before_body,5
+13,text,page_copy.md,6章からまとめ,,
+14,accent_image,images/012_accent_01.jpg,文字なし正方形アクセント画像,after_body,2
+15,accent_image,images/012_accent_02.jpg,文字なし正方形アクセント画像,after_body,5
+16,product_parts,product_ids.csv,関連商品パーツ,,
